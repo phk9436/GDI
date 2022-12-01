@@ -5,29 +5,29 @@ function GnbBottom() {
   const Menu: { [key: string]: string[][] } = {
     lab: [
       ['연구보고서', ''],
-      ['학술 포럼', 'forum'],
+      ['학술 포럼', 'Forum'],
     ],
     notice: [
-      ['GDI 영상관', 'movie'],
-      ['언론보도', 'press'],
+      ['GDI 영상관', 'Movie'],
+      ['언론보도', 'Press'],
       ['공지사항', ''],
     ],
     board: [['연구제안', '']],
     intro: [
       ['원장인사말', ''],
-      ['비전&연혁', 'vision'],
-      ['오시는길', 'map'],
+      ['비전&연혁', 'Vision'],
+      ['오시는길', 'Map'],
     ],
   };
   const MenuTaps = Object.keys(Menu);
-  console.log(MenuTaps);
+
   return (
     <Wrapper>
       {MenuTaps.map((e, i) => (
         <MenuList key={`Tap${i}`}>
           {Menu[e].map((el, index) => (
             <MenuElement key={`Tap${el}${index}`}>
-              <Link href={`${e}/${el[1]}`}>
+              <Link href={`/${e}/${el[1]}`}>
                 <a>{el[0]}</a>
               </Link>
             </MenuElement>
