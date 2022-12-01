@@ -15,7 +15,7 @@ function GnbTop() {
       <Link href="/">
         <a>
           <LogoWrapper>
-            <Image src="/Images/logoHeaderPc.png" layout="fill" alt="logo" />
+            <Image src="/images/logoHeaderPc.png" layout="fill" alt="logo" />
           </LogoWrapper>
         </a>
       </Link>
