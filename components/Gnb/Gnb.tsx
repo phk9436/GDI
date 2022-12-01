@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import { useRecoilValue } from 'recoil';
 import { mobileCheck } from 'atoms/layout';
-import PcGnb from './Pc/PcGnb';
-import MoGnb from './MoGnb';
+import PcGnb from './pc/PcGnb';
+import MoGnb from './mo/MoGnb';
 
 function Gnb() {
   const isMobile = useRecoilValue(mobileCheck);

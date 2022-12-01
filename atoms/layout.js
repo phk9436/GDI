@@ -4,3 +4,8 @@ export const mobileCheck = atom({
   key: 'mobileCheck',
   default: false,
 });
+
+export const mobileMenuOpen = atom({
+  key: 'mobileMenuOpen',
+  default: false,
+});
