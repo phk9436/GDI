@@ -1,8 +1,11 @@
-import type { NextPage } from "next";
-import Link from "next/link";
+import type { NextPage } from 'next';
 
-const Home: NextPage = () => {
-  return <div>index</div>;
+interface IProps {
+  isMobile: boolean;
+}
+
+const Home: NextPage<IProps> = () => {
+  return <div style={{height: "200vh"}}>나눔글꼴</div>;
 };
 
 export default Home;
