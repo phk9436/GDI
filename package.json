@@ -1,0 +1,49 @@
+{
+  "name": "myapp",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "deploy": "next build && next export && touch out/.nojekyll && git add out/ && git commit -m \"Deploy Next.js to gh-pages\" && git subtree push --prefix out origin gh-pages",
+    "export": "next export",
+    "netlify-deploy": "next build && next export"
+  },
+  "dependencies": {
+    "@react-query-firebase/firestore": "^1.0.0-dev.7",
+    "@tiptap/core": "^2.0.0-beta.195",
+    "@tiptap/react": "^2.0.0-beta.195",
+    "@tiptap/starter-kit": "^2.0.0-beta.195",
+    "@toast-ui/editor-plugin-code-syntax-highlight": "^3.1.0",
+    "@toast-ui/editor-plugin-color-syntax": "^3.1.0",
+    "@toast-ui/react-editor": "^3.1.7",
+    "@types/nprogress": "^0.2.0",
+    "dayjs": "^1.11.6",
+    "firebase": "^9.9.4",
+    "gh-pages": "^4.0.0",
+    "next": "12.3.0",
+    "nprogress": "^0.2.0",
+    "prismjs": "^1.29.0",
+    "react": "^17.0.2",
+    "react-dom": "17.0.2",
+    "react-markdown": "^8.0.3",
+    "remark-gfm": "^3.0.1",
+    "styled-components": "^5.3.6",
+    "uuid": "^9.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "18.7.18",
+    "@types/prismjs": "^1.26.0",
+    "@types/react": "18.0.20",
+    "@types/react-dom": "18.0.6",
+    "@types/styled-components": "^5.1.26",
+    "@types/uuid": "^8.3.4",
+    "babel-plugin-styled-components": "^2.0.7",
+    "eslint": "8.23.1",
+    "eslint-config-next": "12.3.0",
+    "typescript": "4.8.3",
+    "prettier": "^2.8.0"
+  }
+}
