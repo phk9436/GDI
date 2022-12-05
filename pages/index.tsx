@@ -1,12 +1,14 @@
 import type { NextPage } from 'next';
 import MainBanner from 'components/main/MainBanner';
-import MainSection from 'components/main/MainSection';
+import MainSectionLab from 'components/main/MainSectionLab';
+import MainSectionForum from 'components/main/MainSectionForum';
 
 const Home: NextPage = () => {
   return (
     <>
       <MainBanner />
-      <MainSection />
+      <MainSectionLab />
+      <MainSectionForum />
     </>
   );
 };
