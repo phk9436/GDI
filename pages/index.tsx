@@ -1,11 +1,14 @@
 import type { NextPage } from 'next';
+import MainBanner from 'components/main/MainBanner';
+import MainSection from 'components/main/MainSection';
 
-interface IProps {
-  isMobile: boolean;
-}
-
-const Home: NextPage<IProps> = () => {
-  return <div style={{height: "200vh"}}>나눔글꼴</div>;
+const Home: NextPage = () => {
+  return (
+    <>
+      <MainBanner />
+      <MainSection />
+    </>
+  );
 };
 
 export default Home;
