@@ -12,6 +12,10 @@ interface ICardProps {
   title: string;
 }
 
+interface IMovieCardProps extends ICardProps {
+  press: string;
+}
+
 export function RedirectDetail({ href }: IDetailProps) {
   return (
     <LinkWrapper>
@@ -30,8 +34,8 @@ const LinkWrapper = styled.div`
   height: 57px;
   border-radius: 29px;
   font-size: 24px;
-  font-weight: 700;
-  background-color: #fff;
+  font-weight: 500;
+  background-color: transparent;
   transition: 0.3s;
   cursor: pointer;
 
@@ -125,5 +129,114 @@ const CardText = styled.p`
     width: 152px;
     height: 60px;
     -webkit-line-clamp: 3;
+  }
+`;
+
+export function MovieCard({ img, title, press, date }: IMovieCardProps) {
+  return (
+    <MovieCardWrapper>
+      <MovieImageWrapper>
+        <Image src={img} layout="fill" alt={title} />
+        <MovieBg>
+          <IconPlay />
+        </MovieBg>
+      </MovieImageWrapper>
+      <MovieTitle>{title}</MovieTitle>
+      <MovieInfo>
+        <li>{press}</li>
+        <li>{date}</li>
+      </MovieInfo>
+    </MovieCardWrapper>
+  );
+}
+
+const MovieCardWrapper = styled.div`
+  color: #fff;
+`;
+
+const MovieImageWrapper = styled.div`
+  width: 100%;
+  height: 270px;
+  position: relative;
+
+  @media screen and (max-width: 820px) {
+    height: 120px;
+  }
+`;
+
+const MovieBg = styled.div`
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.6);
+  position: absolute;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  opacity: 1;
+  transition: 0.5s;
+
+  &:hover {
+    opacity: 0;
+  }
+`;
+
+const IconPlay = styled.div`
+  width: 100px;
+  aspect-ratio: 1;
+  background: url('/images/moviePlay.png') no-repeat center/cover;
+
+  @media screen and (max-width: 820px) {
+    width: 50px;
+  }
+`;
+
+const MovieTitle = styled.h4`
+  font-size: 24px;
+  line-height: 27px;
+  margin: 22px 0 22px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  @media screen and (max-width: 820px) {
+    height: 40px;
+    margin: 16px 0 10px;
+    white-space: normal;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 20px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+  }
+`;
+
+const MovieInfo = styled.ul`
+  display: flex;
+
+  li {
+    font-size: 20px;
+    display: flex;
+    align-items: center;
+
+    &:first-child::after {
+      content: '';
+      width: 1px;
+      height: 20px;
+      background-color: #fff;
+      display: block;
+      margin: 0 20px;
+
+      @media screen and (max-width: 820px) {
+        margin: 0 8px;
+        height: 16px;
+      }
+    }
+
+    @media screen and (max-width: 820px) {
+      font-size: 14px;
+    }
   }
 `;

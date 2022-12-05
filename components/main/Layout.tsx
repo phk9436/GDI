@@ -39,7 +39,7 @@ const TopWrapper = styled.div`
   @media screen and (max-width: 820px) {
     padding: 0 20px;
     height: auto;
-    
+
     h4 {
       font-size: 18px;
     }
@@ -50,8 +50,8 @@ export function Cards({ data }: ICardsProps) {
   return (
     <CardsWrapper>
       <CardsContainer>
-        {data.map((e) => (
-          <Card date={e.date} img={e.img} title={e.title} />
+        {data.map((e, i) => (
+          <Card date={e.date} img={e.img} title={e.title} key={`card${i}`} />
         ))}
       </CardsContainer>
     </CardsWrapper>

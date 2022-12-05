@@ -22,7 +22,7 @@ function GnbTop() {
 
       <Nav>
         {Menu.map(([title, url]: string[]) => (
-          <LinkWrapper>
+          <LinkWrapper key={`gnb${title}`}>
             <Link href={`/${url}`}>
               <NavLink>{title}</NavLink>
             </Link>
