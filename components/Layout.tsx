@@ -4,6 +4,7 @@ import { mobileCheck } from 'atoms/layout';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 import { IMobileCheck } from 'types/styleTypes';
+import Footer from './Footer';
 
 interface Iprops {
   children: React.ReactNode;
@@ -21,6 +22,7 @@ function Layout({ children }: Iprops) {
     <>
       <Gnb />
       <Main isMobile={isMobile}>{children}</Main>
+      <Footer />
     </>
   );
 }

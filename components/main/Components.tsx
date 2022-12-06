@@ -52,8 +52,8 @@ const LinkWrapper = styled.div`
     padding: 0;
 
     span {
-    margin-left: 4px;
-  }
+      margin-left: 4px;
+    }
   }
 `;
 

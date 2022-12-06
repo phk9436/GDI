@@ -41,7 +41,7 @@ function GnbBottom() {
         {menu.map((e) => (
           <MenuList key={`Tap${e[0][1]}`}>
             {e.map((el, index) => (
-              <Link href={`/${el[1]}`}>
+              <Link href={`/${el[1]}`} key={`Tap${el}${index}`}>
                 <a>
                   {index === 0 ? (
                     <TapMain onClick={onClickTap}>{el[0]}</TapMain>

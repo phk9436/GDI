@@ -13,30 +13,26 @@ function MainSectionEtc() {
       <ContentsList>
         {contents.map((e, i) => (
           <li key={`contentLink${i}`}>
-            <Link href={`/${e}`}>
-              <a>
-                <ContentBox content={e}>
-                  <RedirectWrapper>
-                  <RedirectDetail text="바로가기" href={`/${e}`} />
-                  </RedirectWrapper>
-                  
-                  <h3>{e === 'board' ? '연구제안하기' : 'GDI 소개'}</h3>
-                  <p>
-                    {e === 'board' ? (
-                      <>
-                        참여를 통한 <br />
-                        경기 북부 지역의 개선을 도와주세요
-                      </>
-                    ) : (
-                      <>
-                        경기북부지역발전연구원의 <br />
-                        인사와 포부를 확인해보세요
-                      </>
-                    )}
-                  </p>
-                </ContentBox>
-              </a>
-            </Link>
+            <ContentBox content={e}>
+              <RedirectWrapper>
+                <RedirectDetail text="바로가기" href={`/${e}`} />
+              </RedirectWrapper>
+
+              <h3>{e === 'board' ? '연구제안하기' : 'GDI 소개'}</h3>
+              <p>
+                {e === 'board' ? (
+                  <>
+                    참여를 통한 <br />
+                    경기 북부 지역의 개선을 도와주세요
+                  </>
+                ) : (
+                  <>
+                    경기북부지역발전연구원의 <br />
+                    인사와 포부를 확인해보세요
+                  </>
+                )}
+              </p>
+            </ContentBox>
           </li>
         ))}
       </ContentsList>
@@ -122,4 +118,4 @@ const ContentBox = styled.div<IContent>`
 const RedirectWrapper = styled.div`
   margin-bottom: auto;
   margin-left: auto;
-`
+`;
