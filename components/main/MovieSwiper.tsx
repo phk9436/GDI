@@ -6,6 +6,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { MovieCard } from './Components';
+import Link from 'next/link';
 
 interface ISwiperProps {
   data: {
@@ -50,7 +51,11 @@ function MovieSwiper({ data }: ISwiperProps) {
             {data.length > 0 &&
               data.map((e, i) => (
                 <SwiperSlide key={`slide${i}`}>
-                  <MovieCard date={e.date} title={e.title} press={e.press} img={e.img} />
+                  <Link href="/notice/Movie">
+                    <a>
+                      <MovieCard date={e.date} title={e.title} press={e.press} img={e.img} />
+                    </a>
+                  </Link>
                 </SwiperSlide>
               ))}
           </Swiper>

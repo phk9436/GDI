@@ -67,6 +67,7 @@ export default MainSectionMovie;
 const Wrapper = styled.section`
   height: 646px;
   background-color: #1f4788;
+  margin-top: 30px;
 
   @media screen and (max-width: 820px) {
     height: 374px;
