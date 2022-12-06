@@ -73,6 +73,7 @@ const NavLink = styled.a`
   font-weight: 800;
   letter-spacing: -0.01em;
   z-index: 1;
+  cursor: pointer;
 `;
 
 const LinkMarker = styled.div`

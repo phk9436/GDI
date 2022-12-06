@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 interface IDetailProps {
   href: string;
+  text?: string;
 }
 
 interface ICardProps {
@@ -16,12 +17,12 @@ interface IMovieCardProps extends ICardProps {
   press: string;
 }
 
-export function RedirectDetail({ href }: IDetailProps) {
+export function RedirectDetail({ text = '더보기', href }: IDetailProps) {
   return (
     <LinkWrapper>
       <Link href={href}>
         <a>
-          더보기 <span>+</span>
+          {text} <span>+</span>
         </a>
       </Link>
     </LinkWrapper>
@@ -30,8 +31,7 @@ export function RedirectDetail({ href }: IDetailProps) {
 
 const LinkWrapper = styled.div`
   padding: 16px;
-  width: 130px;
-  height: 57px;
+  width: fit-content;
   border-radius: 29px;
   font-size: 24px;
   font-weight: 500;
@@ -39,20 +39,21 @@ const LinkWrapper = styled.div`
   transition: 0.3s;
   cursor: pointer;
 
-  a {
-    display: flex;
-    justify-content: space-between;
-  }
-
   &:hover {
     background-color: rgba(0, 0, 0, 0.1);
   }
 
+  span {
+    margin-left: 8px;
+  }
+
   @media screen and (max-width: 820px) {
-    width: 56px;
-    height: 20px;
     font-size: 14px;
     padding: 0;
+
+    span {
+    margin-left: 4px;
+  }
   }
 `;
 

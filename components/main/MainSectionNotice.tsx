@@ -68,34 +68,47 @@ function MainSectionNotice() {
         </Taps>
       </TopWrapper>
       <List>
-        {tapIndex === 0 &&
-          DUMMY_DATA_PRESS.map((e, i) => (
-            <ListContent key={`Press${i}`}>
-              <Link href={taps[tapIndex][1]}>
-                <a>
-                  <h3>{e.title}</h3>
-                  <ContentInfo>
-                    <li key={`PressInfo${i}-1`}>{e.press}</li>
-                    <li key={`PressInfo${i}-2`}>{e.date}</li>
-                  </ContentInfo>
-                </a>
-              </Link>
-            </ListContent>
-          ))}
-        {tapIndex === 1 &&
-          DUMMY_DATA_NOTICE.map((e, i) => (
-            <ListContent key={`Notice${i}`}>
-              <Link href={taps[tapIndex][1]}>
-                <a>
-                  <h3>{e.title}</h3>
-                  <p>{e.date}</p>
-                </a>
-              </Link>
-            </ListContent>
-          ))}
-        <li>
-          <RedirectDetail href={taps[tapIndex][1]} />
-        </li>
+        {tapIndex === 0 && (
+          <>
+            {DUMMY_DATA_PRESS.map((e, i) => (
+              <ListContent key={`Press${i}`}>
+                <Link href={taps[tapIndex][1]}>
+                  <a>
+                    <h3>{e.title}</h3>
+                    <ContentInfo>
+                      <li key={`PressInfo${i}-1`}>{e.press}</li>
+                      <li key={`PressInfo${i}-2`}>{e.date}</li>
+                    </ContentInfo>
+                  </a>
+                </Link>
+              </ListContent>
+            ))}
+            {DUMMY_DATA_PRESS.length >= 4 && (
+              <li>
+                <RedirectDetail href={taps[tapIndex][1]} />
+              </li>
+            )}
+          </>
+        )}
+        {tapIndex === 1 && (
+          <>
+            {DUMMY_DATA_NOTICE.map((e, i) => (
+              <ListContent key={`Notice${i}`}>
+                <Link href={taps[tapIndex][1]}>
+                  <a>
+                    <h3>{e.title}</h3>
+                    <p>{e.date}</p>
+                  </a>
+                </Link>
+              </ListContent>
+            ))}
+            {DUMMY_DATA_NOTICE.length >= 4 && (
+              <li>
+                <RedirectDetail href={taps[tapIndex][1]} />
+              </li>
+            )}
+          </>
+        )}
       </List>
     </Wrapper>
   );
@@ -110,7 +123,7 @@ const TopWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 91px;
+  padding-bottom: 24px;
   border-bottom: 1px solid #000;
   margin-bottom: 20px;
 
