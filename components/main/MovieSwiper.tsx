@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Pagination, Navigation } from 'swiper';
@@ -17,35 +17,45 @@ interface ISwiperProps {
 }
 
 function MovieSwiper({ data }: ISwiperProps) {
+  const [init, setInit] = useState(false);
   const btnPrevRef = useRef(null);
   const btnNextRef = useRef(null);
-  console.log(btnNextRef.current);
+
+  useEffect(() => {
+    setInit(true);
+  }, []);
+
   return (
     <MovieSwiperWrapper>
       <MovieSwiperContainer>
-        <Swiper
-          modules={[Pagination, Navigation]}
-          spaceBetween={40}
-          slidesPerView="auto"
-          pagination={{ clickable: true }}
-          navigation={{ nextEl: btnNextRef.current, prevEl: btnPrevRef.current }}
-          observer={true}
-          observeParents={true}
-         /* onBeforeInit={(swipe) => {
-            if (btnPrevRef.current !== null && btnNextRef.current !== null) {
-              swipe.params.navigation.prevEl = btnPrevRef.current;
-              swipe.params.navigation.nextEl = btnNextRef.current;
-              swipe.navigation.update();
-            }
-          }}*/
-        >
-          {data.length > 0 &&
-            data.map((e, i) => (
-              <SwiperSlide key={`slide${i}`}>
-                <MovieCard date={e.date} title={e.title} press={e.press} img={e.img} />
-              </SwiperSlide>
-            ))}
-        </Swiper>
+        {init && (
+          <Swiper
+            modules={[Pagination, Navigation]}
+            spaceBetween={40}
+            slidesPerView="auto"
+            pagination={{ clickable: true }}
+            navigation={{ nextEl: btnNextRef.current, prevEl: btnPrevRef.current }}
+            observer={true}
+            observeParents={true}
+            onBeforeInit={(swiper) => {
+              if (typeof swiper.params.navigation !== 'boolean') {
+                if (swiper.params.navigation) {
+                  swiper.params.navigation.prevEl = btnPrevRef.current;
+                  swiper.params.navigation.nextEl = btnNextRef.current;
+                  swiper.navigation.update();
+                }
+              }
+            }}
+          >
+            {data.length > 0 &&
+              data.map((e, i) => (
+                <SwiperSlide key={`slide${i}`}>
+                  <MovieCard date={e.date} title={e.title} press={e.press} img={e.img} />
+                </SwiperSlide>
+              ))}
+          </Swiper>
+        )}
+
         <ButtonPrev ref={btnPrevRef} />
         <ButtonNext ref={btnNextRef} />
       </MovieSwiperContainer>

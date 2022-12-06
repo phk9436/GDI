@@ -16,5 +16,5 @@ const GnbWrapper = styled.header`
   position: fixed;
   background-color: #fff;
   border-bottom: 1px solid #000000;
-  z-index: 1;
+  z-index: 99;
 `;

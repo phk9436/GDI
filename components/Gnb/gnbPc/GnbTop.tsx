@@ -1,8 +1,13 @@
 import Image from 'next/image';
 import Link from 'next/link';
 import styled from 'styled-components';
+import { useRouter } from 'next/router';
 
 function GnbTop() {
+  const { route } = useRouter();
+  const routeCategory = route.split('/')[1];
+  console.log(routeCategory);
+
   const Menu = [
     ['연구실', 'lab'],
     ['소식', 'notice'],
@@ -26,6 +31,7 @@ function GnbTop() {
             <Link href={`/${url}`}>
               <NavLink>{title}</NavLink>
             </Link>
+            {routeCategory === url && <LinkMarker />}
           </LinkWrapper>
         ))}
       </Nav>
@@ -54,6 +60,7 @@ const LinkWrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  position: relative;
 `;
 
 const Nav = styled.nav`
@@ -65,4 +72,14 @@ const NavLink = styled.a`
   font-size: 30px;
   font-weight: 800;
   letter-spacing: -0.01em;
+  z-index: 1;
+`;
+
+const LinkMarker = styled.div`
+  position: absolute;
+  bottom: calc(50% - 20px);
+  width: 116px;
+  height: 20px;
+  border-radius: 10px;
+  background-color: #f58472;
 `;
