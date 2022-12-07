@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import { RedirectDetail, Card } from './Components';
+import { IBoardData } from 'types/dataTypes';
 
 interface ISectionTopProps {
   title: string;
@@ -7,11 +8,7 @@ interface ISectionTopProps {
 }
 
 interface ICardsProps {
-  data: {
-    date: string;
-    img: string;
-    title: string;
-  }[];
+  data: IBoardData[];
 }
 
 export function SectionTop({ title, href }: ISectionTopProps) {

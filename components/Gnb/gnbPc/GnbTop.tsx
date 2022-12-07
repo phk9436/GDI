@@ -6,8 +6,6 @@ import { useRouter } from 'next/router';
 function GnbTop() {
   const { route } = useRouter();
   const routeCategory = route.split('/')[1];
-  console.log(routeCategory);
-
   const Menu = [
     ['연구실', 'lab'],
     ['소식', 'notice'],

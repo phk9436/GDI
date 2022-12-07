@@ -1,20 +1,11 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
+import { IBoardData, IPressData } from 'types/dataTypes';
 
 interface IDetailProps {
   href: string;
   text?: string;
-}
-
-interface ICardProps {
-  date: string;
-  img: string;
-  title: string;
-}
-
-interface IMovieCardProps extends ICardProps {
-  press: string;
 }
 
 export function RedirectDetail({ text = '더보기', href }: IDetailProps) {
@@ -57,7 +48,7 @@ const LinkWrapper = styled.div`
   }
 `;
 
-export function Card({ date, img, title }: ICardProps) {
+export function Card({ date, img, title }: IBoardData) {
   return (
     <CardWrapper>
       <CardContent>
@@ -133,7 +124,7 @@ const CardText = styled.p`
   }
 `;
 
-export function MovieCard({ img, title, press, date }: IMovieCardProps) {
+export function MovieCard({ img, title, press, date }: IPressData) {
   return (
     <MovieCardWrapper>
       <MovieImageWrapper>

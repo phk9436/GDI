@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import Link from 'next/link';
 import { RedirectDetail } from './Components';
 
 interface IContent {

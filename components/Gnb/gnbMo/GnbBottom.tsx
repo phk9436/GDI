@@ -2,10 +2,7 @@ import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import { mobileMenuOpen } from 'atoms/layout';
 import { useRecoilState } from 'recoil';
-
-interface IWrapper {
-  isOpen: boolean;
-}
+import { IOpenCheck } from 'types/styleTypes';
 
 function GnbBottom() {
   const [isOpen, setIsOpen] = useRecoilState(mobileMenuOpen);
@@ -60,7 +57,7 @@ function GnbBottom() {
 
 export default GnbBottom;
 
-const Wrapper = styled.div<IWrapper>`
+const Wrapper = styled.div<IOpenCheck>`
   position: absolute;
   width: 204px;
   padding: 0 30px;

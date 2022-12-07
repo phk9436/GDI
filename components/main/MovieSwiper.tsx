@@ -7,14 +7,10 @@ import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { MovieCard } from './Components';
 import Link from 'next/link';
+import { IPressData } from 'types/dataTypes';
 
 interface ISwiperProps {
-  data: {
-    date: string;
-    img: string;
-    title: string;
-    press: string;
-  }[];
+  data: IPressData[];
 }
 
 function MovieSwiper({ data }: ISwiperProps) {
