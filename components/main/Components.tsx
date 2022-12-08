@@ -58,7 +58,7 @@ export function Card({ date, img, title, id, path }: ICardProps) {
       <Link href={`${path}/${id}`}>
         <a>
           <CardContent>
-            <Image src={img} layout="fill" alt={title} />
+            <Image src={img} layout="fill" alt={title} objectFit='cover' />
             <CardDate>{date}</CardDate>
           </CardContent>
           <CardText>{title}</CardText>
@@ -142,7 +142,7 @@ export function MovieCard({ img, title, press, date, id }: IPressData) {
   return (
     <MovieCardWrapper>
       <MovieImageWrapper>
-        <Image src={img} layout="fill" alt={title} />
+        <Image src={img} layout="fill" alt={title} objectFit='cover' />
         <MovieBg>
           <IconPlay />
         </MovieBg>
