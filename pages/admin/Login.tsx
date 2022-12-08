@@ -127,13 +127,14 @@ const LoginInput = styled.input`
   width: 100%;
   height: 50px;
   padding: 17px 18px;
-  border: none;
+  border: 1px solid transparent;
   outline: none;
   background-color: #f6f6f6;
   font-size: 14px;
   font-weight: 700;
   color: #000;
   caret-color: #1f4788;
+  transition: 0.2s;
 
   &::placeholder {
     color: #a4a4a4;
@@ -141,6 +142,10 @@ const LoginInput = styled.input`
 
   &:first-child {
     margin-bottom: 12px;
+  }
+
+  &:hover, &:focus {
+    border: 1px solid #D9D9D9;
   }
 `;
 
