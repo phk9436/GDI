@@ -29,11 +29,7 @@ function GnbAdmin({ route }: IGnbProps) {
         <Nav>
           <LinkWrapper>
             <Link href="/">
-              <a>
-                <NavLink>
-                  홈
-                </NavLink>
-              </a>
+              <NavLink>홈</NavLink>
             </Link>
           </LinkWrapper>
           {Menu.map(([title, url]: string[]) => (

@@ -27,7 +27,7 @@ function index() {
           {contents.map((e, i) => {
             const [category, path, bg] = e;
             return category !== 'blank' ? (
-              <Link href={`/admin${path}`}>
+              <Link href={`/admin${path}/create`} key={`Content${i}`}>
                 <a>
                   <Content cat={category} bg={bg}>
                     <h3>{category}</h3>
@@ -36,7 +36,7 @@ function index() {
                 </a>
               </Link>
             ) : (
-              <div />
+              <div key='blank'/>
             );
           })}
         </Contents>
