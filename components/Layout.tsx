@@ -1,10 +1,12 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Gnb from 'components/Gnb/Gnb';
 import { mobileCheck } from 'atoms/layout';
 import { useRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 import { IMobileCheck } from 'types/styleTypes';
 import Footer from './Footer';
+import { useRouter } from 'next/router';
+import GnbAdmin from './Gnb/admin/GnbAdmin';
 
 interface Iprops {
   children: React.ReactNode;
@@ -12,17 +14,24 @@ interface Iprops {
 
 function Layout({ children }: Iprops) {
   const [isMobile, setIsMobile] = useRecoilState(mobileCheck);
+  const [isAdminPage, setIsAdminPage] = useState(false);
+  const { route } = useRouter();
+  const routeCategory = route.split('/')[1];
 
   useEffect(() => {
     const userAgent = navigator.userAgent;
     setIsMobile(/(iPad|iPhone|Android|Mobile)/i.test(userAgent));
   }, []);
 
+  useEffect(() => {
+    routeCategory === 'admin' ? setIsAdminPage(true) : setIsAdminPage(false);
+  });
+
   return (
     <>
-      <Gnb />
+      {isAdminPage ? <GnbAdmin route={route} /> : <Gnb />}
       <Main isMobile={isMobile}>{children}</Main>
-      <Footer />
+      <Footer isAdminPage={isAdminPage} />
     </>
   );
 }

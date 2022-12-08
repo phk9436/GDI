@@ -3,19 +3,35 @@ import { mobileCheck } from 'atoms/layout';
 import { useRecoilValue } from 'recoil';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useEffect, useState } from 'react';
 
-function Footer() {
+interface IFooterProps {
+  isAdminPage: boolean;
+}
+
+function Footer({ isAdminPage }: IFooterProps) {
   const isMobile = useRecoilValue(mobileCheck);
-  const isLogin = sessionStorage.getItem('admin');
+  const [isLogin, setIsLogin] = useState('');
+
+  useEffect(() => {
+    const loginCheck = sessionStorage.getItem('admin');
+    loginCheck && setIsLogin(loginCheck);
+  });
 
   return (
     <Wrapper>
       {!isMobile && (
         <FooterTopWrapper>
           <FooterTop>
-            <Link href={isLogin ? '/admin' : '/admin/Login'}>
-              <a>GDI Admin</a>
-            </Link>
+            {isAdminPage ? (
+              <Link href="/">
+                <a>GDI Main</a>
+              </Link>
+            ) : (
+              <Link href={isLogin ? '/admin' : '/admin/Login'}>
+                <a>GDI Admin</a>
+              </Link>
+            )}
           </FooterTop>
         </FooterTopWrapper>
       )}
