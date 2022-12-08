@@ -3,6 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
+import { InputText } from 'components/admin/Component';
 
 function Login() {
   const [id, setId] = useState('');
@@ -44,8 +45,8 @@ function Login() {
       </TitleWrapper>
       <LoginForm>
         <form action="" onSubmit={loginAdmin}>
-          <LoginInput type="text" placeholder="아이디 입력" value={id} onChange={onChangeId} />
-          <LoginInput
+          <InputText type="text" placeholder="아이디 입력" value={id} onChange={onChangeId} />
+          <InputText
             type="password"
             placeholder="비밀번호 입력"
             value={password}
@@ -121,31 +122,9 @@ const TitleWrapper = styled.div`
 const LoginForm = styled.div`
   width: 100%;
   margin-bottom: 28px;
-`;
 
-const LoginInput = styled.input`
-  width: 100%;
-  height: 50px;
-  padding: 17px 18px;
-  border: 1px solid transparent;
-  outline: none;
-  background-color: #f6f6f6;
-  font-size: 14px;
-  font-weight: 700;
-  color: #000;
-  caret-color: #1f4788;
-  transition: 0.2s;
-
-  &::placeholder {
-    color: #a4a4a4;
-  }
-
-  &:first-child {
+  & input:first-child {
     margin-bottom: 12px;
-  }
-
-  &:hover, &:focus {
-    border: 1px solid #D9D9D9;
   }
 `;
 

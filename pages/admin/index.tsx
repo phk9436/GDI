@@ -1,5 +1,7 @@
 import Link from 'next/link';
 import styled, { css } from 'styled-components';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
 
 interface ContentProps {
   cat: string;
@@ -7,6 +9,7 @@ interface ContentProps {
 }
 
 function index() {
+  const router = useRouter();
   const contents = [
     ['연구보고서', '/lab', '#57BD84'],
     ['학술포럼', '/lab/Forum', '#9C87BF'],
@@ -15,6 +18,14 @@ function index() {
     ['공지사항', '/notice', '#FFC20C'],
     ['언론보도', '/notice/Press', '#F15A4E;'],
   ];
+
+  useEffect(() => {
+    if (!sessionStorage.getItem('admin')) {
+      alert('어드민 로그인이 필요합니다');
+      router.push('/');
+    }
+  }, []);
+
   return (
     <div>
       <BreadCrumbWrapper>
@@ -36,7 +47,7 @@ function index() {
                 </a>
               </Link>
             ) : (
-              <div key='blank'/>
+              <div key="blank" />
             );
           })}
         </Contents>
