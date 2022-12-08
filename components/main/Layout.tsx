@@ -9,6 +9,7 @@ interface ISectionTopProps {
 
 interface ICardsProps {
   data: IBoardData[];
+  path: string;
 }
 
 export function SectionTop({ title, href }: ISectionTopProps) {
@@ -43,12 +44,12 @@ const TopWrapper = styled.div`
   }
 `;
 
-export function Cards({ data }: ICardsProps) {
+export function Cards({ data, path }: ICardsProps) {
   return (
     <CardsWrapper>
       <CardsContainer>
         {data.map((e, i) => (
-          <Card date={e.date} img={e.img} title={e.title} key={`card${i}`} />
+          <Card date={e.date} img={e.img} title={e.title} key={`card${i}`} id={e.id} path={path} />
         ))}
       </CardsContainer>
     </CardsWrapper>

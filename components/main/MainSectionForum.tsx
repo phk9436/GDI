@@ -3,16 +3,19 @@ import { SectionTop, Cards } from './Layout';
 
 const DUMMY_DATA = [
   {
+    id: 0,
     date: '22-09-22',
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
     img: '/images/cardDummy.png',
   },
   {
+    id: 0,
     date: '22-09-22',
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
     img: '/images/cardDummy.png',
   },
   {
+    id: 0,
     date: '22-09-22',
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
     img: '/images/cardDummy.png',
@@ -24,7 +27,7 @@ function MainSectionForum() {
     <Wrapper>
       <SectionTop title={'학술포럼'} href="/lab/Forum" />
       <SectionContents>
-        <Cards data={DUMMY_DATA}/>
+        <Cards data={DUMMY_DATA} path="/lab/Forum"/>
         <DescriptText>
           모두가 참여가능한 <em>GDI의 학술포럼</em>에 여러분을 초대합니다!
         </DescriptText>
@@ -63,7 +66,7 @@ const DescriptText = styled.p`
 
   em {
     display: inline-block;
-    background-color: rgba(156, 135, 191, 0.8);;
+    background-color: rgba(156, 135, 191, 0.8);
     border-radius: 60px;
     padding: 0 6px;
   }

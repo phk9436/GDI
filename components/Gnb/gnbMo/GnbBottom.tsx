@@ -62,6 +62,8 @@ const Wrapper = styled.div<IOpenCheck>`
   width: 204px;
   padding: 0 30px;
   background-color: #1f4788;
+  border-right: 1px solid #D9D9D9;
+  border-bottom: 1px solid #D9D9D9;
   top: 77px;
   overflow-y: hidden;
   transition: 0.5s;

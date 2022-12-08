@@ -3,16 +3,19 @@ import { SectionTop, Cards } from './Layout';
 
 const DUMMY_DATA = [
   {
+    id: 0,
     date: '22-09-22',
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
     img: '/images/cardDummy.png',
   },
   {
+    id: 0,
     date: '22-09-22',
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
     img: '/images/cardDummy.png',
   },
   {
+    id: 0,
     date: '22-09-22',
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
     img: '/images/cardDummy.png',
@@ -27,7 +30,7 @@ function MainSectionLab() {
         <DescriptText>
           지역경제활성화를 위한 <em>GDI만의 실질적 연구</em>를 확인해보세요.
         </DescriptText>
-        <Cards data={DUMMY_DATA}/>
+        <Cards data={DUMMY_DATA} path='/lab'/>
       </SectionContents>
     </Wrapper>
   );

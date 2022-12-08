@@ -8,6 +8,10 @@ interface IDetailProps {
   text?: string;
 }
 
+interface ICardProps extends IBoardData {
+  path: string;
+}
+
 export function RedirectDetail({ text = '더보기', href }: IDetailProps) {
   return (
     <LinkWrapper>
@@ -48,32 +52,42 @@ const LinkWrapper = styled.div`
   }
 `;
 
-export function Card({ date, img, title }: IBoardData) {
+export function Card({ date, img, title, id, path }: ICardProps) {
   return (
     <CardWrapper>
-      <CardContent>
-        <Image src={img} layout="fill" alt={title} />
-        <CardDate>{date}</CardDate>
-      </CardContent>
-      <CardText>{title}</CardText>
+      <Link href={`${path}/${id}`}>
+        <a>
+          <CardContent>
+            <Image src={img} layout="fill" alt={title} />
+            <CardDate>{date}</CardDate>
+          </CardContent>
+          <CardText>{title}</CardText>
+        </a>
+      </Link>
     </CardWrapper>
   );
 }
-
-const CardWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-`;
 
 const CardContent = styled.div`
   width: 254px;
   height: 360px;
   position: relative;
+  border: 1px solid #D9D9D9;
+  transition: 0.3s;
 
   @media screen and (max-width: 820px) {
     width: 120px;
     height: 170px;
+  }
+`;
+
+const CardWrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  &:hover ${CardContent} {
+    box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   }
 `;
 
