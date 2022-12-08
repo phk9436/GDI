@@ -163,6 +163,11 @@ const LoginButton = styled.button`
   color: #fff;
   cursor: pointer;
   margin-top: 28px;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: #092D68;
+  }
 `;
 
 const LinkWrapper = styled.div`
