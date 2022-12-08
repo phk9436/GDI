@@ -6,12 +6,14 @@ import Image from 'next/image';
 
 function Footer() {
   const isMobile = useRecoilValue(mobileCheck);
+  const isLogin = sessionStorage.getItem('admin');
+
   return (
     <Wrapper>
       {!isMobile && (
         <FooterTopWrapper>
           <FooterTop>
-            <Link href="/admin">
+            <Link href={isLogin ? '/admin' : '/admin/Login'}>
               <a>GDI Admin</a>
             </Link>
           </FooterTop>
