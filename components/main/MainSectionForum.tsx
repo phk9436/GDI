@@ -40,7 +40,7 @@ export default MainSectionForum;
 
 const Wrapper = styled.section`
   padding: 0 60px;
-  max-width: 1430px;
+  max-width: 1440px;
   margin: auto;
   margin-top: 24px;
 

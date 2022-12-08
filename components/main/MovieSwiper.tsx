@@ -49,7 +49,7 @@ function MovieSwiper({ data }: ISwiperProps) {
                 <SwiperSlide key={`slide${i}`}>
                   <Link href="/notice/Movie">
                     <a>
-                      <MovieCard date={e.date} title={e.title} press={e.press} img={e.img} />
+                      <MovieCard date={e.date} title={e.title} press={e.press} img={e.img} id={e.id}/>
                     </a>
                   </Link>
                 </SwiperSlide>
@@ -69,7 +69,7 @@ export default MovieSwiper;
 const MovieSwiperWrapper = styled.div`
   position: relative;
   margin: auto;
-  max-width: 1430px;
+  max-width: 1440px;
   padding: 0 60px;
 
   @media screen and (max-width: 820px) {

@@ -27,6 +27,15 @@ function GnbAdmin({ route }: IGnbProps) {
         </Link>
 
         <Nav>
+          <LinkWrapper>
+            <Link href="/">
+              <a>
+                <NavLink>
+                  홈
+                </NavLink>
+              </a>
+            </Link>
+          </LinkWrapper>
           {Menu.map(([title, url]: string[]) => (
             <LinkWrapper key={`gnb${title}`}>
               <Link href={`/admin/${url}`}>
@@ -52,7 +61,7 @@ const GnbWrapper = styled.header`
 `;
 
 const GnbContainer = styled.div`
-  max-width: 1430px;
+  max-width: 1440px;
   margin: auto;
   height: 140px;
   padding: 0 60px 0 104px;

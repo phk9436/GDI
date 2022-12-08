@@ -14,7 +14,7 @@ function PcGnb() {
 export default PcGnb;
 
 const Wrapper = styled.div`
-  max-width: 1430px;
+  max-width: 1440px;
   margin: auto;
   height: 140px;
   padding: 0 60px 0 104px;

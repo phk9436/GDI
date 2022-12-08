@@ -15,7 +15,7 @@ export default MainSectionBottom;
 
 const Wrapper = styled.section`
   margin: 152px auto 190px;
-  max-width: 1430px;
+  max-width: 1440px;
   padding: 0 124px 0 60px;
   display: flex;
   justify-content: space-between;

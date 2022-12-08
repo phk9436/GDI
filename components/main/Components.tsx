@@ -138,7 +138,7 @@ const CardText = styled.p`
   }
 `;
 
-export function MovieCard({ img, title, press, date }: IPressData) {
+export function MovieCard({ img, title, press, date, id }: IPressData) {
   return (
     <MovieCardWrapper>
       <MovieImageWrapper>

@@ -4,39 +4,44 @@ import MovieSwiper from './MovieSwiper';
 import { mobileCheck } from 'atoms/layout';
 import { useRecoilValue } from 'recoil';
 
-
 const DUMMY_DATA = [
   {
+    id: 0,
     date: '22-09-22',
     title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
     img: '/images/cardDummy.png',
     press: 'OBS',
   },
   {
+    id: 0,
     date: '22-09-22',
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
     img: '/images/cardDummy.png',
     press: 'OBS',
   },
   {
+    id: 0,
     date: '22-09-22',
     title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
     img: '/images/cardDummy.png',
     press: 'OBS',
   },
   {
+    id: 0,
     date: '22-09-22',
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
     img: '/images/cardDummy.png',
     press: 'OBS',
   },
   {
+    id: 0,
     date: '22-09-22',
     title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
     img: '/images/cardDummy.png',
     press: 'OBS',
   },
   {
+    id: 0,
     date: '22-09-22',
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
     img: '/images/cardDummy.png',
@@ -81,7 +86,7 @@ const MovieTop = styled.div`
   padding: 50px 60px 36px;
   color: #fff;
   position: relative;
-  max-width: 1430px;
+  max-width: 1440px;
   margin: auto;
 
   h4 {
