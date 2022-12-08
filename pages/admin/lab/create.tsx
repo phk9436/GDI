@@ -1,6 +1,12 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import { BlueButton, InputFile, InputText, UploadInput } from 'components/admin/Component';
+import {
+  BlueButton,
+  LabelFile,
+  InputText,
+  LabelUpload,
+  InputHide,
+} from 'components/admin/Component';
 import React, { useState, useRef, useEffect } from 'react';
 import PostEditor from 'components/editor/Editor';
 import { Editor } from '@toast-ui/react-editor';
@@ -129,10 +135,12 @@ function Create() {
             {thumbnailUrl ? (
               <PreviewWrapper>
                 <Image src={thumbnailUrl} layout="fill" alt="download" objectFit="cover" />
+                <Label htmlFor="uploadLab" />
               </PreviewWrapper>
             ) : (
-              <UploadInput id="uploadLab" accept=".png, .jpg" onChange={uploadThumbnail} />
+              <LabelUpload htmlFor="uploadLab" />
             )}
+            <InputHide type="file" accept=".png, .jpg" id="uploadLab" onChange={uploadThumbnail} />
           </UploadWrapper>
           <InputContainer>
             <InputText type="text" placeholder="제목 입력" value={title} onChange={onChangeTitle} />
@@ -151,15 +159,19 @@ function Create() {
               />
             </InputFlexContainer>
             {fileName ? (
-              <File>{fileName}</File>
+              <FileWrapper>
+                <File>{fileName}</File>
+                <Label htmlFor="uploadFileLab" />
+              </FileWrapper>
             ) : (
-              <InputFile
-                id="uploadFileLab"
-                accept=".pdf, .png, .jpg"
-                text="자료 업로드 (확장자 pdf, jpg, png)"
-                onChange={uploadFile}
-              />
+              <LabelFile htmlFor="uploadFileLab" text="자료 업로드 (확장자 pdf, jpg, png)" />
             )}
+            <InputHide
+              type="file"
+              accept=".pdf, .png, .jpg"
+              id="uploadFileLab"
+              onChange={uploadFile}
+            />
           </InputContainer>
         </InputWrapper>
         <EdiorWrapper>
@@ -249,12 +261,26 @@ const PreviewWrapper = styled.div`
   position: relative;
 `;
 
-const File = styled.div`
+const FileWrapper = styled.div`
   width: 100%;
   height: 50px;
+  position: relative;
+`;
+
+const File = styled.div`
+  height: 100%;
   padding: 17px 18px;
   font-size: 14px;
   font-weight: 500;
   background-color: #f6f6f6;
   color: #a4a4a4;
+`;
+
+const Label = styled.label`
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  z-index: 1;
+  cursor: pointer;
 `;

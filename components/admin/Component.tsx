@@ -3,18 +3,20 @@ import Image from 'next/image';
 import React from 'react';
 
 interface uploadProps {
-  id: string;
-  accept: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  htmlFor: string;
 }
 
-interface inputFileProps extends uploadProps {
+interface LabelFileProps {
   text: string;
+  htmlFor: string;
 }
 
-interface inputHideProps extends uploadProps {
+interface inputHideProps {
+  id: string;
   type: string;
   value?: string;
+  accept: string;
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
 interface inputTextProps {
@@ -30,10 +32,10 @@ interface blueButtonProps {
   disabled: boolean;
 }
 
-export function UploadInput({ id, accept, onChange }: uploadProps) {
+export function LabelUpload({ htmlFor }: uploadProps) {
   return (
     <>
-      <UploadLabel htmlFor={id}>
+      <UploadLabel htmlFor={htmlFor}>
         <ImageWrapper>
           <Image src="/images/iconDownload.png" layout="fill" alt="download" />
         </ImageWrapper>
@@ -43,7 +45,6 @@ export function UploadInput({ id, accept, onChange }: uploadProps) {
           확장자 jpg, png
         </p>
       </UploadLabel>
-      <InputHide type="file" accept={accept} id={id} onChange={onChange} />
     </>
   );
 }
@@ -110,16 +111,15 @@ const Input = styled.input`
   }
 `;
 
-export function InputFile({ id, accept, text, onChange }: inputFileProps) {
+export function LabelFile({ htmlFor, text }: LabelFileProps) {
   return (
     <>
-      <LabelFile htmlFor={id}>{text}</LabelFile>
-      <InputHide type="file" accept={accept} id={id} onChange={onChange} />
+      <LabelFileComponent htmlFor={htmlFor}>{text}</LabelFileComponent>
     </>
   );
 }
 
-const LabelFile = styled.label`
+const LabelFileComponent = styled.label`
   width: 100%;
   height: 50px;
   padding: 17px 18px;
