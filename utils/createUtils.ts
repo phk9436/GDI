@@ -16,7 +16,7 @@ interface IcreateLabProps {
 }
 
 export const createLab = async (context: IcreateLabProps) => {
-  const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
+  const createdAt = dayjs(new Date()).format('YY-MM-DD');
 
   const fileV4Id = v4();
   const fileRef = ref(storageService, `lab/${fileV4Id}`);

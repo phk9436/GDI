@@ -52,14 +52,14 @@ const LinkWrapper = styled.div`
   }
 `;
 
-export function Card({ date, img, title, id, path }: ICardProps) {
+export function Card({ createdAt, thumbnailUrl, title, id, path }: ICardProps) {
   return (
     <CardWrapper>
       <Link href={`${path}/${id}`}>
         <a>
           <CardContent>
-            <Image src={img} layout="fill" alt={title} objectFit='cover' />
-            <CardDate>{date}</CardDate>
+            <Image src={thumbnailUrl as string} layout="fill" alt={title} objectFit='cover' />
+            <CardDate>{createdAt}</CardDate>
           </CardContent>
           <CardText>{title}</CardText>
         </a>
@@ -138,11 +138,11 @@ const CardText = styled.p`
   }
 `;
 
-export function MovieCard({ img, title, press, date, id }: IPressData) {
+export function MovieCard({ thumbnailUrl, title, press, createdAt, id }: IPressData) {
   return (
     <MovieCardWrapper>
       <MovieImageWrapper>
-        <Image src={img} layout="fill" alt={title} objectFit='cover' />
+        <Image src={thumbnailUrl as string} layout="fill" alt={title} objectFit='cover' />
         <MovieBg>
           <IconPlay />
         </MovieBg>
@@ -150,7 +150,7 @@ export function MovieCard({ img, title, press, date, id }: IPressData) {
       <MovieTitle>{title}</MovieTitle>
       <MovieInfo>
         <li>{press}</li>
-        <li>{date}</li>
+        <li>{createdAt}</li>
       </MovieInfo>
     </MovieCardWrapper>
   );

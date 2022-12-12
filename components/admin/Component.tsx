@@ -1,17 +1,19 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Image from 'next/image';
-import React from 'react';
+import { useState } from 'react';
+import Link from 'next/link';
+import { IBoardData } from 'types/dataTypes';
 
-interface uploadProps {
+interface IUploadProps {
   htmlFor: string;
 }
 
-interface LabelFileProps {
+interface ILabelFileProps {
   text: string;
   htmlFor: string;
 }
 
-interface inputHideProps {
+interface IInputHideProps {
   id: string;
   type: string;
   value?: string;
@@ -19,20 +21,24 @@ interface inputHideProps {
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-interface inputTextProps {
+interface IInputTextProps {
   type: string;
   placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-interface blueButtonProps {
+interface IBlueButtonProps {
   type: 'button' | 'submit' | 'reset' | undefined;
   text: string;
   disabled: boolean;
 }
 
-export function LabelUpload({ htmlFor }: uploadProps) {
+interface IUploadButtonProps {
+  tap: string[];
+}
+
+export function LabelUpload({ htmlFor }: IUploadProps) {
   return (
     <>
       <UploadLabel htmlFor={htmlFor}>
@@ -74,7 +80,7 @@ const ImageWrapper = styled.div`
   position: relative;
 `;
 
-export function InputHide({ type, accept = '*', id, onChange, value }: inputHideProps) {
+export function InputHide({ type, accept = '*', id, onChange, value }: IInputHideProps) {
   return (
     <InputHideComponent type={type} accept={accept} id={id} onChange={onChange} value={value} />
   );
@@ -84,7 +90,7 @@ const InputHideComponent = styled.input`
   display: none;
 `;
 
-export function InputText({ type, placeholder, value, onChange }: inputTextProps) {
+export function InputText({ type, placeholder, value, onChange }: IInputTextProps) {
   return <Input type={type} placeholder={placeholder} value={value} onChange={onChange} />;
 }
 
@@ -111,7 +117,7 @@ const Input = styled.input`
   }
 `;
 
-export function LabelFile({ htmlFor, text }: LabelFileProps) {
+export function LabelFile({ htmlFor, text }: ILabelFileProps) {
   return (
     <>
       <LabelFileComponent htmlFor={htmlFor}>{text}</LabelFileComponent>
@@ -136,7 +142,7 @@ const LabelFileComponent = styled.label`
   }
 `;
 
-export function BlueButton({ type, text, disabled = false }: blueButtonProps) {
+export function BlueButton({ type, text, disabled = false }: IBlueButtonProps) {
   return (
     <BlueButtonComponent type={type} disabled={disabled}>
       {text}
@@ -170,3 +176,48 @@ const BlueButtonComponent = styled.button`
     background-color: #092d68;
   }
 `;
+
+export function UploadButton({ tap }: IUploadButtonProps) {
+  return (
+    <UploadButtonWrapper>
+      <Link href={`${tap[2]}/create`}>
+        <a>
+          <em>{tap[0]}</em>업로드<span>+</span>
+        </a>
+      </Link>
+    </UploadButtonWrapper>
+  );
+}
+
+const UploadButtonWrapper = styled.div`
+  width: 100%;
+  height: 80px;
+  margin-bottom: 56px;
+  background-color: #c7c7c7;
+  transition: 0.3s;
+  font-size: 24px;
+  color: #fff;
+
+  a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+  }
+
+  em {
+    font-weight: 700;
+    margin-right: 6px;
+  }
+
+  span {
+    color: #000;
+    margin-left: 20px;
+  }
+
+  &:hover {
+    background-color: #a4a4a4;
+  }
+`;
+

@@ -69,6 +69,7 @@ const BreadCrumb = styled.div`
   padding: 0 70px;
   display: flex;
   align-items: center;
+  margin: auto;
 
   h2 {
     font-size: 40px;
