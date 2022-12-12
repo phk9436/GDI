@@ -51,14 +51,14 @@ function index({ dataList }: PageProps) {
       queryList = query(
         collection(dbService, 'lab'),
         limit(10),
-        orderBy('createdAt'),
+        orderBy('createdAt', "desc"),
         startAfter(lastData),
       );
     } else {
       queryList = query(
         collection(dbService, 'lab'),
         limitToLast(10),
-        orderBy('createdAt'),
+        orderBy('createdAt', "desc"),
         endBefore(prevData),
       );
     }
