@@ -11,11 +11,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import PostEditor from 'components/editor/Editor';
 import { Editor } from '@toast-ui/react-editor';
 import { useRouter } from 'next/router';
-import dayjs from 'dayjs';
-import { v4 } from 'uuid';
-import { dbService, storageService } from 'api/firebase';
-import { getDownloadURL, ref, uploadString } from 'firebase/storage';
-import { addDoc, collection, doc, increment, updateDoc } from 'firebase/firestore';
+import { createLab } from 'utils/createUtils';
+import Loading from 'components/admin/Loading';
 
 function Create() {
   const [title, setTitle] = useState('');
@@ -60,57 +57,21 @@ function Create() {
   const onSubmitPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
+
     const content = contentRef.current?.getInstance().getMarkdown();
-
-    let fileData = '';
-    let fileId = '';
-    if (fileUrl) {
-      const fileV4Id = v4();
-      const fileRef = ref(storageService, `lab/${fileV4Id}`);
-      const data = await uploadString(fileRef, fileUrl, 'data_url');
-      fileData = await getDownloadURL(data.ref);
-      fileId = fileV4Id;
-    }
-
-    let thumbnailData = '';
-    let thumbnailId = '';
-    if (thumbnailUrl) {
-      const thumbnailV4Id = v4();
-      const thumbnailRef = ref(storageService, `lab/${thumbnailV4Id}`);
-      const data = await uploadString(thumbnailRef, thumbnailUrl, 'data_url');
-      thumbnailData = await getDownloadURL(data.ref);
-      thumbnailId = thumbnailV4Id;
-    }
-
     const context = {
       title,
       author,
       year,
       content,
-      createdAt,
-      view: 0,
-      thumbnailData,
-      thumbnailName,
-      thumbnailId,
-      fileData,
+      fileUrl,
       fileName,
-      fileId,
+      thumbnailName,
+      thumbnailUrl,
     };
 
-    if (
-      context.title &&
-      context.author &&
-      context.year &&
-      context.content &&
-      thumbnailData &&
-      fileData
-    ) {
-      await addDoc(collection(dbService, 'lab'), context);
-      await updateDoc(doc(dbService, 'meta', 'labCount'), {
-        //전체 게시물 개수
-        total: increment(1),
-      });
+    if (title && author && year && content && thumbnailUrl && fileUrl) {
+      await createLab(context);
       alert('게시글이 작성되었습니다');
       router.push('/admin/lab');
     } else {
@@ -127,75 +88,74 @@ function Create() {
   }, []);
 
   return (
-    <Wrapper>
-      <Title>연구보고서 게시글 작성</Title>
-      <form onSubmit={onSubmitPost}>
-        <InputWrapper>
-          <UploadWrapper>
-            {thumbnailUrl ? (
-              <PreviewWrapper>
-                <Image src={thumbnailUrl} layout="fill" alt="download" objectFit="cover" />
-                <Label htmlFor="uploadLab" />
-              </PreviewWrapper>
-            ) : (
-              <LabelUpload htmlFor="uploadLab" />
-            )}
-            <InputHide type="file" accept=".png, .jpg" id="uploadLab" onChange={uploadThumbnail} />
-          </UploadWrapper>
-          <InputContainer>
-            <InputText type="text" placeholder="제목 입력" value={title} onChange={onChangeTitle} />
-            <InputFlexContainer>
+    <>
+      <Wrapper>
+        <Title>연구보고서 게시글 작성</Title>
+        <form onSubmit={onSubmitPost}>
+          <InputWrapper>
+            <UploadWrapper>
+              {thumbnailUrl ? (
+                <PreviewWrapper>
+                  <Image src={thumbnailUrl} layout="fill" alt="download" objectFit="cover" />
+                  <Label htmlFor="uploadLab" />
+                </PreviewWrapper>
+              ) : (
+                <LabelUpload htmlFor="uploadLab" />
+              )}
+              <InputHide
+                type="file"
+                accept=".png, .jpg"
+                id="uploadLab"
+                onChange={uploadThumbnail}
+              />
+            </UploadWrapper>
+            <InputContainer>
               <InputText
                 type="text"
-                placeholder="저자 성명 입력"
-                value={author}
-                onChange={onChangeAuthor}
+                placeholder="제목 입력"
+                value={title}
+                onChange={onChangeTitle}
               />
-              <InputText
-                type="text"
-                placeholder="발행년도 입력"
-                value={year}
-                onChange={onChangeYear}
+              <InputFlexContainer>
+                <InputText
+                  type="text"
+                  placeholder="저자 성명 입력"
+                  value={author}
+                  onChange={onChangeAuthor}
+                />
+                <InputText
+                  type="text"
+                  placeholder="발행년도 입력"
+                  value={year}
+                  onChange={onChangeYear}
+                />
+              </InputFlexContainer>
+              {fileName ? (
+                <FileWrapper>
+                  <File>{fileName}</File>
+                  <Label htmlFor="uploadFileLab" />
+                </FileWrapper>
+              ) : (
+                <LabelFile htmlFor="uploadFileLab" text="자료 업로드 (확장자 pdf, jpg, png)" />
+              )}
+              <InputHide
+                type="file"
+                accept=".pdf, .png, .jpg"
+                id="uploadFileLab"
+                onChange={uploadFile}
               />
-            </InputFlexContainer>
-            {fileName ? (
-              <FileWrapper>
-                <File>{fileName}</File>
-                <Label htmlFor="uploadFileLab" />
-              </FileWrapper>
-            ) : (
-              <LabelFile htmlFor="uploadFileLab" text="자료 업로드 (확장자 pdf, jpg, png)" />
-            )}
-            <InputHide
-              type="file"
-              accept=".pdf, .png, .jpg"
-              id="uploadFileLab"
-              onChange={uploadFile}
-            />
-          </InputContainer>
-        </InputWrapper>
-        <EdiorWrapper>
-          <PostEditor
-            initialEditType="wysiwyg"
-            height="100%"
-            useCommandShortcut={false}
-            autofocus={false}
-            toolbarItems={[
-              // 툴바 옵션 설정
-              ['heading', 'bold', 'italic', 'strike'],
-              ['hr', 'quote'],
-              ['task', 'indent', 'outdent'],
-              ['table', 'link'],
-              ['code', 'codeblock'],
-            ]}
-            ref={contentRef as React.MutableRefObject<Editor>}
-          />
-        </EdiorWrapper>
-        <ButtonWrapper>
-          <BlueButton type="submit" text="글 작성하기" disabled={loading} />
-        </ButtonWrapper>
-      </form>
-    </Wrapper>
+            </InputContainer>
+          </InputWrapper>
+          <EdiorWrapper>
+            <PostEditor ref={contentRef as React.MutableRefObject<Editor>} />
+          </EdiorWrapper>
+          <ButtonWrapper>
+            <BlueButton type="submit" text="글 작성하기" disabled={loading} />
+          </ButtonWrapper>
+        </form>
+      </Wrapper>
+      {loading && <Loading />}
+    </>
   );
 }
 
