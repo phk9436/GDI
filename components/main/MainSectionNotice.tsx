@@ -7,41 +7,41 @@ const DUMMY_DATA_PRESS = [
   {
     title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
     press: 'OBS',
-    date: '2022-09-12',
+    createdAt: '2022-09-12',
   },
   {
     title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
     press: 'OBS',
-    date: '2022-09-12',
+    createdAt: '2022-09-12',
   },
   {
     title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
     press: 'OBS',
-    date: '2022-09-12',
+    createdAt: '2022-09-12',
   },
   {
     title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
     press: 'OBS',
-    date: '2022-09-12',
+    createdAt: '2022-09-12',
   },
 ];
 
 const DUMMY_DATA_NOTICE = [
   {
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    date: '2022-09-12',
+    createdAt: '2022-09-12',
   },
   {
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    date: '2022-09-12',
+    createdAt: '2022-09-12',
   },
   {
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    date: '2022-09-12',
+    createdAt: '2022-09-12',
   },
   {
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    date: '2022-09-12',
+    createdAt: '2022-09-12',
   },
 ];
 
@@ -77,7 +77,7 @@ function MainSectionNotice() {
                     <h3>{e.title}</h3>
                     <ContentInfo>
                       <li key={`PressInfo${i}-1`}>{e.press}</li>
-                      <li key={`PressInfo${i}-2`}>{e.date}</li>
+                      <li key={`PressInfo${i}-2`}>{e.createdAt}</li>
                     </ContentInfo>
                   </a>
                 </Link>
@@ -97,7 +97,7 @@ function MainSectionNotice() {
                 <Link href={taps[tapIndex][1]}>
                   <a>
                     <h3>{e.title}</h3>
-                    <p>{e.date}</p>
+                    <p>{e.createdAt}</p>
                   </a>
                 </Link>
               </ListContent>

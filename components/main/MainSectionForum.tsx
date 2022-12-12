@@ -3,22 +3,22 @@ import { SectionTop, Cards } from './Layout';
 
 const DUMMY_DATA = [
   {
-    id: 0,
-    date: '22-09-22',
+    id: '0',
+    createdAt: '22-09-22',
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    img: '/images/cardDummy.png',
+    thumbnailUrl: '/images/cardDummy.png',
   },
   {
-    id: 0,
-    date: '22-09-22',
+    id: '1',
+    createdAt: '22-09-22',
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    img: '/images/cardDummy.png',
+    thumbnailUrl: '/images/cardDummy.png',
   },
   {
-    id: 0,
-    date: '22-09-22',
+    id: '2',
+    createdAt: '22-09-22',
     title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    img: '/images/cardDummy.png',
+    thumbnailUrl: '/images/cardDummy.png',
   },
 ];
 
