@@ -18,6 +18,7 @@ import {
 } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import { IBoardData } from 'types/dataTypes';
+import { getBoardData } from 'utils/getBoardUtils';
 
 interface PageProps {
   dataList: IBoardData[];
@@ -46,35 +47,19 @@ function index({ dataList }: PageProps) {
   const getPosts = async () => {
     console.log('fetching...');
     setPostList([]);
-    let queryList;
-    if (isNext) {
-      queryList = query(
-        collection(dbService, 'lab'),
-        limit(10),
-        orderBy('createdAt', 'desc'),
-        startAfter(lastData),
-      );
-    } else {
-      queryList = query(
-        collection(dbService, 'lab'),
-        limitToLast(10),
-        orderBy('createdAt', 'desc'),
-        endBefore(prevData),
-      );
-    }
-    const data = await getDocs(queryList);
-    const dataList: IBoardData[] = [];
-    data.forEach((docs) => {
-      const postData = { ...docs.data(), id: docs.id } as IBoardData;
-      dataList.push(postData);
-    });
+    const [dataList, docs, total] = await getBoardData(
+      'lab',
+      'labCount',
+      10,
+      isNext,
+      lastData,
+      prevData,
+    );
     setPostList(dataList);
-    dataList.length && setPrevData(data.docs[0]);
-    dataList.length && setLastData(data.docs[data.docs.length - 1]);
+    dataList.length && setPrevData(docs[0]);
+    dataList.length && setLastData(docs[docs.length - 1]);
     isNext && setIsNext(false);
     isPrev && setIsPrev(false);
-
-    const total = await getDoc(doc(dbService, 'meta', 'labCount'));
     setTotalNum(total.data()?.total);
     setTotalPageNum(Math.ceil(total.data()?.total / 10));
   };
