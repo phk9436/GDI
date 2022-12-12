@@ -3,6 +3,7 @@ import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
 import { IBoardData } from 'types/dataTypes';
+import { useRouter } from 'next/router';
 
 interface IBoardItemProps {
   data: IBoardData;
@@ -10,6 +11,9 @@ interface IBoardItemProps {
 }
 
 export function BoardItem({ data, path }: IBoardItemProps) {
+  const router = useRouter();
+
+  const onClickNavigate = () => router.push(`${path}/${data.id}`);
   return (
     <li>
       <BoardItemWrapper>
@@ -50,9 +54,9 @@ export function BoardItem({ data, path }: IBoardItemProps) {
             <AdminButton>수정</AdminButton>
             <AdminButton>삭제</AdminButton>
           </AdminButtons>
-          <ButtonLink>내용확인</ButtonLink>
+          <ButtonLink onClick={onClickNavigate}>내용확인</ButtonLink>
           <ButtonDownLoad>
-            <a href={data.fileUrl} download>
+            <a href={data.fileUrl} download={data.fileName}>
               자료 다운로드
             </a>
           </ButtonDownLoad>
@@ -202,4 +206,11 @@ const ButtonDownLoad = styled.div`
   color: #fff;
   cursor: pointer;
   background: #000 url('/images/iconDownload.png') no-repeat center right 20px/28px 28px;
+
+  a {
+    display: block;
+    width: 100%;
+    height: 100%;
+    line-height: 50px;
+  }
 `;

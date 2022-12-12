@@ -3,7 +3,7 @@ export interface IPressData extends IBoardData {
 }
 
 export interface IBoardData {
-  id: number;
+  id: string;
   createdAt: string;
   title: string;
   author?: string;

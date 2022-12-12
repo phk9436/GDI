@@ -49,7 +49,7 @@ export function Cards({ data, path }: ICardsProps) {
     <CardsWrapper>
       <CardsContainer>
         {data.map((e, i) => (
-          <Card date={e.date} img={e.img} title={e.title} key={`card${i}`} id={e.id} path={path} />
+          <Card createdAt={e.createdAt} thumbnailUrl={e.thumbnailUrl} title={e.title} key={`card${i}`} id={e.id} path={path} />
         ))}
       </CardsContainer>
     </CardsWrapper>

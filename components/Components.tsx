@@ -8,6 +8,13 @@ interface IBreadCrumbProps {
   tap: string[][];
 }
 
+interface IPaginationProps {
+  currentPageNum: number;
+  totalPageNum: number;
+  getNextPage: () => void;
+  getPrevPage: () => void;
+}
+
 export function BreadCrumb({ category, tap }: IBreadCrumbProps) {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
@@ -164,13 +171,18 @@ const Menu = styled.ul<{ tap: string[][]; isOpened: boolean }>`
   }
 `;
 
-export function Pagination() {
+export function Pagination({
+  currentPageNum,
+  totalPageNum,
+  getNextPage,
+  getPrevPage,
+}: IPaginationProps) {
   return (
     <PaginationWrapper>
       <PaginationComponents>
-        <PrevArrow />
-        {`${1} / ${1}`}
-        <NextArrow />
+        {currentPageNum > 1 && <PrevArrow onClick={getPrevPage} />}
+        {`${currentPageNum} / ${totalPageNum}`}
+        {currentPageNum < totalPageNum && <NextArrow onClick={getNextPage} />}
       </PaginationComponents>
       <p>현재 / 전체</p>
     </PaginationWrapper>
