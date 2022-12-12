@@ -50,7 +50,7 @@ function MovieSwiper({ data }: ISwiperProps) {
                   <Link href="/notice/Movie">
                     <a>
                       <MovieCard
-                        createdAt={e.createdAt}
+                        date={e.date}
                         title={e.title}
                         press={e.press}
                         thumbnailUrl={e.thumbnailUrl}

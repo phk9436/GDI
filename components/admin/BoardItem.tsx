@@ -29,7 +29,7 @@ export function BoardItem({ data, path }: IBoardItemProps) {
             </BoardItemImage>
             <BoardItemContents>
               <TitleWrapper>
-                <p>{data.createdAt}</p>
+                <p>{data.date}</p>
                 <h3>{data.title}</h3>
               </TitleWrapper>
               <InfoWrapper>

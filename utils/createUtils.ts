@@ -16,8 +16,8 @@ interface IcreateLabProps {
 }
 
 export const createLab = async (context: IcreateLabProps) => {
-  const createdAt = dayjs(new Date()).format('YY-MM-DD');
-
+  const createdAt = dayjs(new Date()).format('YYYYMMDDhhmmss');
+  const date = dayjs(new Date()).format('YY-MM-DD');
   const fileV4Id = v4();
   const fileRef = ref(storageService, `lab/${fileV4Id}`);
   const fileDataString = await uploadString(fileRef, context.fileUrl, 'data_url');
@@ -33,6 +33,7 @@ export const createLab = async (context: IcreateLabProps) => {
   const postContext = {
     ...context,
     createdAt,
+    date,
     view: 0,
     thumbnailData,
     thumbnailId,
