@@ -37,6 +37,10 @@ export function BreadCrumb({ category, tap }: IBreadCrumbProps) {
 const BreadCrumbWrapper = styled.div`
   height: 150px;
   background-color: #1f4788;
+
+  @media screen and (max-width: 820px) {
+    height: 50px;
+  }
 `;
 
 const BreadCrumbContents = styled.div`
@@ -52,6 +56,13 @@ const BreadCrumbContents = styled.div`
     font-size: 22px;
     font-weight: 500;
     color: #fff;
+  }
+
+  @media screen and (max-width: 820px) {
+    padding: 0 20px;
+    p {
+      display: none;
+    }
   }
 `;
 
@@ -74,6 +85,19 @@ const BreadCrumbTitle = styled.div`
     margin: 0 20px 0 4px;
     background-color: #fff;
   }
+
+  @media screen and (max-width: 820px) {
+    gap: 14px;
+
+    h2 {
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    &::after {
+      content: none;
+    }
+  }
 `;
 
 const BreadCrumbButton = styled.div`
@@ -81,6 +105,11 @@ const BreadCrumbButton = styled.div`
   height: 26px;
   background: url('/images/arrowBottom.png') no-repeat center/contain;
   cursor: pointer;
+
+  @media screen and (max-width: 820px) {
+    width: 16px;
+    height: 10px;
+  }
 `;
 
 const Menu = styled.ul<{ tap: string[][]; isOpened: boolean }>`
@@ -97,6 +126,10 @@ const Menu = styled.ul<{ tap: string[][]; isOpened: boolean }>`
     isOpened &&
     css`
       height: ${tap.length * 75}px;
+
+      @media screen and (max-width: 820px) {
+        height: ${tap.length * 42}px;
+      }
     `}
 
   li {
@@ -118,6 +151,16 @@ const Menu = styled.ul<{ tap: string[][]; isOpened: boolean }>`
     &:not(:last-child) {
       border-bottom: 1px solid #000;
     }
+
+    @media screen and (max-width: 820px) {
+      height: 42px;
+      font-size: 16px;
+    }
+  }
+
+  @media screen and (max-width: 820px) {
+    width: 145px;
+    left: 0;
   }
 `;
 
