@@ -11,7 +11,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import PostEditor from 'components/editor/Editor';
 import { Editor } from '@toast-ui/react-editor';
 import { useRouter } from 'next/router';
-import { createLab } from 'utils/createUtils';
+import { createLab } from 'utils/createBoardUtils';
 import Loading from 'components/admin/Loading';
 
 function Create() {
