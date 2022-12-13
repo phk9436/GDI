@@ -82,6 +82,7 @@ const BreadCrumbTitle = styled.div`
     font-size: 40px;
     font-weight: 700;
     color: #fff;
+    white-space: nowrap;
   }
 
   &::after {
