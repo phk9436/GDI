@@ -1,12 +1,15 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
+import { useEffect } from 'react';
 
 interface IGnbProps {
   route: string;
 }
 
 function GnbAdmin({ route }: IGnbProps) {
+  const router = useRouter();
   const routeCategory = route.split('/')[2];
   const Menu = [
     ['연구실', 'lab'],
@@ -14,6 +17,13 @@ function GnbAdmin({ route }: IGnbProps) {
     ['참여', 'board'],
     ['GDI소개', 'intro'],
   ];
+
+  useEffect(() => {
+    if (!sessionStorage.getItem('admin')) {
+      alert('어드민 로그인이 필요합니다');
+      router.push('/');
+    }
+  }, []);
 
   return (
     <GnbWrapper>

@@ -80,13 +80,6 @@ function Create() {
     setLoading(false);
   };
 
-  useEffect(() => {
-    if (!sessionStorage.getItem('admin')) {
-      alert('어드민 로그인이 필요합니다');
-      router.push('/');
-    }
-  }, []);
-
   return (
     <>
       <Wrapper>
