@@ -4,13 +4,15 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { IBoardData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
+import { useSetRecoilState } from 'recoil';
 
 interface IBoardItemProps {
   data: IBoardData;
   path: string;
+  deleteBoardItem: (id: string, fileId: string | undefined, thumbnailId: string | undefined) => void;
 }
 
-export function BoardItem({ data, path }: IBoardItemProps) {
+export function BoardItem({ data, path, deleteBoardItem }: IBoardItemProps) {
   const router = useRouter();
 
   const onClickNavigate = () => router.push(`${path}/${data.id}`);
@@ -52,7 +54,9 @@ export function BoardItem({ data, path }: IBoardItemProps) {
         <BoardButtons>
           <AdminButtons>
             <AdminButton>수정</AdminButton>
-            <AdminButton>삭제</AdminButton>
+            <AdminButton onClick={() => deleteBoardItem(data.id, data.fileId, data.thumbnailId)}>
+              삭제
+            </AdminButton>
           </AdminButtons>
           <ButtonLink onClick={onClickNavigate}>내용확인</ButtonLink>
           <ButtonDownLoad>

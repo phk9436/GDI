@@ -19,6 +19,8 @@ import {
 import { dbService } from 'api/firebase';
 import { IBoardData } from 'types/dataTypes';
 import { getBoardData } from 'utils/getBoardUtils';
+import Loading from 'components/admin/Loading';
+import { deleteBoardData } from 'utils/deleteBoardUtils';
 
 interface PageProps {
   dataList: IBoardData[];
@@ -34,6 +36,7 @@ function index({ dataList }: PageProps) {
   const [lastData, setLastData] = useState<QueryDocumentSnapshot>();
   const [isPrev, setIsPrev] = useState(false);
   const [isNext, setIsNext] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
 
   const Tap = [
     [
@@ -78,6 +81,7 @@ function index({ dataList }: PageProps) {
       setCurrentPageNum((state) => state + 1);
 
       if (!lastData) {
+        //최초 ssr시엔 lastData를 세팅할 수 없음(JSON만 받아옴)
         //최초 다음페이지 호출 시 lastData세팅
         const queryList = query(
           collection(dbService, 'lab'),
@@ -99,28 +103,43 @@ function index({ dataList }: PageProps) {
     }
   };
 
+  const deleteBoardItem = async (
+    id: string,
+    fileId: string | undefined,
+    thumbnailId: string | undefined,
+  ) => {
+    setIsLoading(true);
+    await deleteBoardData('lab', 'labCount', id, fileId, thumbnailId);
+    alert('삭제되었습니다.');
+    setIsLoading(false);
+    setPostList(postList.filter((e) => e.id !== id));
+  };
+
   useEffect(() => {
     isNext || isPrev ? getPosts() : setPropsData();
   }, [isRefetch]);
 
   return (
-    <div>
-      <BreadCrumb category={Tap[0]} tap={Tap} />
-      <Wrapper>
-        <UploadButton tap={Tap[0]} />
-        <ul>
-          {postList.map((e) => (
-            <BoardItem data={e} path={Tap[0][2]} key={e.id} />
-          ))}
-        </ul>
-        <Pagination
-          currentPageNum={currentPageNum}
-          totalPageNum={totalPageNum}
-          getPrevPage={getPrevPage}
-          getNextPage={getNextPage}
-        />
-      </Wrapper>
-    </div>
+    <>
+      <div>
+        <BreadCrumb category={Tap[0]} tap={Tap} />
+        <Wrapper>
+          <UploadButton tap={Tap[0]} />
+          <ul>
+            {postList.map((e) => (
+              <BoardItem data={e} path={Tap[0][2]} deleteBoardItem={deleteBoardItem} key={e.id} />
+            ))}
+          </ul>
+          <Pagination
+            currentPageNum={currentPageNum}
+            totalPageNum={totalPageNum}
+            getPrevPage={getPrevPage}
+            getNextPage={getNextPage}
+          />
+        </Wrapper>
+      </div>
+      {isLoading && <Loading />}
+    </>
   );
 }
 

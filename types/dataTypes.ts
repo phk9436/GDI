@@ -10,8 +10,10 @@ export interface IBoardData {
   author?: string;
   year?: string;
   content?: string | undefined;
+  thumbnailId?: string;
   thumbnailUrl?: string;
   thumbnailName?: string;
+  fileId?: string;
   fileUrl?: string;
   fileName?: string;
   view?: number;

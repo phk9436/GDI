@@ -19,7 +19,7 @@ function GnbAdmin({ route }: IGnbProps) {
   ];
 
   useEffect(() => {
-    if (!sessionStorage.getItem('admin')) {
+    if (!sessionStorage.getItem('admin') && routeCategory !== 'Login') {
       alert('어드민 로그인이 필요합니다');
       router.push('/');
     }
