@@ -13,6 +13,7 @@ const WrappingEditor = (props: EditorWithForwardedProps) => {
       ) : (
         <Editor
           ref={props.forwardedRef}
+          initialValue={props.initialValue}
           initialEditType="wysiwyg"
           height="100%"
           useCommandShortcut={false}

@@ -1,21 +1,47 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Image from 'next/image';
-import { useState } from 'react';
 import Link from 'next/link';
 import { IBoardData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
-import { useSetRecoilState } from 'recoil';
 
 interface IBoardItemProps {
   data: IBoardData;
   path: string;
-  deleteBoardItem: (id: string, fileId: string | undefined, thumbnailId: string | undefined) => void;
+  category: string;
+  deleteBoardItem: (
+    id: string,
+    fileId: string | undefined,
+    thumbnailId: string | undefined,
+  ) => void;
 }
 
-export function BoardItem({ data, path, deleteBoardItem }: IBoardItemProps) {
+export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemProps) {
   const router = useRouter();
 
   const onClickNavigate = () => router.push(`${path}/${data.id}`);
+
+  const redirectUpdate = () => {
+    router.push(
+      {
+        pathname: `${path}/update`,
+        query: {
+          id: data.id,
+          title: data.title,
+          author: data.author,
+          year: data.year,
+          content: data.content,
+          fileId: data.fileId,
+          fileName: data.fileName,
+          thumbnailId: data.thumbnailId,
+          thumbnailName: data.thumbnailName,
+          thumbnailUrl: data.thumbnailUrl,
+          category,
+        },
+      },
+      `${path}/update`,
+    );
+  };
+
   return (
     <li>
       <BoardItemWrapper>
@@ -53,7 +79,7 @@ export function BoardItem({ data, path, deleteBoardItem }: IBoardItemProps) {
         </Link>
         <BoardButtons>
           <AdminButtons>
-            <AdminButton>수정</AdminButton>
+            <AdminButton onClick={redirectUpdate}>수정</AdminButton>
             <AdminButton onClick={() => deleteBoardItem(data.id, data.fileId, data.thumbnailId)}>
               삭제
             </AdminButton>

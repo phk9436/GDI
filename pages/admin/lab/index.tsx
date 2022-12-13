@@ -127,7 +127,13 @@ function index({ dataList }: PageProps) {
           <UploadButton tap={Tap[0]} />
           <ul>
             {postList.map((e) => (
-              <BoardItem data={e} path={Tap[0][2]} deleteBoardItem={deleteBoardItem} key={e.id} />
+              <BoardItem
+                data={e}
+                path={Tap[0][2]}
+                deleteBoardItem={deleteBoardItem}
+                category="lab"
+                key={e.id}
+              />
             ))}
           </ul>
           <Pagination
