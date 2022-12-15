@@ -49,7 +49,7 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
     <Wrapper>
       <DetailTop>
         <ThumbnailWrapper>
-          <Image src={data.thumbnailUrl as string} layout="fill" alt="download" objectFit="cover" />
+          <Image src={data.thumbnailUrl as string} layout="fill" alt={data.thumbnailName} objectFit="cover" />
         </ThumbnailWrapper>
         <DetailTopContainer>
           <p>{data.date}</p>

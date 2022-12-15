@@ -100,7 +100,7 @@ function update() {
             <UploadWrapper>
               {thumbnailUrl ? (
                 <PreviewWrapper>
-                  <Image src={thumbnailUrl} layout="fill" alt="download" objectFit="cover" />
+                  <Image src={thumbnailUrl} layout="fill" alt={thumbnailName} objectFit="cover" />
                   <Label htmlFor="uploadLab" />
                 </PreviewWrapper>
               ) : (
