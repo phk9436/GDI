@@ -118,6 +118,7 @@ const TitleWrapper = styled.div`
     background: rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     color: #fff;
+    font-size: 18px;
   }
 
   h3 {
@@ -137,7 +138,7 @@ const TitleWrapper = styled.div`
 
     p {
       width: 70px;
-      height: 21px;
+      height: 22px;
       font-size: 11px;
     }
 
