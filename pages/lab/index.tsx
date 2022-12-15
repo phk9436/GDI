@@ -33,6 +33,7 @@ function index({ dataList }: PageProps) {
   const [lastData, setLastData] = useState<QueryDocumentSnapshot>();
   const [isPrev, setIsPrev] = useState(false);
   const [isNext, setIsNext] = useState(false);
+  const [isInit, setIsInit] = useState(true);
 
   const Tap = [
     [
@@ -46,6 +47,7 @@ function index({ dataList }: PageProps) {
   const getPosts = async () => {
     console.log('fetching...');
     setPostList([]);
+    isInit && setIsInit(false);
     const [dataList, docs, total] = await getBoardData(
       'lab',
       'labCount',
@@ -107,9 +109,9 @@ function index({ dataList }: PageProps) {
       <BreadCrumb category={Tap[0]} tap={Tap} />
       <Wrapper>
         <ul>
-          {postList.map((e) => (
-            <BoardItem data={e} path={Tap[0][2]} key={e.id} />
-          ))}
+          {isInit
+            ? dataList.map((e) => <BoardItem data={e} path={Tap[0][2]} key={e.id} />)
+            : postList.map((e) => <BoardItem data={e} path={Tap[0][2]} key={e.id} />)}
         </ul>
         <Pagination
           currentPageNum={currentPageNum}
