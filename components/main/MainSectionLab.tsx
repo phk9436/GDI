@@ -1,28 +1,12 @@
 import styled from 'styled-components';
 import { SectionTop, Cards } from './Layout';
+import { IBoardData } from 'types/dataTypes';
 
-const DUMMY_DATA = [
-  {
-    id: '1',
-    date: '22-09-22',
-    title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    thumbnailUrl: '/images/cardDummy.png',
-  },
-  {
-    id: '2',
-    date: '22-09-22',
-    title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    thumbnailUrl: '/images/cardDummy.png',
-  },
-  {
-    id: '3',
-    date: '22-09-22',
-    title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    thumbnailUrl: '/images/cardDummy.png',
-  },
-];
+interface PageProps {
+  data: IBoardData[];
+}
 
-function MainSectionLab() {
+function MainSectionLab({ data }: PageProps) {
   return (
     <Wrapper>
       <SectionTop title={'NEW 연구활동'} href="/lab" />
@@ -30,7 +14,7 @@ function MainSectionLab() {
         <DescriptText>
           지역경제활성화를 위한 <em>GDI만의 실질적 연구</em>를 확인해보세요.
         </DescriptText>
-        <Cards data={DUMMY_DATA} path='/lab'/>
+        <Cards data={data} path="/lab" />
       </SectionContents>
     </Wrapper>
   );
@@ -69,7 +53,7 @@ const DescriptText = styled.p`
     border-radius: 60px;
     padding: 0 6px;
   }
-  
+
   @media screen and (max-width: 820px) {
     display: none;
   }

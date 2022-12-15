@@ -70,7 +70,6 @@ const CardsWrapper = styled.div`
 
 const CardsContainer = styled.div`
   display: flex;
-  justify-content: space-between;
   gap: 54px;
   width: 870px;
 

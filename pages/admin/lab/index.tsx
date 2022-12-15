@@ -11,10 +11,7 @@ import {
   getDocs,
   getDoc,
   doc,
-  startAfter,
   QueryDocumentSnapshot,
-  endBefore,
-  limitToLast,
 } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import { IBoardData } from 'types/dataTypes';
@@ -126,15 +123,25 @@ function index({ dataList }: PageProps) {
         <Wrapper>
           <UploadButton tap={Tap[0]} />
           <ul>
-            {postList.map((e) => (
-              <BoardItem
-                data={e}
-                path={Tap[0][2]}
-                deleteBoardItem={deleteBoardItem}
-                category="lab"
-                key={e.id}
-              />
-            ))}
+            {postList.length
+              ? postList.map((e) => (
+                  <BoardItem
+                    data={e}
+                    path={Tap[0][2]}
+                    deleteBoardItem={deleteBoardItem}
+                    category="lab"
+                    key={e.id}
+                  />
+                ))
+              : dataList.map((e) => (
+                  <BoardItem
+                    data={e}
+                    path={Tap[0][2]}
+                    deleteBoardItem={deleteBoardItem}
+                    category="lab"
+                    key={e.id}
+                  />
+                ))}
           </ul>
           <Pagination
             currentPageNum={currentPageNum}
