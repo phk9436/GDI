@@ -1,50 +1,19 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import { IBoardData } from 'types/dataTypes';
-import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 
 interface IBoardDetailProps {
   data: IBoardData;
   path: string;
-  category: string;
-  deleteBoardItem: (
-    id: string,
-    fileId: string | undefined,
-    thumbnailId: string | undefined,
-  ) => void;
 }
 
 const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
   ssr: false,
 });
 
-function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProps) {
-  const router = useRouter();
-
-  const redirectUpdate = () => {
-    router.push(
-      {
-        pathname: `${path}/update`,
-        query: {
-          id: data.id,
-          title: data.title,
-          author: data.author,
-          year: data.year,
-          content: data.content,
-          fileId: data.fileId,
-          fileName: data.fileName,
-          thumbnailId: data.thumbnailId,
-          thumbnailName: data.thumbnailName,
-          thumbnailUrl: data.thumbnailUrl,
-          category,
-        },
-      },
-      `${path}/update`,
-    );
-  };
-
+function BoardDetail({ data, path }: IBoardDetailProps) {
   return (
     <Wrapper>
       <DetailTop>
@@ -70,14 +39,6 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
           </InfoWrapper>
         </DetailTopContainer>
         <DetailButtonWrapper>
-          <AdminButtons>
-            <AdminButton onClick={redirectUpdate}>수정</AdminButton>
-            <AdminButton
-              onClick={() => deleteBoardItem(data.id as string, data.fileId, data.thumbnailId)}
-            >
-              삭제
-            </AdminButton>
-          </AdminButtons>
           <ButtonDownLoad>
             <a href={data.fileUrl} download={data.fileName}>
               자료 다운로드
