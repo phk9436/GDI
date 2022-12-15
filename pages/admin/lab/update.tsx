@@ -82,7 +82,7 @@ function update() {
     );
     alert('수정 완료됐습니다');
     setLoading(false);
-    router.back();
+    router.push('/admin/lab');
   };
 
   useEffect(() => {

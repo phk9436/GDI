@@ -3,10 +3,10 @@ export interface IPressData extends IBoardData {
 }
 
 export interface IBoardData {
-  id: string;
+  id?: string;
   createdAt?: string;
   date?: string;
-  title: string;
+  title?: string;
   author?: string;
   year?: string;
   content?: string | undefined;

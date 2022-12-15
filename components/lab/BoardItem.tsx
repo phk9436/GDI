@@ -14,41 +14,38 @@ export function BoardItem({ data, path }: IBoardItemProps) {
   const router = useRouter();
 
   const onClickNavigate = () => router.push(`${path}/${data.id}`);
+  
   return (
     <li>
-      <BoardItemWrapper>
-        <Link href={`${path}/${data.id}`}>
-          <a>
-            <BoardItemImage>
-              <Image
-                src={data.thumbnailUrl as string}
-                layout="fill"
-                alt={data.title}
-                objectFit="cover"
-              />
-            </BoardItemImage>
-            <BoardItemContents>
-              <TitleWrapper>
-                <p>{data.date}</p>
-                <h3>{data.title}</h3>
-              </TitleWrapper>
-              <InfoWrapper>
-                <ul>
-                  <li>
-                    <p>저자</p>
-                  </li>
-                  <li>{data.author}</li>
-                </ul>
-                <ul>
-                  <li>
-                    <p>발행년도</p>
-                  </li>
-                  <li>{data.year}</li>
-                </ul>
-              </InfoWrapper>
-            </BoardItemContents>
-          </a>
-        </Link>
+      <BoardItemWrapper onClick={onClickNavigate}>
+        <BoardItemImage>
+          <Image
+            src={data.thumbnailUrl as string}
+            layout="fill"
+            alt={data.title}
+            objectFit="cover"
+          />
+        </BoardItemImage>
+        <BoardItemContents>
+          <TitleWrapper>
+            <p>{data.date}</p>
+            <h3>{data.title}</h3>
+          </TitleWrapper>
+          <InfoWrapper>
+            <ul>
+              <li>
+                <p>저자</p>
+              </li>
+              <li>{data.author}</li>
+            </ul>
+            <ul>
+              <li>
+                <p>발행년도</p>
+              </li>
+              <li>{data.year}</li>
+            </ul>
+          </InfoWrapper>
+        </BoardItemContents>
         <BoardButtons>
           <ButtonLink onClick={onClickNavigate}>내용확인</ButtonLink>
           <ButtonDownLoad>
@@ -71,6 +68,7 @@ const BoardItemWrapper = styled.div`
   border-bottom: 1px solid #000;
   padding-bottom: 46px;
   margin-bottom: 46px;
+  cursor: pointer;
 
   a {
     display: contents;
