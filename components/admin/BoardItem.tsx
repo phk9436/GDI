@@ -145,6 +145,12 @@ const TitleWrapper = styled.div`
     font-size: 36px;
     font-weight: 500;
     line-height: 50px;
+    height: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 `;
 

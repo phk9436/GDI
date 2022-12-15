@@ -126,10 +126,16 @@ const TitleWrapper = styled.div`
     font-size: 36px;
     font-weight: 500;
     line-height: 50px;
+    height: 150px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
   }
 
   @media screen and (max-width: 820px) {
-    gap: 6px;
+    gap: 8px;
 
     p {
       width: 70px;
@@ -138,7 +144,12 @@ const TitleWrapper = styled.div`
     }
 
     h3 {
-      display: none;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 16px;
+      height: 32px;
+      margin-bottom: 10px;
+      -webkit-line-clamp: 2;
     }
   }
 `;
