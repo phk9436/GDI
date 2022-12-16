@@ -11,7 +11,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import PostEditor from 'components/editor/Editor';
 import { Editor } from '@toast-ui/react-editor';
 import { useRouter } from 'next/router';
-import { createLab } from 'utils/createBoardUtils';
+import { createLab, uploadFile, uploadThumbnail } from 'utils/createBoardUtils';
 import Loading from 'components/admin/Loading';
 
 function Create() {
@@ -30,28 +30,12 @@ function Create() {
   const onChangeAuthor = (e: React.ChangeEvent<HTMLInputElement>) => setAuthor(e.target.value);
   const onChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => setYear(e.target.value);
 
-  const uploadThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target;
-    if (!files?.length) {
-      alert('파일을 등록해주세요');
-      return;
-    }
-    setThumbnailName(files[0].name);
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onloadend = () => setThumbnailUrl(reader.result as string);
+  const onChangeThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    uploadThumbnail(e, setThumbnailName, setThumbnailUrl);
   };
 
-  const uploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { files } = e.target;
-    if (!files?.length) {
-      alert('파일을 등록해주세요');
-      return;
-    }
-    setFileName(files[0].name);
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onloadend = () => setFileUrl(reader.result as string);
+  const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    uploadFile(e, setFileName, setFileUrl);
   };
 
   const onSubmitPost = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -99,7 +83,7 @@ function Create() {
                 type="file"
                 accept=".png, .jpg"
                 id="uploadLab"
-                onChange={uploadThumbnail}
+                onChange={onChangeThumbnail}
               />
             </UploadWrapper>
             <InputContainer>
@@ -135,7 +119,7 @@ function Create() {
                 type="file"
                 accept=".pdf, .png, .jpg"
                 id="uploadFileLab"
-                onChange={uploadFile}
+                onChange={onChangeFile}
               />
             </InputContainer>
           </InputWrapper>

@@ -26,6 +26,38 @@ interface IcreateForumProps {
   thumbnailUrl: string;
 }
 
+export const uploadThumbnail: (
+  e: React.ChangeEvent<HTMLInputElement>,
+  setThumbnailName: (value: React.SetStateAction<string>) => void,
+  setThumbnailUrl: (value: React.SetStateAction<string>) => void,
+) => void = (e: React.ChangeEvent<HTMLInputElement>, setThumbnailName, setThumbnailUrl) => {
+  const { files } = e.target;
+  if (!files?.length) {
+    alert('파일을 등록해주세요');
+    return;
+  }
+  setThumbnailName(files[0].name);
+  const reader = new FileReader();
+  reader.readAsDataURL(files[0]);
+  reader.onloadend = () => setThumbnailUrl(reader.result as string);
+};
+
+export const uploadFile: (
+  e: React.ChangeEvent<HTMLInputElement>,
+  setFileName: (value: React.SetStateAction<string>) => void,
+  setFileUrl: (value: React.SetStateAction<string>) => void,
+) => void = (e: React.ChangeEvent<HTMLInputElement>, setFileName, setFileUrl) => {
+  const { files } = e.target;
+  if (!files?.length) {
+    alert('파일을 등록해주세요');
+    return;
+  }
+  setFileName(files[0].name);
+  const reader = new FileReader();
+  reader.readAsDataURL(files[0]);
+  reader.onloadend = () => setFileUrl(reader.result as string);
+};
+
 export const createLab = async (context: IcreateLabProps) => {
   const createdAt = dayjs(new Date()).format('YYYYMMDDhhmmss');
   const date = dayjs(new Date()).format('YY-MM-DD');
