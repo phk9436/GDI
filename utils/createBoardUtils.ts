@@ -1,5 +1,5 @@
 import { dbService, storageService } from 'api/firebase';
-import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+import { getBlob, getDownloadURL, ref, uploadString } from 'firebase/storage';
 import { addDoc, collection, doc, increment, updateDoc } from 'firebase/firestore';
 import { v4 } from 'uuid';
 import dayjs from 'dayjs';
@@ -60,6 +60,8 @@ export const createLab = async (context: IcreateLabProps) => {
   const fileRef = ref(storageService, `lab/${fileV4Id}`);
   const fileDataString = await uploadString(fileRef, context.fileUrl, 'data_url');
   const fileData = await getDownloadURL(fileDataString.ref);
+  const fileBlob = await getBlob(fileDataString.ref);
+  const downloadUrl = window.URL.createObjectURL(fileBlob);
   const fileId = fileV4Id;
 
   const thumbnailV4Id = v4();
@@ -79,6 +81,7 @@ export const createLab = async (context: IcreateLabProps) => {
     fileData,
     fileName: context.fileName,
     fileId,
+    downloadUrl
   };
 
   await addDoc(collection(dbService, 'lab'), postContext);
