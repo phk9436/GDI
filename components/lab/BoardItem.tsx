@@ -20,7 +20,7 @@ export function BoardItem({ data, path }: IBoardItemProps) {
       <BoardItemWrapper onClick={onClickNavigate}>
         <BoardItemImage>
           <Image
-            src={data.thumbnailUrl as string}
+            src={data.thumbnailData as string}
             layout="fill"
             alt={data.title}
             objectFit="cover"
@@ -49,7 +49,7 @@ export function BoardItem({ data, path }: IBoardItemProps) {
         <BoardButtons>
           <ButtonLink onClick={onClickNavigate}>내용확인</ButtonLink>
           <ButtonDownLoad>
-            <a href={data.fileUrl} download={data.fileName}>
+            <a href={data.fileData} download={data.fileName}>
               자료 다운로드
             </a>
           </ButtonDownLoad>

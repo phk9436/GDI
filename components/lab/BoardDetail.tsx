@@ -19,7 +19,7 @@ function BoardDetail({ data, path }: IBoardDetailProps) {
       <DetailTop>
         <ThumbnailWrapper>
           <TumbnailBackground />
-          <Image src={data.thumbnailUrl as string} layout="fill" alt="thumbnail" objectFit="cover" />
+          <Image src={data.thumbnailData as string} layout="fill" alt="thumbnail" objectFit="cover" />
         </ThumbnailWrapper>
         <DetailTopContainer>
           <p>{data.date}</p>
@@ -41,7 +41,7 @@ function BoardDetail({ data, path }: IBoardDetailProps) {
         </DetailTopContainer>
         <DetailButtonWrapper>
           <ButtonDownLoad>
-            <a href={data.fileUrl} download={data.fileName}>
+            <a href={data.fileData} download={data.fileName} target="_self">
               자료 다운로드
               <img src="/images/iconDownloadMo.png" alt="Download" />
             </a>

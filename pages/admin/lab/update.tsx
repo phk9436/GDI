@@ -36,10 +36,12 @@ function update() {
 
   const onChangeThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
     uploadThumbnail(e, setThumbnailUrl);
+    isThumbnailChanged || setIsThumbnailChanged(true);
   };
 
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
     uploadFile(e, setFileName, setFileUrl);
+    isFileChanged || setIsFileChanged(true);
   };
 
   const updateBoardItem = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -85,7 +87,10 @@ function update() {
                   <Label htmlFor="uploadLab" />
                 </PreviewWrapper>
               ) : (
-                <LabelUpload htmlFor="uploadLab" />
+                <PreviewWrapper>
+                  <Image src={router.query.thumbnailData as string} layout="fill" alt="thumbnail" objectFit="cover" />
+                  <Label htmlFor="uploadLab" />
+                </PreviewWrapper>
               )}
               <InputHide
                 type="file"

@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react';
 import Loading from 'components/admin/Loading';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
+import dayjs from 'dayjs';
 
 function LabDetail(props: IBoardData) {
   const router = useRouter();
@@ -44,7 +45,11 @@ function LabDetail(props: IBoardData) {
       <div>
         <BreadCrumb category={Tap[0]} tap={Tap} />
         <BoardDetail
-          data={{ ...props, id: router.query.id as string }}
+          data={{
+            ...props,
+            id: router.query.id as string,
+            date: dayjs(props.createdAt).format('YY-MM-DD'),
+          }}
           path={Tap[0][2]}
           category="lab"
           deleteBoardItem={deleteBoardItem}

@@ -11,8 +11,8 @@ export interface IBoardData {
   year?: string;
   content?: string | undefined;
   thumbnailId?: string;
-  thumbnailUrl?: string;
+  thumbnailData?: string;
   fileId?: string;
-  fileUrl?: string;
   fileName?: string;
+  fileData?: string;
 }

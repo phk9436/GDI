@@ -48,13 +48,13 @@ export const updateBoardData: (
     const fileV4Id = v4();
     const fileRef = ref(storageService, `${category}/${fileV4Id}`);
     const data = await uploadString(fileRef, fileUrl, 'data_url');
-    await getDownloadURL(data.ref);
+    const fileData = await getDownloadURL(data.ref);
     const getFileId = fileV4Id;
     context = {
       ...context,
       fileId: getFileId,
       fileName,
-      fileUrl,
+      fileData,
     };
   }
   if (isThumbnailChanged) {
@@ -63,12 +63,12 @@ export const updateBoardData: (
     const thumbnailV4Id = v4();
     const thumbnailRef = ref(storageService, `${category}/${thumbnailV4Id}`);
     const thumbnailDataString = await uploadString(thumbnailRef, thumbnailUrl, 'data_url');
-    await getDownloadURL(thumbnailDataString.ref);
+    const thumbnailData = await getDownloadURL(thumbnailDataString.ref);
     const getThumbnailId = thumbnailV4Id;
     context = {
       ...context,
       thumbnailId: getThumbnailId,
-      thumbnailUrl,
+      thumbnailData,
     };
   }
   await updateDoc(doc(dbService, category, id), context);

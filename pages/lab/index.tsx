@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { BreadCrumb, Pagination } from 'components/Components';
 import { BoardItem } from 'components/lab/BoardItem';
+import dayjs from 'dayjs';
 import {
   query,
   collection,
@@ -10,10 +11,7 @@ import {
   getDocs,
   getDoc,
   doc,
-  startAfter,
   QueryDocumentSnapshot,
-  endBefore,
-  limitToLast,
 } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import { IBoardData } from 'types/dataTypes';
@@ -131,7 +129,11 @@ export const getServerSideProps = async () => {
   const data = await getDocs(queryList);
   const dataList: IBoardData[] = [];
   data.forEach((docs) => {
-    const postData = { ...docs.data(), id: docs.id } as IBoardData;
+    const postData = {
+      ...docs.data(),
+      id: docs.id,
+      date: dayjs(docs.data().createdAt).format('YY-MM-DD'),
+    } as IBoardData;
     dataList.push(postData);
   });
   return { props: { dataList } };

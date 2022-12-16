@@ -34,9 +34,10 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
           year: data.year,
           content: data.content,
           fileId: data.fileId,
+          fileData: data.fileData,
           fileName: data.fileName,
           thumbnailId: data.thumbnailId,
-          thumbnailUrl: data.thumbnailUrl,
+          thumbnailData: data.thumbnailData,
           category,
         },
       },
@@ -48,7 +49,7 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
     <Wrapper>
       <DetailTop>
         <ThumbnailWrapper>
-          <Image src={data.thumbnailUrl as string} layout="fill" alt='thumbnail' objectFit="cover" />
+          <Image src={data.thumbnailData as string} layout="fill" alt='thumbnail' objectFit="cover" />
         </ThumbnailWrapper>
         <DetailTopContainer>
           <p>{data.date}</p>
@@ -78,7 +79,7 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
             </AdminButton>
           </AdminButtons>
           <ButtonDownLoad>
-            <a href={data.fileUrl} download={data.fileName}>
+            <a href={data.fileData} download={data.fileName}>
               자료 다운로드
             </a>
           </ButtonDownLoad>

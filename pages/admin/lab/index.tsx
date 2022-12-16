@@ -18,6 +18,7 @@ import { IBoardData } from 'types/dataTypes';
 import { getBoardData } from 'utils/getBoardUtils';
 import Loading from 'components/admin/Loading';
 import { deleteBoardData } from 'utils/deleteBoardUtils';
+import dayjs from 'dayjs';
 
 interface PageProps {
   dataList: IBoardData[];
@@ -165,7 +166,11 @@ export const getServerSideProps = async () => {
   const data = await getDocs(queryList);
   const dataList: IBoardData[] = [];
   data.forEach((docs) => {
-    const postData = { ...docs.data(), id: docs.id } as IBoardData;
+    const postData = {
+      ...docs.data(),
+      id: docs.id,
+      date: dayjs(docs.data().createdAt).format('YY-MM-DD'),
+    } as IBoardData;
     dataList.push(postData);
   });
   return { props: { dataList } };

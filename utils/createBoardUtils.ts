@@ -55,25 +55,29 @@ export const uploadFile: (
 };
 
 export const createLab = async (context: IcreateLabProps) => {
-  const createdAt = dayjs(new Date()).format('YYMMDDHHmmss');
-  const date = dayjs(new Date()).format('YY-MM-DD');
+  const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
   const fileV4Id = v4();
   const fileRef = ref(storageService, `lab/${fileV4Id}`);
   const fileDataString = await uploadString(fileRef, context.fileUrl, 'data_url');
-  await getDownloadURL(fileDataString.ref);
+  const fileData = await getDownloadURL(fileDataString.ref);
   const fileId = fileV4Id;
 
   const thumbnailV4Id = v4();
   const thumbnailRef = ref(storageService, `lab/${thumbnailV4Id}`);
   const thumbnailDataString = await uploadString(thumbnailRef, context.thumbnailUrl, 'data_url');
-  await getDownloadURL(thumbnailDataString.ref);
+  const thumbnailData = await getDownloadURL(thumbnailDataString.ref);
   const thumbnailId = thumbnailV4Id;
 
   const postContext = {
-    ...context,
+    title: context.title,
+    author: context.author,
+    year: context.year,
+    content: context.content,
     createdAt,
-    date,
+    thumbnailData,
     thumbnailId,
+    fileData,
+    fileName: context.fileName,
     fileId,
   };
 
@@ -85,29 +89,34 @@ export const createLab = async (context: IcreateLabProps) => {
 };
 
 export const createForum = async (context: IcreateForumProps) => {
-  const createdAt = dayjs(new Date()).format('YYMMDDHHmmss');
-  const date = dayjs(new Date()).format('YY-MM-DD');
+  const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
 
   let fileId = '';
+  let fileData = '';
   if (context.fileUrl) {
     const fileV4Id = v4();
     const fileRef = ref(storageService, `forum/${fileV4Id}`);
     const fileDataString = await uploadString(fileRef, context.fileUrl, 'data_url');
-    await getDownloadURL(fileDataString.ref);
+    fileData = await getDownloadURL(fileDataString.ref);
     fileId = fileV4Id;
   }
 
   const thumbnailV4Id = v4();
   const thumbnailRef = ref(storageService, `forum/${thumbnailV4Id}`);
   const thumbnailDataString = await uploadString(thumbnailRef, context.thumbnailUrl, 'data_url');
-  await getDownloadURL(thumbnailDataString.ref);
+  const thumbnailData = await getDownloadURL(thumbnailDataString.ref);
   const thumbnailId = thumbnailV4Id;
 
   const postContext = {
-    ...context,
+    title: context.title,
+    place: context.place,
+    forumDate: context.forumDate,
+    content: context.content,
     createdAt,
-    date,
+    thumbnailData,
     thumbnailId,
+    fileData,
+    fileName: context.fileName,
     fileId,
   };
 

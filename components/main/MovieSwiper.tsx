@@ -53,7 +53,7 @@ function MovieSwiper({ data }: ISwiperProps) {
                         date={e.date}
                         title={e.title}
                         press={e.press}
-                        thumbnailUrl={e.thumbnailUrl}
+                        thumbnailData={e.thumbnailData}
                         id={e.id}
                       />
                     </a>
