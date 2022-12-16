@@ -19,7 +19,7 @@ function BoardDetail({ data, path }: IBoardDetailProps) {
       <DetailTop>
         <ThumbnailWrapper>
           <TumbnailBackground />
-          <Image src={data.thumbnailUrl as string} layout="fill" alt={data.thumbnailName} objectFit="cover" />
+          <Image src={data.thumbnailUrl as string} layout="fill" alt="thumbnail" objectFit="cover" />
         </ThumbnailWrapper>
         <DetailTopContainer>
           <p>{data.date}</p>

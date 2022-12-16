@@ -12,9 +12,7 @@ export interface IBoardData {
   content?: string | undefined;
   thumbnailId?: string;
   thumbnailUrl?: string;
-  thumbnailName?: string;
   fileId?: string;
   fileUrl?: string;
   fileName?: string;
-  view?: number;
 }

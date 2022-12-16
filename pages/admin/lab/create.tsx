@@ -20,7 +20,6 @@ function Create() {
   const [year, setYear] = useState('');
   const [loading, setLoading] = useState(false);
   const [thumbnailUrl, setThumbnailUrl] = useState('');
-  const [thumbnailName, setThumbnailName] = useState('');
   const [fileUrl, setFileUrl] = useState('');
   const [fileName, setFileName] = useState('');
   const contentRef = useRef<Editor>();
@@ -31,7 +30,7 @@ function Create() {
   const onChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => setYear(e.target.value);
 
   const onChangeThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    uploadThumbnail(e, setThumbnailName, setThumbnailUrl);
+    uploadThumbnail(e, setThumbnailUrl);
   };
 
   const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -50,7 +49,6 @@ function Create() {
       content,
       fileUrl,
       fileName,
-      thumbnailName,
       thumbnailUrl,
     };
 
@@ -73,7 +71,7 @@ function Create() {
             <UploadWrapper>
               {thumbnailUrl ? (
                 <PreviewWrapper>
-                  <Image src={thumbnailUrl} layout="fill" alt={thumbnailName} objectFit="cover" />
+                  <Image src={thumbnailUrl} layout="fill" alt="thumbnail" objectFit="cover" />
                   <Label htmlFor="uploadLab" />
                 </PreviewWrapper>
               ) : (

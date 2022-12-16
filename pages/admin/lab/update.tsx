@@ -13,6 +13,7 @@ import {
 import Loading from 'components/admin/Loading';
 import PostEditor from 'components/editor/Editor';
 import { updateBoardData } from 'utils/updateBoardUtils';
+import { uploadFile, uploadThumbnail } from 'utils/createBoardUtils';
 
 function update() {
   const router = useRouter();
@@ -21,7 +22,6 @@ function update() {
   const [year, setYear] = useState(router.query.year as string);
   const [loading, setLoading] = useState(false);
   const [thumbnailUrl, setThumbnailUrl] = useState<string>(router.query.thumbnailUrl as string);
-  const [thumbnailName, setThumbnailName] = useState<string>(router.query.thumbnailName as string);
   const [fileUrl, setFileUrl] = useState<string>(router.query.fileUrl as string);
   const [fileName, setFileName] = useState<string>(router.query.fileName as string);
   const [isFileChanged, setIsFileChanged] = useState(false);
@@ -34,30 +34,12 @@ function update() {
   const onChangeAuthor = (e: React.ChangeEvent<HTMLInputElement>) => setAuthor(e.target.value);
   const onChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => setYear(e.target.value);
 
-  const uploadThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsThumbnailChanged(true);
-    const { files } = e.target;
-    if (!files?.length) {
-      alert('파일을 등록해주세요');
-      return;
-    }
-    setThumbnailName(files[0].name);
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onloadend = () => setThumbnailUrl(reader.result as string);
+  const onChangeThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
+    uploadThumbnail(e, setThumbnailUrl);
   };
 
-  const uploadFile = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setIsFileChanged(true);
-    const { files } = e.target;
-    if (!files?.length) {
-      alert('파일을 등록해주세요');
-      return;
-    }
-    setFileName(files[0].name);
-    const reader = new FileReader();
-    reader.readAsDataURL(files[0]);
-    reader.onloadend = () => setFileUrl(reader.result as string);
+  const onChangeFile = (e: React.ChangeEvent<HTMLInputElement>) => {
+    uploadFile(e, setFileName, setFileUrl);
   };
 
   const updateBoardItem = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -78,7 +60,6 @@ function update() {
       fileName,
       thumbnailId as string,
       thumbnailUrl,
-      thumbnailName,
     );
     alert('수정 완료됐습니다');
     setLoading(false);
@@ -100,7 +81,7 @@ function update() {
             <UploadWrapper>
               {thumbnailUrl ? (
                 <PreviewWrapper>
-                  <Image src={thumbnailUrl} layout="fill" alt={thumbnailName} objectFit="cover" />
+                  <Image src={thumbnailUrl} layout="fill" alt="thumbnail" objectFit="cover" />
                   <Label htmlFor="uploadLab" />
                 </PreviewWrapper>
               ) : (
@@ -110,7 +91,7 @@ function update() {
                 type="file"
                 accept=".png, .jpg"
                 id="uploadLab"
-                onChange={uploadThumbnail}
+                onChange={onChangeThumbnail}
               />
             </UploadWrapper>
             <InputContainer>
@@ -146,7 +127,7 @@ function update() {
                 type="file"
                 accept=".pdf, .png, .jpg"
                 id="uploadFileLab"
-                onChange={uploadFile}
+                onChange={onChangeFile}
               />
             </InputContainer>
           </InputWrapper>

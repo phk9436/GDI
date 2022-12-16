@@ -17,7 +17,6 @@ export const updateBoardData: (
   fileName: string,
   thumbnailId: string,
   thumbnailUrl: string,
-  thumbnailName: string,
 ) => Promise<void> = async (
   id,
   category,
@@ -32,7 +31,6 @@ export const updateBoardData: (
   fileName,
   thumbnailId,
   thumbnailUrl,
-  thumbnailName,
 ) => {
   if (!content || !title || !author || !year) {
     alert('항목이 모두 채워지지 않았습니다');
@@ -50,11 +48,10 @@ export const updateBoardData: (
     const fileV4Id = v4();
     const fileRef = ref(storageService, `${category}/${fileV4Id}`);
     const data = await uploadString(fileRef, fileUrl, 'data_url');
-    const fileData = await getDownloadURL(data.ref);
+    await getDownloadURL(data.ref);
     const getFileId = fileV4Id;
     context = {
       ...context,
-      fileData,
       fileId: getFileId,
       fileName,
       fileUrl,
@@ -66,13 +63,11 @@ export const updateBoardData: (
     const thumbnailV4Id = v4();
     const thumbnailRef = ref(storageService, `${category}/${thumbnailV4Id}`);
     const thumbnailDataString = await uploadString(thumbnailRef, thumbnailUrl, 'data_url');
-    const thumbnailData = await getDownloadURL(thumbnailDataString.ref);
+    await getDownloadURL(thumbnailDataString.ref);
     const getThumbnailId = thumbnailV4Id;
     context = {
       ...context,
-      thumbnailData,
       thumbnailId: getThumbnailId,
-      thumbnailName,
       thumbnailUrl,
     };
   }

@@ -33,7 +33,6 @@ export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemP
           fileId: data.fileId,
           fileName: data.fileName,
           thumbnailId: data.thumbnailId,
-          thumbnailName: data.thumbnailName,
           thumbnailUrl: data.thumbnailUrl,
           category,
         },
