@@ -14,7 +14,7 @@ export function BoardItem({ data, path }: IBoardItemProps) {
   const router = useRouter();
 
   const onClickNavigate = () => router.push(`${path}/${data.id}`);
-  
+
   return (
     <li>
       <BoardItemWrapper onClick={onClickNavigate}>

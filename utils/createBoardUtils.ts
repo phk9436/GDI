@@ -15,6 +15,17 @@ interface IcreateLabProps {
   thumbnailUrl: string;
 }
 
+interface IcreateForumProps {
+  title: string;
+  place: string;
+  forumDate: string;
+  content: string | undefined;
+  fileUrl: string;
+  fileName: string;
+  thumbnailName: string;
+  thumbnailUrl: string;
+}
+
 export const createLab = async (context: IcreateLabProps) => {
   const createdAt = dayjs(new Date()).format('YYYYMMDDhhmmss');
   const date = dayjs(new Date()).format('YY-MM-DD');
@@ -43,6 +54,44 @@ export const createLab = async (context: IcreateLabProps) => {
 
   await addDoc(collection(dbService, 'lab'), postContext);
   await updateDoc(doc(dbService, 'meta', 'labCount'), {
+    //전체 게시물 개수
+    total: increment(1),
+  });
+};
+
+export const createForum = async (context: IcreateForumProps) => {
+  const createdAt = dayjs(new Date()).format('YYYYMMDDhhmmss');
+  const date = dayjs(new Date()).format('YY-MM-DD');
+
+  let fileId = '';
+  let fileData = '';
+  if (context.fileUrl) {
+    const fileV4Id = v4();
+    const fileRef = ref(storageService, `forum/${fileV4Id}`);
+    const fileDataString = await uploadString(fileRef, context.fileUrl, 'data_url');
+    fileData = await getDownloadURL(fileDataString.ref);
+    fileId = fileV4Id;
+  }
+
+  const thumbnailV4Id = v4();
+  const thumbnailRef = ref(storageService, `forum/${thumbnailV4Id}`);
+  const thumbnailDataString = await uploadString(thumbnailRef, context.thumbnailUrl, 'data_url');
+  const thumbnailData = await getDownloadURL(thumbnailDataString.ref);
+  const thumbnailId = thumbnailV4Id;
+
+  const postContext = {
+    ...context,
+    createdAt,
+    date,
+    view: 0,
+    thumbnailData,
+    thumbnailId,
+    fileData,
+    fileId,
+  };
+
+  await addDoc(collection(dbService, 'forum'), postContext);
+  await updateDoc(doc(dbService, 'meta', 'forumCount'), {
     //전체 게시물 개수
     total: increment(1),
   });

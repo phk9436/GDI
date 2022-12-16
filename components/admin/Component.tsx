@@ -117,6 +117,54 @@ const Input = styled.input`
   }
 `;
 
+export function InputDate({ type, placeholder, value, onChange }: IInputTextProps) {
+  return (
+    <InputDateComponent type={type} placeholder={placeholder} value={value} onChange={onChange} required />
+  );
+}
+
+const InputDateComponent = styled.input`
+  width: 100%;
+  height: 50px;
+  padding: 17px 18px;
+  border: 1px solid transparent;
+  outline: none;
+  background-color: #f6f6f6;
+  font-size: 14px;
+  font-weight: 700;
+  color: #a4a4a4;
+  caret-color: #1f4788;
+  transition: 0.2s;
+  position: relative;
+
+  &:hover,
+  &:focus {
+    border: 1px solid #d9d9d9;
+  }
+
+  &:focus, &:valid {
+    color: #000;
+  }
+
+  &::-webkit-calendar-picker-indicator {
+    background: transparent;
+    z-index: 1;
+    cursor: pointer;
+    width: 40px;
+    height: 36px;
+  }
+
+  &::after {
+    content: '';
+    display: block;
+    width: 36px;
+    height: 36px;
+    background: url('/images/iconCalendar.png') no-repeat center/100%;
+    position: absolute;
+    right: 20px;
+  }
+`;
+
 export function LabelFile({ htmlFor, text }: ILabelFileProps) {
   return (
     <>
@@ -220,4 +268,3 @@ const UploadButtonWrapper = styled.div`
     background-color: #a4a4a4;
   }
 `;
-
