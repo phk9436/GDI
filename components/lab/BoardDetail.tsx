@@ -3,23 +3,30 @@ import Image from 'next/image';
 import { IBoardData } from 'types/dataTypes';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { downloadFile } from 'utils/downloadUtils';
 
 interface IBoardDetailProps {
   data: IBoardData;
   path: string;
+  category: string;
 }
 
 const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
   ssr: false,
 });
 
-function BoardDetail({ data, path }: IBoardDetailProps) {
+function BoardDetail({ data, path, category }: IBoardDetailProps) {
   return (
     <Wrapper>
       <DetailTop>
         <ThumbnailWrapper>
           <TumbnailBackground />
-          <Image src={data.thumbnailData as string} layout="fill" alt="thumbnail" objectFit="cover" />
+          <Image
+            src={data.thumbnailData as string}
+            layout="fill"
+            alt="thumbnail"
+            objectFit="cover"
+          />
         </ThumbnailWrapper>
         <DetailTopContainer>
           <p>{data.date}</p>
@@ -41,7 +48,7 @@ function BoardDetail({ data, path }: IBoardDetailProps) {
         </DetailTopContainer>
         <DetailButtonWrapper>
           <ButtonDownLoad>
-            <a href={data.fileData} download={data.fileName} target="_self">
+            <a onClick={() => downloadFile(data.fileId, category, data.fileName)}>
               자료 다운로드
               <img src="/images/iconDownloadMo.png" alt="Download" />
             </a>

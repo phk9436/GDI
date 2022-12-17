@@ -47,14 +47,12 @@ export const updateBoardData: (
     await deleteObject(deleteFileRef);
     const fileV4Id = v4();
     const fileRef = ref(storageService, `${category}/${fileV4Id}`);
-    const data = await uploadString(fileRef, fileUrl, 'data_url');
-    const fileData = await getDownloadURL(data.ref);
+    await uploadString(fileRef, fileUrl, 'data_url');
     const getFileId = fileV4Id;
     context = {
       ...context,
       fileId: getFileId,
       fileName,
-      fileData,
     };
   }
   if (isThumbnailChanged) {

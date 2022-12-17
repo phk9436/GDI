@@ -108,8 +108,10 @@ function index({ dataList }: PageProps) {
       <Wrapper>
         <ul>
           {isInit
-            ? dataList.map((e) => <BoardItem data={e} path={Tap[0][2]} key={e.id} />)
-            : postList.map((e) => <BoardItem data={e} path={Tap[0][2]} key={e.id} />)}
+            ? dataList.map((e) => <BoardItem data={e} path={Tap[0][2]} key={e.id} category="lab" />)
+            : postList.map((e) => (
+                <BoardItem data={e} path={Tap[0][2]} key={e.id} category="lab" />
+              ))}
         </ul>
         <Pagination
           currentPageNum={currentPageNum}

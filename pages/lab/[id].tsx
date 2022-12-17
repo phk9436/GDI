@@ -36,6 +36,7 @@ function LabDetail(props: IBoardData) {
           date: dayjs(props.createdAt).format('YY-MM-DD'),
         }}
         path={Tap[0][2]}
+        category="lab"
       />
     </div>
   );

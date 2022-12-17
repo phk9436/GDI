@@ -4,6 +4,7 @@ import { IBoardData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { downloadFile } from 'utils/downloadUtils';
 
 interface IBoardDetailProps {
   data: IBoardData;
@@ -34,7 +35,6 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
           year: data.year,
           content: data.content,
           fileId: data.fileId,
-          fileData: data.fileData,
           fileName: data.fileName,
           thumbnailId: data.thumbnailId,
           thumbnailData: data.thumbnailData,
@@ -49,7 +49,12 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
     <Wrapper>
       <DetailTop>
         <ThumbnailWrapper>
-          <Image src={data.thumbnailData as string} layout="fill" alt='thumbnail' objectFit="cover" />
+          <Image
+            src={data.thumbnailData as string}
+            layout="fill"
+            alt="thumbnail"
+            objectFit="cover"
+          />
         </ThumbnailWrapper>
         <DetailTopContainer>
           <p>{data.date}</p>
@@ -79,9 +84,7 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
             </AdminButton>
           </AdminButtons>
           <ButtonDownLoad>
-            <a href={data.fileData} download={data.fileName}>
-              자료 다운로드
-            </a>
+            <a onClick={() => downloadFile(data.fileId, category, data.fileName)}>자료 다운로드</a>
           </ButtonDownLoad>
         </DetailButtonWrapper>
       </DetailTop>

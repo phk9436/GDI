@@ -4,54 +4,57 @@ import { useState } from 'react';
 import Link from 'next/link';
 import { IBoardData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
+import { downloadFile } from 'utils/downloadUtils';
 
 interface IBoardItemProps {
   data: IBoardData;
   path: string;
+  category: string;
 }
 
-export function BoardItem({ data, path }: IBoardItemProps) {
+export function BoardItem({ data, path, category }: IBoardItemProps) {
   const router = useRouter();
 
   const onClickNavigate = () => router.push(`${path}/${data.id}`);
 
   return (
     <li>
-      <BoardItemWrapper onClick={onClickNavigate}>
-        <BoardItemImage>
-          <Image
-            src={data.thumbnailData as string}
-            layout="fill"
-            alt={data.title}
-            objectFit="cover"
-          />
-        </BoardItemImage>
-        <BoardItemContents>
-          <TitleWrapper>
-            <p>{data.date}</p>
-            <h3>{data.title}</h3>
-          </TitleWrapper>
-          <InfoWrapper>
-            <ul>
-              <li>
-                <p>저자</p>
-              </li>
-              <li>{data.author}</li>
-            </ul>
-            <ul>
-              <li>
-                <p>발행년도</p>
-              </li>
-              <li>{data.year}</li>
-            </ul>
-          </InfoWrapper>
-        </BoardItemContents>
+      <BoardItemWrapper>
+        <BoardItemContainer onClick={onClickNavigate}>
+          <BoardItemImage>
+            <Image
+              src={data.thumbnailData as string}
+              layout="fill"
+              alt={data.title}
+              objectFit="cover"
+            />
+          </BoardItemImage>
+          <BoardItemContents>
+            <TitleWrapper>
+              <p>{data.date}</p>
+              <h3>{data.title}</h3>
+            </TitleWrapper>
+            <InfoWrapper>
+              <ul>
+                <li>
+                  <p>저자</p>
+                </li>
+                <li>{data.author}</li>
+              </ul>
+              <ul>
+                <li>
+                  <p>발행년도</p>
+                </li>
+                <li>{data.year}</li>
+              </ul>
+            </InfoWrapper>
+          </BoardItemContents>
+        </BoardItemContainer>
+
         <BoardButtons>
           <ButtonLink onClick={onClickNavigate}>내용확인</ButtonLink>
           <ButtonDownLoad>
-            <a href={data.fileData} download={data.fileName}>
-              자료 다운로드
-            </a>
+            <a onClick={() => downloadFile(data.fileId, category, data.fileName)}>자료 다운로드</a>
           </ButtonDownLoad>
         </BoardButtons>
       </BoardItemWrapper>
@@ -81,6 +84,10 @@ const BoardItemWrapper = styled.div`
     border: none;
     margin-bottom: 0;
   }
+`;
+
+const BoardItemContainer = styled.div`
+  display: contents;
 `;
 
 const BoardItemImage = styled.div`

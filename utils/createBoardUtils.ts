@@ -58,10 +58,7 @@ export const createLab = async (context: IcreateLabProps) => {
   const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
   const fileV4Id = v4();
   const fileRef = ref(storageService, `lab/${fileV4Id}`);
-  const fileDataString = await uploadString(fileRef, context.fileUrl, 'data_url');
-  const fileData = await getDownloadURL(fileDataString.ref);
-  const fileBlob = await getBlob(fileDataString.ref);
-  const downloadUrl = window.URL.createObjectURL(fileBlob);
+  await uploadString(fileRef, context.fileUrl, 'data_url');
   const fileId = fileV4Id;
 
   const thumbnailV4Id = v4();
@@ -78,10 +75,8 @@ export const createLab = async (context: IcreateLabProps) => {
     createdAt,
     thumbnailData,
     thumbnailId,
-    fileData,
     fileName: context.fileName,
     fileId,
-    downloadUrl
   };
 
   await addDoc(collection(dbService, 'lab'), postContext);
@@ -95,12 +90,10 @@ export const createForum = async (context: IcreateForumProps) => {
   const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
 
   let fileId = '';
-  let fileData = '';
   if (context.fileUrl) {
     const fileV4Id = v4();
     const fileRef = ref(storageService, `forum/${fileV4Id}`);
-    const fileDataString = await uploadString(fileRef, context.fileUrl, 'data_url');
-    fileData = await getDownloadURL(fileDataString.ref);
+    await uploadString(fileRef, context.fileUrl, 'data_url');
     fileId = fileV4Id;
   }
 
@@ -118,7 +111,6 @@ export const createForum = async (context: IcreateForumProps) => {
     createdAt,
     thumbnailData,
     thumbnailId,
-    fileData,
     fileName: context.fileName,
     fileId,
   };
