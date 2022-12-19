@@ -17,3 +17,18 @@ export const getLabPosts = async () => {
   });
   return dataList;
 };
+
+export const getForumPosts = async () => {
+  const queryList = query(collection(dbService, 'forum'), orderBy('createdAt', 'desc'));
+  const data = await getDocs(queryList);
+  const dataList: IBoardData[] = [];
+  data.forEach((docs) => {
+    const postData = {
+      ...docs.data(),
+      date: dayjs(docs.data().createdAt).format('YY-MM-DD'),
+      id: docs.id,
+    } as IBoardData;
+    dataList.push(postData);
+  });
+  return dataList;
+};

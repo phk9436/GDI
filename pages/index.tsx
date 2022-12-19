@@ -4,19 +4,20 @@ import MainSectionLab from 'components/main/MainSectionLab';
 import MainSectionForum from 'components/main/MainSectionForum';
 import MainSectionMovie from 'components/main/MainSectionMovie';
 import MainSectionBottom from 'components/main/MainSectionBottom';
-import { IBoardData } from 'types/dataTypes';
-import { getLabPosts } from 'utils/mainPageUtils';
+import { IBoardData, IForumData } from 'types/dataTypes';
+import { getForumPosts, getLabPosts } from 'utils/mainPageUtils';
 
 interface PageProps {
   labList: IBoardData[];
+  forumList: IForumData[];
 }
 
-const Home: NextPage<PageProps> = ({ labList }) => {
+const Home: NextPage<PageProps> = ({ labList, forumList }) => {
   return (
     <>
       <MainBanner />
       <MainSectionLab data={labList} />
-      <MainSectionForum />
+      <MainSectionForum data={forumList} />
       <MainSectionMovie />
       <MainSectionBottom />
     </>
@@ -27,5 +28,6 @@ export default Home;
 
 export const getServerSideProps = async () => {
   const labList = await getLabPosts();
-  return { props: { labList } };
+  const forumList = await getForumPosts();
+  return { props: { labList, forumList } };
 };

@@ -1,33 +1,17 @@
 import styled from 'styled-components';
+import { IForumData } from 'types/dataTypes';
 import { SectionTop, Cards } from './Layout';
 
-const DUMMY_DATA = [
-  {
-    id: '0',
-    date: '22-09-22',
-    title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    thumbnailData: '/images/cardDummy.png',
-  },
-  {
-    id: '1',
-    date: '22-09-22',
-    title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    thumbnailData: '/images/cardDummy.png',
-  },
-  {
-    id: '2',
-    date: '22-09-22',
-    title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    thumbnailData: '/images/cardDummy.png',
-  },
-];
+interface PageProps {
+  data: IForumData[];
+}
 
-function MainSectionForum() {
+function MainSectionForum({ data }: PageProps) {
   return (
     <Wrapper>
       <SectionTop title={'학술포럼'} href="/lab/Forum" />
       <SectionContents>
-        <Cards data={DUMMY_DATA} path="/lab/Forum"/>
+        <Cards data={data} path="/lab/Forum" />
         <DescriptText>
           모두가 참여가능한 <em>GDI의 학술포럼</em>에 여러분을 초대합니다!
         </DescriptText>

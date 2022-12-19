@@ -102,7 +102,7 @@ function Create() {
                 />
                 <InputDate
                   type="date"
-                  placeholder="연도"
+                  placeholder="연도-월-일"
                   value={forumDate}
                   onChange={onChangeForumDate}
                 />
