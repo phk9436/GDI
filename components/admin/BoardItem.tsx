@@ -196,10 +196,12 @@ const InfoWrapper = styled.div`
 const BoardButtons = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: flex-end;
   gap: 12px;
   min-width: 186px;
   width: 186px;
-  margin-top: auto;
+  min-height: 100%;
+  cursor: default;
 `;
 
 const AdminButtons = styled.div`

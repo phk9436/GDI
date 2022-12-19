@@ -113,12 +113,13 @@ function index({ dataList }: PageProps) {
     alert('삭제되었습니다.');
     setIsLoading(false);
     setPostList(postList.filter((e) => e.id !== id));
+    isInit && setIsInit(false);
   };
 
   useEffect(() => {
     isNext || isPrev ? getPosts() : setPropsData();
   }, [isRefetch]);
-
+  
   return (
     <>
       <div>

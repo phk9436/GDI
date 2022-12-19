@@ -18,6 +18,7 @@ export const deleteBoardData: (
     await deleteObject(thumbnailRef);
   }
   await deleteDoc(doc(dbService, category, id));
+  await deleteDoc(doc(dbService, `${category}Content`, id));
   await updateDoc(doc(dbService, 'meta', countCategory), {
     total: increment(-1),
   });
