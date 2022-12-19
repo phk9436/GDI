@@ -3,6 +3,8 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
+import GnbTop from './GnbTop';
+import GnbBottom from './GnbBottom';
 
 interface IGnbProps {
   route: string;
@@ -28,29 +30,8 @@ function GnbAdmin({ route }: IGnbProps) {
   return (
     <GnbWrapper>
       <GnbContainer>
-        <Link href="/admin">
-          <a>
-            <LogoWrapper>
-              <Image src="/images/adminHeaderLogo.png" layout="fill" alt="logo" />
-            </LogoWrapper>
-          </a>
-        </Link>
-
-        <Nav>
-          <LinkWrapper>
-            <Link href="/">
-              <NavLink>홈</NavLink>
-            </Link>
-          </LinkWrapper>
-          {Menu.map(([title, url]: string[]) => (
-            <LinkWrapper key={`gnb${title}`}>
-              <Link href={`/admin/${url}`}>
-                <NavLink>{title}</NavLink>
-              </Link>
-              {routeCategory === url && <LinkMarker />}
-            </LinkWrapper>
-          ))}
-        </Nav>
+        <GnbTop />
+        <GnbBottom />
       </GnbContainer>
     </GnbWrapper>
   );
@@ -72,43 +53,10 @@ const GnbContainer = styled.div`
   height: 140px;
   padding: 0 60px 0 104px;
   transition: 0.5s;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-
-const LogoWrapper = styled.div`
+  overflow-y: hidden;
   position: relative;
-  width: 311px;
-  height: 60px;
-`;
 
-const LinkWrapper = styled.div`
-  width: 110px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: relative;
-`;
-
-const Nav = styled.nav`
-  display: flex;
-  gap: 30px;
-`;
-
-const NavLink = styled.a`
-  font-size: 30px;
-  font-weight: 800;
-  letter-spacing: -0.01em;
-  z-index: 1;
-  cursor: pointer;
-`;
-
-const LinkMarker = styled.div`
-  position: absolute;
-  bottom: calc(50% - 20px);
-  width: 116px;
-  height: 20px;
-  border-radius: 10px;
-  background-color: #f58472;
+  :hover {
+    height: 290px;
+  }
 `;

@@ -67,7 +67,7 @@ function Create() {
   return (
     <>
       <Wrapper>
-        <Title>연구보고서 게시글 작성</Title>
+        <Title>학술포럼 게시글 작성</Title>
         <form onSubmit={onSubmitPost}>
           <InputWrapper>
             <UploadWrapper>
