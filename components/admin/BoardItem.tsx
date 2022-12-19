@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
-import { IBoardData } from 'types/dataTypes';
+import { IBoardData, IForumData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
 import { downloadFile } from 'utils/downloadUtils';
 
 interface IBoardItemProps {
-  data: IBoardData;
+  data: IBoardData | IForumData;
   path: string;
   category: string;
   deleteBoardItem: (
@@ -26,17 +26,8 @@ export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemP
       {
         pathname: `${path}/update`,
         query: {
-          id: data.id,
-          title: data.title,
-          author: data.author,
-          year: data.year,
-          content: data.content,
-          fileId: data.fileId,
-          fileName: data.fileName,
-          thumbnailId: data.thumbnailId,
-          thumbnailData: data.thumbnailData,
+          ...data,
           category,
-          boardId:data.boardId
         },
       },
       `${path}/update`,
@@ -62,16 +53,40 @@ export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemP
             </TitleWrapper>
             <InfoWrapper>
               <ul>
-                <li>
-                  <p>저자</p>
-                </li>
-                <li>{data.author}</li>
+                {'author' in data && (
+                  <>
+                    <li>
+                      <p>저자</p>
+                    </li>
+                    <li>{data.author}</li>
+                  </>
+                )}
+                {'forumDate' in data && (
+                  <>
+                    <li>
+                      <p>일시</p>
+                    </li>
+                    <li>{data.forumDate}</li>
+                  </>
+                )}
               </ul>
               <ul>
-                <li>
-                  <p>발행년도</p>
-                </li>
-                <li>{data.year}</li>
+                {'year' in data && (
+                  <>
+                    <li>
+                      <p>발행년도</p>
+                    </li>
+                    <li>{data.year}</li>
+                  </>
+                )}
+                {'place' in data && (
+                  <>
+                    <li>
+                      <p>장소</p>
+                    </li>
+                    <li>{data.place}</li>
+                  </>
+                )}
               </ul>
             </InfoWrapper>
           </BoardItemContents>
@@ -87,9 +102,13 @@ export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemP
             </AdminButton>
           </AdminButtons>
           <ButtonLink onClick={onClickNavigate}>내용확인</ButtonLink>
-          <ButtonDownLoad>
-            <a onClick={() => downloadFile(data.fileId, category, data.fileName)}>자료 다운로드</a>
-          </ButtonDownLoad>
+          {data.fileId && (
+            <ButtonDownLoad>
+              <a onClick={() => downloadFile(data.fileId, category, data.fileName)}>
+                자료 다운로드
+              </a>
+            </ButtonDownLoad>
+          )}
         </BoardButtons>
       </BoardItemWrapper>
     </li>

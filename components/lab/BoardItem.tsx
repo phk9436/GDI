@@ -2,12 +2,12 @@ import styled, { css } from 'styled-components';
 import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
-import { IBoardData } from 'types/dataTypes';
+import { IBoardData, IForumData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
 import { downloadFile } from 'utils/downloadUtils';
 
 interface IBoardItemProps {
-  data: IBoardData;
+  data: IBoardData | IForumData;
   path: string;
   category: string;
 }
@@ -36,16 +36,40 @@ export function BoardItem({ data, path, category }: IBoardItemProps) {
             </TitleWrapper>
             <InfoWrapper>
               <ul>
-                <li>
-                  <p>저자</p>
-                </li>
-                <li>{data.author}</li>
+                {'author' in data && (
+                  <>
+                    <li>
+                      <p>저자</p>
+                    </li>
+                    <li>{data.author}</li>
+                  </>
+                )}
+                {'forumDate' in data && (
+                  <>
+                    <li>
+                      <p>일시</p>
+                    </li>
+                    <li>{data.forumDate}</li>
+                  </>
+                )}
               </ul>
               <ul>
-                <li>
-                  <p>발행년도</p>
-                </li>
-                <li>{data.year}</li>
+                {'year' in data && (
+                  <>
+                    <li>
+                      <p>발행년도</p>
+                    </li>
+                    <li>{data.year}</li>
+                  </>
+                )}
+                {'place' in data && (
+                  <>
+                    <li>
+                      <p>장소</p>
+                    </li>
+                    <li>{data.place}</li>
+                  </>
+                )}
               </ul>
             </InfoWrapper>
           </BoardItemContents>
@@ -53,9 +77,13 @@ export function BoardItem({ data, path, category }: IBoardItemProps) {
 
         <BoardButtons>
           <ButtonLink onClick={onClickNavigate}>내용확인</ButtonLink>
-          <ButtonDownLoad>
-            <a onClick={() => downloadFile(data.fileId, category, data.fileName)}>자료 다운로드</a>
-          </ButtonDownLoad>
+          {data.fileId && (
+            <ButtonDownLoad>
+              <a onClick={() => downloadFile(data.fileId, category, data.fileName)}>
+                자료 다운로드
+              </a>
+            </ButtonDownLoad>
+          )}
         </BoardButtons>
       </BoardItemWrapper>
     </li>
@@ -217,7 +245,7 @@ const InfoWrapper = styled.div`
 const BoardButtons = styled.div`
   display: flex;
   flex-direction: column;
-   justify-content: flex-end;
+  justify-content: flex-end;
   gap: 12px;
   min-width: 186px;
   width: 186px;
