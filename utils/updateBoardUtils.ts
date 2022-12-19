@@ -3,7 +3,7 @@ import { deleteObject, getDownloadURL, ref, uploadString } from 'firebase/storag
 import { dbService, storageService } from 'api/firebase';
 import { doc, updateDoc } from 'firebase/firestore';
 
-export const updateBoardData: (
+export const updateLabData: (
   id: string,
   category: string,
   title: string,
@@ -38,7 +38,6 @@ export const updateBoardData: (
   }
   let context: { [x: string]: string } = {
     title,
-    content,
     author,
     year,
   };
@@ -70,4 +69,5 @@ export const updateBoardData: (
     };
   }
   await updateDoc(doc(dbService, category, id), context);
+  await updateDoc(doc(dbService, `${category}Content`, id), { content });
 };

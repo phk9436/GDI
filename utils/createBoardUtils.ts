@@ -1,6 +1,6 @@
 import { dbService, storageService } from 'api/firebase';
 import { getBlob, getDownloadURL, ref, uploadString } from 'firebase/storage';
-import { addDoc, collection, doc, increment, updateDoc } from 'firebase/firestore';
+import { addDoc, collection, doc, increment, setDoc, updateDoc, limit } from 'firebase/firestore';
 import { v4 } from 'uuid';
 import dayjs from 'dayjs';
 
@@ -67,19 +67,24 @@ export const createLab = async (context: IcreateLabProps) => {
   const thumbnailData = await getDownloadURL(thumbnailDataString.ref);
   const thumbnailId = thumbnailV4Id;
 
+  const boardId = v4();
+
   const postContext = {
     title: context.title,
     author: context.author,
     year: context.year,
-    content: context.content,
     createdAt,
     thumbnailData,
     thumbnailId,
     fileName: context.fileName,
     fileId,
+    boardId,
   };
 
-  await addDoc(collection(dbService, 'lab'), postContext);
+  await setDoc(doc(dbService, 'lab', boardId), postContext);
+  await setDoc(doc(dbService, 'labContent', boardId), {
+    content: context.content,
+  });
   await updateDoc(doc(dbService, 'meta', 'labCount'), {
     //전체 게시물 개수
     total: increment(1),
@@ -103,11 +108,12 @@ export const createForum = async (context: IcreateForumProps) => {
   const thumbnailData = await getDownloadURL(thumbnailDataString.ref);
   const thumbnailId = thumbnailV4Id;
 
+  const boardId = v4();
+
   const postContext = {
     title: context.title,
     place: context.place,
     forumDate: context.forumDate,
-    content: context.content,
     createdAt,
     thumbnailData,
     thumbnailId,
@@ -115,7 +121,10 @@ export const createForum = async (context: IcreateForumProps) => {
     fileId,
   };
 
-  await addDoc(collection(dbService, 'forum'), postContext);
+  await setDoc(doc(dbService, 'forum', boardId), postContext);
+  await setDoc(doc(dbService, 'forumContent', boardId), {
+    content: context.content,
+  });
   await updateDoc(doc(dbService, 'meta', 'forumCount'), {
     //전체 게시물 개수
     total: increment(1),

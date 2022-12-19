@@ -14,4 +14,5 @@ export interface IBoardData {
   thumbnailData?: string;
   fileId?: string;
   fileName?: string;
+  boardId?: string;
 }

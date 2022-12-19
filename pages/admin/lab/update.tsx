@@ -12,7 +12,7 @@ import {
 } from 'components/admin/Component';
 import Loading from 'components/admin/Loading';
 import PostEditor from 'components/editor/Editor';
-import { updateBoardData } from 'utils/updateBoardUtils';
+import { updateLabData } from 'utils/updateBoardUtils';
 import { uploadFile, uploadThumbnail } from 'utils/createBoardUtils';
 
 function update() {
@@ -48,7 +48,7 @@ function update() {
     e.preventDefault();
     setLoading(true);
     const content = contentRef.current?.getInstance().getMarkdown();
-    await updateBoardData(
+    await updateLabData(
       id as string,
       category as string,
       title,
@@ -88,7 +88,12 @@ function update() {
                 </PreviewWrapper>
               ) : (
                 <PreviewWrapper>
-                  <Image src={router.query.thumbnailData as string} layout="fill" alt="thumbnail" objectFit="cover" />
+                  <Image
+                    src={router.query.thumbnailData as string}
+                    layout="fill"
+                    alt="thumbnail"
+                    objectFit="cover"
+                  />
                   <Label htmlFor="uploadLab" />
                 </PreviewWrapper>
               )}

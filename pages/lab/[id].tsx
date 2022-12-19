@@ -46,5 +46,6 @@ export default LabDetail;
 
 export const getServerSideProps = async ({ params }: { params: IBoardData }) => {
   const data = await getDoc(doc(dbService, 'lab', `${params?.id}`));
-  return { props: data.data() };
+  const contentData = await getDoc(doc(dbService, 'labContent', `${params?.id}`));
+  return { props: { ...data.data(), ...contentData.data() } };
 };

@@ -36,6 +36,7 @@ export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemP
           thumbnailId: data.thumbnailId,
           thumbnailData: data.thumbnailData,
           category,
+          boardId:data.boardId
         },
       },
       `${path}/update`,
