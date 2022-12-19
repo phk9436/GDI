@@ -3,10 +3,10 @@ import { useState, useRef, useEffect } from 'react';
 import { Editor } from '@toast-ui/react-editor';
 import Image from 'next/image';
 import styled from 'styled-components';
-import { BlueButton, LabelFile, InputText, InputHide } from 'components/admin/Component';
+import { BlueButton, LabelFile, InputText, InputHide, InputDate } from 'components/admin/Component';
 import Loading from 'components/admin/Loading';
 import PostEditor from 'components/editor/Editor';
-import { updateLabData } from 'utils/updateBoardUtils';
+import { updateForumData } from 'utils/updateBoardUtils';
 import { uploadFile, uploadThumbnail } from 'utils/createBoardUtils';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
@@ -14,8 +14,8 @@ import { dbService } from 'api/firebase';
 function update() {
   const router = useRouter();
   const [title, setTitle] = useState(router.query.title as string);
-  const [author, setAuthor] = useState(router.query.author as string);
-  const [year, setYear] = useState(router.query.year as string);
+  const [place, setPlace] = useState(router.query.place as string);
+  const [forumDate, setForumDate] = useState(router.query.forumDate as string);
   const [loading, setLoading] = useState(false);
   const [thumbnailUrl, setThumbnailUrl] = useState<string>(router.query.thumbnailUrl as string);
   const [fileUrl, setFileUrl] = useState<string>(router.query.fileUrl as string);
@@ -28,8 +28,9 @@ function update() {
   const { id, category, fileId, thumbnailId } = router.query;
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
-  const onChangeAuthor = (e: React.ChangeEvent<HTMLInputElement>) => setAuthor(e.target.value);
-  const onChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => setYear(e.target.value);
+  const onChangePlace = (e: React.ChangeEvent<HTMLInputElement>) => setPlace(e.target.value);
+  const onChangeForumDate = (e: React.ChangeEvent<HTMLInputElement>) =>
+    setForumDate(e.target.value);
 
   const onChangeThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
     uploadThumbnail(e, setThumbnailUrl);
@@ -45,13 +46,13 @@ function update() {
     e.preventDefault();
     setLoading(true);
     const content = contentRef.current?.getInstance().getMarkdown();
-    await updateLabData(
+    const update = await updateForumData(
       id as string,
       category as string,
       title,
+      place,
+      forumDate,
       content as string,
-      author,
-      year,
       isFileChanged,
       isThumbnailChanged,
       fileId as string,
@@ -60,9 +61,11 @@ function update() {
       thumbnailId as string,
       thumbnailUrl,
     );
+    if (update) {
+      setLoading(false);
+      router.push('/admin/lab/Forum');
+    }
     alert('수정 완료됐습니다');
-    setLoading(false);
-    router.push('/admin/lab');
   };
 
   const getContent = async () => {
@@ -77,6 +80,7 @@ function update() {
     }
     getContent();
   }, []);
+
   return (
     <>
       <Wrapper>
@@ -117,15 +121,15 @@ function update() {
               <InputFlexContainer>
                 <InputText
                   type="text"
-                  placeholder="저자 성명 입력"
-                  value={author}
-                  onChange={onChangeAuthor}
+                  placeholder="개최 장소 입력"
+                  value={place}
+                  onChange={onChangePlace}
                 />
-                <InputText
-                  type="text"
-                  placeholder="발행년도 입력"
-                  value={year}
-                  onChange={onChangeYear}
+                <InputDate
+                  type="date"
+                  placeholder="연도-월-일"
+                  value={forumDate}
+                  onChange={onChangeForumDate}
                 />
               </InputFlexContainer>
               {fileName ? (

@@ -33,29 +33,30 @@ function ForumDetail(props: IForumData) {
     router.push(Tap[1][2]);
   };
 
-  console.log(props)
   useEffect(() => {
     if (!props.title) {
       alert('잘못된 접근입니다');
       router.push('/admin/lab/Forum');
     }
   }, []);
-  return <>
-  <div>
-    <BreadCrumb category={Tap[1]} tap={Tap} />
-    <BoardDetail
-      data={{
-        ...props,
-        id: router.query.id as string,
-        date: dayjs(props.createdAt).format('YY-MM-DD'),
-      }}
-      path={Tap[1][2]}
-      category="forum"
-      deleteBoardItem={deleteBoardItem}
-    />
-  </div>
-  {isLoading && <Loading />}
-</>;
+  return (
+    <>
+      <div>
+        <BreadCrumb category={Tap[1]} tap={Tap} />
+        <BoardDetail
+          data={{
+            ...props,
+            id: router.query.id as string,
+            date: dayjs(props.createdAt).format('YY-MM-DD'),
+          }}
+          path={Tap[1][2]}
+          category="forum"
+          deleteBoardItem={deleteBoardItem}
+        />
+      </div>
+      {isLoading && <Loading />}
+    </>
+  );
 }
 
 export default ForumDetail;
