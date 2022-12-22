@@ -124,8 +124,12 @@ function index({ dataList }: PageProps) {
           <UploadButton tap={Tap[0]} />
           <MovieItemWrapper>
             {isInit
-              ? dataList.map((e) => <MovieItem data={e} deleteMovieItem={deleteMovieItem} />)
-              : postList.map((e) => <MovieItem data={e} deleteMovieItem={deleteMovieItem} />)}
+              ? dataList.map((e) => (
+                  <MovieItem data={e} deleteMovieItem={deleteMovieItem} key={e.id} />
+                ))
+              : postList.map((e) => (
+                  <MovieItem data={e} deleteMovieItem={deleteMovieItem} key={e.id} />
+                ))}
           </MovieItemWrapper>
           <Pagination
             currentPageNum={currentPageNum}

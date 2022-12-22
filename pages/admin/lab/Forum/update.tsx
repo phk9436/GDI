@@ -62,10 +62,10 @@ function update() {
       thumbnailUrl,
     );
     if (update) {
-      setLoading(false);
+      alert('수정 완료됐습니다');
       router.push('/admin/lab/Forum');
     }
-    alert('수정 완료됐습니다');
+    setLoading(false);
   };
 
   const getContent = async () => {
@@ -84,7 +84,7 @@ function update() {
   return (
     <>
       <Wrapper>
-        <Title>연구보고서 게시글 작성</Title>
+        <Title>연구보고서 게시글 수정</Title>
         <form onSubmit={(e) => updateBoardItem(e)}>
           <InputWrapper>
             <UploadWrapper>

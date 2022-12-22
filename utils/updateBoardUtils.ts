@@ -2,6 +2,7 @@ import { v4 } from 'uuid';
 import { deleteObject, getDownloadURL, ref, uploadString } from 'firebase/storage';
 import { dbService, storageService } from 'api/firebase';
 import { doc, updateDoc } from 'firebase/firestore';
+import { IMovieData } from 'types/dataTypes';
 
 export const updateLabData: (
   id: string,
@@ -17,7 +18,7 @@ export const updateLabData: (
   fileName: string,
   thumbnailId: string,
   thumbnailUrl: string,
-) => Promise<void> = async (
+) => Promise<boolean> = async (
   id,
   category,
   title,
@@ -34,7 +35,7 @@ export const updateLabData: (
 ) => {
   if (!content || !title || !author || !year) {
     alert('항목이 모두 채워지지 않았습니다');
-    return;
+    return false;
   }
   let context: { [x: string]: string } = {
     title,
@@ -70,6 +71,7 @@ export const updateLabData: (
   }
   await updateDoc(doc(dbService, category, id), context);
   await updateDoc(doc(dbService, `${category}Content`, id), { content });
+  return true;
 };
 
 export const updateForumData: (
@@ -141,5 +143,15 @@ export const updateForumData: (
   }
   await updateDoc(doc(dbService, category, id), context);
   await updateDoc(doc(dbService, `${category}Content`, id), { content });
+  return true;
+};
+
+export const updateMovieData = async (context: { [x: string]: string }) => {
+  const { id, title, ytbDate, ytbUrl, ytbThumbnail, ytbFrom } = context;
+  if (!title || !ytbDate || !ytbUrl || !ytbThumbnail || !ytbFrom) {
+    alert('항목이 모두 채워지지 않았습니다');
+    return false;
+  }
+  await updateDoc(doc(dbService, 'movie', id as string), context);
   return true;
 };

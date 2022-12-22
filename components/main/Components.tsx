@@ -58,7 +58,7 @@ export function Card({ thumbnailData, title, id, path, date }: ICardProps) {
       <Link href={`${path}/${id}`}>
         <a>
           <CardContent>
-            <Image src={thumbnailData as string} layout="fill" alt={title} objectFit='cover' />
+            <Image src={thumbnailData as string} layout="fill" alt={title} objectFit="cover" />
             <CardDate>{date}</CardDate>
           </CardContent>
           <CardText>{title}</CardText>
@@ -72,7 +72,7 @@ const CardContent = styled.div`
   width: 254px;
   height: 360px;
   position: relative;
-  border: 1px solid #D9D9D9;
+  border: 1px solid #d9d9d9;
   transition: 0.3s;
 
   @media screen and (max-width: 820px) {
@@ -142,7 +142,7 @@ export function MovieCard({ thumbnailData, title, press, date, id }: IPressData)
   return (
     <MovieCardWrapper>
       <MovieImageWrapper>
-        <Image src={thumbnailData as string} layout="fill" alt={title} objectFit='cover' />
+        <Image src={thumbnailData as string} layout="fill" alt={title} objectFit="cover" />
         <MovieBg>
           <IconPlay />
         </MovieBg>

@@ -7,7 +7,7 @@ import {
   LabelUpload,
   InputHide,
 } from 'components/admin/Component';
-import React, { useState, useRef, useEffect } from 'react';
+import { useState, useRef } from 'react';
 import PostEditor from 'components/editor/Editor';
 import { Editor } from '@toast-ui/react-editor';
 import { useRouter } from 'next/router';

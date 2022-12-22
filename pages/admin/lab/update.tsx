@@ -45,7 +45,7 @@ function update() {
     e.preventDefault();
     setLoading(true);
     const content = contentRef.current?.getInstance().getMarkdown();
-    await updateLabData(
+    const update = await updateLabData(
       id as string,
       category as string,
       title,
@@ -60,9 +60,11 @@ function update() {
       thumbnailId as string,
       thumbnailUrl,
     );
-    alert('수정 완료됐습니다');
+    if (update) {
+      alert('수정 완료됐습니다');
+      router.push('/admin/lab');
+    }
     setLoading(false);
-    router.push('/admin/lab');
   };
 
   const getContent = async () => {
@@ -80,7 +82,7 @@ function update() {
   return (
     <>
       <Wrapper>
-        <Title>연구보고서 게시글 작성</Title>
+        <Title>학술포럼 게시글 수정</Title>
         <form onSubmit={(e) => updateBoardItem(e)}>
           <InputWrapper>
             <UploadWrapper>
