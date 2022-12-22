@@ -3,53 +3,13 @@ import { RedirectDetail } from './Components';
 import MovieSwiper from './MovieSwiper';
 import { mobileCheck } from 'atoms/layout';
 import { useRecoilValue } from 'recoil';
+import { IMovieData } from 'types/dataTypes';
 
-const DUMMY_DATA = [
-  {
-    id: '1',
-    date: '22-09-22',
-    title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
-    thumbnailData: '/images/cardDummy.png',
-    press: 'OBS',
-  },
-  {
-    id: '2',
-    date: '22-09-22',
-    title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
-    thumbnailData: '/images/cardDummy.png',
-    press: 'OBS',
-  },
-  {
-    id: '3',
-    date: '22-09-22',
-    title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
-    thumbnailData: '/images/cardDummy.png',
-    press: 'OBS',
-  },
-  {
-    id: '4',
-    date: '22-09-22',
-    title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
-    thumbnailData: '/images/cardDummy.png',
-    press: 'OBS',
-  },
-  {
-    id: '5',
-    date: '22-09-22',
-    title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
-    thumbnailData: '/images/cardDummy.png',
-    press: 'OBS',
-  },
-  {
-    id: '6',
-    date: '22-09-22',
-    title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
-    thumbnailData: '/images/cardDummy.png',
-    press: 'OBS',
-  },
-];
+interface PageProps {
+  data: IMovieData[];
+}
 
-function MainSectionMovie() {
+function MainSectionMovie({ data }: PageProps) {
   const isMobile = useRecoilValue(mobileCheck);
 
   return (
@@ -62,7 +22,7 @@ function MainSectionMovie() {
           </RedirectWrapper>
         )}
       </MovieTop>
-      <MovieSwiper data={DUMMY_DATA} />
+      <MovieSwiper data={data} />
     </Wrapper>
   );
 }

@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
-import { IBoardData, IPressData } from 'types/dataTypes';
+import { IBoardData, IMovieData, IPressData } from 'types/dataTypes';
 
 interface IDetailProps {
   href: string;
@@ -138,19 +138,19 @@ const CardText = styled.p`
   }
 `;
 
-export function MovieCard({ thumbnailData, title, press, date, id }: IPressData) {
+export function MovieCard({ ytbDate, title, ytbFrom, ytbThumbnail }: IMovieData) {
   return (
     <MovieCardWrapper>
       <MovieImageWrapper>
-        <Image src={thumbnailData as string} layout="fill" alt={title} objectFit="cover" />
+        <Image src={ytbThumbnail as string} layout="fill" alt={title} objectFit="cover" />
         <MovieBg>
           <IconPlay />
         </MovieBg>
       </MovieImageWrapper>
       <MovieTitle>{title}</MovieTitle>
       <MovieInfo>
-        <li>{press}</li>
-        <li>{date}</li>
+        <li>{ytbFrom}</li>
+        <li>{ytbDate}</li>
       </MovieInfo>
     </MovieCardWrapper>
   );
