@@ -1,19 +1,10 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import {
-  BlueButton,
-  LabelFile,
-  InputText,
-  LabelUpload,
-  InputHide,
-  InputDate,
-} from 'components/admin/Component';
-import React, { useState, useRef, useEffect } from 'react';
-import PostEditor from 'components/editor/Editor';
-import { Editor } from '@toast-ui/react-editor';
+import { BlueButton, InputText, InputDate } from 'components/admin/Component';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Loading from 'components/admin/Loading';
-import { createForum, createMovie, uploadFile, uploadThumbnail } from 'utils/createBoardUtils';
+import { createMovie } from 'utils/createBoardUtils';
 
 function Create() {
   const [loading, setLoading] = useState(false);
@@ -169,11 +160,6 @@ const InputFlexContainer = styled.div`
   width: 100%;
 `;
 
-const EdiorWrapper = styled.div`
-  width: 100%;
-  height: 550px;
-`;
-
 const ButtonWrapper = styled.div`
   width: 186px;
   min-width: 186px;
@@ -185,30 +171,6 @@ const PreviewWrapper = styled.div`
   width: 100%;
   height: 100%;
   position: relative;
-`;
-
-const FileWrapper = styled.div`
-  width: 100%;
-  height: 50px;
-  position: relative;
-`;
-
-const File = styled.div`
-  height: 100%;
-  padding: 17px 18px;
-  font-size: 14px;
-  font-weight: 500;
-  background-color: #f6f6f6;
-  color: #a4a4a4;
-`;
-
-const Label = styled.label`
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  z-index: 1;
-  cursor: pointer;
 `;
 
 const UrlWrapper = styled.div`

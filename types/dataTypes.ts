@@ -23,3 +23,14 @@ export interface IForumData extends IData {
   place?: string;
   forumDate?: string;
 }
+
+export interface IMovieData {
+  id?: string;
+  createdAt?: string;
+  date?: string;
+  title?: string;
+  ytbDate?: string;
+  ytbFrom?: string;
+  ytbThumbnail?: string;
+  ytbUrl?: string;
+}

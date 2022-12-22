@@ -23,3 +23,10 @@ export const deleteBoardData: (
     total: increment(-1),
   });
 };
+
+export const deleteMovieData = async (id: string) => {
+  await deleteDoc(doc(dbService, 'movie', id));
+  await updateDoc(doc(dbService, 'meta', 'movieCount'), {
+    total: increment(-1),
+  });
+};

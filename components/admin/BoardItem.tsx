@@ -13,7 +13,7 @@ interface IBoardItemProps {
     id: string,
     fileId: string | undefined,
     thumbnailId: string | undefined,
-  ) => void;
+  ) => Promise<void>;
 }
 
 export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemProps) {
