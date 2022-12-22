@@ -13,12 +13,6 @@ interface IGnbProps {
 function GnbAdmin({ route }: IGnbProps) {
   const router = useRouter();
   const routeCategory = route.split('/')[2];
-  const Menu = [
-    ['연구실', 'lab'],
-    ['소식', 'notice'],
-    ['참여', 'board'],
-    ['GDI소개', 'intro'],
-  ];
 
   useEffect(() => {
     if (!sessionStorage.getItem('admin') && routeCategory !== 'Login') {

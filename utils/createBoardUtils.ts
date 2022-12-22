@@ -24,6 +24,14 @@ interface IcreateForumProps {
   thumbnailUrl: string;
 }
 
+interface ICreateMovieProps {
+  title: string;
+  ytbUrl: string;
+  ytbFrom: string;
+  ytbDate: string;
+  ytbThumbnail: string;
+}
+
 export const uploadThumbnail: (
   e: React.ChangeEvent<HTMLInputElement>,
   setThumbnailUrl: (value: React.SetStateAction<string>) => void,
@@ -126,6 +134,16 @@ export const createForum = async (context: IcreateForumProps) => {
     content: context.content,
   });
   await updateDoc(doc(dbService, 'meta', 'forumCount'), {
+    //전체 게시물 개수
+    total: increment(1),
+  });
+};
+
+export const createMovie = async (context: ICreateMovieProps) => {
+  const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
+  const boardId = v4();
+  await setDoc(doc(dbService, 'movie', boardId), { ...context, createdAt });
+  await updateDoc(doc(dbService, 'meta', 'movieCount'), {
     //전체 게시물 개수
     total: increment(1),
   });
