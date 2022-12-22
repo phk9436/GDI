@@ -16,7 +16,7 @@ import {
 import { dbService } from 'api/firebase';
 import { getBoardData } from 'utils/getBoardUtils';
 import Loading from 'components/admin/Loading';
-import { deleteBoardData, deleteMovieData } from 'utils/deleteBoardUtils';
+import { deleteMovieData } from 'utils/deleteBoardUtils';
 import dayjs from 'dayjs';
 import { IMovieData } from 'types/dataTypes';
 

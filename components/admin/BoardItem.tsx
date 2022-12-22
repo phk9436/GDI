@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import Link from 'next/link';
 import { IBoardData, IForumData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
 import { downloadFile } from 'utils/downloadUtils';

@@ -1,8 +1,6 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Image from 'next/image';
-import { useState } from 'react';
 import Link from 'next/link';
-import { IBoardData } from 'types/dataTypes';
 
 interface IUploadProps {
   htmlFor: string;

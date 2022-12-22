@@ -1,26 +1,12 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import { IMovieData } from 'types/dataTypes';
-import { useRouter } from 'next/router';
 
 interface IMovieItemProps {
   data: IMovieData;
-  deleteMovieItem: (id: string) => Promise<void>;
 }
 
-export function MovieItem({ data, deleteMovieItem }: IMovieItemProps) {
-  const router = useRouter();
-
-  const redirectUpdate = () => {
-    router.push(
-      {
-        pathname: `/admin/notice/Movie/update`,
-        query: { ...data },
-      },
-      `/admin/notice/Movie/update`,
-    );
-  };
-
+export function MovieItem({ data }: IMovieItemProps) {
   return (
     <li>
       <MovieItemWrapper>
@@ -38,10 +24,6 @@ export function MovieItem({ data, deleteMovieItem }: IMovieItemProps) {
               <IconPlay />
             </MovieBg>
           </a>
-          <AdminButtonWrapper>
-            <AdminButton onClick={redirectUpdate}>수정</AdminButton>
-            <AdminButton onClick={() => deleteMovieItem(data.id as string)}>삭제</AdminButton>
-          </AdminButtonWrapper>
         </ThumbnailWrapper>
 
         <h3>{data.title}</h3>
