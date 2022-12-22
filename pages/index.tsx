@@ -4,12 +4,13 @@ import MainSectionLab from 'components/main/MainSectionLab';
 import MainSectionForum from 'components/main/MainSectionForum';
 import MainSectionMovie from 'components/main/MainSectionMovie';
 import MainSectionBottom from 'components/main/MainSectionBottom';
-import { IBoardData, IForumData } from 'types/dataTypes';
+import { IBoardData, IForumData, IMovieData } from 'types/dataTypes';
 import { getMovies, getPosts } from 'utils/mainPageUtils';
 
 interface PageProps {
   labList: IBoardData[];
   forumList: IForumData[];
+  movieList: IMovieData[];
 }
 
 const Home: NextPage<PageProps> = ({ labList, forumList, movieList }) => {
