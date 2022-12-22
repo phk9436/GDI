@@ -110,12 +110,8 @@ function Movie({ dataList }: PageProps) {
       <Wrapper>
         <MovieItemWrapper>
           {isInit
-            ? dataList.map((e) => (
-                <MovieItem data={e} key={e.id} />
-              ))
-            : postList.map((e) => (
-                <MovieItem data={e} key={e.id} />
-              ))}
+            ? dataList.map((e) => <MovieItem data={e} key={e.id} />)
+            : postList.map((e) => <MovieItem data={e} key={e.id} />)}
         </MovieItemWrapper>
         <Pagination
           currentPageNum={currentPageNum}
@@ -149,6 +145,11 @@ const Wrapper = styled.div`
   max-width: 1440px;
   margin: auto;
   padding: 56px 60px 180px;
+
+  @media screen and (max-width: 820px) {
+    padding: 30px;
+    padding-bottom: 140px;
+  }
 `;
 
 const MovieItemWrapper = styled.ul`
@@ -158,5 +159,10 @@ const MovieItemWrapper = styled.ul`
 
   li {
     overflow-x: hidden;
+  }
+
+  @media screen and (max-width: 820px) {
+    grid-template-columns: 1fr;
+    gap: 35px;
   }
 `;

@@ -56,6 +56,19 @@ const MovieItemWrapper = styled.div`
     overflow: hidden;
     text-overflow: ellipsis;
   }
+
+  @media screen and (max-width: 820px) {
+    gap: 16px;
+
+    h3 {
+      font-size: 14px;
+      line-height: 20px;
+      height: 40px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
 `;
 
 const ThumbnailWrapper = styled.div`
@@ -95,31 +108,6 @@ const IconPlay = styled.div`
   }
 `;
 
-const AdminButtonWrapper = styled.div`
-  display: flex;
-  gap: 4px;
-  position: absolute;
-  bottom: 24px;
-  right: 24px;
-`;
-
-const AdminButton = styled.div`
-  width: 90px;
-  height: 50px;
-  background-color: #c7c7c7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  color: #fff;
-  transition: 0.3s;
-  cursor: pointer;
-
-  &:hover {
-    background-color: #a4a4a4;
-  }
-`;
-
 const InfoWrapper = styled.ul`
   display: flex;
   align-items: center;
@@ -138,7 +126,16 @@ const InfoWrapper = styled.ul`
         height: 20px;
         background-color: #000;
         margin: 0 20px;
+
+        @media screen and (max-width: 820px) {
+          margin: 0 8px;
+          height: 16px;
+        }
       }
+    }
+
+    @media screen and (max-width: 820px) {
+      font-size: 14px;
     }
   }
 `;
