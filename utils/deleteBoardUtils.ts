@@ -30,3 +30,10 @@ export const deleteMovieData = async (id: string) => {
     total: increment(-1),
   });
 };
+
+export const deletePressData = async (id: string) => {
+  await deleteDoc(doc(dbService, 'press', id));
+  await updateDoc(doc(dbService, 'meta', 'pressCount'), {
+    total: increment(-1),
+  });
+};

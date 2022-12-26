@@ -19,6 +19,7 @@ import Loading from 'components/admin/Loading';
 import dayjs from 'dayjs';
 import { IPressData } from 'types/dataTypes';
 import PressItem from 'components/admin/PressItem';
+import { deletePressData } from 'utils/deleteBoardUtils';
 
 interface PageProps {
   dataList: IPressData[];
@@ -104,6 +105,15 @@ function index({ dataList }: PageProps) {
     }
   };
 
+  const deletePressItem = async (id: string) => {
+    setIsLoading(true);
+    await deletePressData(id);
+    alert('삭제되었습니다.');
+    setIsLoading(false);
+    setPostList(postList.filter((e) => e.id !== id));
+    isInit && setIsInit(false);
+  };
+
   useEffect(() => {
     isNext || isPrev ? getPosts() : setPropsData();
   }, [isRefetch]);
@@ -116,8 +126,8 @@ function index({ dataList }: PageProps) {
           <UploadButton tap={Tap[1]} />
           <ul>
             {isInit
-              ? dataList.map((e) => <PressItem data={e} key={e.id} />)
-              : postList.map((e) => <PressItem data={e} key={e.id} />)}
+              ? dataList.map((e) => <PressItem data={e} deletePressItem={deletePressItem} key={e.id} />)
+              : postList.map((e) => <PressItem data={e} deletePressItem={deletePressItem} key={e.id} />)}
           </ul>
 
           <Pagination

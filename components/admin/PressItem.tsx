@@ -4,9 +4,10 @@ import { useRouter } from 'next/router';
 
 interface IPressItemProps {
   data: IPressData;
+  deletePressItem: (id: string) => Promise<void>;
 }
 
-function PressItem({ data }: IPressItemProps) {
+function PressItem({ data, deletePressItem }: IPressItemProps) {
   return (
     <li>
       <PressItemWrapper>
@@ -28,7 +29,7 @@ function PressItem({ data }: IPressItemProps) {
         <PressButtons>
           <AdminButtons>
             <AdminButton>수정</AdminButton>
-            <AdminButton>삭제</AdminButton>
+            <AdminButton onClick={() => deletePressItem(data.id as string)}>삭제</AdminButton>
           </AdminButtons>
           <a href={data.pressUrl} target="_blank">
             <ButtonLink>상세내용확인</ButtonLink>
