@@ -6,23 +6,23 @@ import { RedirectDetail } from './Components';
 const DUMMY_DATA_PRESS = [
   {
     title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
-    press: 'OBS',
-    date: '2022-09-12',
+    pressFrom: 'OBS',
+    pressDate: '2022-09-12',
   },
   {
     title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
-    press: 'OBS',
-    date: '2022-09-12',
+    pressFrom: 'OBS',
+    pressDate: '2022-09-12',
   },
   {
     title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
-    press: 'OBS',
-    date: '2022-09-12',
+    pressFrom: 'OBS',
+    pressDate: '2022-09-12',
   },
   {
     title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
-    press: 'OBS',
-    date: '2022-09-12',
+    pressFrom: 'OBS',
+    pressDate: '2022-09-12',
   },
 ];
 
@@ -76,8 +76,8 @@ function MainSectionNotice() {
                   <a>
                     <h3>{e.title}</h3>
                     <ContentInfo>
-                      <li key={`PressInfo${i}-1`}>{e.press}</li>
-                      <li key={`PressInfo${i}-2`}>{e.date}</li>
+                      <li key={`PressInfo${i}-1`}>{e.pressFrom}</li>
+                      <li key={`PressInfo${i}-2`}>{e.pressDate}</li>
                     </ContentInfo>
                   </a>
                 </Link>

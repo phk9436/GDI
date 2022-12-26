@@ -1,7 +1,3 @@
-export interface IPressData extends IBoardData {
-  press: string;
-}
-
 export interface IData {
   id?: string;
   createdAt?: string;
@@ -33,4 +29,14 @@ export interface IMovieData {
   ytbFrom?: string;
   ytbThumbnail?: string;
   ytbUrl?: string;
+}
+
+export interface IPressData {
+  id?: string;
+  createdAt?: string;
+  date?: string;
+  title?: string;
+  pressUrl?: string;
+  pressFrom?: string;
+  pressDate?: string;
 }
