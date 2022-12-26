@@ -32,6 +32,13 @@ interface ICreateMovieProps {
   ytbThumbnail: string;
 }
 
+interface ICreatePressProps {
+  title: string;
+  pressUrl: string;
+  pressFrom: string;
+  pressDate: string;
+}
+
 export const uploadThumbnail: (
   e: React.ChangeEvent<HTMLInputElement>,
   setThumbnailUrl: (value: React.SetStateAction<string>) => void,
@@ -144,6 +151,16 @@ export const createMovie = async (context: ICreateMovieProps) => {
   const boardId = v4();
   await setDoc(doc(dbService, 'movie', boardId), { ...context, createdAt });
   await updateDoc(doc(dbService, 'meta', 'movieCount'), {
+    //전체 게시물 개수
+    total: increment(1),
+  });
+};
+
+export const createPress = async (context: ICreatePressProps) => {
+  const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
+  const boardId = v4();
+  await setDoc(doc(dbService, 'press', boardId), { ...context, createdAt });
+  await updateDoc(doc(dbService, 'meta', 'pressCount'), {
     //전체 게시물 개수
     total: increment(1),
   });
