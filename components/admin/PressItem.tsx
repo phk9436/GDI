@@ -8,6 +8,18 @@ interface IPressItemProps {
 }
 
 function PressItem({ data, deletePressItem }: IPressItemProps) {
+  const router = useRouter();
+
+  const redirectUpdate = () => {
+    router.push(
+      {
+        pathname: `/admin/notice/Press/update`,
+        query: { ...data },
+      },
+      `/admin/notice/Press/update`,
+    );
+  };
+
   return (
     <li>
       <PressItemWrapper>
@@ -28,7 +40,7 @@ function PressItem({ data, deletePressItem }: IPressItemProps) {
         </a>
         <PressButtons>
           <AdminButtons>
-            <AdminButton>수정</AdminButton>
+            <AdminButton onClick={redirectUpdate}>수정</AdminButton>
             <AdminButton onClick={() => deletePressItem(data.id as string)}>삭제</AdminButton>
           </AdminButtons>
           <a href={data.pressUrl} target="_blank">

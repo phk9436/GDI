@@ -155,3 +155,13 @@ export const updateMovieData = async (context: { [x: string]: string }) => {
   await updateDoc(doc(dbService, 'movie', id as string), context);
   return true;
 };
+
+export const updatePressData = async (context: { [x: string]: string }) => {
+  const { id, title, pressUrl, pressFrom, pressDate } = context;
+  if (!title || !pressUrl || !pressFrom || !pressDate) {
+    alert('항목이 모두 채워지지 않았습니다');
+    return false;
+  }
+  await updateDoc(doc(dbService, 'press', id as string), context);
+  return true;
+};
