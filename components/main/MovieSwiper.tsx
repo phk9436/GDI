@@ -47,16 +47,14 @@ function MovieSwiper({ data }: ISwiperProps) {
             {data.length > 0 &&
               data.map((e) => (
                 <SwiperSlide key={e.id}>
-                  <Link href="/notice/Movie">
-                    <a>
-                      <MovieCard
-                        ytbDate={e.ytbDate}
-                        title={e.title}
-                        ytbFrom={e.ytbFrom}
-                        ytbThumbnail={e.ytbThumbnail}
-                      />
-                    </a>
-                  </Link>
+                  <a href={e.ytbUrl} target="_blank">
+                    <MovieCard
+                      ytbDate={e.ytbDate}
+                      title={e.title}
+                      ytbFrom={e.ytbFrom}
+                      ytbThumbnail={e.ytbThumbnail}
+                    />
+                  </a>
                 </SwiperSlide>
               ))}
           </Swiper>

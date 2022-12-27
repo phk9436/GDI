@@ -54,15 +54,13 @@ function MainSectionNotice({ data }: PageProps) {
           <>
             {data?.map((e, i) => (
               <ListContent key={`Press${i}`}>
-                <Link href={taps[tapIndex][1]}>
-                  <a>
-                    <h3>{e.title}</h3>
-                    <ContentInfo>
-                      <li key={`PressInfo${i}-1`}>{e.pressFrom}</li>
-                      <li key={`PressInfo${i}-2`}>{e.pressDate}</li>
-                    </ContentInfo>
-                  </a>
-                </Link>
+                <a href={e.pressUrl} target="_blank">
+                  <h3>{e.title}</h3>
+                  <ContentInfo>
+                    <li key={`PressInfo${i}-1`}>{e.pressFrom}</li>
+                    <li key={`PressInfo${i}-2`}>{e.pressDate}</li>
+                  </ContentInfo>
+                </a>
               </ListContent>
             ))}
             {data?.length >= 4 && (
@@ -100,6 +98,7 @@ export default MainSectionNotice;
 
 const Wrapper = styled.div`
   width: 100%;
+  max-width: calc(100% - 586px);
 `;
 const TopWrapper = styled.div`
   display: flex;
