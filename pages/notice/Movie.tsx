@@ -15,7 +15,7 @@ import { dbService } from 'api/firebase';
 import { getBoardData } from 'utils/getBoardUtils';
 import dayjs from 'dayjs';
 import { IMovieData } from 'types/dataTypes';
-import { MovieItem } from 'components/movie/MovieItem';
+import { MovieItem } from 'components/notice/MovieItem';
 
 interface PageProps {
   dataList: IMovieData[];
