@@ -63,7 +63,7 @@ const PressItemWrapper = styled.div`
   gap: 40px;
 
   a {
-    display: block;
+    display: contents;
     width: 100%;
     height: 100%;
   }
@@ -74,6 +74,7 @@ const PressItemContainer = styled.div`
   flex-direction: column;
   justify-content: space-between;
   gap: 18px;
+  max-width: calc(100% - 226px);
 
   h3 {
     font-size: 36px;

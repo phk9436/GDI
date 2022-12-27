@@ -1,11 +1,16 @@
 import styled from 'styled-components';
 import MainSectionEtc from './MainSectionEtc';
 import MainSectionNotice from './MainSectionNotice';
+import { IPressData } from 'types/dataTypes';
 
-function MainSectionBottom() {
+interface PageProps {
+  data: IPressData[];
+}
+
+function MainSectionBottom({ data }: PageProps) {
   return (
     <Wrapper>
-      <MainSectionNotice />
+      <MainSectionNotice data={data} />
       <MainSectionEtc />
     </Wrapper>
   );

@@ -1,6 +1,6 @@
 import { query, collection, orderBy, limit, getDocs } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
-import { IBoardData, IMovieData } from 'types/dataTypes';
+import { IBoardData, IMovieData, IPressData } from 'types/dataTypes';
 import dayjs from 'dayjs';
 
 export const getPosts = async (category: string) => {
@@ -28,6 +28,21 @@ export const getMovies = async () => {
       date: dayjs(docs.data().createdAt).format('YY-MM-DD'),
       id: docs.id,
     } as IMovieData;
+    dataList.push(postData);
+  });
+  return dataList;
+};
+
+export const getPress = async () => {
+  const queryList = query(collection(dbService, 'press'), limit(4), orderBy('createdAt', 'desc'));
+  const data = await getDocs(queryList);
+  const dataList: IPressData[] = [];
+  data.forEach((docs) => {
+    const postData = {
+      ...docs.data(),
+      date: dayjs(docs.data().createdAt).format('YY-MM-DD'),
+      id: docs.id,
+    } as IPressData;
     dataList.push(postData);
   });
   return dataList;

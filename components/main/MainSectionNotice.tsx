@@ -2,29 +2,7 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Link from 'next/link';
 import { RedirectDetail } from './Components';
-
-const DUMMY_DATA_PRESS = [
-  {
-    title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
-    pressFrom: 'OBS',
-    pressDate: '2022-09-12',
-  },
-  {
-    title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
-    pressFrom: 'OBS',
-    pressDate: '2022-09-12',
-  },
-  {
-    title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
-    pressFrom: 'OBS',
-    pressDate: '2022-09-12',
-  },
-  {
-    title: `여야 의원 64명 뭉쳤다…'GTX 플러스' 공론화 시동`,
-    pressFrom: 'OBS',
-    pressDate: '2022-09-12',
-  },
-];
+import { IPressData } from 'types/dataTypes';
 
 const DUMMY_DATA_NOTICE = [
   {
@@ -45,7 +23,11 @@ const DUMMY_DATA_NOTICE = [
   },
 ];
 
-function MainSectionNotice() {
+interface PageProps {
+  data: IPressData[];
+}
+
+function MainSectionNotice({ data }: PageProps) {
   const [tapIndex, setTapIndex] = useState(0);
   const taps = [
     ['언론보도', '/notice/Press'],
@@ -70,7 +52,7 @@ function MainSectionNotice() {
       <List>
         {tapIndex === 0 && (
           <>
-            {DUMMY_DATA_PRESS.map((e, i) => (
+            {data?.map((e, i) => (
               <ListContent key={`Press${i}`}>
                 <Link href={taps[tapIndex][1]}>
                   <a>
@@ -83,7 +65,7 @@ function MainSectionNotice() {
                 </Link>
               </ListContent>
             ))}
-            {DUMMY_DATA_PRESS.length >= 4 && (
+            {data?.length >= 4 && (
               <li>
                 <RedirectDetail href={taps[tapIndex][1]} />
               </li>

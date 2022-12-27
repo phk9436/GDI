@@ -42,6 +42,7 @@ const PressItemWrapper = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 40px;
+  position: relative;
 
   & > a {
     display: block;
@@ -126,6 +127,9 @@ const PressButtons = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   gap: 4px;
+  position: absolute;
+  right: 0;
+  bottom: 36px;
 
   @media screen and (max-width: 820px) {
     display: none;
