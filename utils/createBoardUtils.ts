@@ -39,6 +39,13 @@ interface ICreatePressProps {
   pressDate: string;
 }
 
+interface ICreateNoticeProps {
+  title: string;
+  fileUrl: string;
+  fileName: string;
+  content: string | undefined;
+}
+
 export const uploadThumbnail: (
   e: React.ChangeEvent<HTMLInputElement>,
   setThumbnailUrl: (value: React.SetStateAction<string>) => void,
@@ -161,6 +168,37 @@ export const createPress = async (context: ICreatePressProps) => {
   const boardId = v4();
   await setDoc(doc(dbService, 'press', boardId), { ...context, createdAt });
   await updateDoc(doc(dbService, 'meta', 'pressCount'), {
+    //전체 게시물 개수
+    total: increment(1),
+  });
+};
+
+export const createNotice = async (context: ICreateNoticeProps) => {
+  const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
+
+  let fileId = '';
+  if (context.fileUrl) {
+    const fileV4Id = v4();
+    const fileRef = ref(storageService, `notice/${fileV4Id}`);
+    await uploadString(fileRef, context.fileUrl, 'data_url');
+    fileId = fileV4Id;
+  }
+
+  const boardId = v4();
+
+  const postContext = {
+    title: context.title,
+    createdAt,
+    fileName: context.fileName,
+    fileId,
+    boardId,
+  };
+
+  await setDoc(doc(dbService, 'notice', boardId), postContext);
+  await setDoc(doc(dbService, 'noticeContent', boardId), {
+    content: context.content,
+  });
+  await updateDoc(doc(dbService, 'meta', 'noticeCount'), {
     //전체 게시물 개수
     total: increment(1),
   });

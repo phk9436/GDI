@@ -180,6 +180,7 @@ const LabelFileComponent = styled.label`
   font-weight: 500;
   color: #a4a4a4;
   transition: 0.2s;
+  cursor: pointer;
   background: #f6f6f6 url('/images/iconDownload.png') no-repeat center right 24px/28px 28px;
 
   &:hover,

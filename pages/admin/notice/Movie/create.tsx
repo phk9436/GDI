@@ -55,7 +55,7 @@ function Create() {
   return (
     <>
       <Wrapper>
-        <Title>GDI영상관 게시글 추가</Title>
+        <Title>GDI영상관 게시글 작성</Title>
         <form onSubmit={onSubmitPost}>
           <InputWrapper>
             <UploadWrapper>

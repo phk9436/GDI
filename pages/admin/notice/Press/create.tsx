@@ -42,7 +42,7 @@ function Create() {
 
   return  <>
   <Wrapper>
-    <Title>언론보도 게시글 추가</Title>
+    <Title>언론보도 게시글 작성</Title>
     <form onSubmit={onSubmitPost}>
       <InputWrapper>
         <InputContainer>
