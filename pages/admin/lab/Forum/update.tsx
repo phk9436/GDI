@@ -18,7 +18,7 @@ function update() {
   const [forumDate, setForumDate] = useState(router.query.forumDate as string);
   const [loading, setLoading] = useState(false);
   const [thumbnailUrl, setThumbnailUrl] = useState<string>(router.query.thumbnailUrl as string);
-  const [fileUrl, setFileUrl] = useState<string>(router.query.fileUrl as string);
+  const [fileUrl, setFileUrl] = useState<string>('');
   const [fileName, setFileName] = useState<string>(router.query.fileName as string);
   const [isFileChanged, setIsFileChanged] = useState(false);
   const [isThumbnailChanged, setIsThumbnailChanged] = useState(false);

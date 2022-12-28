@@ -1,10 +1,9 @@
 import { useRouter } from 'next/router';
-import Image from 'next/image';
 import styled from 'styled-components';
 import { BlueButton, InputText, InputDate } from 'components/admin/Component';
 import { useState, useEffect } from 'react';
 import Loading from 'components/admin/Loading';
-import { updateMovieData, updatePressData } from 'utils/updateBoardUtils';
+import { updatePressData } from 'utils/updateBoardUtils';
 
 function update() {
   const router = useRouter();

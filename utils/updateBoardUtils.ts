@@ -165,3 +165,33 @@ export const updatePressData = async (context: { [x: string]: string }) => {
   await updateDoc(doc(dbService, 'press', id as string), context);
   return true;
 };
+
+export const updateNoticeData = async (
+  context: { [x: string]: string },
+  isFileChanged: boolean,
+) => {
+  const { id, title, fileId, fileName, fileUrl, content } = context;
+  if (!title || !content) {
+    alert('항목이 모두 채워지지 않았습니다');
+    return false;
+  }
+  let noticeContext: { [x: string]: string } = {
+    title,
+  };
+  if (isFileChanged) {
+    const deleteFileRef = ref(storageService, `notice/${fileId}`);
+    await deleteObject(deleteFileRef);
+    const fileV4Id = v4();
+    const fileRef = ref(storageService, `notice/${fileV4Id}`);
+    await uploadString(fileRef, fileUrl, 'data_url');
+    const getFileId = fileV4Id;
+    noticeContext = {
+      ...context,
+      fileId: getFileId,
+      fileName,
+    };
+  }
+  await updateDoc(doc(dbService, 'notice', id), context);
+  await updateDoc(doc(dbService, 'noticeContent', id), { content });
+  return true;
+};
