@@ -32,7 +32,7 @@ function Create() {
       fileName,
     };
 
-    if (title && content && fileUrl) {
+    if (title && content) {
       await createNotice(context);
       alert('게시글이 작성되었습니다');
       router.push('/admin/notice');

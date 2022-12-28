@@ -1,9 +1,9 @@
 import styled from 'styled-components';
 import { SectionTop, Cards } from './Layout';
-import { IBoardData } from 'types/dataTypes';
+import { ILabData } from 'types/dataTypes';
 
 interface PageProps {
-  data: IBoardData[];
+  data: ILabData[];
 }
 
 function MainSectionLab({ data }: PageProps) {

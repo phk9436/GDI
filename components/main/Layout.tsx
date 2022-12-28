@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { RedirectDetail, Card } from './Components';
-import { IBoardData } from 'types/dataTypes';
+import { ILabData } from 'types/dataTypes';
 
 interface ISectionTopProps {
   title: string;
@@ -8,7 +8,7 @@ interface ISectionTopProps {
 }
 
 interface ICardsProps {
-  data: IBoardData[];
+  data: ILabData[];
   path: string;
 }
 

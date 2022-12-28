@@ -14,7 +14,7 @@ import {
   DocumentSnapshot,
 } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
-import { IBoardData } from 'types/dataTypes';
+import { ILabData } from 'types/dataTypes';
 import dayjs from 'dayjs';
 
 export const getBoardData: (
@@ -25,7 +25,7 @@ export const getBoardData: (
   lastData: QueryDocumentSnapshot | undefined,
   prevData: QueryDocumentSnapshot | undefined,
 ) => Promise<
-  [IBoardData[], QueryDocumentSnapshot<DocumentData>[], DocumentSnapshot<DocumentData>]
+  [ILabData[], QueryDocumentSnapshot<DocumentData>[], DocumentSnapshot<DocumentData>]
 > = async (category, countCategory, limitNum, isNext, lastData, prevData) => {
   let queryList;
   if (isNext) {
@@ -44,13 +44,13 @@ export const getBoardData: (
     );
   }
   const data = await getDocs(queryList);
-  const dataList: IBoardData[] = [];
+  const dataList: ILabData[] = [];
   data.forEach((docs) => {
     const postData = {
       ...docs.data(),
       date: dayjs(docs.data().createdAt).format('YY-MM-DD'),
       id: docs.id,
-    } as IBoardData;
+    } as ILabData;
     dataList.push(postData);
   });
 

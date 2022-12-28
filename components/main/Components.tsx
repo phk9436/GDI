@@ -1,14 +1,14 @@
 import styled from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
-import { IBoardData, IMovieData, IPressData } from 'types/dataTypes';
+import { ILabData, IMovieData } from 'types/dataTypes';
 
 interface IDetailProps {
   href: string;
   text?: string;
 }
 
-interface ICardProps extends IBoardData {
+interface ICardProps extends ILabData {
   path: string;
 }
 

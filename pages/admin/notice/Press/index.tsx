@@ -2,7 +2,6 @@ import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { BreadCrumb, Pagination } from 'components/Components';
 import { UploadButton } from 'components/admin/Component';
-import { MovieItem } from 'components/admin/MovieItem';
 import {
   query,
   collection,

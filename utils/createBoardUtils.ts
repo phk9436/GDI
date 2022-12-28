@@ -191,7 +191,7 @@ export const createNotice = async (context: ICreateNoticeProps) => {
     createdAt,
     fileName: context.fileName,
     fileId,
-    boardId,
+    boardId, 
   };
 
   await setDoc(doc(dbService, 'notice', boardId), postContext);

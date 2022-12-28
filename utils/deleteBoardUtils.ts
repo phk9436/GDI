@@ -37,3 +37,15 @@ export const deletePressData = async (id: string) => {
     total: increment(-1),
   });
 };
+
+export const deleteNoticeData = async (id: string, fileId: string | undefined) => {
+  if (fileId) {
+    const fileRef = ref(storageService, `notice/${fileId}`);
+    await deleteObject(fileRef);
+  }
+  await deleteDoc(doc(dbService, 'notice', id));
+  await deleteDoc(doc(dbService, 'noticeContent', id));
+  await updateDoc(doc(dbService, 'meta', 'noticeCount'), {
+    total: increment(-1),
+  });
+};

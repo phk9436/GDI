@@ -1,18 +1,18 @@
 import { query, collection, orderBy, limit, getDocs } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
-import { IBoardData, IMovieData, IPressData } from 'types/dataTypes';
+import { ILabData, IMovieData, IPressData } from 'types/dataTypes';
 import dayjs from 'dayjs';
 
 export const getPosts = async (category: string) => {
   const queryList = query(collection(dbService, category), limit(3), orderBy('createdAt', 'desc'));
   const data = await getDocs(queryList);
-  const dataList: IBoardData[] = [];
+  const dataList: ILabData[] = [];
   data.forEach((docs) => {
     const postData = {
       ...docs.data(),
       date: dayjs(docs.data().createdAt).format('YY-MM-DD'),
       id: docs.id,
-    } as IBoardData;
+    } as ILabData;
     dataList.push(postData);
   });
   return dataList;

@@ -4,11 +4,11 @@ import MainSectionLab from 'components/main/MainSectionLab';
 import MainSectionForum from 'components/main/MainSectionForum';
 import MainSectionMovie from 'components/main/MainSectionMovie';
 import MainSectionBottom from 'components/main/MainSectionBottom';
-import { IBoardData, IForumData, IMovieData, IPressData } from 'types/dataTypes';
+import { ILabData, IForumData, IMovieData, IPressData } from 'types/dataTypes';
 import { getMovies, getPosts, getPress } from 'utils/mainPageUtils';
 
 interface PageProps {
-  labList: IBoardData[];
+  labList: ILabData[];
   forumList: IForumData[];
   movieList: IMovieData[];
   pressList: IPressData[];

@@ -14,19 +14,19 @@ import {
   QueryDocumentSnapshot,
 } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
-import { IBoardData } from 'types/dataTypes';
+import { ILabData } from 'types/dataTypes';
 import { getBoardData } from 'utils/getBoardUtils';
 import Loading from 'components/admin/Loading';
 import { deleteBoardData } from 'utils/deleteBoardUtils';
 import dayjs from 'dayjs';
 
 interface PageProps {
-  dataList: IBoardData[];
+  dataList: ILabData[];
 }
 
 function index({ dataList }: PageProps) {
   const [isRefetch, setIsRefetch] = useState(false);
-  const [postList, setPostList] = useState<IBoardData[]>([]);
+  const [postList, setPostList] = useState<ILabData[]>([]);
   const [totalPageNum, setTotalPageNum] = useState(0);
   const [currentPageNum, setCurrentPageNum] = useState(1);
   const [totalNum, setTotalNum] = useState(0);
@@ -165,13 +165,13 @@ export default index;
 export const getServerSideProps = async () => {
   const queryList = query(collection(dbService, 'lab'), limit(10), orderBy('createdAt', 'desc'));
   const data = await getDocs(queryList);
-  const dataList: IBoardData[] = [];
+  const dataList: ILabData[] = [];
   data.forEach((docs) => {
     const postData = {
       ...docs.data(),
       id: docs.id,
       date: dayjs(docs.data().createdAt).format('YY-MM-DD'),
-    } as IBoardData;
+    } as ILabData;
     dataList.push(postData);
   });
   return { props: { dataList } };

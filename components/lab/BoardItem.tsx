@@ -1,13 +1,11 @@
-import styled, { css } from 'styled-components';
+import styled from 'styled-components';
 import Image from 'next/image';
-import { useState } from 'react';
-import Link from 'next/link';
-import { IBoardData, IForumData } from 'types/dataTypes';
+import { ILabData, IForumData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
 import { downloadFile } from 'utils/downloadUtils';
 
 interface IBoardItemProps {
-  data: IBoardData | IForumData;
+  data: ILabData | IForumData;
   path: string;
   category: string;
 }

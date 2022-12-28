@@ -1,7 +1,7 @@
 import { BreadCrumb } from 'components/Components';
 import { useRouter } from 'next/router';
 import BoardDetail from 'components/admin/BoardDetail';
-import { IBoardData } from 'types/dataTypes';
+import { ILabData } from 'types/dataTypes';
 import { deleteBoardData } from 'utils/deleteBoardUtils';
 import { useEffect, useState } from 'react';
 import Loading from 'components/admin/Loading';
@@ -9,7 +9,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import dayjs from 'dayjs';
 
-function LabDetail(props: IBoardData) {
+function LabDetail(props: ILabData) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
@@ -62,7 +62,7 @@ function LabDetail(props: IBoardData) {
 
 export default LabDetail;
 
-export const getServerSideProps = async ({ params }: { params: IBoardData }) => {
+export const getServerSideProps = async ({ params }: { params: ILabData }) => {
   const data = await getDoc(doc(dbService, 'lab', `${params?.id}`));
   const contentData = await getDoc(doc(dbService, 'labContent', `${params?.id}`));
   return { props: { ...data.data(), ...contentData.data() } };

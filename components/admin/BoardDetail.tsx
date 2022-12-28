@@ -1,13 +1,13 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import { IBoardData, IForumData } from 'types/dataTypes';
+import { ILabData, IForumData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { downloadFile } from 'utils/downloadUtils';
 
 interface IBoardDetailProps {
-  data: IBoardData | IForumData;
+  data: ILabData | IForumData;
   path: string;
   category: string;
   deleteBoardItem: (
