@@ -79,6 +79,7 @@ const NoticeItemContainer = styled.div`
   justify-content: space-between;
   gap: 18px;
   max-width: calc(100% - 226px);
+  width: 100%;
 
   h3 {
     font-size: 36px;
