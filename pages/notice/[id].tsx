@@ -9,7 +9,6 @@ import NoticeDetail from 'components/notice/NoticeDetail';
 
 function Detail(props: INoticeData) {
   const router = useRouter();
-  console.log(props)
   const Tap = [
     [
       'GDI 영상관',

@@ -2,26 +2,8 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Link from 'next/link';
 import { RedirectDetail } from './Components';
-import { IPressData } from 'types/dataTypes';
-
-const DUMMY_DATA_NOTICE = [
-  {
-    title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    date: '2022-09-12',
-  },
-  {
-    title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    date: '2022-09-12',
-  },
-  {
-    title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    date: '2022-09-12',
-  },
-  {
-    title: `경기도 탄소중립을 위한 '정의로운 전환' 플랫폼 구축 기초연구`,
-    date: '2022-09-12',
-  },
-];
+import { INoticeData, IPressData } from 'types/dataTypes';
+import { getNotice } from 'utils/mainPageUtils';
 
 interface PageProps {
   data: IPressData[];
@@ -29,12 +11,21 @@ interface PageProps {
 
 function MainSectionNotice({ data }: PageProps) {
   const [tapIndex, setTapIndex] = useState(0);
+  const [isInit, setIsInit] = useState(true);
+  const [noticeList, setNoticeList] = useState<INoticeData[]>([]);
   const taps = [
     ['언론보도', '/notice/Press'],
     ['공지사항', '/notice'],
   ];
 
-  const onClickTap = (i: number) => setTapIndex(i);
+  const onClickTap = async (i: number) => {
+    setTapIndex(i);
+    if (i === 1 && isInit) {
+      const noticeData = await getNotice();
+      setNoticeList(noticeData);
+      setIsInit(false);
+    }
+  };
 
   return (
     <Wrapper>
@@ -72,9 +63,9 @@ function MainSectionNotice({ data }: PageProps) {
         )}
         {tapIndex === 1 && (
           <>
-            {DUMMY_DATA_NOTICE.map((e, i) => (
+            {noticeList.map((e, i) => (
               <ListContent key={`Notice${i}`}>
-                <Link href={taps[tapIndex][1]}>
+                <Link href={`${taps[tapIndex][1]}/${e.id}`}>
                   <a>
                     <h3>{e.title}</h3>
                     <p>{e.date}</p>
@@ -82,7 +73,7 @@ function MainSectionNotice({ data }: PageProps) {
                 </Link>
               </ListContent>
             ))}
-            {DUMMY_DATA_NOTICE.length >= 4 && (
+            {noticeList.length >= 4 && (
               <li>
                 <RedirectDetail href={taps[tapIndex][1]} />
               </li>

@@ -15,7 +15,6 @@ interface PageProps {
 }
 
 const Home: NextPage<PageProps> = ({ labList, forumList, movieList, pressList }) => {
-  console.log(pressList)
   return (
     <>
       <MainBanner />
