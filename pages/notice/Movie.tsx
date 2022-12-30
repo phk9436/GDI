@@ -16,6 +16,7 @@ import { getBoardData } from 'utils/getBoardUtils';
 import dayjs from 'dayjs';
 import { IMovieData } from 'types/dataTypes';
 import { MovieItem } from 'components/notice/MovieItem';
+import MovieSceleton from 'components/notice/MovieSceleton';
 
 interface PageProps {
   dataList: IMovieData[];
@@ -32,6 +33,7 @@ function Movie({ dataList }: PageProps) {
   const [isPrev, setIsPrev] = useState(false);
   const [isNext, setIsNext] = useState(false);
   const [isInit, setIsInit] = useState(true);
+  const [isPending, setIsPending] = useState(false);
 
   const Tap = [
     [
@@ -44,7 +46,7 @@ function Movie({ dataList }: PageProps) {
   ];
 
   const getPosts = async () => {
-    console.log('fetching...');
+    setIsPending(true);
     setPostList([]);
     isInit && setIsInit(false);
     const [dataList, docs, total] = await getBoardData(
@@ -62,6 +64,7 @@ function Movie({ dataList }: PageProps) {
     isPrev && setIsPrev(false);
     setTotalNum(total.data()?.total);
     setTotalPageNum(Math.ceil(total.data()?.total / 10));
+    setIsPending(false);
   };
 
   const setPropsData = async () => {
@@ -112,6 +115,7 @@ function Movie({ dataList }: PageProps) {
           {isInit
             ? dataList.map((e) => <MovieItem data={e} key={e.id} />)
             : postList.map((e) => <MovieItem data={e} key={e.id} />)}
+          {isPending && <MovieSceleton />}
         </MovieItemWrapper>
         <Pagination
           currentPageNum={currentPageNum}

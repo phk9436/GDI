@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-function BoardSceletonItems() {
+function BoardSceletonItem() {
   return (
     <li>
       <BoardItemWrapper>
@@ -26,7 +26,7 @@ function BoardSceletonItems() {
   );
 }
 
-export default BoardSceletonItems;
+export default BoardSceletonItem;
 
 const BoardItemWrapper = styled.div`
   width: 100%;

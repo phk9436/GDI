@@ -19,6 +19,7 @@ import Loading from 'components/admin/Loading';
 import { deleteMovieData } from 'utils/deleteBoardUtils';
 import dayjs from 'dayjs';
 import { IMovieData } from 'types/dataTypes';
+import MovieSceleton from 'components/notice/MovieSceleton';
 
 interface PageProps {
   dataList: IMovieData[];
@@ -36,6 +37,7 @@ function index({ dataList }: PageProps) {
   const [isNext, setIsNext] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isInit, setIsInit] = useState(true);
+  const [isPending, setIsPending] = useState(false);
 
   const Tap = [
     [
@@ -48,7 +50,7 @@ function index({ dataList }: PageProps) {
   ];
 
   const getPosts = async () => {
-    console.log('fetching...');
+    setIsPending(true);
     setPostList([]);
     isInit && setIsInit(false);
     const [dataList, docs, total] = await getBoardData(
@@ -66,6 +68,7 @@ function index({ dataList }: PageProps) {
     isPrev && setIsPrev(false);
     setTotalNum(total.data()?.total);
     setTotalPageNum(Math.ceil(total.data()?.total / 10));
+    setIsPending(false);
   };
 
   const setPropsData = async () => {
@@ -130,6 +133,7 @@ function index({ dataList }: PageProps) {
               : postList.map((e) => (
                   <MovieItem data={e} deleteMovieItem={deleteMovieItem} key={e.id} />
                 ))}
+            {isPending && <MovieSceleton />}
           </MovieItemWrapper>
           <Pagination
             currentPageNum={currentPageNum}

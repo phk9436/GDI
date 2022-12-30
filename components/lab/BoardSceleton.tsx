@@ -1,18 +1,18 @@
-import BoardSceletonItems from './BoardSceletonItems';
+import BoardSceletonItem from './BoardSceletonItem';
 
 function BoardSceleton() {
   return (
     <>
-      <BoardSceletonItems />
-      <BoardSceletonItems />
-      <BoardSceletonItems />
-      <BoardSceletonItems />
-      <BoardSceletonItems />
-      <BoardSceletonItems />
-      <BoardSceletonItems />
-      <BoardSceletonItems />
-      <BoardSceletonItems />
-      <BoardSceletonItems />
+      <BoardSceletonItem />
+      <BoardSceletonItem />
+      <BoardSceletonItem />
+      <BoardSceletonItem />
+      <BoardSceletonItem />
+      <BoardSceletonItem />
+      <BoardSceletonItem />
+      <BoardSceletonItem />
+      <BoardSceletonItem />
+      <BoardSceletonItem />
     </>
   );
 }
