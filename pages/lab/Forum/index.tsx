@@ -16,6 +16,7 @@ import {
 import { dbService } from 'api/firebase';
 import { IForumData } from 'types/dataTypes';
 import { getBoardData } from 'utils/getBoardUtils';
+import BoardSceleton from 'components/lab/BoardSceleton';
 
 interface PageProps {
   dataList: IForumData[];
@@ -32,6 +33,7 @@ function index({ dataList }: PageProps) {
   const [isPrev, setIsPrev] = useState(false);
   const [isNext, setIsNext] = useState(false);
   const [isInit, setIsInit] = useState(true);
+  const [isPending, setIsPending] = useState(false);
 
   const Tap = [
     [
@@ -43,7 +45,7 @@ function index({ dataList }: PageProps) {
   ];
 
   const getPosts = async () => {
-    console.log('fetching...');
+    setIsPending(true);
     setPostList([]);
     isInit && setIsInit(false);
     const [dataList, docs, total] = await getBoardData(
@@ -61,6 +63,7 @@ function index({ dataList }: PageProps) {
     isPrev && setIsPrev(false);
     setTotalNum(total.data()?.total);
     setTotalPageNum(Math.ceil(total.data()?.total / 10));
+    setIsPending(false);
   };
 
   const setPropsData = async () => {
@@ -114,6 +117,7 @@ function index({ dataList }: PageProps) {
             : postList.map((e) => (
                 <BoardItem data={e} path={Tap[1][2]} key={e.id} category="forum" />
               ))}
+          {isPending && <BoardSceleton />}
         </ul>
         <Pagination
           currentPageNum={currentPageNum}

@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { RedirectDetail } from './Components';
 import { INoticeData, IPressData } from 'types/dataTypes';
 import { getNotice } from 'utils/mainPageUtils';
+import SceletonNotice from './SceletonNotice';
 
 interface PageProps {
   data: IPressData[];
@@ -13,6 +14,7 @@ function MainSectionNotice({ data }: PageProps) {
   const [tapIndex, setTapIndex] = useState(0);
   const [isInit, setIsInit] = useState(true);
   const [noticeList, setNoticeList] = useState<INoticeData[]>([]);
+  const [isPending, setIsPending] = useState(false);
   const taps = [
     ['언론보도', '/notice/Press'],
     ['공지사항', '/notice'],
@@ -21,9 +23,11 @@ function MainSectionNotice({ data }: PageProps) {
   const onClickTap = async (i: number) => {
     setTapIndex(i);
     if (i === 1 && isInit) {
+      setIsPending(true);
       const noticeData = await getNotice();
       setNoticeList(noticeData);
       setIsInit(false);
+      setIsPending(false);
     }
   };
 
@@ -60,7 +64,7 @@ function MainSectionNotice({ data }: PageProps) {
               </li>
             )}
           </>
-        )}
+            )}
         {tapIndex === 1 && (
           <>
             {noticeList.map((e, i) => (
@@ -80,6 +84,7 @@ function MainSectionNotice({ data }: PageProps) {
             )}
           </>
         )}
+        {isPending && <SceletonNotice />}
       </List>
     </Wrapper>
   );
