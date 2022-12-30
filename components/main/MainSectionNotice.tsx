@@ -90,6 +90,10 @@ export default MainSectionNotice;
 const Wrapper = styled.div`
   width: 100%;
   max-width: calc(100% - 586px);
+
+  @media screen and (max-width: 820px) {
+    max-width: none;
+  }
 `;
 const TopWrapper = styled.div`
   display: flex;
