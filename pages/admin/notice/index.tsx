@@ -19,6 +19,7 @@ import dayjs from 'dayjs';
 import { INoticeData } from 'types/dataTypes';
 import NoticeItem from 'components/admin/NoticeItem';
 import { deleteNoticeData } from 'utils/deleteBoardUtils';
+import NoticeSceleton from 'components/notice/NoticeSceleton';
 
 interface PageProps {
   dataList: INoticeData[];
@@ -36,6 +37,7 @@ function index({ dataList }: PageProps) {
   const [isNext, setIsNext] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isInit, setIsInit] = useState(true);
+  const [isPending, setIsPending] = useState(false);
 
   const Tap = [
     [
@@ -48,7 +50,7 @@ function index({ dataList }: PageProps) {
   ];
 
   const getPosts = async () => {
-    console.log('fetching...');
+    setIsPending(true);
     setPostList([]);
     isInit && setIsInit(false);
     const [dataList, docs, total] = await getBoardData(
@@ -66,6 +68,7 @@ function index({ dataList }: PageProps) {
     isPrev && setIsPrev(false);
     setTotalNum(total.data()?.total);
     setTotalPageNum(Math.ceil(total.data()?.total / 10));
+    setIsPending(false);
   };
 
   const setPropsData = async () => {
@@ -131,6 +134,7 @@ function index({ dataList }: PageProps) {
               : postList.map((e) => (
                   <NoticeItem data={e} deleteNoticeItem={deleteNoticeItem} key={e.id} />
                 ))}
+            {isPending && <NoticeSceleton />}
           </ul>
 
           <Pagination
