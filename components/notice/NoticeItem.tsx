@@ -63,6 +63,12 @@ const NoticeItemWrapper = styled.div`
     width: 100%;
     height: 100%;
   }
+
+  @media screen and (max-width: 820px) {
+    flex-direction: column;
+    padding-bottom: 20px;
+    margin-bottom: 20px;
+  }
 `;
 
 const NoticeItemContainer = styled.div`
@@ -80,6 +86,16 @@ const NoticeItemContainer = styled.div`
     text-overflow: ellipsis;
     margin-bottom: 10px;
   }
+
+  @media screen and (max-width: 820px) {
+    max-width: none;
+    gap: 12px;
+
+    h3 {
+      font-size: 14px;
+      margin-bottom: 0;
+    }
+  }
 `;
 
 const InfoWrapper = styled.ul`
@@ -90,6 +106,10 @@ const Info = styled.li`
   display: flex;
   align-items: center;
   font-size: 20px;
+
+  @media screen and (max-width: 820px) {
+    font-size: 12px;
+  }
 `;
 
 const Title = styled.div`
@@ -104,6 +124,11 @@ const Title = styled.div`
     height: 28px;
     background-color: #000;
     margin: 0 18px;
+
+    @media screen and (max-width: 820px) {
+      height: 12px;
+      margin: 0 6px;
+    }
   }
 `;
 const Detail = styled.div``;
@@ -114,6 +139,10 @@ const NoticeButtons = styled.div`
   flex-direction: column;
   justify-content: flex-end;
   gap: 4px;
+
+  @media screen and (max-width: 820px) {
+    display: none;
+  }
 `;
 
 const ButtonDownLoad = styled.div`

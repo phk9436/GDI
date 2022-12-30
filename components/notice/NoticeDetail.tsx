@@ -34,6 +34,7 @@ function NoticeDetail({ data }: IBoardDetailProps) {
             <ButtonDownLoad>
               <a onClick={() => downloadFile(data.fileId, 'notice', data.fileName)}>
                 자료 다운로드
+                <img src="/images/iconDownloadMo.png" alt="Download" />
               </a>
             </ButtonDownLoad>
           )}
@@ -59,6 +60,10 @@ const Wrapper = styled.div`
   max-width: 1440px;
   padding: 56px 60px 140px;
   margin: auto;
+
+  @media screen and (max-width: 820px) {
+    padding: 40px 20px 90px;
+  }
 `;
 
 const DetailTop = styled.div`
@@ -68,13 +73,13 @@ const DetailTop = styled.div`
   gap: 60px;
   border-bottom: 1px solid #000000;
   padding-bottom: 47px;
-`;
 
-const ThumbnailWrapper = styled.div`
-  min-width: 210px;
-  height: 297px;
-  position: relative;
-  border: 1px solid #d9d9d9;
+  @media screen and (max-width: 820px) {
+    margin: 0 0 12px;
+    padding-bottom: 12px;
+    flex-direction: column;
+    gap: 20px;
+  }
 `;
 
 const DetailTopContainer = styled.div`
@@ -92,6 +97,12 @@ const DetailTopContainer = styled.div`
     background: rgba(0, 0, 0, 0.5);
     border-radius: 15px;
     color: #fff;
+
+    @media screen and (max-width: 820px) {
+      width: 70px;
+      height: 22px;
+      font-size: 11px;
+    }
   }
 
   h3 {
@@ -104,7 +115,16 @@ const DetailTopContainer = styled.div`
     display: -webkit-box;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+
+    @media screen and (max-width: 820px) {
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 20px;
+      height: 40px;
+      -webkit-line-clamp: 2;
+    }
   }
+  
 `;
 
 const InfoWrapper = styled.div`
@@ -139,6 +159,23 @@ const InfoWrapper = styled.div`
       }
     }
   }
+
+  @media screen and (max-width: 820px) {
+    gap: 8px;
+
+    ul li {
+      font-size: 12px;
+
+      p {
+        width: fit-content;
+      }
+
+      &:first-child::after {
+        height: 12px;
+        margin: 0 6px;
+      }
+    }
+  }
 `;
 
 const DetailButtonWrapper = styled.div`
@@ -148,6 +185,10 @@ const DetailButtonWrapper = styled.div`
   min-width: 186px;
   width: 186px;
   margin-top: auto;
+
+  @media screen and (max-width: 820px) {
+    width: 100%;
+  }
 `;
 
 const ButtonDownLoad = styled.div`
@@ -164,28 +205,30 @@ const ButtonDownLoad = styled.div`
     width: 100%;
     height: 100%;
     line-height: 50px;
+
+    img {
+      display: none;
+    }
   }
-`;
 
-const AdminButtons = styled.div`
-  display: flex;
-  gap: 4px;
-`;
+  @media screen and (max-width: 820px) {
+    height: 30px;
+    padding: 0;
+    background: #000;
 
-const AdminButton = styled.div`
-  width: 100%;
-  height: 50px;
-  background-color: #c7c7c7;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 20px;
-  color: #fff;
-  transition: 0.3s;
-  cursor: pointer;
+    a {
+      line-height: 30px;
+      font-size: 14px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
 
-  &:hover {
-    background-color: #a4a4a4;
+      img {
+        display: inline;
+        width: 14px;
+      }
+    }
   }
 `;
 
@@ -199,6 +242,12 @@ const ContentWrapper = styled.div`
   font-weight: 500;
   line-height: 30px;
   color: #5b5859;
+
+  @media screen and (max-width: 820px) {
+    padding: 15px;
+    font-size: 12px;
+    line-height: 20px;
+  }
 `;
 
 const ButtonBack = styled.div`
@@ -214,4 +263,13 @@ const ButtonBack = styled.div`
   color: #fff;
   background: #1f4788 url('/images/arrowLinkBack.png') no-repeat left 20px center/28px 28px;
   cursor: pointer;
+
+  @media screen and (max-width: 820px) {
+    width: 160px;
+    height: 30px;
+    margin-top: 20px;
+    padding-right: 30px;
+    font-size: 14px;
+    background: #1f4788 url('/images/arrowLinkBackMo.png') no-repeat left 15px center/19px 14px;
+  }
 `;

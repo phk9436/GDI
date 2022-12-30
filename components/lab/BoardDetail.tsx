@@ -185,7 +185,7 @@ const DetailTopContainer = styled.div`
     -webkit-box-orient: vertical;
 
     @media screen and (max-width: 820px) {
-      font-size: 14px;
+      font-size: 16px;
       font-weight: 700;
       line-height: 20px;
       height: 40px;
