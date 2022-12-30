@@ -19,6 +19,7 @@ import dayjs from 'dayjs';
 import { IPressData } from 'types/dataTypes';
 import PressItem from 'components/admin/PressItem';
 import { deletePressData } from 'utils/deleteBoardUtils';
+import PressSceleton from 'components/notice/PressSceleton';
 
 interface PageProps {
   dataList: IPressData[];
@@ -36,6 +37,7 @@ function index({ dataList }: PageProps) {
   const [isNext, setIsNext] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isInit, setIsInit] = useState(true);
+  const [isPending, setIsPending] = useState(false);
 
   const Tap = [
     [
@@ -48,7 +50,7 @@ function index({ dataList }: PageProps) {
   ];
 
   const getPosts = async () => {
-    console.log('fetching...');
+    setIsPending(true);
     setPostList([]);
     isInit && setIsInit(false);
     const [dataList, docs, total] = await getBoardData(
@@ -66,6 +68,7 @@ function index({ dataList }: PageProps) {
     isPrev && setIsPrev(false);
     setTotalNum(total.data()?.total);
     setTotalPageNum(Math.ceil(total.data()?.total / 10));
+    setIsPending(false);
   };
 
   const setPropsData = async () => {
@@ -127,6 +130,7 @@ function index({ dataList }: PageProps) {
             {isInit
               ? dataList.map((e) => <PressItem data={e} deletePressItem={deletePressItem} key={e.id} />)
               : postList.map((e) => <PressItem data={e} deletePressItem={deletePressItem} key={e.id} />)}
+            {isPending && <PressSceleton />}
           </ul>
 
           <Pagination
