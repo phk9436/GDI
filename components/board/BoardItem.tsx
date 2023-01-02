@@ -1,39 +1,40 @@
 import styled from 'styled-components';
 import { IBoardData } from 'types/dataTypes';
-import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 interface IBoardItemProps {
   data: IBoardData;
 }
 
 function BoardItem({ data }: IBoardItemProps) {
+  const router = useRouter();
+
+  const redirectDetail = () => {
+    if(prompt("비밀번호를 입력해주세요.") !== data.password) {
+      alert("비밀번호가 맞지 않습니다.");
+      return;
+    }
+    router.push(`/board/${data.id}`);
+  }
   return (
     <li>
-      <BoardItemWrapper>
-        <Link href={`/board/${data.id}`}>
-          <a>
-            <BoardItemContainer>
-              <h3>{data.title}</h3>
-              <InfoWrapper>
-              <Info>
-                  <Title>작성자</Title>
-                  <Detail>{data.author}</Detail>
-                </Info>
-                <Info>
-                  <Title>작성일자</Title>
-                  <Detail>{data.date}</Detail>
-                </Info>
-              </InfoWrapper>
-            </BoardItemContainer>
-          </a>
-        </Link>
+      <BoardItemWrapper onClick={redirectDetail}>
+        <BoardItemContainer>
+          <h3>{data.title}</h3>
+          <InfoWrapper>
+            <Info>
+              <Title>작성자</Title>
+              <Detail>{data.author}</Detail>
+            </Info>
+            <Info>
+              <Title>작성일자</Title>
+              <Detail>{data.date}</Detail>
+            </Info>
+          </InfoWrapper>
+        </BoardItemContainer>
 
         <BoardButtons>
-          <Link href={`/board/${data.id}`}>
-            <a>
-              <ButtonLink>상세내용확인</ButtonLink>
-            </a>
-          </Link>
+          <ButtonLink>상세내용확인</ButtonLink>
         </BoardButtons>
       </BoardItemWrapper>
     </li>
