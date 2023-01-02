@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Image from 'next/image';
 import { BlueButton, InputText, InputDate } from 'components/admin/Component';
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';

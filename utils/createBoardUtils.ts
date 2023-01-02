@@ -1,6 +1,6 @@
 import { dbService, storageService } from 'api/firebase';
-import { getBlob, getDownloadURL, ref, uploadString } from 'firebase/storage';
-import { addDoc, collection, doc, increment, setDoc, updateDoc, limit } from 'firebase/firestore';
+import { getDownloadURL, ref, uploadString } from 'firebase/storage';
+import { doc, increment, setDoc, updateDoc } from 'firebase/firestore';
 import { v4 } from 'uuid';
 import dayjs from 'dayjs';
 
@@ -43,6 +43,14 @@ interface ICreateNoticeProps {
   title: string;
   fileUrl: string;
   fileName: string;
+  content: string | undefined;
+}
+
+interface ICreateBoardProps {
+  title: string;
+  email: string;
+  author: string;
+  password: string;
   content: string | undefined;
 }
 
@@ -191,7 +199,7 @@ export const createNotice = async (context: ICreateNoticeProps) => {
     createdAt,
     fileName: context.fileName,
     fileId,
-    boardId, 
+    boardId,
   };
 
   await setDoc(doc(dbService, 'notice', boardId), postContext);
@@ -199,6 +207,26 @@ export const createNotice = async (context: ICreateNoticeProps) => {
     content: context.content,
   });
   await updateDoc(doc(dbService, 'meta', 'noticeCount'), {
+    //전체 게시물 개수
+    total: increment(1),
+  });
+};
+
+export const createBoard = async (context: ICreateBoardProps) => {
+  const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
+  const boardId = v4();
+  const postContext = {
+    title: context.title,
+    createdAt,
+    author: context.author,
+    password: context.password,
+  };
+
+  await setDoc(doc(dbService, 'board', boardId), postContext);
+  await setDoc(doc(dbService, 'boardContent', boardId), {
+    content: context.content,
+  });
+  await updateDoc(doc(dbService, 'meta', 'boardCount'), {
     //전체 게시물 개수
     total: increment(1),
   });

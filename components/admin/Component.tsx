@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
 
 interface IUploadProps {
   htmlFor: string;
@@ -24,6 +25,7 @@ interface IInputTextProps {
   placeholder: string;
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
 }
 
 interface IBlueButtonProps {
@@ -88,8 +90,22 @@ const InputHideComponent = styled.input`
   display: none;
 `;
 
-export function InputText({ type, placeholder, value, onChange }: IInputTextProps) {
-  return <Input type={type} placeholder={placeholder} value={value} onChange={onChange} />;
+export function InputText({
+  type,
+  placeholder,
+  value,
+  onChange,
+  onBlur = () => {},
+}: IInputTextProps) {
+  return (
+    <Input
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      onBlur={onBlur}
+    />
+  );
 }
 
 const Input = styled.input`
@@ -117,7 +133,13 @@ const Input = styled.input`
 
 export function InputDate({ type, placeholder, value, onChange }: IInputTextProps) {
   return (
-    <InputDateComponent type={type} placeholder={placeholder} value={value} onChange={onChange} required />
+    <InputDateComponent
+      type={type}
+      placeholder={placeholder}
+      value={value}
+      onChange={onChange}
+      required
+    />
   );
 }
 
@@ -140,7 +162,8 @@ const InputDateComponent = styled.input`
     border: 1px solid #d9d9d9;
   }
 
-  &:focus, &:valid {
+  &:focus,
+  &:valid {
     color: #000;
   }
 
