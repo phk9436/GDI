@@ -289,4 +289,10 @@ const UploadButtonWrapper = styled.div`
   &:hover {
     background-color: #a4a4a4;
   }
+
+  @media screen and (max-width: 820px) {
+    height: 40px;
+    font-size: 14px;
+    margin-bottom: 28px;
+  }
 `;
