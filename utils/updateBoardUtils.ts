@@ -195,3 +195,24 @@ export const updateNoticeData = async (
   await updateDoc(doc(dbService, 'noticeContent', id), { content });
   return true;
 };
+
+export const updateBoardData = async (context: { [x: string]: string }) => {
+  const { id, title, author, email, content } = context;
+  if (!title || !author || !email || !content) {
+    alert('항목이 모두 채워지지 않았습니다');
+    return false;
+  }
+
+  const boardContext: { [x: string]: string } = {
+    title,
+    author,
+  };
+  const boardDetailContext: { [x: string]: string } = {
+    content,
+    email,
+  };
+
+  await updateDoc(doc(dbService, 'board', id), boardContext);
+  await updateDoc(doc(dbService, 'boardContent', id), boardDetailContext);
+  return true;
+};

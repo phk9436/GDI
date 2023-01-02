@@ -2,6 +2,7 @@ import styled from 'styled-components';
 import { IBoardData } from 'types/dataTypes';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
+import { useRouter } from 'next/router';
 
 interface IBoardDetailProps {
   data: IBoardData;
@@ -13,6 +14,24 @@ const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
 });
 
 function BoardDetail({ data, deleteBoardItem }: IBoardDetailProps) {
+  const router = useRouter();
+
+  const redirectUpdate = () => {
+    if (prompt('비밀번호를 다시 한 번 입력해주세요.') !== data.password) {
+      alert('비밀번호가 맞지 않습니다.');
+      return;
+    }
+    router.push(
+      {
+        pathname: '/board/update',
+        query: {
+          ...data,
+        },
+      },
+      '/board/update',
+    );
+  };
+
   return (
     <Wrapper>
       <DetailTop>
@@ -35,7 +54,7 @@ function BoardDetail({ data, deleteBoardItem }: IBoardDetailProps) {
               </ul>
             </InfoWrapper>
             <Buttons>
-              <Button>수정</Button>
+              <Button onClick={redirectUpdate}>수정</Button>
               <Button onClick={() => deleteBoardItem(data.id as string)}>삭제</Button>
             </Buttons>
           </DetailFlex>
