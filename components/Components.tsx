@@ -24,7 +24,7 @@ export function BreadCrumb({ category, tap }: IBreadCrumbProps) {
       <BreadCrumbContents>
         <BreadCrumbTitle>
           <h2>{category[0]}</h2>
-          <BreadCrumbButton onClick={onClickMenuButton} />
+          <BreadCrumbButton onClick={onClickMenuButton} tapLength={tap.length} />
         </BreadCrumbTitle>
         <p>{category[1]}</p>
         <Menu tap={tap} isOpened={isMenuOpened}>
@@ -108,11 +108,17 @@ const BreadCrumbTitle = styled.div`
   }
 `;
 
-const BreadCrumbButton = styled.div`
+const BreadCrumbButton = styled.div<{ tapLength: number }>`
   width: 26px;
   height: 26px;
   background: url('/images/arrowBottom.png') no-repeat center/contain;
   cursor: pointer;
+
+  ${({ tapLength }) =>
+    tapLength <= 1 &&
+    css`
+      display: none;
+    `}
 
   @media screen and (max-width: 820px) {
     width: 16px;
