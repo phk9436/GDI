@@ -17,6 +17,7 @@ import dayjs from 'dayjs';
 import { IBoardData } from 'types/dataTypes';
 import PressSceleton from 'components/notice/PressSceleton';
 import BoardItem from 'components/board/BoardItem';
+import { UploadButton } from 'components/admin/Component';
 
 interface PageProps {
   dataList: IBoardData[];
@@ -109,6 +110,7 @@ function index({ dataList }: PageProps) {
     <div>
       <BreadCrumb category={Tap[0]} tap={Tap} />
       <Wrapper>
+        <UploadButton tap={Tap[0]} />
         <ul>
           {isInit
             ? dataList.map((e) => <BoardItem data={e} key={e.id} />)

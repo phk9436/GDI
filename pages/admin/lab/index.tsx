@@ -17,7 +17,7 @@ import { dbService } from 'api/firebase';
 import { ILabData } from 'types/dataTypes';
 import { getBoardData } from 'utils/getBoardUtils';
 import Loading from 'components/admin/Loading';
-import { deleteBoardData } from 'utils/deleteBoardUtils';
+import { deletePostData } from 'utils/deleteBoardUtils';
 import dayjs from 'dayjs';
 import BoardSceleton from 'components/lab/BoardSceleton';
 
@@ -112,7 +112,7 @@ function index({ dataList }: PageProps) {
     thumbnailId: string | undefined,
   ) => {
     setIsLoading(true);
-    await deleteBoardData('lab', 'labCount', id, fileId, thumbnailId);
+    await deletePostData('lab', 'labCount', id, fileId, thumbnailId);
     alert('삭제되었습니다.');
     setIsLoading(false);
     setPostList(postList.filter((e) => e.id !== id));

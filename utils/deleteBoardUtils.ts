@@ -2,7 +2,7 @@ import { getDoc, doc, deleteDoc, updateDoc, increment } from 'firebase/firestore
 import { dbService, storageService } from 'api/firebase';
 import { deleteObject, ref } from 'firebase/storage';
 
-export const deleteBoardData: (
+export const deletePostData: (
   category: string,
   countCategory: string,
   id: string,
@@ -46,6 +46,14 @@ export const deleteNoticeData = async (id: string, fileId: string | undefined) =
   await deleteDoc(doc(dbService, 'notice', id));
   await deleteDoc(doc(dbService, 'noticeContent', id));
   await updateDoc(doc(dbService, 'meta', 'noticeCount'), {
+    total: increment(-1),
+  });
+};
+
+export const deleteBoardData = async (id: string) => {
+  await deleteDoc(doc(dbService, 'board', id));
+  await deleteDoc(doc(dbService, 'boardContent', id));
+  await updateDoc(doc(dbService, 'meta', 'boardCount'), {
     total: increment(-1),
   });
 };

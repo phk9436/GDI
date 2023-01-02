@@ -5,13 +5,14 @@ import Link from 'next/link';
 
 interface IBoardDetailProps {
   data: IBoardData;
+  deleteBoardItem: (id: string) => Promise<void>;
 }
 
 const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
   ssr: false,
 });
 
-function BoardDetail({ data }: IBoardDetailProps) {
+function BoardDetail({ data, deleteBoardItem }: IBoardDetailProps) {
   return (
     <Wrapper>
       <DetailTop>
@@ -35,7 +36,7 @@ function BoardDetail({ data }: IBoardDetailProps) {
             </InfoWrapper>
             <Buttons>
               <Button>수정</Button>
-              <Button>삭제</Button>
+              <Button onClick={() => deleteBoardItem(data.id as string)}>삭제</Button>
             </Buttons>
           </DetailFlex>
         </DetailTopContainer>
@@ -230,7 +231,7 @@ const DetailFlex = styled.div`
     align-items: flex-start;
     gap: 10px;
   }
-`
+`;
 
 const Buttons = styled.div`
   display: flex;
@@ -240,7 +241,7 @@ const Buttons = styled.div`
   @media screen and (max-width: 820px) {
     min-width: 180px;
   }
-`
+`;
 
 const Button = styled.div`
   width: 100%;
@@ -262,4 +263,4 @@ const Button = styled.div`
     height: 36px;
     font-size: 14px;
   }
-`
+`;

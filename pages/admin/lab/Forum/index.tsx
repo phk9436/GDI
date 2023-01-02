@@ -16,7 +16,7 @@ import {
 import { dbService } from 'api/firebase';
 import { getBoardData } from 'utils/getBoardUtils';
 import Loading from 'components/admin/Loading';
-import { deleteBoardData } from 'utils/deleteBoardUtils';
+import { deletePostData } from 'utils/deleteBoardUtils';
 import dayjs from 'dayjs';
 import { IForumData } from 'types/dataTypes';
 import BoardSceleton from 'components/lab/BoardSceleton';
@@ -112,7 +112,7 @@ function index({ dataList }: PageProps) {
     thumbnailId: string | undefined,
   ) => {
     setIsLoading(true);
-    await deleteBoardData('forum', 'forumCount', id, fileId, thumbnailId);
+    await deletePostData('forum', 'forumCount', id, fileId, thumbnailId);
     alert('삭제되었습니다.');
     setIsLoading(false);
     setPostList(postList.filter((e) => e.id !== id));

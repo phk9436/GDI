@@ -2,7 +2,7 @@ import { BreadCrumb } from 'components/Components';
 import { useRouter } from 'next/router';
 import BoardDetail from 'components/admin/BoardDetail';
 import { ILabData } from 'types/dataTypes';
-import { deleteBoardData } from 'utils/deleteBoardUtils';
+import { deletePostData } from 'utils/deleteBoardUtils';
 import { useEffect, useState } from 'react';
 import Loading from 'components/admin/Loading';
 import { doc, getDoc } from 'firebase/firestore';
@@ -28,7 +28,7 @@ function LabDetail(props: ILabData) {
     thumbnailId: string | undefined,
   ) => {
     setIsLoading(true);
-    await deleteBoardData('lab', 'labCount', id, fileId, thumbnailId);
+    await deletePostData('lab', 'labCount', id, fileId, thumbnailId);
     alert('삭제되었습니다.');
     router.push(Tap[0][2]);
   };

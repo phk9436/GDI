@@ -2,7 +2,7 @@ import { BreadCrumb } from 'components/Components';
 import { useRouter } from 'next/router';
 import BoardDetail from 'components/admin/BoardDetail';
 import { IForumData } from 'types/dataTypes';
-import { deleteBoardData } from 'utils/deleteBoardUtils';
+import { deletePostData } from 'utils/deleteBoardUtils';
 import { useEffect, useState } from 'react';
 import Loading from 'components/admin/Loading';
 import { doc, getDoc } from 'firebase/firestore';
@@ -28,7 +28,7 @@ function ForumDetail(props: IForumData) {
     thumbnailId: string | undefined,
   ) => {
     setIsLoading(true);
-    await deleteBoardData('forum', 'forumCount', id, fileId, thumbnailId);
+    await deletePostData('forum', 'forumCount', id, fileId, thumbnailId);
     alert('삭제되었습니다.');
     router.push(Tap[1][2]);
   };

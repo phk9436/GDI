@@ -10,12 +10,12 @@ function BoardItem({ data }: IBoardItemProps) {
   const router = useRouter();
 
   const redirectDetail = () => {
-    if(prompt("비밀번호를 입력해주세요.") !== data.password) {
-      alert("비밀번호가 맞지 않습니다.");
+    if (prompt('비밀번호를 입력해주세요.') !== data.password) {
+      alert('비밀번호가 맞지 않습니다.');
       return;
     }
     router.push(`/board/${data.id}`);
-  }
+  };
   return (
     <li>
       <BoardItemWrapper onClick={redirectDetail}>

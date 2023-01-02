@@ -71,7 +71,7 @@ function create() {
       content,
     };
     if (title && email && author && password) {
-      createBoard(context);
+      await createBoard(context);
       alert('게시글이 작성되었습니다');
       router.push('/board');
     } else {
