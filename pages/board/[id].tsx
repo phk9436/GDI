@@ -32,11 +32,22 @@ function Detail(props: IBoardData) {
     router.push('/board');
   };
 
-  useEffect(() => {
+  const validPage = () => {
     if (!props.title) {
       alert('잘못된 접근입니다');
       router.push('/board');
+      return;
     }
+
+    if (!router.query.isvalid && prompt('비밀번호를 입력해주세요.') !== props.password) {
+      alert('비밀번호가 맞지 않습니다.');
+      router.push('/board');
+      return;
+    }
+  };
+
+  useEffect(() => {
+    validPage();
   }, []);
 
   return (

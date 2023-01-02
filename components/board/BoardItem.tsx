@@ -14,7 +14,15 @@ function BoardItem({ data }: IBoardItemProps) {
       alert('비밀번호가 맞지 않습니다.');
       return;
     }
-    router.push(`/board/${data.id}`);
+    router.push(
+      {
+        pathname: `/board/${data.id}`,
+        query: {
+          isvalid: true,
+        },
+      },
+      `/board/${data.id}`,
+    );
   };
   return (
     <li>
