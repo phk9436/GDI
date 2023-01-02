@@ -111,11 +111,13 @@ function update() {
               </InputFlexContainer>
             </InputContainer>
             <EdiorWrapper>
-              {initContent && (
+              {initContent ? (
                 <PostEditor
                   ref={contentRef as React.MutableRefObject<Editor>}
                   initialValue={initContent as string}
                 />
+              ) : (
+                <div>게시글을 불러오고 있습니다...</div>
               )}
             </EdiorWrapper>
             <ButtonWrapper>
