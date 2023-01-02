@@ -51,6 +51,7 @@ const BoardItemWrapper = styled.div`
   justify-content: space-between;
   gap: 40px;
   position: relative;
+  cursor: pointer;
 
   & > a {
     display: block;

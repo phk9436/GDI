@@ -225,6 +225,7 @@ export const createBoard = async (context: ICreateBoardProps) => {
   await setDoc(doc(dbService, 'board', boardId), postContext);
   await setDoc(doc(dbService, 'boardContent', boardId), {
     content: context.content,
+    email: context.email,
   });
   await updateDoc(doc(dbService, 'meta', 'boardCount'), {
     //전체 게시물 개수
