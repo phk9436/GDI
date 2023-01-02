@@ -14,7 +14,7 @@ interface IBoardDetailProps {
     id: string,
     fileId: string | undefined,
     thumbnailId: string | undefined,
-  ) => void;
+  ) => Promise<void>;
 }
 
 const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
