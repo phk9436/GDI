@@ -25,7 +25,7 @@ function Detail(props: IBoardData) {
   const deleteBoardItem = async (id: string) => {
     setIsLoading(true);
     await deleteBoardData(id);
-    toast.success('삭제되었습니다');
+    toast.success('삭제되었습니다.', { theme: 'light' });
     router.push('/admin/board');
   };
 
@@ -36,22 +36,23 @@ function Detail(props: IBoardData) {
     }
   }, []);
 
-  return <>
-  <div>
-    <BreadCrumb category={Tap[0]} tap={Tap} />
-    <BoardDetail
-      data={{
-        ...props,
-        id: router.query.id as string,
-        date: dayjs(props.createdAt).format('YY-MM-DD'),
-      }}
-      deleteBoardItem={deleteBoardItem}
-    />
-  </div>
-  {isLoading && <Loading />}
-</>;
+  return (
+    <>
+      <div>
+        <BreadCrumb category={Tap[0]} tap={Tap} />
+        <BoardDetail
+          data={{
+            ...props,
+            id: router.query.id as string,
+            date: dayjs(props.createdAt).format('YY-MM-DD'),
+          }}
+          deleteBoardItem={deleteBoardItem}
+        />
+      </div>
+      {isLoading && <Loading />}
+    </>
+  );
 }
-
 export default Detail;
 
 export const getServerSideProps = async ({ params }: { params: IBoardData }) => {

@@ -29,7 +29,7 @@ function Detail(props: IBoardData) {
     }
     setIsLoading(true);
     await deleteBoardData(id);
-    toast.success('삭제되었습니다');
+    toast.success('삭제되었습니다', { theme: 'light' });
     router.push('/board');
   };
 

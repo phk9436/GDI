@@ -30,7 +30,7 @@ function ForumDetail(props: IForumData) {
   ) => {
     setIsLoading(true);
     await deletePostData('forum', 'forumCount', id, fileId, thumbnailId);
-    toast.success('삭제되었습니다.');
+    toast.success('삭제되었습니다.', { theme: 'light' });
     router.push(Tap[1][2]);
   };
 

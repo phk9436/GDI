@@ -27,7 +27,7 @@ function Detail(props: INoticeData) {
   const deleteNoticeItem = async (id: string, fileId: string | undefined) => {
     setIsLoading(true);
     await deleteNoticeData(id, fileId);
-    toast.success('삭제되었습니다.');
+    toast.success('삭제되었습니다.', { theme: 'light' });
     router.push(Tap[2][2]);
   };
 

@@ -30,7 +30,7 @@ function LabDetail(props: ILabData) {
   ) => {
     setIsLoading(true);
     await deletePostData('lab', 'labCount', id, fileId, thumbnailId);
-    toast.success('삭제되었습니다.');
+    toast.success('삭제되었습니다.', { theme: 'light' });
     router.push(Tap[0][2]);
   };
 

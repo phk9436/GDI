@@ -114,7 +114,7 @@ function index({ dataList }: PageProps) {
   ) => {
     setIsLoading(true);
     await deletePostData('forum', 'forumCount', id, fileId, thumbnailId);
-    toast.success('삭제되었습니다.');
+    toast.success('삭제되었습니다. 모든 삭제작업 후 데이터 최신화를 위해 새로고침을 해주세요.', { theme: 'light' });
     setIsLoading(false);
     setPostList(postList.filter((e) => e.id !== id));
     isInit && setIsInit(false);

@@ -108,7 +108,9 @@ function index({ dataList }: PageProps) {
   const deleteBoardItem = async (id: string) => {
     setIsLoading(true);
     await deleteBoardData(id);
-    toast.success('삭제되었습니다');
+    toast.success('삭제되었습니다. 모든 삭제작업 후 데이터 최신화를 위해 새로고침을 해주세요.', {
+      theme: 'light',
+    });
     setPostList(postList.filter((e) => e.id !== id));
     setIsLoading(false);
     isInit && setIsInit(false);
