@@ -20,6 +20,7 @@ import { IPressData } from 'types/dataTypes';
 import PressItem from 'components/admin/PressItem';
 import { deletePressData } from 'utils/deleteBoardUtils';
 import PressSceleton from 'components/notice/PressSceleton';
+import { toast } from 'react-toastify';
 
 interface PageProps {
   dataList: IPressData[];
@@ -110,7 +111,7 @@ function index({ dataList }: PageProps) {
   const deletePressItem = async (id: string) => {
     setIsLoading(true);
     await deletePressData(id);
-    alert('삭제되었습니다.');
+    toast.success('삭제되었습니다.');
     setIsLoading(false);
     setPostList(postList.filter((e) => e.id !== id));
     isInit && setIsInit(false);

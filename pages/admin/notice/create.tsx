@@ -6,6 +6,7 @@ import { Editor } from '@toast-ui/react-editor';
 import { useRouter } from 'next/router';
 import { createNotice, uploadFile } from 'utils/createBoardUtils';
 import Loading from 'components/admin/Loading';
+import { toast } from 'react-toastify';
 
 function Create() {
   const [title, setTitle] = useState('');
@@ -34,10 +35,10 @@ function Create() {
 
     if (title && content) {
       await createNotice(context);
-      alert('게시글이 작성되었습니다');
+      toast.success('게시글이 작성되었습니다');
       router.push('/admin/notice');
     } else {
-      alert('항목이 모두 작성되지 않았습니다');
+      toast.error('항목이 모두 작성되지 않았습니다');
     }
     setLoading(false);
   };

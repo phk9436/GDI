@@ -6,6 +6,7 @@ import { IForumData } from 'types/dataTypes';
 import { useEffect } from 'react';
 import BoardDetail from 'components/lab/BoardDetail';
 import dayjs from 'dayjs';
+import { toast } from 'react-toastify';
 
 function ForumDetail(props: IForumData) {
   const router = useRouter();
@@ -19,7 +20,7 @@ function ForumDetail(props: IForumData) {
   ];
   useEffect(() => {
     if (!props.title) {
-      alert('잘못된 접근입니다');
+      toast.error('잘못된 접근입니다');
       router.push('/lab/Forum');
     }
   }, []);

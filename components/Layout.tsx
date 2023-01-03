@@ -7,6 +7,8 @@ import { IMobileCheck } from 'types/styleTypes';
 import Footer from './Footer';
 import { useRouter } from 'next/router';
 import GnbAdmin from './Gnb/admin/GnbAdmin';
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 interface Iprops {
   children: React.ReactNode;
@@ -32,6 +34,7 @@ function Layout({ children }: Iprops) {
       {isAdminPage ? <GnbAdmin route={route} /> : <Gnb />}
       <Main isMobile={isMobile}>{children}</Main>
       <Footer isAdminPage={isAdminPage} />
+      <ToastContainer autoClose={1500} theme="colored" limit={2} />
     </>
   );
 }

@@ -10,6 +10,7 @@ import { updateLabData } from 'utils/updateBoardUtils';
 import { uploadFile, uploadThumbnail } from 'utils/createBoardUtils';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
+import { toast } from 'react-toastify';
 
 function update() {
   const router = useRouter();
@@ -61,7 +62,7 @@ function update() {
       thumbnailUrl,
     );
     if (update) {
-      alert('수정 완료됐습니다');
+      toast.success('수정 완료됐습니다');
       router.push('/admin/lab');
     }
     setLoading(false);
@@ -74,7 +75,7 @@ function update() {
 
   useEffect(() => {
     if (!router.query.id) {
-      alert('잘못된 접근입니다.');
+      toast.success('잘못된 접근입니다.');
       router.back();
     }
     getContent();

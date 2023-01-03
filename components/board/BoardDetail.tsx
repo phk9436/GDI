@@ -3,6 +3,7 @@ import { IBoardData } from 'types/dataTypes';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 interface IBoardDetailProps {
   data: IBoardData;
@@ -18,7 +19,7 @@ function BoardDetail({ data, deleteBoardItem }: IBoardDetailProps) {
 
   const redirectUpdate = () => {
     if (prompt('비밀번호를 다시 한 번 입력해주세요.') !== data.password) {
-      alert('비밀번호가 맞지 않습니다.');
+      toast.error('비밀번호가 맞지 않습니다.');
       return;
     }
     router.push(

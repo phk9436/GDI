@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Loading from 'components/admin/Loading';
 import { createPress } from 'utils/createBoardUtils';
+import { toast } from 'react-toastify';
 
 function Create() {
   const [loading, setLoading] = useState(false);
@@ -31,10 +32,10 @@ function Create() {
     };
     if (title && pressUrl && pressFrom && pressDate) {
       await createPress(context);
-      alert('게시글이 작성되었습니다');
+      toast.success('게시글이 작성되었습니다');
       router.push('/admin/notice/Press');
     } else {
-      alert('항목이 모두 작성되지 않았습니다');
+      toast.error('항목이 모두 작성되지 않았습니다');
     }
     setLoading(false);
   };

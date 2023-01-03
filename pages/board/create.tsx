@@ -6,6 +6,7 @@ import { BlueButton, InputText } from 'components/admin/Component';
 import { Editor } from '@toast-ui/react-editor';
 import PostEditor from 'components/editor/Editor';
 import { createBoard } from 'utils/createBoardUtils';
+import { toast } from 'react-toastify';
 
 function create() {
   const [loading, setLoading] = useState(false);
@@ -23,7 +24,7 @@ function create() {
     const { value } = e.target;
     const checkEmail = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     if (!checkEmail.test(value) && value.length > 0) {
-      alert('이메일이 유효하지 않습니다.');
+      toast('이메일이 유효하지 않습니다.');
       setEmail('');
     }
   };
@@ -41,7 +42,7 @@ function create() {
     const { value } = e.target;
     const checkKor = /^[가-힣]+$/;
     if (!checkKor.test(value) && value.length > 0) {
-      alert('이름이 유효하지 않습니다.');
+      toast('이름이 유효하지 않습니다.');
       setAuthor('');
     }
   };
@@ -72,10 +73,10 @@ function create() {
     };
     if (title && email && author && password) {
       await createBoard(context);
-      alert('게시글이 작성되었습니다');
+      toast.success('게시글이 작성되었습니다');
       router.push('/board');
     } else {
-      alert('항목이 모두 작성되지 않았습니다');
+      toast.error('항목이 모두 작성되지 않았습니다');
     }
     setLoading(false);
   };

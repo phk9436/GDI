@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { InputText } from 'components/admin/Component';
+import { toast } from 'react-toastify';
 
 function Login() {
   const [id, setId] = useState('');
@@ -16,17 +17,17 @@ function Login() {
   const loginAdmin = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (id !== 'admin1234' || password !== 'adminlogin153246') {
-      alert('아이디와 패스워드를 확인해주세요');
+      toast.error('아이디와 패스워드를 확인해주세요');
       return;
     }
-    alert('로그인 성공!');
+    toast.success('로그인 성공!');
     sessionStorage.setItem('admin', 'adminLoginSuccess');
     router.push('/admin');
   };
 
   useEffect(() => {
     if (sessionStorage.getItem('admin')) {
-      alert('이미 로그인되어 있습니다');
+      toast('이미 로그인되어 있습니다');
       router.push('/admin');
     }
   }, []);

@@ -20,6 +20,7 @@ import { deleteMovieData } from 'utils/deleteBoardUtils';
 import dayjs from 'dayjs';
 import { IMovieData } from 'types/dataTypes';
 import MovieSceleton from 'components/notice/MovieSceleton';
+import { toast } from 'react-toastify';
 
 interface PageProps {
   dataList: IMovieData[];
@@ -110,7 +111,7 @@ function index({ dataList }: PageProps) {
   const deleteMovieItem = async (id: string) => {
     setIsLoading(true);
     await deleteMovieData(id);
-    alert('삭제되었습니다.');
+    toast.success('삭제되었습니다.');
     setIsLoading(false);
     setPostList(postList.filter((e) => e.id !== id));
     isInit && setIsInit(false);

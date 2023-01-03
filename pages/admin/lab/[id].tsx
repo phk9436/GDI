@@ -8,6 +8,7 @@ import Loading from 'components/admin/Loading';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import dayjs from 'dayjs';
+import { toast } from 'react-toastify';
 
 function LabDetail(props: ILabData) {
   const router = useRouter();
@@ -29,13 +30,13 @@ function LabDetail(props: ILabData) {
   ) => {
     setIsLoading(true);
     await deletePostData('lab', 'labCount', id, fileId, thumbnailId);
-    alert('삭제되었습니다.');
+    toast.success('삭제되었습니다.');
     router.push(Tap[0][2]);
   };
 
   useEffect(() => {
     if (!props.title) {
-      alert('잘못된 접근입니다');
+      toast.error('잘못된 접근입니다');
       router.push('/admin/lab');
     }
   }, []);

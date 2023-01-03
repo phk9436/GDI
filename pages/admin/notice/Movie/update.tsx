@@ -5,6 +5,7 @@ import { BlueButton, InputText, InputDate } from 'components/admin/Component';
 import { useState, useEffect } from 'react';
 import Loading from 'components/admin/Loading';
 import { updateMovieData } from 'utils/updateBoardUtils';
+import { toast } from 'react-toastify';
 
 function update() {
   const router = useRouter();
@@ -22,11 +23,11 @@ function update() {
 
   const onClickUrlButton = () => {
     if (!ytbUrl) {
-      alert('영상 링크를 등록해주세요.');
+      toast.error('영상 링크를 등록해주세요.');
       return;
     }
     if (!ytbUrl.includes('https://youtu.be/')) {
-      alert('유튜브 링크가 아닙니다.');
+      toast.error('유튜브 링크가 아닙니다.');
       return;
     }
     const ytbId = ytbUrl.split('/').at(-1);
@@ -46,7 +47,7 @@ function update() {
     };
     const update = await updateMovieData(context);
     if (update) {
-      alert('수정 완료됐습니다');
+      toast.success('수정 완료됐습니다');
       router.push('/admin/notice/Movie');
     }
     setLoading(false);
@@ -54,7 +55,7 @@ function update() {
 
   useEffect(() => {
     if (!router.query.id) {
-      alert('잘못된 접근입니다.');
+      toast.error('잘못된 접근입니다.');
       router.back();
     }
   }, []);

@@ -9,6 +9,7 @@ import { uploadFile } from 'utils/createBoardUtils';
 import PostEditor from 'components/editor/Editor';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
+import { toast } from 'react-toastify';
 
 function update() {
   const router = useRouter();
@@ -42,7 +43,7 @@ function update() {
     };
     const update = await updateNoticeData(context, isFileChanged);
     if (update) {
-      alert('수정 완료됐습니다');
+      toast.success('수정 완료됐습니다');
       router.push('/admin/notice');
     }
     setLoading(false);
@@ -55,7 +56,7 @@ function update() {
 
   useEffect(() => {
     if (!router.query.id) {
-      alert('잘못된 접근입니다.');
+      toast.error('잘못된 접근입니다.');
       router.back();
     }
     getContent();

@@ -19,6 +19,7 @@ import PressSceleton from 'components/notice/PressSceleton';
 import BoardItem from 'components/admin/board/BoardItem';
 import { deleteBoardData } from 'utils/deleteBoardUtils';
 import Loading from 'components/admin/Loading';
+import { toast } from 'react-toastify';
 
 interface PageProps {
   dataList: IBoardData[];
@@ -107,7 +108,7 @@ function index({ dataList }: PageProps) {
   const deleteBoardItem = async (id: string) => {
     setIsLoading(true);
     await deleteBoardData(id);
-    alert('삭제되었습니다');
+    toast.success('삭제되었습니다');
     setPostList(postList.filter((e) => e.id !== id));
     setIsLoading(false);
     isInit && setIsInit(false);

@@ -20,6 +20,7 @@ import Loading from 'components/admin/Loading';
 import { deletePostData } from 'utils/deleteBoardUtils';
 import dayjs from 'dayjs';
 import BoardSceleton from 'components/lab/BoardSceleton';
+import { toast } from 'react-toastify';
 
 interface PageProps {
   dataList: ILabData[];
@@ -113,7 +114,7 @@ function index({ dataList }: PageProps) {
   ) => {
     setIsLoading(true);
     await deletePostData('lab', 'labCount', id, fileId, thumbnailId);
-    alert('삭제되었습니다.');
+    toast.success('삭제되었습니다.');
     setIsLoading(false);
     setPostList(postList.filter((e) => e.id !== id));
     isInit && setIsInit(false);

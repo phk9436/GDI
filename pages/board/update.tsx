@@ -9,6 +9,7 @@ import { createBoard } from 'utils/createBoardUtils';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import { updateBoardData } from 'utils/updateBoardUtils';
+import { toast } from 'react-toastify';
 
 function update() {
   const router = useRouter();
@@ -26,7 +27,7 @@ function update() {
     const { value } = e.target;
     const checkEmail = /^[a-zA-Z0-9+-\_.]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
     if (!checkEmail.test(value) && value.length > 0) {
-      alert('이메일이 유효하지 않습니다.');
+      toast('이메일이 유효하지 않습니다.');
       setEmail('');
     }
   };
@@ -44,7 +45,7 @@ function update() {
     const { value } = e.target;
     const checkKor = /^[가-힣]+$/;
     if (!checkKor.test(value) && value.length > 0) {
-      alert('이름이 유효하지 않습니다.');
+      toast('이름이 유효하지 않습니다.');
       setAuthor('');
     }
   };
@@ -61,7 +62,7 @@ function update() {
       content: content as string,
     });
     if (update) {
-      alert('수정 완료됐습니다');
+      toast.success('수정 완료됐습니다');
       router.push('/board');
     }
     setLoading(false);
@@ -74,7 +75,7 @@ function update() {
 
   useEffect(() => {
     if (!router.query.id) {
-      alert('잘못된 접근입니다.');
+      toast.error('잘못된 접근입니다.');
       router.back();
     }
     getContent();

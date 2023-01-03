@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { IBoardData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 interface IBoardItemProps {
   data: IBoardData;
@@ -11,7 +12,7 @@ function BoardItem({ data }: IBoardItemProps) {
 
   const redirectDetail = () => {
     if (prompt('비밀번호를 입력해주세요.') !== data.password) {
-      alert('비밀번호가 맞지 않습니다.');
+      toast.error('비밀번호가 맞지 않습니다.');
       return;
     }
     router.push(

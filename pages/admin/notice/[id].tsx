@@ -8,6 +8,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import dayjs from 'dayjs';
 import NoticeDetail from 'components/admin/NoticeDetail';
+import { toast } from 'react-toastify';
 
 function Detail(props: INoticeData) {
   const router = useRouter();
@@ -26,13 +27,13 @@ function Detail(props: INoticeData) {
   const deleteNoticeItem = async (id: string, fileId: string | undefined) => {
     setIsLoading(true);
     await deleteNoticeData(id, fileId);
-    alert('삭제되었습니다.');
+    toast.success('삭제되었습니다.');
     router.push(Tap[2][2]);
   };
 
   useEffect(() => {
     if (!props.title) {
-      alert('잘못된 접근입니다');
+      toast.error('잘못된 접근입니다');
       router.push(Tap[2][2]);
     }
   }, []);

@@ -1,10 +1,9 @@
 import styled from 'styled-components';
-import Link from 'next/link';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import GnbTop from './GnbTop';
 import GnbBottom from './GnbBottom';
+import { toast } from 'react-toastify';
 
 interface IGnbProps {
   route: string;
@@ -16,7 +15,7 @@ function GnbAdmin({ route }: IGnbProps) {
 
   useEffect(() => {
     if (!sessionStorage.getItem('admin') && routeCategory !== 'Login') {
-      alert('어드민 로그인이 필요합니다');
+      toast.error('어드민 로그인이 필요합니다');
       router.push('/');
     }
   }, []);

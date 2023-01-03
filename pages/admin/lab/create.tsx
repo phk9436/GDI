@@ -13,6 +13,7 @@ import { Editor } from '@toast-ui/react-editor';
 import { useRouter } from 'next/router';
 import { createLab, uploadFile, uploadThumbnail } from 'utils/createBoardUtils';
 import Loading from 'components/admin/Loading';
+import { toast } from 'react-toastify';
 
 function Create() {
   const [title, setTitle] = useState('');
@@ -54,10 +55,10 @@ function Create() {
 
     if (title && author && year && content && thumbnailUrl && fileUrl) {
       await createLab(context);
-      alert('게시글이 작성되었습니다');
+      toast.success('게시글이 작성되었습니다');
       router.push('/admin/lab');
     } else {
-      alert('항목이 모두 작성되지 않았습니다');
+      toast.error('항목이 모두 작성되지 않았습니다');
     }
     setLoading(false);
   };

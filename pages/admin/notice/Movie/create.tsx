@@ -5,6 +5,7 @@ import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Loading from 'components/admin/Loading';
 import { createMovie } from 'utils/createBoardUtils';
+import { toast } from 'react-toastify';
 
 function Create() {
   const [loading, setLoading] = useState(false);
@@ -22,11 +23,11 @@ function Create() {
 
   const onClickUrlButton = () => {
     if (!ytbUrl) {
-      alert('영상 링크를 등록해주세요.');
+      toast.error('영상 링크를 등록해주세요.');
       return;
     }
     if (!ytbUrl.includes('https://youtu.be/')) {
-      alert('유튜브 링크가 아닙니다.');
+      toast.error('유튜브 링크가 아닙니다.');
       return;
     }
     const ytbId = ytbUrl.split('/').at(-1);
@@ -45,10 +46,10 @@ function Create() {
     };
     if (title && ytbUrl && ytbFrom && ytbDate && ytbThumbnail) {
       await createMovie(context);
-      alert('게시글이 작성되었습니다');
+      toast.success('게시글이 작성되었습니다');
       router.push('/admin/notice/Movie');
     } else {
-      alert('항목이 모두 작성되지 않았습니다');
+      toast.error('항목이 모두 작성되지 않았습니다');
     }
     setLoading(false);
   };

@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { dbService, storageService } from 'api/firebase';
 import { getDownloadURL, ref, uploadString } from 'firebase/storage';
 import { doc, increment, setDoc, updateDoc } from 'firebase/firestore';
@@ -60,7 +61,7 @@ export const uploadThumbnail: (
 ) => void = (e: React.ChangeEvent<HTMLInputElement>, setThumbnailUrl) => {
   const { files } = e.target;
   if (!files?.length) {
-    alert('파일을 등록해주세요');
+    toast('파일을 등록해주세요');
     return;
   }
   const reader = new FileReader();
@@ -75,7 +76,7 @@ export const uploadFile: (
 ) => void = (e: React.ChangeEvent<HTMLInputElement>, setFileName, setFileUrl) => {
   const { files } = e.target;
   if (!files?.length) {
-    alert('파일을 등록해주세요');
+    toast('파일을 등록해주세요');
     return;
   }
   setFileName(files[0].name);

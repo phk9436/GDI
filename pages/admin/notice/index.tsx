@@ -20,6 +20,7 @@ import { INoticeData } from 'types/dataTypes';
 import NoticeItem from 'components/admin/NoticeItem';
 import { deleteNoticeData } from 'utils/deleteBoardUtils';
 import NoticeSceleton from 'components/notice/NoticeSceleton';
+import { toast } from 'react-toastify';
 
 interface PageProps {
   dataList: INoticeData[];
@@ -110,7 +111,7 @@ function index({ dataList }: PageProps) {
   const deleteNoticeItem = async (id: string, fileId: string | undefined) => {
     setIsLoading(true);
     await deleteNoticeData(id, fileId);
-    alert('삭제되었습니다.');
+    toast.success('삭제되었습니다.');
     setIsLoading(false);
     setPostList(postList.filter((e) => e.id !== id));
     isInit && setIsInit(false);

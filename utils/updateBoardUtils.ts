@@ -1,3 +1,4 @@
+import { toast } from 'react-toastify';
 import { v4 } from 'uuid';
 import { deleteObject, getDownloadURL, ref, uploadString } from 'firebase/storage';
 import { dbService, storageService } from 'api/firebase';
@@ -34,7 +35,7 @@ export const updateLabData: (
   thumbnailUrl,
 ) => {
   if (!content || !title || !author || !year) {
-    alert('항목이 모두 채워지지 않았습니다');
+    toast.error('항목이 모두 채워지지 않았습니다');
     return false;
   }
   let context: { [x: string]: string } = {
@@ -104,7 +105,7 @@ export const updateForumData: (
   thumbnailUrl,
 ) => {
   if (!content || !title || !place || !forumDate) {
-    alert('항목이 모두 채워지지 않았습니다');
+    toast.error('항목이 모두 채워지지 않았습니다');
     return false;
   }
   let context: { [x: string]: string } = {
@@ -149,7 +150,7 @@ export const updateForumData: (
 export const updateMovieData = async (context: { [x: string]: string }) => {
   const { id, title, ytbDate, ytbUrl, ytbThumbnail, ytbFrom } = context;
   if (!title || !ytbDate || !ytbUrl || !ytbThumbnail || !ytbFrom) {
-    alert('항목이 모두 채워지지 않았습니다');
+    toast.error('항목이 모두 채워지지 않았습니다');
     return false;
   }
   await updateDoc(doc(dbService, 'movie', id as string), context);
@@ -159,7 +160,7 @@ export const updateMovieData = async (context: { [x: string]: string }) => {
 export const updatePressData = async (context: { [x: string]: string }) => {
   const { id, title, pressUrl, pressFrom, pressDate } = context;
   if (!title || !pressUrl || !pressFrom || !pressDate) {
-    alert('항목이 모두 채워지지 않았습니다');
+    toast.error('항목이 모두 채워지지 않았습니다');
     return false;
   }
   await updateDoc(doc(dbService, 'press', id as string), context);
@@ -172,7 +173,7 @@ export const updateNoticeData = async (
 ) => {
   const { id, title, fileId, fileName, fileUrl, content } = context;
   if (!title || !content) {
-    alert('항목이 모두 채워지지 않았습니다');
+    toast.error('항목이 모두 채워지지 않았습니다');
     return false;
   }
   let noticeContext: { [x: string]: string } = {
@@ -199,7 +200,7 @@ export const updateNoticeData = async (
 export const updateBoardData = async (context: { [x: string]: string }) => {
   const { id, title, author, email, content } = context;
   if (!title || !author || !email || !content) {
-    alert('항목이 모두 채워지지 않았습니다');
+    toast.error('항목이 모두 채워지지 않았습니다');
     return false;
   }
 

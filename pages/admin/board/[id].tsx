@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import BoardDetail from 'components/admin/board/BoardDetail';
 import Loading from 'components/admin/Loading';
 import { deleteBoardData } from 'utils/deleteBoardUtils';
+import { toast } from 'react-toastify';
 
 function Detail(props: IBoardData) {
   const router = useRouter();
@@ -24,13 +25,13 @@ function Detail(props: IBoardData) {
   const deleteBoardItem = async (id: string) => {
     setIsLoading(true);
     await deleteBoardData(id);
-    alert('삭제되었습니다');
+    toast.success('삭제되었습니다');
     router.push('/admin/board');
   };
 
   useEffect(() => {
     if (!props.title) {
-      alert('잘못된 접근입니다');
+      toast.error('잘못된 접근입니다');
       router.push('/admin/board');
     }
   }, []);

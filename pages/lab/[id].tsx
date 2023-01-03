@@ -6,6 +6,7 @@ import { ILabData } from 'types/dataTypes';
 import { useEffect } from 'react';
 import BoardDetail from 'components/lab/BoardDetail';
 import dayjs from 'dayjs';
+import { toast } from 'react-toastify';
 
 function LabDetail(props: ILabData) {
   const router = useRouter();
@@ -21,7 +22,7 @@ function LabDetail(props: ILabData) {
 
   useEffect(() => {
     if (!props.title) {
-      alert('잘못된 접근입니다');
+      toast.error('잘못된 접근입니다');
       router.push('/lab');
     }
   }, []);

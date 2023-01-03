@@ -8,6 +8,7 @@ import dayjs from 'dayjs';
 import BoardDetail from 'components/board/BoardDetail';
 import Loading from 'components/admin/Loading';
 import { deleteBoardData } from 'utils/deleteBoardUtils';
+import { toast } from 'react-toastify';
 
 function Detail(props: IBoardData) {
   const router = useRouter();
@@ -23,24 +24,24 @@ function Detail(props: IBoardData) {
 
   const deleteBoardItem = async (id: string) => {
     if (prompt('비밀번호를 다시 한 번 입력해주세요.') !== props.password) {
-      alert('비밀번호가 맞지 않습니다.');
+      toast.error('비밀번호가 맞지 않습니다.');
       return;
     }
     setIsLoading(true);
     await deleteBoardData(id);
-    alert('삭제되었습니다');
+    toast.success('삭제되었습니다');
     router.push('/board');
   };
 
   const validPage = () => {
     if (!props.title) {
-      alert('잘못된 접근입니다');
+      toast.error('잘못된 접근입니다');
       router.push('/board');
       return;
     }
 
     if (!router.query.isvalid && prompt('비밀번호를 입력해주세요.') !== props.password) {
-      alert('비밀번호가 맞지 않습니다.');
+      toast.error('비밀번호가 맞지 않습니다.');
       router.push('/board');
       return;
     }
