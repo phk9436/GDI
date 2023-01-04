@@ -26,7 +26,17 @@ interface IInputTextProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  inputMode?: "text" | "search" | "email" | "tel" | "url" | "none" | "numeric" | "decimal" | undefined;
+  inputMode?:
+    | 'text'
+    | 'search'
+    | 'email'
+    | 'tel'
+    | 'url'
+    | 'none'
+    | 'numeric'
+    | 'decimal'
+    | undefined;
+  pattern?: string;
 }
 
 interface IBlueButtonProps {

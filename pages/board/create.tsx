@@ -109,6 +109,7 @@ function create() {
                   onChange={onChangeAuthor}
                   onBlur={onBlurAuthor}
                   inputMode="text"
+                  pattern="^[ㄱ-ㅎ|가-힣|a-z|A-Z]+$"
                 />
                 <InputText
                   type="password"
