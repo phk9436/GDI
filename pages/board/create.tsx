@@ -108,7 +108,7 @@ function create() {
                   value={author}
                   onChange={onChangeAuthor}
                   onBlur={onBlurAuthor}
-                  inputMode="text"
+                  inputMode="search"
                   pattern="^[ㄱ-ㅎ|가-힣|a-z|A-Z]+$"
                 />
                 <InputText
