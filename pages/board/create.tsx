@@ -30,7 +30,7 @@ function create() {
   };
   const onChangeAuthor = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const checkKor = /^[ㄱ-ㅎ|가-힣]+$/;
+    const checkKor = /^[ㄱ-ㅎ|가-힣|a-z|A-Z]+$/;
     if (!checkKor.test(value) && value.length > 0) {
       setAuthor(value.substring(0, value.length - 1));
       return;
@@ -40,7 +40,7 @@ function create() {
 
   const onBlurAuthor = (e: React.FocusEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const checkKor = /^[가-힣]+$/;
+    const checkKor = /^[가-힣|a-z|A-Z]+$/;
     if (!checkKor.test(value) && value.length > 0) {
       toast('이름이 유효하지 않습니다.');
       setAuthor('');
@@ -108,12 +108,14 @@ function create() {
                   value={author}
                   onChange={onChangeAuthor}
                   onBlur={onBlurAuthor}
+                  inputMode="text"
                 />
                 <InputText
                   type="password"
                   placeholder="비밀번호 설정 (4자리 숫자)"
                   value={password}
                   onChange={onChangePassword}
+                  inputMode="decimal"
                 />
               </InputFlexContainer>
             </InputContainer>

@@ -26,6 +26,7 @@ interface IInputTextProps {
   value: string;
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+  inputMode?: "text" | "search" | "email" | "tel" | "url" | "none" | "numeric" | "decimal" | undefined;
 }
 
 interface IBlueButtonProps {
@@ -90,22 +91,8 @@ const InputHideComponent = styled.input`
   display: none;
 `;
 
-export function InputText({
-  type,
-  placeholder,
-  value,
-  onChange,
-  onBlur = () => {},
-}: IInputTextProps) {
-  return (
-    <Input
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
-      onBlur={onBlur}
-    />
-  );
+export function InputText({ ...props }: IInputTextProps) {
+  return <Input {...props} />;
 }
 
 const Input = styled.input`
