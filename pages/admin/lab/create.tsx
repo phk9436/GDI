@@ -28,7 +28,18 @@ function Create() {
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
   const onChangeAuthor = (e: React.ChangeEvent<HTMLInputElement>) => setAuthor(e.target.value);
-  const onChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => setYear(e.target.value);
+  const onChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    const checkNum = /[0-9]$/g;
+    if (value.length > 4) {
+      setYear(value.substring(0, 4));
+      return;
+    } else if (!checkNum.test(value) && value.length > 0) {
+      setYear(value.substring(0, value.length - 1));
+      return;
+    }
+    setYear(e.target.value);
+  };
 
   const onChangeThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
     uploadThumbnail(e, setThumbnailUrl);
@@ -54,9 +65,13 @@ function Create() {
     };
 
     if (title && author && year && content && thumbnailUrl && fileUrl) {
-      await createLab(context);
-      toast.success('게시글이 작성되었습니다');
-      router.push('/admin/lab');
+      if (year.length !== 4) {
+        toast.error('연도를 4글자로 입력해주세요.');
+      } else {
+        await createLab(context);
+        toast.success('게시글이 작성되었습니다');
+        router.push('/admin/lab');
+      }
     } else {
       toast.error('항목이 모두 작성되지 않았습니다');
     }
@@ -100,7 +115,7 @@ function Create() {
                   onChange={onChangeAuthor}
                 />
                 <InputText
-                  type="text"
+                  type="number"
                   placeholder="발행년도 입력"
                   value={year}
                   onChange={onChangeYear}

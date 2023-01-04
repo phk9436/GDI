@@ -59,7 +59,7 @@ function update() {
                 onChange={onChangeTitle}
               />
               <InputText
-                type="text"
+                type="url"
                 placeholder="기사 링크 입력"
                 value={pressUrl}
                 onChange={onChangePressUrl}

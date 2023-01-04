@@ -37,6 +37,9 @@ export const updateLabData: (
   if (!content || !title || !author || !year) {
     toast.error('항목이 모두 채워지지 않았습니다');
     return false;
+  } else if (year.length !== 4) {
+    toast.error('연도를 4글자로 입력해주세요.');
+    return false;
   }
   let context: { [x: string]: string } = {
     title,
@@ -161,6 +164,11 @@ export const updatePressData = async (context: { [x: string]: string }) => {
   const { id, title, pressUrl, pressFrom, pressDate } = context;
   if (!title || !pressUrl || !pressFrom || !pressDate) {
     toast.error('항목이 모두 채워지지 않았습니다');
+    return false;
+  }
+  const checkUrl = /^(http(s)?:\/\/)([^\/]*)(\.)(com|net|kr|my|shop)(\/)/gi;
+  if (!checkUrl.test(pressUrl)) {
+    toast.error('유효한 url이 아닙니다.');
     return false;
   }
   await updateDoc(doc(dbService, 'press', id as string), context);

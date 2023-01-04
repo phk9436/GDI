@@ -31,56 +31,63 @@ function Create() {
       pressDate,
     };
     if (title && pressUrl && pressFrom && pressDate) {
-      await createPress(context);
-      toast.success('게시글이 작성되었습니다');
-      router.push('/admin/notice/Press');
+      const checkUrl = /^(http(s)?:\/\/)([^\/]*)(\.)(com|net|kr|my|shop)(\/)/gi;
+      if (!checkUrl.test(pressUrl)) {
+        toast.error('유효한 url이 아닙니다.');
+      } else {
+        await createPress(context);
+        toast.success('게시글이 작성되었습니다');
+        router.push('/admin/notice/Press');
+      }
     } else {
       toast.error('항목이 모두 작성되지 않았습니다');
     }
     setLoading(false);
   };
 
-  return  <>
-  <Wrapper>
-    <Title>언론보도 게시글 작성</Title>
-    <form onSubmit={onSubmitPost}>
-      <InputWrapper>
-        <InputContainer>
-          <InputText
-            type="text"
-            placeholder="제목 입력"
-            value={title}
-            onChange={onChangeTitle}
-          />
-            <InputText
-              type="text"
-              placeholder="기사 링크 입력"
-              value={pressUrl}
-              onChange={onChangePressUrl}
-            />
-          <InputFlexContainer>
-            <InputText
-              type="text"
-              placeholder="기사 출처 입력"
-              value={pressFrom}
-              onChange={onChangePressFrom}
-            />
-            <InputDate
-              type="date"
-              placeholder="연도-월-일"
-              value={pressDate}
-              onChange={onChangePressDate}
-            />
-          </InputFlexContainer>
-        </InputContainer>
-        <ButtonWrapper>
-          <BlueButton type="submit" text="글 작성하기" disabled={loading} />
-        </ButtonWrapper>
-      </InputWrapper>
-    </form>
-  </Wrapper>
-  {loading && <Loading />}
-</>;
+  return (
+    <>
+      <Wrapper>
+        <Title>언론보도 게시글 작성</Title>
+        <form onSubmit={onSubmitPost}>
+          <InputWrapper>
+            <InputContainer>
+              <InputText
+                type="text"
+                placeholder="제목 입력"
+                value={title}
+                onChange={onChangeTitle}
+              />
+              <InputText
+                type="url"
+                placeholder="기사 링크 입력"
+                value={pressUrl}
+                onChange={onChangePressUrl}
+              />
+              <InputFlexContainer>
+                <InputText
+                  type="text"
+                  placeholder="기사 출처 입력"
+                  value={pressFrom}
+                  onChange={onChangePressFrom}
+                />
+                <InputDate
+                  type="date"
+                  placeholder="연도-월-일"
+                  value={pressDate}
+                  onChange={onChangePressDate}
+                />
+              </InputFlexContainer>
+            </InputContainer>
+            <ButtonWrapper>
+              <BlueButton type="submit" text="글 작성하기" disabled={loading} />
+            </ButtonWrapper>
+          </InputWrapper>
+        </form>
+      </Wrapper>
+      {loading && <Loading />}
+    </>
+  );
 }
 
 export default Create;

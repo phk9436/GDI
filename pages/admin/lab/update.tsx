@@ -30,7 +30,18 @@ function update() {
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
   const onChangeAuthor = (e: React.ChangeEvent<HTMLInputElement>) => setAuthor(e.target.value);
-  const onChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => setYear(e.target.value);
+  const onChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value } = e.target;
+    const checkNum = /[0-9]$/g;
+    if (value.length > 4) {
+      setYear(value.substring(0, 4));
+      return;
+    } else if (!checkNum.test(value) && value.length > 0) {
+      setYear(value.substring(0, value.length - 1));
+      return;
+    }
+    setYear(e.target.value);
+  };
 
   const onChangeThumbnail = (e: React.ChangeEvent<HTMLInputElement>) => {
     uploadThumbnail(e, setThumbnailUrl);

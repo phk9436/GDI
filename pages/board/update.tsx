@@ -33,7 +33,7 @@ function update() {
   };
   const onChangeAuthor = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const checkKor = /^[ㄱ-ㅎ|가-힣]+$/;
+    const checkKor = /^[ㄱ-ㅎ|가-힣|a-z|A-Z]+$/;
     if (!checkKor.test(value) && value.length > 0) {
       setAuthor(value.substring(0, value.length - 1));
       return;
@@ -43,7 +43,7 @@ function update() {
 
   const onBlurAuthor = (e: React.FocusEvent<HTMLInputElement>) => {
     const { value } = e.target;
-    const checkKor = /^[가-힣]+$/;
+    const checkKor = /^[가-힣|a-z|A-Z]+$/;
     if (!checkKor.test(value) && value.length > 0) {
       toast('이름이 유효하지 않습니다.');
       setAuthor('');
@@ -108,6 +108,8 @@ function update() {
                   value={author}
                   onChange={onChangeAuthor}
                   onBlur={onBlurAuthor}
+                  inputMode="text"
+                  pattern="^[ㄱ-ㅎ|가-힣|a-z|A-Z]+$"
                 />
               </InputFlexContainer>
             </InputContainer>

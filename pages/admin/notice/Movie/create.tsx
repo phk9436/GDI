@@ -77,7 +77,7 @@ function Create() {
               />
               <UrlWrapper>
                 <InputText
-                  type="text"
+                  type="url"
                   placeholder="영상링크 입력"
                   value={ytbUrl}
                   onChange={onChangeYtbUrl}
