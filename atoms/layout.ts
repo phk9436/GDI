@@ -9,3 +9,8 @@ export const mobileMenuOpen = atom({
   key: 'mobileMenuOpen',
   default: false,
 });
+
+export const confirmOpen = atom({
+  key: 'confirmOpen',
+  default: false,
+});

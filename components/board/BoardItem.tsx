@@ -2,6 +2,10 @@ import styled from 'styled-components';
 import { IBoardData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';
+import ConfirmModal from 'components/ConfirmModal';
+import { useRecoilState } from 'recoil';
+import { confirmOpen } from 'atoms/layout';
+import { useState } from 'react';
 
 interface IBoardItemProps {
   data: IBoardData;
@@ -9,10 +13,14 @@ interface IBoardItemProps {
 
 function BoardItem({ data }: IBoardItemProps) {
   const router = useRouter();
+  const [password, setPassword] = useState('');
+  const [isOpened, setIsOpened] = useRecoilState(confirmOpen);
 
-  const redirectDetail = () => {
-    if (prompt('비밀번호를 입력해주세요.') !== data.password) {
+  const checkPassword = () => {
+    if (password !== data.password) {
       toast.error('비밀번호가 맞지 않습니다.');
+      setPassword('');
+      setIsOpened(false);
       return;
     }
     router.push(
@@ -25,28 +33,36 @@ function BoardItem({ data }: IBoardItemProps) {
       `/board/${data.id}`,
     );
   };
-  return (
-    <li>
-      <BoardItemWrapper onClick={redirectDetail}>
-        <BoardItemContainer>
-          <h3>{data.title}</h3>
-          <InfoWrapper>
-            <Info>
-              <Title>작성자</Title>
-              <Detail>{data.author}</Detail>
-            </Info>
-            <Info>
-              <Title>작성일자</Title>
-              <Detail>{data.date}</Detail>
-            </Info>
-          </InfoWrapper>
-        </BoardItemContainer>
 
-        <BoardButtons>
-          <ButtonLink>상세내용확인</ButtonLink>
-        </BoardButtons>
-      </BoardItemWrapper>
-    </li>
+  const onClickLink = () => setIsOpened(true);
+
+  return (
+    <>
+      <li>
+        <BoardItemWrapper onClick={onClickLink}>
+          <BoardItemContainer>
+            <h3>{data.title}</h3>
+            <InfoWrapper>
+              <Info>
+                <Title>작성자</Title>
+                <Detail>{data.author}</Detail>
+              </Info>
+              <Info>
+                <Title>작성일자</Title>
+                <Detail>{data.date}</Detail>
+              </Info>
+            </InfoWrapper>
+          </BoardItemContainer>
+
+          <BoardButtons>
+            <ButtonLink>상세내용확인</ButtonLink>
+          </BoardButtons>
+        </BoardItemWrapper>
+      </li>
+      {isOpened && (
+        <ConfirmModal password={password} setPassword={setPassword} checkPassword={checkPassword} />
+      )}
+    </>
   );
 }
 
