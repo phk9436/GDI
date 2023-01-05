@@ -17,20 +17,22 @@ function ConfirmModal({ password, setPassword, checkPassword }: IConfirmProps) {
     setIsOpened(false);
   };
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
-
+  const onClickWrapper = () => setIsOpened(false);
   return (
-    <Wrapper>
-      <p>비밀번호를 입력해주세요.</p>
-      <InputConfirm
-        type="password"
-        value={password}
-        onChange={onChangePassword}
-        inputMode="decimal"
-      />
-      <ButtonWrapper>
-        <ButtonSubmit onClick={checkPassword}>확인</ButtonSubmit>
-        <ButtonCancel onClick={onClickCancel}>취소</ButtonCancel>
-      </ButtonWrapper>
+    <Wrapper onClick={onClickWrapper}>
+      <Container>
+        <p>비밀번호를 입력해주세요.</p>
+        <InputConfirm
+          type="password"
+          value={password}
+          onChange={onChangePassword}
+          inputMode="decimal"
+        />
+        <ButtonWrapper>
+          <ButtonSubmit onClick={checkPassword}>확인</ButtonSubmit>
+          <ButtonCancel onClick={onClickCancel}>취소</ButtonCancel>
+        </ButtonWrapper>
+      </Container>
     </Wrapper>
   );
 }
@@ -39,11 +41,19 @@ export default ConfirmModal;
 
 const Wrapper = styled.div`
   position: fixed;
-  top: calc(30vh - 50px);
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 30px 40px 20px;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   z-index: 100;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: rgba(255,255,255,0.1);
+`;
+
+const Container = styled.div`
+  padding: 30px 40px 20px;
   background-color: #fff;
   border-radius: 10px;
   box-shadow: 0 0 4px 4px rgba(0, 0, 0, 0.2);
