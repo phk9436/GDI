@@ -1,24 +1,8 @@
 import styled from 'styled-components';
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
 import GnbTop from './GnbTop';
 import GnbBottom from './GnbBottom';
-import { toast } from 'react-toastify';
 
-interface IGnbProps {
-  route: string;
-}
-
-function GnbAdmin({ route }: IGnbProps) {
-  const router = useRouter();
-  const routeCategory = route.split('/')[2];
-
-  useEffect(() => {
-    if (!sessionStorage.getItem('admin') && routeCategory !== 'Login') {
-      toast.error('어드민 로그인이 필요합니다');
-      router.push('/');
-    }
-  }, []);
+function GnbAdmin() {
 
   return (
     <GnbWrapper>
