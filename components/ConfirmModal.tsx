@@ -1,15 +1,16 @@
 import { confirmOpen } from 'atoms/layout';
 import React, { useEffect, useRef } from 'react';
 import { useSetRecoilState } from 'recoil';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 interface IConfirmProps {
   password: string;
   setPassword: (value: React.SetStateAction<string>) => void;
   checkPassword: () => void;
+  isDark?: boolean;
 }
 
-function ConfirmModal({ password, setPassword, checkPassword }: IConfirmProps) {
+function ConfirmModal({ password, setPassword, checkPassword, isDark = false }: IConfirmProps) {
   const setIsOpened = useSetRecoilState(confirmOpen);
   const inputRef = useRef<HTMLInputElement>(null);
 
@@ -18,12 +19,12 @@ function ConfirmModal({ password, setPassword, checkPassword }: IConfirmProps) {
     setIsOpened(false);
   };
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
-  const onClickWrapper = () => setIsOpened(false);
+  const onClickWrapper = () => isDark || setIsOpened(false);
 
   useEffect(() => inputRef.current?.focus());
 
   return (
-    <Wrapper onClick={onClickWrapper}>
+    <Wrapper onClick={onClickWrapper} isDark={isDark}>
       <Container>
         <p>비밀번호를 입력해주세요.</p>
         <InputConfirm
@@ -44,7 +45,7 @@ function ConfirmModal({ password, setPassword, checkPassword }: IConfirmProps) {
 
 export default ConfirmModal;
 
-const Wrapper = styled.div`
+const Wrapper = styled.div<{ isDark: boolean }>`
   position: fixed;
   top: 0;
   left: 0;
@@ -55,6 +56,12 @@ const Wrapper = styled.div`
   justify-content: center;
   align-items: center;
   background-color: rgba(255, 255, 255, 0.1);
+
+  ${({ isDark }) =>
+    isDark &&
+    css`
+      background-color: #777;
+    `}
 `;
 
 const Container = styled.div`

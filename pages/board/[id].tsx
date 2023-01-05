@@ -9,10 +9,16 @@ import BoardDetail from 'components/board/BoardDetail';
 import Loading from 'components/admin/Loading';
 import { deleteBoardData } from 'utils/deleteBoardUtils';
 import { toast } from 'react-toastify';
+import ConfirmModal from 'components/ConfirmModal';
+import { useRecoilState } from 'recoil';
+import { confirmOpen } from 'atoms/layout';
 
 function Detail(props: IBoardData) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
+  const [password, setPassword] = useState('');
+  const [modalType, setModalType] = useState('');
+  const [isOpened, setIsOpened] = useRecoilState(confirmOpen);
 
   const Tap = [
     [
@@ -22,15 +28,60 @@ function Detail(props: IBoardData) {
     ],
   ];
 
-  const deleteBoardItem = async (id: string) => {
-    if (prompt('비밀번호를 다시 한 번 입력해주세요.') !== props.password) {
+  const updateBoardItem = () => {
+    setModalType('update');
+    setIsOpened(true);
+  };
+
+  const deleteBoardItem = () => {
+    setModalType('delete');
+    setIsOpened(true);
+  };
+
+  const checkPasswordForUpdate = () => {
+    if (password !== props.password) {
       toast.error('비밀번호가 맞지 않습니다.');
+      setPassword('');
+      setIsOpened(false);
       return;
     }
+    setPassword('');
+    router.push(
+      {
+        pathname: '/board/update',
+        query: {
+          ...props,
+          id: router.query.id as string,
+          date: dayjs(props.createdAt).format('YY-MM-DD'),
+        },
+      },
+      '/board/update',
+    );
+  };
+
+  const checkPasswordForDelete = async () => {
+    if (password !== props.password) {
+      toast.error('비밀번호가 맞지 않습니다.');
+      setPassword('');
+      setIsOpened(false);
+      return;
+    }
+    setPassword('');
     setIsLoading(true);
-    await deleteBoardData(id);
+    await deleteBoardData(router.query.id as string);
     toast.success('삭제되었습니다', { theme: 'light' });
     router.push('/board');
+  };
+
+  const checkPasswordForLanding = () => {
+    if (password !== props.password) {
+      toast.error('비밀번호가 맞지 않습니다.');
+      setPassword('');
+      router.push('/board');
+      return;
+    }
+    setPassword('');
+    setIsOpened(false);
   };
 
   const validPage = () => {
@@ -40,9 +91,9 @@ function Detail(props: IBoardData) {
       return;
     }
 
-    if (!router.query.isvalid && prompt('비밀번호를 입력해주세요.') !== props.password) {
-      toast.error('비밀번호가 맞지 않습니다.');
-      router.push('/board');
+    if (!router.query.isvalid) {
+      setModalType('landing');
+      setIsOpened(true);
       return;
     }
   };
@@ -62,9 +113,32 @@ function Detail(props: IBoardData) {
             date: dayjs(props.createdAt).format('YY-MM-DD'),
           }}
           deleteBoardItem={deleteBoardItem}
+          updateBoardItem={updateBoardItem}
         />
       </div>
       {isLoading && <Loading />}
+      {isOpened && modalType === 'delete' && (
+        <ConfirmModal
+          password={password}
+          setPassword={setPassword}
+          checkPassword={checkPasswordForDelete}
+        />
+      )}
+      {isOpened && modalType === 'update' && (
+        <ConfirmModal
+          password={password}
+          setPassword={setPassword}
+          checkPassword={checkPasswordForUpdate}
+        />
+      )}
+      {isOpened && modalType === 'landing' && (
+        <ConfirmModal
+          password={password}
+          setPassword={setPassword}
+          checkPassword={checkPasswordForLanding}
+          isDark={true}
+        />
+      )}
     </>
   );
 }

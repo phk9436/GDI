@@ -15,26 +15,31 @@ function BoardItem({ data }: IBoardItemProps) {
   const router = useRouter();
   const [password, setPassword] = useState('');
   const [isOpened, setIsOpened] = useRecoilState(confirmOpen);
+  const [modalId, setModalId] = useState('');
 
-  const checkPassword = () => {
+  const checkPassword = (id: string) => {
     if (password !== data.password) {
       toast.error('비밀번호가 맞지 않습니다.');
       setPassword('');
       setIsOpened(false);
       return;
     }
+    setPassword('');
     router.push(
       {
-        pathname: `/board/${data.id}`,
+        pathname: `/board/${id}`,
         query: {
           isvalid: true,
         },
       },
-      `/board/${data.id}`,
+      `/board/${id}`,
     );
   };
 
-  const onClickLink = () => setIsOpened(true);
+  const onClickLink = () => {
+    setModalId(data.id as string);
+    setIsOpened(true);
+  };
 
   return (
     <>
@@ -59,8 +64,12 @@ function BoardItem({ data }: IBoardItemProps) {
           </BoardButtons>
         </BoardItemWrapper>
       </li>
-      {isOpened && (
-        <ConfirmModal password={password} setPassword={setPassword} checkPassword={checkPassword} />
+      {isOpened && modalId === data.id && (
+        <ConfirmModal
+          password={password}
+          setPassword={setPassword}
+          checkPassword={() => checkPassword(data.id as string)}
+        />
       )}
     </>
   );

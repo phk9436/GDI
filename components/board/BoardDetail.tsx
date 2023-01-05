@@ -2,37 +2,18 @@ import styled from 'styled-components';
 import { IBoardData } from 'types/dataTypes';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-import { useRouter } from 'next/router';
-import { toast } from 'react-toastify';
 
 interface IBoardDetailProps {
   data: IBoardData;
-  deleteBoardItem: (id: string) => Promise<void>;
+  deleteBoardItem: () => void;
+  updateBoardItem: () => void;
 }
 
 const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
   ssr: false,
 });
 
-function BoardDetail({ data, deleteBoardItem }: IBoardDetailProps) {
-  const router = useRouter();
-
-  const redirectUpdate = () => {
-    if (prompt('비밀번호를 다시 한 번 입력해주세요.') !== data.password) {
-      toast.error('비밀번호가 맞지 않습니다.');
-      return;
-    }
-    router.push(
-      {
-        pathname: '/board/update',
-        query: {
-          ...data,
-        },
-      },
-      '/board/update',
-    );
-  };
-
+function BoardDetail({ data, deleteBoardItem, updateBoardItem }: IBoardDetailProps) {
   return (
     <Wrapper>
       <DetailTop>
@@ -55,8 +36,8 @@ function BoardDetail({ data, deleteBoardItem }: IBoardDetailProps) {
               </ul>
             </InfoWrapper>
             <Buttons>
-              <Button onClick={redirectUpdate}>수정</Button>
-              <Button onClick={() => deleteBoardItem(data.id as string)}>삭제</Button>
+              <Button onClick={updateBoardItem}>수정</Button>
+              <Button onClick={deleteBoardItem}>삭제</Button>
             </Buttons>
           </DetailFlex>
         </DetailTopContainer>

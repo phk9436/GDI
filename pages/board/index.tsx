@@ -106,28 +106,24 @@ function index({ dataList }: PageProps) {
   }, [isRefetch]);
 
   return (
-    <>
-      <div>
-        <BreadCrumb category={Tap[0]} tap={Tap} />
-        <Wrapper>
-          <UploadButton tap={Tap[0]} />
-          <ul>
-            {isInit
-              ? dataList.map((e) => <BoardItem data={e} key={e.id} />)
-              : postList.map((e) => (
-                  <BoardItem data={e} key={e.id} />
-                ))}
-            {isPending && <PressSceleton />}
-          </ul>
-          <Pagination
-            currentPageNum={currentPageNum}
-            totalPageNum={totalPageNum}
-            getPrevPage={getPrevPage}
-            getNextPage={getNextPage}
-          />
-        </Wrapper>
-      </div>
-    </>
+    <div>
+      <BreadCrumb category={Tap[0]} tap={Tap} />
+      <Wrapper>
+        <UploadButton tap={Tap[0]} />
+        <ul>
+          {isInit
+            ? dataList.map((e) => <BoardItem data={e} key={e.id} />)
+            : postList.map((e) => <BoardItem data={e} key={e.id} />)}
+          {isPending && <PressSceleton />}
+        </ul>
+        <Pagination
+          currentPageNum={currentPageNum}
+          totalPageNum={totalPageNum}
+          getPrevPage={getPrevPage}
+          getNextPage={getNextPage}
+        />
+      </Wrapper>
+    </div>
   );
 }
 
