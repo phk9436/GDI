@@ -1,5 +1,5 @@
 import { confirmOpen } from 'atoms/layout';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useSetRecoilState } from 'recoil';
 import styled from 'styled-components';
 
@@ -11,6 +11,7 @@ interface IConfirmProps {
 
 function ConfirmModal({ password, setPassword, checkPassword }: IConfirmProps) {
   const setIsOpened = useSetRecoilState(confirmOpen);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const onClickCancel = () => {
     setPassword('');
@@ -18,6 +19,9 @@ function ConfirmModal({ password, setPassword, checkPassword }: IConfirmProps) {
   };
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
   const onClickWrapper = () => setIsOpened(false);
+
+  useEffect(() => inputRef.current?.focus());
+
   return (
     <Wrapper onClick={onClickWrapper}>
       <Container>
@@ -27,6 +31,7 @@ function ConfirmModal({ password, setPassword, checkPassword }: IConfirmProps) {
           value={password}
           onChange={onChangePassword}
           inputMode="decimal"
+          ref={inputRef}
         />
         <ButtonWrapper>
           <ButtonSubmit onClick={checkPassword}>확인</ButtonSubmit>
@@ -49,7 +54,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: rgba(255,255,255,0.1);
+  background-color: rgba(255, 255, 255, 0.1);
 `;
 
 const Container = styled.div`
