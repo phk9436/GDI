@@ -26,20 +26,20 @@ function MainSectionEtc() {
                   </>
                 )}
               </p>
-              <ContentTitle>
-                {e === 'board' ? (
-                  <>
-                    연구제안
-                    <RedirectDetail href="/board" />
-                  </>
-                ) : (
-                  <>
-                    GDI 소개
-                    <RedirectDetail href="/intro" />
-                  </>
-                )}
-              </ContentTitle>
             </ContentBox>
+            <ContentTitle>
+              {e === 'board' ? (
+                <>
+                  연구제안
+                  <RedirectDetail href="/board" />
+                </>
+              ) : (
+                <>
+                  GDI 소개
+                  <RedirectDetail href="/intro" />
+                </>
+              )}
+            </ContentTitle>
           </li>
         ))}
       </ContentsList>
@@ -69,11 +69,12 @@ const ContentsList = styled.ul`
 `;
 
 const ContentBox = styled.div<IContent>`
-  height: 316px;
+  height: 216px;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   border: 1px solid #d9d9d9;
+  border-bottom: none;
 
   p {
     font-size: 20px;
@@ -85,7 +86,7 @@ const ContentBox = styled.div<IContent>`
 
   @media screen and (max-width: 820px) {
     height: auto;
-    aspect-ratio: 280/196;
+    aspect-ratio: 280/134;
     letter-spacing: -0.01em;
 
     p {
@@ -124,6 +125,8 @@ const ContentTitle = styled.div`
   padding: 0 28px;
   font-size: 30px;
   font-weight: 800;
+  border: 1px solid #d9d9d9;
+  border-top: none;
 
   @media screen and (max-width: 820px) {
     height: 62px;
