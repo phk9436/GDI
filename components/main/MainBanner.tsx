@@ -27,7 +27,7 @@ const Wrapper = styled.div`
 `;
 
 const BannerBackground = styled.div`
-  background: #fff url('/images/mainBannerPc.png') no-repeat left center/1440px 500px;
+  background: #fff url('/images/mainBannerPc.png') no-repeat left center/1300px 500px;
   position: absolute;
   top: 0;
   left: 0;

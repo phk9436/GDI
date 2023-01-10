@@ -44,13 +44,13 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 140px;
+  height: 86px;
 `;
 
 const LogoWrapper = styled.div`
   position: relative;
-  width: 218px;
-  height: 80px;
+  width: 136px;
+  height: 50px;
 `;
 
 const LinkWrapper = styled.div`
@@ -67,7 +67,7 @@ const Nav = styled.nav`
 `;
 
 const NavLink = styled.a`
-  font-size: 30px;
+  font-size: 24px;
   font-weight: 800;
   letter-spacing: -0.01em;
   z-index: 1;
@@ -76,8 +76,8 @@ const NavLink = styled.a`
 
 const LinkMarker = styled.div`
   position: absolute;
-  bottom: calc(50% - 20px);
-  width: 116px;
+  bottom: calc(50% - 17px);
+  width: 86px;
   height: 20px;
   border-radius: 10px;
   background-color: #f58472;

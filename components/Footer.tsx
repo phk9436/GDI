@@ -75,7 +75,7 @@ const FooterTop = styled.div`
   padding-right: 70px;
   font-size: 24px;
   font-weight: 700;
-  max-width: 1440px;
+  max-width: 1300px;
   margin: auto;
 `;
 
@@ -88,7 +88,7 @@ const FooterContents = styled.div`
 `;
 
 const ContentsBox = styled.div`
-  max-width: 1440px;
+  max-width: 1300px;
   height: 100%;
   display: flex;
   justify-content: space-between;

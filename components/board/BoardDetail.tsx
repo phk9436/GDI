@@ -59,7 +59,7 @@ function BoardDetail({ data, deleteBoardItem, updateBoardItem }: IBoardDetailPro
 export default BoardDetail;
 
 const Wrapper = styled.div`
-  max-width: 1440px;
+  max-width: 1300px;
   padding: 56px 60px 140px;
   margin: auto;
 

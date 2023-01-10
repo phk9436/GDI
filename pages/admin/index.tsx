@@ -54,7 +54,7 @@ const BreadCrumbWrapper = styled.div`
 `;
 
 const BreadCrumb = styled.div`
-  max-width: 1440px;
+  max-width: 1300px;
   height: 100%;
   padding: 0 70px;
   display: flex;

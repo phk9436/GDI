@@ -24,9 +24,7 @@ function GnbBottom() {
     ],
     [
       ['GDI소개', 'intro'],
-      ['원장인사말', 'intro'],
-      ['비전&연혁', 'intro/Vision'],
-      ['오시는길', 'intro/Map'],
+      ['GDI소개', 'intro'],
     ],
   ];
 
@@ -62,8 +60,8 @@ const Wrapper = styled.div<IOpenCheck>`
   width: 204px;
   padding: 0 30px;
   background-color: #1f4788;
-  border-right: 1px solid #D9D9D9;
-  border-bottom: 1px solid #D9D9D9;
+  border-right: 1px solid #d9d9d9;
+  border-bottom: 1px solid #d9d9d9;
   top: 77px;
   overflow-y: hidden;
   transition: 0.5s;
@@ -71,7 +69,7 @@ const Wrapper = styled.div<IOpenCheck>`
   ${({ isOpen }) =>
     isOpen
       ? css`
-          height: 470px;
+          height: 430px;
         `
       : css`
           height: 0;

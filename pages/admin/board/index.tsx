@@ -166,7 +166,7 @@ export const getServerSideProps = async () => {
 };
 
 const Wrapper = styled.div`
-  max-width: 1440px;
+  max-width: 1300px;
   margin: auto;
   padding: 56px 60px 180px;
 `;

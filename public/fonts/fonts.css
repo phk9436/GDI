@@ -12,3 +12,31 @@
     url('./NanumSquareNeo-Variable.eot?#iefix') format('embedded-opentype'),
     url('./NanumSquareNeo-Variable.woff2') format('woff');
 }
+
+@font-face {
+  font-family: 'Noto';
+  font-display: fallback;
+  font-weight: 300;
+  src: url('./NotoSansKR-Light.otf');
+}
+
+@font-face {
+  font-family: 'Noto';
+  font-display: fallback;
+  font-weight: 400;
+  src: url('./NotoSansKR-Regular.otf');
+}
+
+@font-face {
+  font-family: 'Noto';
+  font-display: fallback;
+  font-weight: 500;
+  src: url('./NotoSansKR-Medium.otf');
+}
+
+@font-face {
+  font-family: 'Noto';
+  font-display: fallback;
+  font-weight: 700;
+  src: url('./NotoSansKR-Bold.otf');
+}

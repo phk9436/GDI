@@ -46,7 +46,7 @@ const MovieTop = styled.div`
   padding: 50px 60px 36px;
   color: #fff;
   position: relative;
-  max-width: 1440px;
+  max-width: 1300px;
   margin: auto;
 
   h4 {

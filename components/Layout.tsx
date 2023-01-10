@@ -61,7 +61,7 @@ const Main = styled.main<IMobileCheck>`
           padding-top: 76px;
         `
       : css`
-          padding-top: 140px;
+          padding-top: 87px;
         `}
 `;
 

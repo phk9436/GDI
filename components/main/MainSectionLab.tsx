@@ -24,7 +24,7 @@ export default MainSectionLab;
 
 const Wrapper = styled.section`
   padding: 0 60px;
-  max-width: 1440px;
+  max-width: 1300px;
   margin: auto;
   margin-top: 64px;
 

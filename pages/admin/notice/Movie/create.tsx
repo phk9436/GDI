@@ -113,7 +113,7 @@ function Create() {
 export default Create;
 
 const Wrapper = styled.div`
-  max-width: 1440px;
+  max-width: 1300px;
   padding: 70px 60px 140px;
   margin: auto;
 `;
@@ -122,7 +122,7 @@ const Title = styled.h3`
   font-size: 36px;
   font-weight: 700;
   padding-bottom: 40px;
-  border-bottom: 1px solid #000000;
+  border-bottom: 1px solid #5B5859;
 `;
 const InputWrapper = styled.div`
   margin: 40px 0;

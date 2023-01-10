@@ -13,11 +13,7 @@ function GnbBottom() {
       ['공지사항', ''],
     ],
     board: [['연구제안', '']],
-    intro: [
-      ['원장인사말', ''],
-      ['비전&연혁', 'Vision'],
-      ['오시는길', 'Map'],
-    ],
+    intro: [['GDI소개', '']],
   };
   const MenuTaps = Object.keys(Menu);
 
