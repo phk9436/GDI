@@ -21,10 +21,10 @@ export default MainSectionBottom;
 const Wrapper = styled.section`
   margin: 152px auto 190px;
   max-width: 1300px;
-  padding: 0 124px 0 60px;
+  padding: 0 60px;
   display: flex;
   justify-content: space-between;
-  gap: 134px;
+  gap: 96px;
 
   @media screen and (max-width: 820px) {
     margin: 60px auto 62px;

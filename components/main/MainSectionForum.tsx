@@ -72,7 +72,7 @@ const DescriptText = styled.p`
   em {
     display: inline-block;
     background-color: rgba(156, 135, 191, 0.8);
-    border-radius: 60px;
+    color: #fff;
     padding: 0 6px;
   }
 

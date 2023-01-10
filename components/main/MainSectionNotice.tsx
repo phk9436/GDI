@@ -34,7 +34,9 @@ function MainSectionNotice({ data }: PageProps) {
   return (
     <Wrapper>
       <TopWrapper>
-        <h4>GDI 소식</h4>
+        <h4>
+          <span>GDI</span> 소식
+        </h4>
         <Taps>
           {taps.map(([title, path], i) => (
             <Tap key={`tap${i}`} onClick={() => onClickTap(i)}>
@@ -60,11 +62,18 @@ function MainSectionNotice({ data }: PageProps) {
             ))}
             {data?.length >= 4 && (
               <li>
-                <RedirectDetail href={taps[tapIndex][1]} />
+                <RedirectWrapper>
+                  <RedirectDetail text={'더보기 +'} href={taps[tapIndex][1]} />
+                </RedirectWrapper>
+                <RedirectMo>
+                  <Link href={taps[tapIndex][1]}>
+                    <a>더보기 +</a>
+                  </Link>
+                </RedirectMo>
               </li>
             )}
           </>
-            )}
+        )}
         {tapIndex === 1 && (
           <>
             {noticeList.map((e, i) => (
@@ -79,7 +88,14 @@ function MainSectionNotice({ data }: PageProps) {
             ))}
             {noticeList.length >= 4 && (
               <li>
-                <RedirectDetail href={taps[tapIndex][1]} />
+                <RedirectWrapper>
+                  <RedirectDetail text={'더보기 +'} href={taps[tapIndex][1]} />
+                </RedirectWrapper>
+                <RedirectMo>
+                  <Link href={taps[tapIndex][1]}>
+                    <a>더보기 +</a>
+                  </Link>
+                </RedirectMo>
               </li>
             )}
           </>
@@ -94,7 +110,7 @@ export default MainSectionNotice;
 
 const Wrapper = styled.div`
   width: 100%;
-  max-width: calc(100% - 586px);
+  max-width: calc(100% - 548px);
 
   @media screen and (max-width: 820px) {
     max-width: none;
@@ -105,13 +121,20 @@ const TopWrapper = styled.div`
   justify-content: space-between;
   align-items: center;
   padding-bottom: 24px;
-  border-bottom: 1px solid #000;
-  margin-bottom: 20px;
+  border-bottom: 1px solid #221e1f;
+  margin-bottom: 16px;
+  padding-left: 20px;
+  color: #221e1f;
 
   h4 {
-    font-size: 36px;
-    line-height: 40px;
-    font-weight: 700;
+    font-size: 30px;
+    font-weight: 900;
+    line-height: 34px;
+    letter-spacing: -0.04em;
+
+    span {
+      color: #1f4788;
+    }
   }
 
   @media screen and (max-width: 820px) {
@@ -137,7 +160,7 @@ const Taps = styled.ul`
 
 const Tap = styled.li`
   font-size: 24px;
-  font-weight: 500;
+  font-weight: 700;
   position: relative;
   cursor: pointer;
 
@@ -176,24 +199,26 @@ const List = styled.ul`
 
 const ListContent = styled.li`
   width: 100%;
-  margin-bottom: 24px;
+  margin-bottom: 16px;
   border-bottom: 1px solid #000;
+  padding-left: 20px;
 
   h3 {
-    font-size: 24px;
-    font-weight: 700;
+    font-size: 20px;
+    font-weight: 900;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
   p {
-    font-size: 20px;
-    margin: 26px 0 30px;
+    font-size: 18px;
+    margin: 10px 0 14px;
   }
 
   @media screen and (max-width: 820px) {
     margin-bottom: 12px;
+    padding-left: 0;
 
     h3 {
       font-size: 14px;
@@ -213,10 +238,10 @@ const ListContent = styled.li`
 const ContentInfo = styled.ul`
   display: flex;
   align-items: center;
-  margin: 26px 0 30px;
+  margin: 10px 0 14px;
 
   li {
-    font-size: 20px;
+    font-size: 18px;
     display: flex;
     align-items: center;
 
@@ -241,5 +266,21 @@ const ContentInfo = styled.ul`
 
   @media screen and (max-width: 820px) {
     margin: 10px 0 12px;
+  }
+`;
+
+const RedirectWrapper = styled.div`
+  @media screen and (max-width: 820px) {
+    display: none;
+  }
+`;
+
+const RedirectMo = styled.div`
+  font-size: 14px;
+  font-weight: 700;
+  display: none;
+
+  @media screen and (max-width: 820px) {
+    display: block;
   }
 `;
