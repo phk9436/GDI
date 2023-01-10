@@ -16,7 +16,6 @@ const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
 
 function NoticeDetail({ data, deleteNoticeItem }: IBoardDetailProps) {
   const router = useRouter();
-  console.log(data)
   const redirectUpdate = () => {
     router.push(
       {
@@ -91,13 +90,6 @@ const DetailTop = styled.div`
   padding-bottom: 47px;
 `;
 
-const ThumbnailWrapper = styled.div`
-  min-width: 210px;
-  height: 297px;
-  position: relative;
-  border: 1px solid #d9d9d9;
-`;
-
 const DetailTopContainer = styled.div`
   width: 100%;
   display: flex;
@@ -110,14 +102,14 @@ const DetailTopContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.5);
+    background: #1F4788;
     border-radius: 15px;
     color: #fff;
   }
 
   h3 {
     font-size: 36px;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 50px;
     height: 150px;
     overflow: hidden;
@@ -145,7 +137,7 @@ const InfoWrapper = styled.div`
       }
 
       &:first-child {
-        font-weight: 700;
+        font-weight: 800;
         display: flex;
         align-items: center;
 

@@ -49,7 +49,7 @@ const MovieItemWrapper = styled.div`
   }
 
   h3 {
-    font-size: 24px;
+    font-size: 26px;
     font-weight: 700;
     max-width: 100%;
     white-space: nowrap;

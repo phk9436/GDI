@@ -18,6 +18,7 @@ function MainSectionLab({ data }: PageProps) {
             확인해보세요.
             <DescriptMarker />
           </DescriptText>
+
           <DescriptLink>
             연구보고서 리스트
             <RedirectDetail href="/lab" />

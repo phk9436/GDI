@@ -200,7 +200,7 @@ const List = styled.ul`
 const ListContent = styled.li`
   width: 100%;
   margin-bottom: 16px;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #221e1f;
   padding-left: 20px;
 
   h3 {

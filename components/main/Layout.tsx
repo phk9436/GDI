@@ -18,9 +18,9 @@ export function SectionTop({ title, href }: ISectionTopProps) {
       <h4>
         <span>NEW</span> {title}
       </h4>
-      <RedirectWrapper>
+      <RedirectTopWrapper>
         <RedirectDetail href={href} />
-      </RedirectWrapper>
+      </RedirectTopWrapper>
     </TopWrapper>
   );
 }
@@ -32,6 +32,7 @@ const TopWrapper = styled.div`
   border-bottom: 1px solid #221e1f;
   margin-bottom: 20px;
   padding: 0 60px 0 80px;
+  position: relative;
 
   h4 {
     font-size: 30px;
@@ -59,7 +60,7 @@ const TopWrapper = styled.div`
   }
 `;
 
-const RedirectWrapper = styled.div`
+const RedirectTopWrapper = styled.div`
   display: none;
 
   @media screen and (max-width: 820px) {

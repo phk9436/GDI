@@ -46,8 +46,8 @@ function index({ dataList }: PageProps) {
       '정책의 방향설정과 실현에 도움을 주고자 작성된 분야별 정책제안이나 아이디어 자료입니다.',
       '/admin/notice/Movie',
     ],
-    ['언론보도', '안내내용', '/admin/notice/Press'],
-    ['공지사항', '안내내용', '/admin/notice'],
+    ['언론보도', '', '/admin/notice/Press'],
+    ['공지사항', '', '/admin/notice'],
   ];
 
   const getPosts = async () => {

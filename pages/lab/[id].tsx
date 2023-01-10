@@ -17,7 +17,7 @@ function LabDetail(props: ILabData) {
       '경기도 북부지역의 정책방향 및 대안 수립을 위한 기본 · 정책 · 수탁 · 기타 · 공공투자에 대한 연구자료 입니다.',
       '/lab',
     ],
-    ['학술포럼', '안내내용', '/lab/Forum'],
+    ['학술포럼', '', '/lab/Forum'],
   ];
 
   useEffect(() => {

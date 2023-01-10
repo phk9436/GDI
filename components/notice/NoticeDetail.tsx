@@ -1,6 +1,5 @@
 import styled from 'styled-components';
 import { INoticeData } from 'types/dataTypes';
-import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { downloadFile } from 'utils/downloadUtils';
@@ -94,7 +93,7 @@ const DetailTopContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: rgba(0, 0, 0, 0.5);
+    background: #1F4788;
     border-radius: 15px;
     color: #fff;
 
@@ -107,7 +106,7 @@ const DetailTopContainer = styled.div`
 
   h3 {
     font-size: 36px;
-    font-weight: 500;
+    font-weight: 700;
     line-height: 50px;
     height: 150px;
     overflow: hidden;
@@ -144,7 +143,7 @@ const InfoWrapper = styled.div`
       }
 
       &:first-child {
-        font-weight: 700;
+        font-weight: 800;
         display: flex;
         align-items: center;
 

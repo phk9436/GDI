@@ -19,6 +19,7 @@ function MainSectionForum({ data }: PageProps) {
             여러분을 초대합니다!
             <DescriptMarker />
           </DescriptText>
+
           <DescriptLink>
             학술포럼 리스트
             <RedirectDetail href="/lab" />
