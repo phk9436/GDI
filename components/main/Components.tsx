@@ -90,7 +90,7 @@ const CardDate = styled.div`
   position: absolute;
   top: 14px;
   left: 14px;
-  background-color: #1f4788;
+  background-color: rgba(34, 30, 31, 0.3);
   border-radius: 34px;
   width: 83px;
   height: 20px;

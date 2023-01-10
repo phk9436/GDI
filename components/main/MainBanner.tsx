@@ -35,8 +35,6 @@ const BannerWrapper = styled.div`
   height: 100%;
   margin: auto;
   max-width: 1200px;
-  border-right: 1px solid #5b5859;
-  border-left: 1px solid #5b5859;
 
   @media screen and (max-width: 820px) {
     height: 146px;

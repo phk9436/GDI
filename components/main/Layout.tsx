@@ -28,7 +28,7 @@ const TopWrapper = styled.div`
   display: flex;
   gap: 12px;
   align-items: center;
-  height: 91px;
+  height: 70px;
   border-bottom: 1px solid #221e1f;
   margin-bottom: 20px;
   padding: 0 60px 0 80px;

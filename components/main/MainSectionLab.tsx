@@ -16,6 +16,7 @@ function MainSectionLab({ data }: PageProps) {
           <DescriptText>
             지역경제활성화를 위한 <em>GDI만의 실질적 연구</em>를 <br />
             확인해보세요.
+            <DescriptMarker />
           </DescriptText>
           <DescriptLink>
             연구보고서 리스트
@@ -67,18 +68,27 @@ const DescriptText = styled.p`
   letter-spacing: -0.04em;
   margin-top: 20px;
   padding-left: 20px;
+  position: relative;
 
   em {
     display: inline-block;
-    background-color: rgba(252, 201, 76, 0.93);
     font-weight: 700;
     color: #fff;
-    padding: 0 6px;
   }
 
   @media screen and (max-width: 820px) {
     display: none;
   }
+`;
+
+const DescriptMarker = styled.div`
+  width: 214px;
+  height: 40px;
+  background-color: #fcc94c;
+  position: absolute;
+  top: 52px;
+  left: 12px;
+  z-index: -1;
 `;
 
 const DescriptLink = styled.div`

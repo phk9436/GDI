@@ -17,6 +17,7 @@ function MainSectionForum({ data }: PageProps) {
           <DescriptText>
             모두가 참여가능한 <em>GDI의 학술포럼</em>에 <br />
             여러분을 초대합니다!
+            <DescriptMarker />
           </DescriptText>
           <DescriptLink>
             학술포럼 리스트
@@ -68,17 +69,27 @@ const DescriptText = styled.p`
   margin-top: 20px;
   text-align: right;
   padding-right: 20px;
+  position: relative;
 
   em {
     display: inline-block;
-    background-color: rgba(156, 135, 191, 0.8);
     color: #fff;
-    padding: 0 6px;
+    font-weight: 700;
   }
 
   @media screen and (max-width: 820px) {
     display: none;
   }
+`;
+
+const DescriptMarker = styled.div`
+  width: 170px;
+  height: 40px;
+  background-color: #9c87bf;
+  position: absolute;
+  top: 52px;
+  right: 32px;
+  z-index: -1;
 `;
 
 const DescriptLink = styled.div`
