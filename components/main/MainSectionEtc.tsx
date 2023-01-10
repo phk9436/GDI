@@ -13,11 +13,6 @@ function MainSectionEtc() {
         {contents.map((e, i) => (
           <li key={`contentLink${i}`}>
             <ContentBox content={e}>
-              <RedirectWrapper>
-                <RedirectDetail text="바로가기" href={`/${e}`} />
-              </RedirectWrapper>
-
-              <h3>{e === 'board' ? '연구제안하기' : 'GDI 소개'}</h3>
               <p>
                 {e === 'board' ? (
                   <>
@@ -31,6 +26,19 @@ function MainSectionEtc() {
                   </>
                 )}
               </p>
+              <ContentTitle>
+                {e === 'board' ? (
+                  <>
+                    연구제안
+                    <RedirectDetail href="/board" />
+                  </>
+                ) : (
+                  <>
+                    GDI 소개
+                    <RedirectDetail href="/intro" />
+                  </>
+                )}
+              </ContentTitle>
             </ContentBox>
           </li>
         ))}
@@ -65,34 +73,26 @@ const ContentBox = styled.div<IContent>`
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  gap: 28px;
-  padding: 16px 9px 33px 28px;
-
-  h3 {
-    color: #fff;
-    font-size: 36px;
-    font-weight: 700;
-  }
+  border: 1px solid #d9d9d9;
 
   p {
     font-size: 20px;
     line-height: 30px;
     font-weight: 500;
+    padding-left: 28px;
+    padding-bottom: 18px;
   }
 
   @media screen and (max-width: 820px) {
-    height: 170px;
-    gap: 14px;
-    padding: 13px 13px 16px 18px;
+    height: auto;
+    aspect-ratio: 280/196;
     letter-spacing: -0.01em;
-
-    h3 {
-      font-size: 24px;
-    }
 
     p {
       font-size: 16px;
       line-height: 26px;
+      padding-left: 18px;
+      padding-bottom: 8px;
     }
   }
 
@@ -114,7 +114,20 @@ const ContentBox = styled.div<IContent>`
         `}
 `;
 
-const RedirectWrapper = styled.div`
-  margin-bottom: auto;
-  margin-left: auto;
+const ContentTitle = styled.div`
+  height: 100px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #1f4788;
+  background-color: #f6f6f6;
+  padding: 0 28px;
+  font-size: 30px;
+  font-weight: 800;
+
+  @media screen and (max-width: 820px) {
+    height: 62px;
+    font-size: 18px;
+    padding: 0 18px;
+  }
 `;
