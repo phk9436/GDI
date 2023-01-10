@@ -12,39 +12,33 @@ interface ICardProps extends ILabData {
   path: string;
 }
 
-export function RedirectDetail({ text = '더보기', href }: IDetailProps) {
+export function RedirectDetail({ text = '바로가기', href }: IDetailProps) {
   return (
     <LinkWrapper>
       <Link href={href}>
-        <a>
-          {text} <span>+</span>
-        </a>
+        <a>{text}</a>
       </Link>
     </LinkWrapper>
   );
 }
 
 const LinkWrapper = styled.div`
-  padding: 16px;
+  padding: 10px 20px;
   width: fit-content;
   border-radius: 29px;
-  font-size: 24px;
-  font-weight: 500;
+  font-size: 16px;
+  font-weight: 700;
   background-color: transparent;
-  transition: 0.3s;
   cursor: pointer;
-
-  &:hover {
-    background-color: rgba(0, 0, 0, 0.1);
-  }
-
+  background-color: rgba(0, 0, 0, 0.1);
+  color: #000;
   span {
     margin-left: 8px;
   }
 
   @media screen and (max-width: 820px) {
-    font-size: 14px;
-    padding: 0;
+    font-size: 12px;
+    padding: 2px 8px;
 
     span {
       margin-left: 4px;
@@ -69,8 +63,8 @@ export function Card({ thumbnailData, title, id, path, date }: ICardProps) {
 }
 
 const CardContent = styled.div`
-  width: 254px;
-  height: 360px;
+  width: 222px;
+  height: 314px;
   position: relative;
   border: 1px solid #d9d9d9;
   transition: 0.3s;
@@ -78,6 +72,7 @@ const CardContent = styled.div`
   @media screen and (max-width: 820px) {
     width: 120px;
     height: 170px;
+    margin: auto;
   }
 `;
 
@@ -93,17 +88,17 @@ const CardWrapper = styled.div`
 
 const CardDate = styled.div`
   position: absolute;
-  top: 20px;
-  left: 20px;
-  background-color: rgba(0, 0, 0, 0.5);
+  top: 14px;
+  left: 14px;
+  background-color: #1f4788;
   border-radius: 34px;
-  width: 100px;
-  height: 34px;
+  width: 83px;
+  height: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
   color: #fff;
-  font-size: 17px;
+  font-size: 14px;
   letter-spacing: -0.04em;
 
   @media screen and (max-width: 820px) {
@@ -119,9 +114,9 @@ const CardText = styled.p`
   width: 100%;
   height: 64px;
   margin-top: 20px;
-  font-size: 20px;
+  font-size: 18px;
   line-height: 32px;
-  font-weight: 700;
+  font-weight: 500;
   overflow: hidden;
   text-overflow: ellipsis;
   display: -webkit-box;
@@ -135,6 +130,7 @@ const CardText = styled.p`
     width: 152px;
     height: 60px;
     -webkit-line-clamp: 3;
+    margin-top: 12px;
   }
 `;
 
