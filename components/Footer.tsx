@@ -4,6 +4,7 @@ import { useRecoilValue } from 'recoil';
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
+import { RedirectDetail } from './main/Components';
 
 interface IFooterProps {
   isAdminPage: boolean;
@@ -20,21 +21,6 @@ function Footer({ isAdminPage }: IFooterProps) {
 
   return (
     <Wrapper>
-      {!isMobile && (
-        <FooterTopWrapper>
-          <FooterTop>
-            {isAdminPage ? (
-              <Link href="/">
-                <a>GDI Main</a>
-              </Link>
-            ) : (
-              <Link href={isLogin ? '/admin' : '/admin/Login'}>
-                <a>GDI Admin</a>
-              </Link>
-            )}
-          </FooterTop>
-        </FooterTopWrapper>
-      )}
       <FooterContents>
         <ContentsBox>
           <LogoWrapper>
@@ -45,12 +31,24 @@ function Footer({ isAdminPage }: IFooterProps) {
             />
           </LogoWrapper>
           <ContentAddress>
-            경기연구원(16207) 경기도 수원시 장안구 경수대로 1150 031-250-3114
-            <br />
-            북부연구센터(11775) 경기도 의정부시 청사로 5번길 8-7 씨티메디타운 7층 031-850-6014
-            <br />
-            공공투자관리센터(15880) 경기도 군포시 번영로 34, 대흥테라스뷰 5층 031-8014-6943
+            경기북부지역발전연구원(11008) <BrMo/> 경기도 연천군 군남면 청정로 2291-2 <br />
+            TEL: 031-832-3888
           </ContentAddress>
+          {!isMobile && (
+        <FooterTop>
+          {isAdminPage ? (
+            <>
+              <p>GDI Main</p>
+              <RedirectDetail href="/" />
+            </>
+          ) : (
+            <>
+              <p>GDI Admin</p>
+              <RedirectDetail href={isLogin ? '/admin' : '/admin/Login'} />
+            </>
+          )}
+        </FooterTop>
+      )}
         </ContentsBox>
       </FooterContents>
     </Wrapper>
@@ -63,27 +61,26 @@ const Wrapper = styled.footer`
   background-color: #f5f5f5;
 `;
 
-const FooterTopWrapper = styled.div`
-  border-bottom: 1px solid #000;
-`;
-
 const FooterTop = styled.div`
-  height: 87px;
   display: flex;
+  gap: 20px;
   justify-content: flex-end;
   align-items: center;
-  padding-right: 70px;
-  font-size: 24px;
-  font-weight: 700;
   max-width: 1300px;
-  margin: auto;
+  margin-left: auto;
+
+  p {
+    font-size: 30px;
+    font-weight: 900;
+    color: #d9d9d9;
+  }
 `;
 
 const FooterContents = styled.div`
-  height: 295px;
+  height: 200px;
 
   @media screen and (max-width: 820px) {
-    height: 264px;
+    height: 200px;
   }
 `;
 
@@ -91,10 +88,9 @@ const ContentsBox = styled.div`
   max-width: 1300px;
   height: 100%;
   display: flex;
-  justify-content: space-between;
   align-items: flex-end;
-  gap: 94px;
-  padding: 0 87px 44px 70px;
+  gap: 46px;
+  padding: 0 60px 44px;
   margin: auto;
 
   @media screen and (max-width: 820px) {
@@ -106,9 +102,9 @@ const ContentsBox = styled.div`
 `;
 
 const LogoWrapper = styled.div`
-  width: 274px;
-  min-width: 274px;
-  height: 154px;
+  width: 178px;
+  min-width: 178px;
+  height: 100px;
   position: relative;
 
   @media screen and (max-width: 820px) {
@@ -121,7 +117,7 @@ const LogoWrapper = styled.div`
 const ContentAddress = styled.address`
   max-width: 913px;
   font-style: normal;
-  font-size: 23px;
+  font-size: 16px;
   line-height: 34px;
   letter-spacing: -0.01em;
   color: #878787;
@@ -131,5 +127,14 @@ const ContentAddress = styled.address`
     font-size: 12px;
     line-height: 20px;
     letter-spacing: 0;
+    margin-bottom: 20px;
+    text-align: center;
   }
 `;
+
+const BrMo = styled.br`
+  display: none;
+  @media screen and (max-width: 820px) {
+    display: block;
+  }
+`
