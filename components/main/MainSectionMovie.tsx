@@ -1,8 +1,6 @@
 import styled from 'styled-components';
 import { RedirectDetail } from './Components';
 import MovieSwiper from './MovieSwiper';
-import { mobileCheck } from 'atoms/layout';
-import { useRecoilValue } from 'recoil';
 import { IMovieData } from 'types/dataTypes';
 
 interface PageProps {
@@ -10,17 +8,14 @@ interface PageProps {
 }
 
 function MainSectionMovie({ data }: PageProps) {
-  const isMobile = useRecoilValue(mobileCheck);
-
   return (
     <Wrapper>
+      <MovieBg />
       <MovieTop>
-        <h4>GDI 영상관</h4>
-        {!isMobile && (
-          <RedirectWrapper>
-            <RedirectDetail href="/notice/Movie" />
-          </RedirectWrapper>
-        )}
+        <h4>
+          <span>GDI</span> 영상관
+        </h4>
+        <RedirectDetail href="/notice/Movie" />
       </MovieTop>
       <MovieSwiper data={data} />
     </Wrapper>
@@ -31,32 +26,36 @@ export default MainSectionMovie;
 
 const Wrapper = styled.section`
   height: 646px;
-  background-color: #1f4788;
   margin-top: 30px;
+  position: relative;
 
   @media screen and (max-width: 820px) {
-    height: 374px;
+    height: auto;
   }
 `;
 
 const MovieTop = styled.div`
   display: flex;
-  justify-content: center;
   align-items: center;
+  gap: 20px;
   padding: 50px 60px 36px;
-  color: #fff;
-  position: relative;
+  color: #221e1f;
   max-width: 1300px;
   margin: auto;
 
   h4 {
-    font-size: 36px;
+    font-size: 30px;
+    font-weight: 800;
     line-height: 40px;
-    letter-spacing: 0.04em;
+    letter-spacing: -0.04em;
+
+    span {
+      color: #1f4788;
+    }
   }
 
   @media screen and (max-width: 820px) {
-    padding: 22px 0 30px;
+    padding: 22px 20px 30px;
 
     h4 {
       font-size: 18px;
@@ -65,7 +64,15 @@ const MovieTop = styled.div`
   }
 `;
 
-const RedirectWrapper = styled.div`
+const MovieBg = styled.div`
   position: absolute;
-  right: 60px;
+  width: 100%;
+  height: 414px;
+  left: 0;
+  bottom: 0;
+  background-color: #1f4788;
+
+  @media screen and (max-width: 820px) {
+    height: 262px;
+  }
 `;

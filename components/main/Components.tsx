@@ -158,11 +158,12 @@ const MovieCardWrapper = styled.div`
 
 const MovieImageWrapper = styled.div`
   width: 100%;
-  height: 270px;
+  height: 314px;
   position: relative;
 
   @media screen and (max-width: 820px) {
-    height: 120px;
+    height: auto;
+    aspect-ratio: 580/314;
   }
 `;
 
@@ -185,7 +186,7 @@ const MovieBg = styled.div`
 `;
 
 const IconPlay = styled.div`
-  width: 100px;
+  width: 80px;
   aspect-ratio: 1;
   background: url('/images/moviePlay.png') no-repeat center/cover;
 
@@ -195,9 +196,9 @@ const IconPlay = styled.div`
 `;
 
 const MovieTitle = styled.h4`
-  font-size: 24px;
-  line-height: 27px;
-  margin: 22px 0 22px;
+  font-size: 20px;
+  line-height: 24px;
+  margin: 22px 0 18px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -219,7 +220,7 @@ const MovieInfo = styled.ul`
   display: flex;
 
   li {
-    font-size: 20px;
+    font-size: 18px;
     display: flex;
     align-items: center;
 

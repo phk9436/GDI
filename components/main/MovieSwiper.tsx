@@ -72,11 +72,11 @@ export default MovieSwiper;
 const MovieSwiperWrapper = styled.div`
   position: relative;
   margin: auto;
-  max-width: 1300px;
+  max-width: 1420px;
   padding: 0 60px;
 
   @media screen and (max-width: 820px) {
-    padding: 0 30px;
+    padding: 0 20px;
   }
 `;
 
@@ -117,7 +117,7 @@ const MovieSwiperContainer = styled.div`
 
   @media screen and (max-width: 820px) {
     .swiper {
-      height: 256px;
+      height: calc(56vw + 86px);
     }
     .swiper-slide {
       width: 100%;
@@ -157,7 +157,7 @@ const ButtonPrev = styled.div`
 
   @media screen and (max-width: 820px) {
     left: 0;
-    top: 40px;
+    top: calc(24vw - 20px);
     width: 40px;
     height: 40px;
     background-image: url('/images/swiperPrevMo.png');
@@ -182,7 +182,7 @@ const ButtonNext = styled.div`
   }
 
   @media screen and (max-width: 820px) {
-    top: 40px;
+    top: calc(24vw - 20px);
     right: 0;
     width: 40px;
     height: 40px;

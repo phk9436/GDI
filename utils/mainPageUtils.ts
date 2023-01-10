@@ -19,7 +19,7 @@ export const getPosts = async (category: string) => {
 };
 
 export const getMovies = async () => {
-  const queryList = query(collection(dbService, 'movie'), limit(6), orderBy('createdAt', 'desc'));
+  const queryList = query(collection(dbService, 'movie'), limit(5), orderBy('createdAt', 'desc'));
   const data = await getDocs(queryList);
   const dataList: IMovieData[] = [];
   data.forEach((docs) => {
