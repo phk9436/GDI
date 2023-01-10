@@ -44,7 +44,7 @@ const Wrapper = styled.section`
 const SectionContents = styled.div`
   display: flex;
   justify-content: space-between;
-  padding: 0 60px;
+  padding: 0 60px 0 80px;
 
   @media screen and (max-width: 820px) {
     padding: 0;
@@ -67,6 +67,7 @@ const DescriptText = styled.p`
   letter-spacing: -0.04em;
   margin-top: 20px;
   text-align: right;
+  padding-right: 20px;
 
   em {
     display: inline-block;

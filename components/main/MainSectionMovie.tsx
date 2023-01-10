@@ -48,6 +48,7 @@ const MovieTop = styled.div`
     font-weight: 800;
     line-height: 40px;
     letter-spacing: -0.04em;
+    padding-left: 20px;
 
     span {
       color: #1f4788;
@@ -55,11 +56,12 @@ const MovieTop = styled.div`
   }
 
   @media screen and (max-width: 820px) {
-    padding: 22px 20px 30px;
+    padding: 22px 20px 20px;
 
     h4 {
       font-size: 18px;
       line-height: 20px;
+      padding: 0;
     }
   }
 `;

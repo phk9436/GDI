@@ -158,7 +158,7 @@ const MovieCardWrapper = styled.div`
 
 const MovieImageWrapper = styled.div`
   width: 100%;
-  height: 314px;
+  height: 280px;
   position: relative;
 
   @media screen and (max-width: 820px) {

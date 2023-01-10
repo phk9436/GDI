@@ -72,7 +72,7 @@ export default MovieSwiper;
 const MovieSwiperWrapper = styled.div`
   position: relative;
   margin: auto;
-  max-width: 1420px;
+  max-width: 1300px;
   padding: 0 60px;
 
   @media screen and (max-width: 820px) {
@@ -84,12 +84,12 @@ const MovieSwiperContainer = styled.div`
   overflow: hidden;
 
   .swiper-slide {
-    width: 580px;
+    width: 520px;
     margin-bottom: 10px;
   }
 
   .swiper {
-    height: 462px;
+    height: 480px;
   }
 
   .swiper-pagination {

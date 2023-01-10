@@ -31,7 +31,7 @@ const TopWrapper = styled.div`
   height: 91px;
   border-bottom: 1px solid #221e1f;
   margin-bottom: 20px;
-  padding: 0 60px;
+  padding: 0 60px 0 80px;
 
   h4 {
     font-size: 30px;

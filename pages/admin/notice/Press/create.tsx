@@ -31,7 +31,7 @@ function Create() {
       pressDate,
     };
     if (title && pressUrl && pressFrom && pressDate) {
-      const checkUrl = /^(http(s)?:\/\/)([^\/]*)(\.)(com|net|kr|my|shop)(\/)/gi;
+      const checkUrl = /^(http(s)?:\/\/)([^\/]*)(\.)(com|net|kr|my|shop|io|org)(\/)/gi;
       if (!checkUrl.test(pressUrl)) {
         toast.error('유효한 url이 아닙니다.');
       } else {
