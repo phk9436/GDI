@@ -83,7 +83,8 @@ const DescriptText = styled.p`
   }
 `;
 
-const DescriptMarker = styled.div`
+const DescriptMarker = styled.span`
+  display: block;
   width: 170px;
   height: 40px;
   background-color: #9c87bf;
