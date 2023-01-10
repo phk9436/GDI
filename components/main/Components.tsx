@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
 import { ILabData, IMovieData } from 'types/dataTypes';
@@ -6,15 +6,16 @@ import { ILabData, IMovieData } from 'types/dataTypes';
 interface IDetailProps {
   href: string;
   text?: string;
+  isDark?: boolean;
 }
 
 interface ICardProps extends ILabData {
   path: string;
 }
 
-export function RedirectDetail({ text = '바로가기', href }: IDetailProps) {
+export function RedirectDetail({ text = '바로가기', href, isDark = false }: IDetailProps) {
   return (
-    <LinkWrapper>
+    <LinkWrapper isDark={isDark}>
       <Link href={href}>
         <a>{text}</a>
       </Link>
@@ -22,7 +23,7 @@ export function RedirectDetail({ text = '바로가기', href }: IDetailProps) {
   );
 }
 
-const LinkWrapper = styled.div`
+const LinkWrapper = styled.div<{ isDark: boolean }>`
   padding: 10px 20px;
   width: fit-content;
   border-radius: 29px;
@@ -35,6 +36,12 @@ const LinkWrapper = styled.div`
   span {
     margin-left: 8px;
   }
+
+  ${({ isDark }) =>
+    isDark &&
+    css`
+      color: #fff;
+    `}
 
   @media screen and (max-width: 820px) {
     font-size: 12px;

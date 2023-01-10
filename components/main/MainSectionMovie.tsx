@@ -10,12 +10,11 @@ interface PageProps {
 function MainSectionMovie({ data }: PageProps) {
   return (
     <Wrapper>
-      <MovieBg />
       <MovieTop>
         <h4>
           <span>GDI</span> 영상관
         </h4>
-        <RedirectDetail href="/notice/Movie" />
+        <RedirectDetail href="/notice/Movie" isDark={true} />
       </MovieTop>
       <MovieSwiper data={data} />
     </Wrapper>
@@ -28,6 +27,7 @@ const Wrapper = styled.section`
   height: 646px;
   margin-top: 30px;
   position: relative;
+  background-color: #1f4788;
 
   @media screen and (max-width: 820px) {
     height: auto;
@@ -38,20 +38,20 @@ const MovieTop = styled.div`
   display: flex;
   align-items: center;
   gap: 20px;
-  padding: 50px 60px 36px;
-  color: #221e1f;
+  padding: 40px 60px 36px;
+  color: #fff;
   max-width: 1300px;
   margin: auto;
 
   h4 {
     font-size: 30px;
-    font-weight: 800;
+    font-weight: 700;
     line-height: 40px;
     letter-spacing: -0.04em;
     padding-left: 20px;
 
     span {
-      color: #1f4788;
+      font-weight: 800;
     }
   }
 
@@ -63,18 +63,5 @@ const MovieTop = styled.div`
       line-height: 20px;
       padding: 0;
     }
-  }
-`;
-
-const MovieBg = styled.div`
-  position: absolute;
-  width: 100%;
-  height: 414px;
-  left: 0;
-  bottom: 0;
-  background-color: #1f4788;
-
-  @media screen and (max-width: 820px) {
-    height: 262px;
   }
 `;
