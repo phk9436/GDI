@@ -40,3 +40,10 @@
   font-weight: 700;
   src: url('./NotoSansKR-Bold.otf');
 }
+
+@font-face {
+  font-family: 'Noto';
+  font-display: fallback;
+  font-weight: 800;
+  src: url('./NotoSansKR-Black.otf');
+}

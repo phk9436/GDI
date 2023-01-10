@@ -68,7 +68,7 @@ const Nav = styled.nav`
 
 const NavLink = styled.a`
   font-size: 24px;
-  font-weight: 800;
+  font-weight: 700;
   letter-spacing: -0.01em;
   z-index: 1;
   cursor: pointer;
