@@ -47,13 +47,13 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 140px;
+  height: 86px;
 `;
 
 const LogoWrapper = styled.div`
   position: relative;
-  width: 311px;
-  height: 60px;
+  width: 200px;
+  height: 38px;
 `;
 const LinkWrapper = styled.div`
   width: 110px;
@@ -69,8 +69,8 @@ const Nav = styled.nav`
 `;
 
 const NavLink = styled.a`
-  font-size: 30px;
-  font-weight: 800;
+  font-size: 24px;
+  font-weight: 700;
   letter-spacing: -0.01em;
   z-index: 1;
   cursor: pointer;
