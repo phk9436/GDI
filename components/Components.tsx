@@ -60,7 +60,7 @@ const BreadCrumbContents = styled.div`
   position: relative;
 
   p {
-    font-size: 22px;
+    font-size: 18px;
     font-weight: 500;
     color: #fff;
   }
@@ -79,7 +79,7 @@ const BreadCrumbTitle = styled.div`
   gap: 22px;
 
   h2 {
-    font-size: 40px;
+    font-size: 30px;
     font-weight: 700;
     color: #fff;
     white-space: nowrap;
