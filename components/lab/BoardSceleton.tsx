@@ -9,10 +9,6 @@ function BoardSceleton() {
       <BoardSceletonItem />
       <BoardSceletonItem />
       <BoardSceletonItem />
-      <BoardSceletonItem />
-      <BoardSceletonItem />
-      <BoardSceletonItem />
-      <BoardSceletonItem />
     </>
   );
 }

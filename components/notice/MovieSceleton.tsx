@@ -10,10 +10,6 @@ function MovieSceleton() {
       <MovieSceletonItem />
       <MovieSceletonItem />
       <MovieSceletonItem />
-      <MovieSceletonItem />
-      <MovieSceletonItem />
-      <MovieSceletonItem />
-      <MovieSceletonItem />
     </>
   );
 }

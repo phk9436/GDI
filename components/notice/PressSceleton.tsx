@@ -9,10 +9,6 @@ function PressSceleton() {
       <PressSceletonItem />
       <PressSceletonItem />
       <PressSceletonItem />
-      <PressSceletonItem />
-      <PressSceletonItem />
-      <PressSceletonItem />
-      <PressSceletonItem />
     </>
   )
 }

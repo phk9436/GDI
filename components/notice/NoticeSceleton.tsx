@@ -9,10 +9,6 @@ function NoticeSceleton() {
       <NoticeSceletonItem />
       <NoticeSceletonItem />
       <NoticeSceletonItem />
-      <NoticeSceletonItem />
-      <NoticeSceletonItem />
-      <NoticeSceletonItem />
-      <NoticeSceletonItem />
     </>
   )
 }
