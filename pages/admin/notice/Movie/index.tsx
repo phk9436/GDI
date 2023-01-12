@@ -57,7 +57,7 @@ function index({ dataList }: PageProps) {
     const [dataList, docs, total] = await getBoardData(
       'movie',
       'movieCount',
-      10,
+      6,
       isNext,
       lastData,
       prevData,
@@ -90,7 +90,7 @@ function index({ dataList }: PageProps) {
         //최초 다음페이지 호출 시 lastData세팅
         const queryList = query(
           collection(dbService, 'movie'),
-          limit(10),
+          limit(6),
           orderBy('createdAt', 'desc'),
         );
         const data = await getDocs(queryList);
@@ -152,7 +152,7 @@ function index({ dataList }: PageProps) {
 export default index;
 
 export const getServerSideProps = async () => {
-  const queryList = query(collection(dbService, 'movie'), limit(10), orderBy('createdAt', 'desc'));
+  const queryList = query(collection(dbService, 'movie'), limit(6), orderBy('createdAt', 'desc'));
   const data = await getDocs(queryList);
   const dataList: IMovieData[] = [];
   data.forEach((docs) => {
