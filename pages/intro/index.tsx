@@ -4,6 +4,7 @@ function index() {
   return (
     <Wrapper>
       <Banner>
+        <BannerBg />
         <BannerText>
           <h2>원장 인사말</h2>
           <p>
@@ -81,13 +82,41 @@ const Wrapper = styled.div`
 `;
 const Banner = styled.section`
   height: 500px;
-  background: url('/images/introBanner.png') no-repeat center/cover;
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   color: #fff;
   letter-spacing: 0.01em;
+  position: relative;
+
+  @media screen and (max-width: 820px) {
+    height: auto;
+    aspect-ratio: 320/146;
+  }
+`;
+
+const BannerBg = styled.div`
+  background: url('/images/introBanner.png') no-repeat center/cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+
+  @media screen and (max-width: 820px) {
+    background-image: url('/images/introBannerMo.png');
+    position: static;
+  }
+`;
+
+const BannerText = styled.div`
+  width: 600px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding-bottom: 40px;
 
   h2 {
     font-size: 36px;
@@ -110,14 +139,28 @@ const Banner = styled.section`
       font-weight: 800;
     }
   }
-`;
 
-const BannerText = styled.div`
-  width: 600px;
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
-  padding-bottom: 40px;
+  @media screen and (max-width: 820px) {
+    width: 100%;
+    padding: 20px 20px 30px;
+    background-color: #102444;
+    gap: 30px;
+
+    h2 {
+      font-size: 20px;
+    }
+
+    p {
+      font-size: 14px;
+      padding-left: 24px;
+      gap: 2px;
+
+      em {
+        font-size: 14px;
+        font-weight: 700;
+      }
+    }
+  }
 `;
 
 const Intro = styled.section`
@@ -135,6 +178,17 @@ const Intro = styled.section`
 
   p {
     width: 600px;
+  }
+
+  @media screen and (max-width: 820px) {
+    padding: 20px 60px 60px;
+    gap: 18px;
+
+    p {
+      width: 100%;
+      font-size: 12px;
+      line-height: 18px;
+    }
   }
 `;
 
@@ -172,6 +226,29 @@ const Vision = styled.section`
       background: url('/images/visionBanner.png') no-repeat center/cover;
     }
   }
+
+  @media screen and (max-width: 820px) {
+    height: auto;
+    flex-direction: column;
+
+    div {
+      aspect-ratio: 320/150;
+
+      &:first-child {
+        padding: 20px;
+        gap: 20px;
+
+        h2 {
+          font-size: 20px;
+        }
+
+        p {
+          font-size: 14px;
+          line-height: 22px;
+        }
+      }
+    }
+  }
 `;
 
 const Road = styled.section`
@@ -181,6 +258,11 @@ const Road = styled.section`
   justify-content: center;
   align-items: center;
   padding: 120px;
+
+  @media screen and (max-width: 820px) {
+    height: auto;
+    padding: 20px 20px 100px;
+  }
 `;
 
 const RoadBg = styled.span`
@@ -193,6 +275,13 @@ const RoadBg = styled.span`
   transform: translate(-50%, -50%);
   background-color: #f5f5f5;
   z-index: -1;
+
+  @media screen and (max-width: 820px) {
+    width: calc(100% - 180px);
+    height: 600px;
+    top: 50px;
+    transform: translateX(-50%);
+  }
 `;
 
 const RoadBox = styled.div`
@@ -221,6 +310,9 @@ const RoadBox = styled.div`
       font-weight: 400;
       text-align: center;
       padding: 10px;
+      border-width: 30px;
+      border-style: solid;
+      background-color: #fff;
 
       em {
         font-weight: 700;
@@ -228,19 +320,42 @@ const RoadBox = styled.div`
     }
 
     &:nth-child(2) {
-      border: 30px solid #ffc20c;
+      border-color: #ffc20c;
     }
 
     &:nth-child(3) {
-      border: 30px solid #1F4788;
+      border-color: #1f4788;
     }
 
     &:nth-child(4) {
-      border: 30px solid #57BD84;
+      border-color: #57bd84;
     }
 
     &:nth-child(5) {
-      border: 30px solid #9C87BF;
+      border-color: #9c87bf;
+    }
+  }
+
+  @media screen and (max-width: 820px) {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    height: auto;
+    width: 100%;
+
+    div {
+      height: auto;
+      aspect-ratio: 280/120;
+
+      &:nth-child(1) {
+        font-size: 22px;
+      }
+
+      &:not(:nth-child(1)) {
+        font-size: 14px;
+        line-height: 22px;
+        border-width: 16px;
+      }
     }
   }
 `;
