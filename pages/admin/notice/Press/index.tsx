@@ -39,6 +39,7 @@ function index({ dataList }: PageProps) {
   const [isLoading, setIsLoading] = useState(false);
   const [isInit, setIsInit] = useState(true);
   const [isPending, setIsPending] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const Tap = [
     [
@@ -68,7 +69,7 @@ function index({ dataList }: PageProps) {
     isNext && setIsNext(false);
     isPrev && setIsPrev(false);
     setTotalNum(total.data()?.total);
-    setTotalPageNum(Math.ceil(total.data()?.total / 10));
+    setTotalPageNum(Math.ceil(total.data()?.total / 6));
     setIsPending(false);
   };
 
@@ -76,11 +77,15 @@ function index({ dataList }: PageProps) {
     setPostList(dataList);
     const total = await getDoc(doc(dbService, 'meta', 'pressCount'));
     setTotalNum(total.data()?.total);
-    setTotalPageNum(Math.ceil(total.data()?.total / 10));
+    setTotalPageNum(Math.ceil(total.data()?.total / 6));
   };
 
   const getNextPage = async () => {
     if (currentPageNum < totalPageNum) {
+      if (isDeleted) {
+        toast.error('삭제 후에는 새로고침을 해주세요.');
+        return;
+      }
       setIsNext(true);
       lastData && setIsRefetch((state) => !state);
       setCurrentPageNum((state) => state + 1);
@@ -102,6 +107,10 @@ function index({ dataList }: PageProps) {
 
   const getPrevPage = () => {
     if (currentPageNum > 1) {
+      if (isDeleted) {
+        toast.error('삭제 후에는 새로고침을 해주세요.');
+        return;
+      }
       setIsPrev(true);
       setIsRefetch((state) => !state);
       setCurrentPageNum((state) => state - 1);
@@ -111,7 +120,9 @@ function index({ dataList }: PageProps) {
   const deletePressItem = async (id: string) => {
     setIsLoading(true);
     await deletePressData(id);
-    toast.success('삭제되었습니다. 모든 삭제작업 후 데이터 최신화를 위해 새로고침을 해주세요.', { theme: 'light' });
+    toast.success('삭제되었습니다. 모든 삭제작업 후 데이터 최신화를 위해 새로고침을 해주세요.', {
+      theme: 'light',
+    });
     setIsLoading(false);
     setPostList(postList.filter((e) => e.id !== id));
     isInit && setIsInit(false);
@@ -129,8 +140,12 @@ function index({ dataList }: PageProps) {
           <UploadButton tap={Tap[1]} />
           <ul>
             {isInit
-              ? dataList.map((e) => <PressItem data={e} deletePressItem={deletePressItem} key={e.id} />)
-              : postList.map((e) => <PressItem data={e} deletePressItem={deletePressItem} key={e.id} />)}
+              ? dataList.map((e) => (
+                  <PressItem data={e} deletePressItem={deletePressItem} key={e.id} />
+                ))
+              : postList.map((e) => (
+                  <PressItem data={e} deletePressItem={deletePressItem} key={e.id} />
+                ))}
             {isPending && <PressSceleton />}
           </ul>
 
@@ -139,6 +154,7 @@ function index({ dataList }: PageProps) {
             totalPageNum={totalPageNum}
             getPrevPage={getPrevPage}
             getNextPage={getNextPage}
+            isDeleted={isDeleted}
           />
         </Wrapper>
       </div>

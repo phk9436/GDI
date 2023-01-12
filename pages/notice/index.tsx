@@ -63,7 +63,7 @@ function index({ dataList }: PageProps) {
     isNext && setIsNext(false);
     isPrev && setIsPrev(false);
     setTotalNum(total.data()?.total);
-    setTotalPageNum(Math.ceil(total.data()?.total / 10));
+    setTotalPageNum(Math.ceil(total.data()?.total / 6));
     setIsPending(false);
   };
 
@@ -71,7 +71,7 @@ function index({ dataList }: PageProps) {
     setPostList(dataList);
     const total = await getDoc(doc(dbService, 'meta', 'noticeCount'));
     setTotalNum(total.data()?.total);
-    setTotalPageNum(Math.ceil(total.data()?.total / 10));
+    setTotalPageNum(Math.ceil(total.data()?.total / 6));
   };
 
   const getNextPage = async () => {

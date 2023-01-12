@@ -1,5 +1,4 @@
 import styled, { css } from 'styled-components';
-import Image from 'next/image';
 import { useState } from 'react';
 import Link from 'next/link';
 
@@ -13,6 +12,7 @@ interface IPaginationProps {
   totalPageNum: number;
   getNextPage: () => void;
   getPrevPage: () => void;
+  isDeleted?: boolean;
 }
 
 export function BreadCrumb({ category, tap }: IBreadCrumbProps) {
@@ -183,13 +183,14 @@ export function Pagination({
   totalPageNum,
   getNextPage,
   getPrevPage,
+  isDeleted = false,
 }: IPaginationProps) {
   return (
     <PaginationWrapper>
       <PaginationComponents>
-        {currentPageNum > 1 && <PrevArrow onClick={getPrevPage} />}
+        {currentPageNum > 1 && <PrevArrow onClick={getPrevPage} isDeleted={isDeleted} />}
         {`${currentPageNum} / ${totalPageNum}`}
-        {currentPageNum < totalPageNum && <NextArrow onClick={getNextPage} />}
+        {currentPageNum < totalPageNum && <NextArrow onClick={getNextPage} isDeleted={isDeleted} />}
       </PaginationComponents>
       <p>현재 / 전체</p>
     </PaginationWrapper>
@@ -215,7 +216,7 @@ const PaginationComponents = styled.div`
   font-size: 24px;
 `;
 
-const PrevArrow = styled.div`
+const PrevArrow = styled.div<{ isDeleted: boolean }>`
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -223,9 +224,16 @@ const PrevArrow = styled.div`
   position: absolute;
   left: calc(50% - 60px);
   transform: translateX(-50%);
+
+  ${({ isDeleted }) =>
+    isDeleted &&
+    css`
+      opacity: 0.5;
+      cursor: default;
+    `}
 `;
 
-const NextArrow = styled.div`
+const NextArrow = styled.div<{ isDeleted: boolean }>`
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -233,4 +241,11 @@ const NextArrow = styled.div`
   position: absolute;
   right: calc(50% - 60px);
   transform: translateX(50%);
+
+  ${({ isDeleted }) =>
+    isDeleted &&
+    css`
+      opacity: 0.5;
+      cursor: default;
+    `}
 `;

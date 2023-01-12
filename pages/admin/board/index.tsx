@@ -38,6 +38,7 @@ function index({ dataList }: PageProps) {
   const [isInit, setIsInit] = useState(true);
   const [isPending, setIsPending] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isDeleted, setIsDeleted] = useState(false);
 
   const Tap = [
     [
@@ -65,7 +66,7 @@ function index({ dataList }: PageProps) {
     isNext && setIsNext(false);
     isPrev && setIsPrev(false);
     setTotalNum(total.data()?.total);
-    setTotalPageNum(Math.ceil(total.data()?.total / 10));
+    setTotalPageNum(Math.ceil(total.data()?.total / 6));
     setIsPending(false);
   };
 
@@ -73,11 +74,15 @@ function index({ dataList }: PageProps) {
     setPostList(dataList);
     const total = await getDoc(doc(dbService, 'meta', 'boardCount'));
     setTotalNum(total.data()?.total);
-    setTotalPageNum(Math.ceil(total.data()?.total / 10));
+    setTotalPageNum(Math.ceil(total.data()?.total / 6));
   };
 
   const getNextPage = async () => {
     if (currentPageNum < totalPageNum) {
+      if (isDeleted) {
+        toast.error('삭제 후에는 새로고침을 해주세요.');
+        return;
+      }
       setIsNext(true);
       lastData && setIsRefetch((state) => !state);
       setCurrentPageNum((state) => state + 1);
@@ -99,6 +104,10 @@ function index({ dataList }: PageProps) {
 
   const getPrevPage = () => {
     if (currentPageNum > 1) {
+      if (isDeleted) {
+        toast.error('삭제 후에는 새로고침을 해주세요.');
+        return;
+      }
       setIsPrev(true);
       setIsRefetch((state) => !state);
       setCurrentPageNum((state) => state - 1);
@@ -140,6 +149,7 @@ function index({ dataList }: PageProps) {
             totalPageNum={totalPageNum}
             getPrevPage={getPrevPage}
             getNextPage={getNextPage}
+            isDeleted={isDeleted}
           />
         </Wrapper>
       </div>
