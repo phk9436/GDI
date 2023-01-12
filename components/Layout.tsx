@@ -46,7 +46,7 @@ function Layout({ children }: Iprops) {
       {isAdminPage ? <GnbAdmin /> : <Gnb />}
       <Main isMobile={isMobile}>{children}</Main>
       <Footer isAdminPage={isAdminPage} />
-      <ToastContainer autoClose={1500} theme="colored" limit={2} />
+      <ToastContainer autoClose={1500} position="top-center" theme="colored" limit={2} />
       {isForbiden && <ForbidenBg />}
     </>
   );
