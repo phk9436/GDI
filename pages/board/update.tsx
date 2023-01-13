@@ -10,6 +10,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import { updateBoardData } from 'utils/updateBoardUtils';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 function update() {
   const router = useRouter();
@@ -83,6 +84,9 @@ function update() {
 
   return (
     <>
+      <Head>
+        <title>GDI | 연구제안 | 수정하기</title>
+      </Head>
       <Wrapper>
         <Title>연구제안 게시글 수정</Title>
         <form onSubmit={updateBoardItem}>
@@ -150,7 +154,7 @@ const Title = styled.h3`
   font-size: 36px;
   font-weight: 700;
   padding-bottom: 40px;
-  border-bottom: 1px solid #5B5859;
+  border-bottom: 1px solid #5b5859;
 
   @media screen and (max-width: 820px) {
     font-size: 18px;

@@ -1,3 +1,4 @@
+import Head from 'next/head';
 import Link from 'next/link';
 import styled from 'styled-components';
 
@@ -17,32 +18,37 @@ function index() {
   ];
 
   return (
-    <div>
-      <BreadCrumbWrapper>
-        <BreadCrumb>
-          <h2>게시물 업로드</h2>
-        </BreadCrumb>
-      </BreadCrumbWrapper>
-      <ContentsWrapper>
-        <Contents>
-          {contents.map((e, i) => {
-            const [category, path, bg] = e;
-            return category !== 'blank' ? (
-              <Link href={`/admin${path}/create`} key={`Content${i}`}>
-                <a>
-                  <Content cat={category} bg={bg}>
-                    <h3>{category}</h3>
-                    <p>업로드</p>
-                  </Content>
-                </a>
-              </Link>
-            ) : (
-              <div key="blank" />
-            );
-          })}
-        </Contents>
-      </ContentsWrapper>
-    </div>
+    <>
+      <Head>
+        <title>GDI | 어드민</title>
+      </Head>
+      <div>
+        <BreadCrumbWrapper>
+          <BreadCrumb>
+            <h2>게시물 업로드</h2>
+          </BreadCrumb>
+        </BreadCrumbWrapper>
+        <ContentsWrapper>
+          <Contents>
+            {contents.map((e, i) => {
+              const [category, path, bg] = e;
+              return category !== 'blank' ? (
+                <Link href={`/admin${path}/create`} key={`Content${i}`}>
+                  <a>
+                    <Content cat={category} bg={bg}>
+                      <h3>{category}</h3>
+                      <p>업로드</p>
+                    </Content>
+                  </a>
+                </Link>
+              ) : (
+                <div key="blank" />
+              );
+            })}
+          </Contents>
+        </ContentsWrapper>
+      </div>
+    </>
   );
 }
 

@@ -7,6 +7,7 @@ import { dbService } from 'api/firebase';
 import dayjs from 'dayjs';
 import NoticeDetail from 'components/notice/NoticeDetail';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 function Detail(props: INoticeData) {
   const router = useRouter();
@@ -26,9 +27,12 @@ function Detail(props: INoticeData) {
       router.push(Tap[2][2]);
     }
   }, []);
-  
+
   return (
     <>
+      <Head>
+        <title>GDI | 공지사항 | {props.title}</title>
+      </Head>
       <div>
         <BreadCrumb category={Tap[2]} tap={Tap} />
         <NoticeDetail
@@ -43,7 +47,7 @@ function Detail(props: INoticeData) {
   );
 }
 
-export default Detail
+export default Detail;
 
 export const getServerSideProps = async ({ params }: { params: INoticeData }) => {
   const data = await getDoc(doc(dbService, 'notice', `${params?.id}`));

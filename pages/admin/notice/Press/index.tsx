@@ -21,6 +21,7 @@ import PressItem from 'components/admin/PressItem';
 import { deletePressData } from 'utils/deleteBoardUtils';
 import PressSceleton from 'components/notice/PressSceleton';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 interface PageProps {
   dataList: IPressData[];
@@ -134,6 +135,9 @@ function index({ dataList }: PageProps) {
 
   return (
     <>
+      <Head>
+        <title>GDI | 어드민 | 언론보도</title>
+      </Head>
       <div>
         <BreadCrumb category={Tap[1]} tap={Tap} />
         <Wrapper>

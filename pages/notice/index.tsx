@@ -17,6 +17,7 @@ import dayjs from 'dayjs';
 import { INoticeData } from 'types/dataTypes';
 import NoticeItem from 'components/notice/NoticeItem';
 import NoticeSceleton from 'components/notice/NoticeSceleton';
+import Head from 'next/head';
 
 interface PageProps {
   dataList: INoticeData[];
@@ -108,23 +109,28 @@ function index({ dataList }: PageProps) {
   }, [isRefetch]);
 
   return (
-    <div>
-      <BreadCrumb category={Tap[2]} tap={Tap} />
-      <Wrapper>
-        <ul>
-          {isInit
-            ? dataList.map((e) => <NoticeItem data={e} key={e.id} category="notice" />)
-            : postList.map((e) => <NoticeItem data={e} key={e.id} category="notice" />)}
-          {isPending && <NoticeSceleton />}
-        </ul>
-        <Pagination
-          currentPageNum={currentPageNum}
-          totalPageNum={totalPageNum}
-          getPrevPage={getPrevPage}
-          getNextPage={getNextPage}
-        />
-      </Wrapper>
-    </div>
+    <>
+      <Head>
+        <title>GDI | 공지사항</title>
+      </Head>
+      <div>
+        <BreadCrumb category={Tap[2]} tap={Tap} />
+        <Wrapper>
+          <ul>
+            {isInit
+              ? dataList.map((e) => <NoticeItem data={e} key={e.id} category="notice" />)
+              : postList.map((e) => <NoticeItem data={e} key={e.id} category="notice" />)}
+            {isPending && <NoticeSceleton />}
+          </ul>
+          <Pagination
+            currentPageNum={currentPageNum}
+            totalPageNum={totalPageNum}
+            getPrevPage={getPrevPage}
+            getNextPage={getNextPage}
+          />
+        </Wrapper>
+      </div>
+    </>
   );
 }
 

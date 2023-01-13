@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import Loading from 'components/admin/Loading';
 import { updateMovieData } from 'utils/updateBoardUtils';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 function update() {
   const router = useRouter();
@@ -61,6 +62,9 @@ function update() {
   }, []);
   return (
     <>
+      <Head>
+        <title>GDI | 어드민 | GDI 영상관 | 수정하기</title>
+      </Head>
       <Wrapper>
         <Title>GDI영상관 게시글 수정</Title>
         <form onSubmit={updateMovieItem}>
@@ -128,7 +132,7 @@ const Title = styled.h3`
   font-size: 36px;
   font-weight: 700;
   padding-bottom: 40px;
-  border-bottom: 1px solid #5B5859;
+  border-bottom: 1px solid #5b5859;
 `;
 const InputWrapper = styled.div`
   margin: 40px 0;

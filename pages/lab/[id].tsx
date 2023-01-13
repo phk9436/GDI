@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import BoardDetail from 'components/lab/BoardDetail';
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 function LabDetail(props: ILabData) {
   const router = useRouter();
@@ -28,18 +29,23 @@ function LabDetail(props: ILabData) {
   }, []);
 
   return (
-    <div>
-      <BreadCrumb category={Tap[0]} tap={Tap} />
-      <BoardDetail
-        data={{
-          ...props,
-          id: router.query.id as string,
-          date: dayjs(props.createdAt).format('YY-MM-DD'),
-        }}
-        path={Tap[0][2]}
-        category="lab"
-      />
-    </div>
+    <>
+      <Head>
+        <title>GDI | 연구보고서 | {props.title}</title>
+      </Head>
+      <div>
+        <BreadCrumb category={Tap[0]} tap={Tap} />
+        <BoardDetail
+          data={{
+            ...props,
+            id: router.query.id as string,
+            date: dayjs(props.createdAt).format('YY-MM-DD'),
+          }}
+          path={Tap[0][2]}
+          category="lab"
+        />
+      </div>
+    </>
   );
 }
 

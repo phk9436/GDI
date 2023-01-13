@@ -7,6 +7,7 @@ import { useEffect } from 'react';
 import BoardDetail from 'components/lab/BoardDetail';
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 function ForumDetail(props: IForumData) {
   const router = useRouter();
@@ -24,18 +25,25 @@ function ForumDetail(props: IForumData) {
       router.push('/lab/Forum');
     }
   }, []);
-  return <div>
-  <BreadCrumb category={Tap[1]} tap={Tap} />
-  <BoardDetail
-    data={{
-      ...props,
-      id: router.query.id as string,
-      date: dayjs(props.createdAt).format('YY-MM-DD'),
-    }}
-    path={Tap[1][2]}
-    category="forum"
-  />
-</div>;
+  return (
+    <>
+      <Head>
+        <title>GDI | 학술포럼 | {props.title}</title>
+      </Head>
+      <div>
+        <BreadCrumb category={Tap[1]} tap={Tap} />
+        <BoardDetail
+          data={{
+            ...props,
+            id: router.query.id as string,
+            date: dayjs(props.createdAt).format('YY-MM-DD'),
+          }}
+          path={Tap[1][2]}
+          category="forum"
+        />
+      </div>
+    </>
+  );
 }
 
 export default ForumDetail;

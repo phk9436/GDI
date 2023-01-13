@@ -17,6 +17,7 @@ import dayjs from 'dayjs';
 import { IPressData } from 'types/dataTypes';
 import PressItem from 'components/notice/PressItem';
 import PressSceleton from 'components/notice/PressSceleton';
+import Head from 'next/head';
 
 interface PageProps {
   dataList: IPressData[];
@@ -108,23 +109,28 @@ function Press({ dataList }: PageProps) {
   }, [isRefetch]);
 
   return (
-    <div>
-      <BreadCrumb category={Tap[1]} tap={Tap} />
-      <Wrapper>
-        <ul>
-          {isInit
-            ? dataList.map((e) => <PressItem data={e} key={e.id} />)
-            : postList.map((e) => <PressItem data={e} key={e.id} />)}
-          {isPending && <PressSceleton />}
-        </ul>
-        <Pagination
-          currentPageNum={currentPageNum}
-          totalPageNum={totalPageNum}
-          getPrevPage={getPrevPage}
-          getNextPage={getNextPage}
-        />
-      </Wrapper>
-    </div>
+    <>
+      <Head>
+        <title>GDI | 언론보도</title>
+      </Head>
+      <div>
+        <BreadCrumb category={Tap[1]} tap={Tap} />
+        <Wrapper>
+          <ul>
+            {isInit
+              ? dataList.map((e) => <PressItem data={e} key={e.id} />)
+              : postList.map((e) => <PressItem data={e} key={e.id} />)}
+            {isPending && <PressSceleton />}
+          </ul>
+          <Pagination
+            currentPageNum={currentPageNum}
+            totalPageNum={totalPageNum}
+            getPrevPage={getPrevPage}
+            getNextPage={getNextPage}
+          />
+        </Wrapper>
+      </div>
+    </>
   );
 }
 

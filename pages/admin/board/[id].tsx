@@ -9,6 +9,7 @@ import BoardDetail from 'components/admin/board/BoardDetail';
 import Loading from 'components/admin/Loading';
 import { deleteBoardData } from 'utils/deleteBoardUtils';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 function Detail(props: IBoardData) {
   const router = useRouter();
@@ -38,6 +39,9 @@ function Detail(props: IBoardData) {
 
   return (
     <>
+      <Head>
+        <title>GDI | 어드민 | 연구제안 | {props.title}</title>
+      </Head>
       <div>
         <BreadCrumb category={Tap[0]} tap={Tap} />
         <BoardDetail

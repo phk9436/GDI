@@ -7,6 +7,7 @@ import { Editor } from '@toast-ui/react-editor';
 import PostEditor from 'components/editor/Editor';
 import { createBoard } from 'utils/createBoardUtils';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 function create() {
   const [loading, setLoading] = useState(false);
@@ -83,6 +84,9 @@ function create() {
 
   return (
     <>
+      <Head>
+        <title>GDI | 연구제안 | 작성하기</title>
+      </Head>
       <Wrapper>
         <Title>연구제안 게시글 작성</Title>
         <form onSubmit={onSubmitPost}>
@@ -150,7 +154,7 @@ const Title = styled.h3`
   font-size: 36px;
   font-weight: 700;
   padding-bottom: 40px;
-  border-bottom: 1px solid #5B5859;
+  border-bottom: 1px solid #5b5859;
 
   @media screen and (max-width: 820px) {
     font-size: 18px;

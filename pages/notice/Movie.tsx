@@ -17,6 +17,7 @@ import dayjs from 'dayjs';
 import { IMovieData } from 'types/dataTypes';
 import { MovieItem } from 'components/notice/MovieItem';
 import MovieSceleton from 'components/notice/MovieSceleton';
+import Head from 'next/head';
 
 interface PageProps {
   dataList: IMovieData[];
@@ -108,23 +109,28 @@ function Movie({ dataList }: PageProps) {
   }, [isRefetch]);
 
   return (
-    <div>
-      <BreadCrumb category={Tap[0]} tap={Tap} />
-      <Wrapper>
-        <MovieItemWrapper>
-          {isInit
-            ? dataList.map((e) => <MovieItem data={e} key={e.id} />)
-            : postList.map((e) => <MovieItem data={e} key={e.id} />)}
-          {isPending && <MovieSceleton />}
-        </MovieItemWrapper>
-        <Pagination
-          currentPageNum={currentPageNum}
-          totalPageNum={totalPageNum}
-          getPrevPage={getPrevPage}
-          getNextPage={getNextPage}
-        />
-      </Wrapper>
-    </div>
+    <>
+      <Head>
+        <title>GDI | GDI 영상관</title>
+      </Head>
+      <div>
+        <BreadCrumb category={Tap[0]} tap={Tap} />
+        <Wrapper>
+          <MovieItemWrapper>
+            {isInit
+              ? dataList.map((e) => <MovieItem data={e} key={e.id} />)
+              : postList.map((e) => <MovieItem data={e} key={e.id} />)}
+            {isPending && <MovieSceleton />}
+          </MovieItemWrapper>
+          <Pagination
+            currentPageNum={currentPageNum}
+            totalPageNum={totalPageNum}
+            getPrevPage={getPrevPage}
+            getNextPage={getNextPage}
+          />
+        </Wrapper>
+      </div>
+    </>
   );
 }
 

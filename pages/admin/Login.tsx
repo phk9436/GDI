@@ -5,6 +5,7 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { InputText } from 'components/admin/Component';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 function Login() {
   const [id, setId] = useState('');
@@ -33,40 +34,45 @@ function Login() {
   }, []);
 
   return (
-    <Wrapper>
-      <LogoWrapper>
-        <Image src="/images/logoHeaderPc.png" layout="fill" alt="logo" />
-      </LogoWrapper>
-      <TitleWrapper>
-        <h3>관리자 로그인</h3>
-        <p>
-          GDI는 누구나 열람이 가능한 공공연구사이트입니다.
-          <br />이 페이지는 관리자 전용 페이지입니다.
-        </p>
-      </TitleWrapper>
-      <LoginForm>
-        <form action="" onSubmit={loginAdmin}>
-          <InputText type="text" placeholder="아이디 입력" value={id} onChange={onChangeId} />
-          <InputText
-            type="password"
-            placeholder="비밀번호 입력"
-            value={password}
-            onChange={onChangePassword}
-          />
-          <LoginButton>로그인</LoginButton>
-        </form>
-      </LoginForm>
-      <LinkWrapper>
-        <Link href="/">
-          <a>
-            <ArrowWrapper>
-              <Image src="/images/swiperPrevMo.png" layout="fill" alt="arrow" />
-            </ArrowWrapper>
-            <p>홈으로 돌아가기</p>
-          </a>
-        </Link>
-      </LinkWrapper>
-    </Wrapper>
+    <>
+      <Head>
+        <title>GDI | 어드민 | 로그인</title>
+      </Head>
+      <Wrapper>
+        <LogoWrapper>
+          <Image src="/images/logoHeaderPc.png" layout="fill" alt="logo" />
+        </LogoWrapper>
+        <TitleWrapper>
+          <h3>관리자 로그인</h3>
+          <p>
+            GDI는 누구나 열람이 가능한 공공연구사이트입니다.
+            <br />이 페이지는 관리자 전용 페이지입니다.
+          </p>
+        </TitleWrapper>
+        <LoginForm>
+          <form action="" onSubmit={loginAdmin}>
+            <InputText type="text" placeholder="아이디 입력" value={id} onChange={onChangeId} />
+            <InputText
+              type="password"
+              placeholder="비밀번호 입력"
+              value={password}
+              onChange={onChangePassword}
+            />
+            <LoginButton>로그인</LoginButton>
+          </form>
+        </LoginForm>
+        <LinkWrapper>
+          <Link href="/">
+            <a>
+              <ArrowWrapper>
+                <Image src="/images/swiperPrevMo.png" layout="fill" alt="arrow" />
+              </ArrowWrapper>
+              <p>홈으로 돌아가기</p>
+            </a>
+          </Link>
+        </LinkWrapper>
+      </Wrapper>
+    </>
   );
 }
 
@@ -146,7 +152,7 @@ const LoginButton = styled.button`
   transition: 0.3s;
 
   &:hover {
-    background-color: #092D68;
+    background-color: #092d68;
   }
 `;
 

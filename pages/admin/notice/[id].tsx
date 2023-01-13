@@ -9,6 +9,7 @@ import { dbService } from 'api/firebase';
 import dayjs from 'dayjs';
 import NoticeDetail from 'components/admin/NoticeDetail';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 function Detail(props: INoticeData) {
   const router = useRouter();
@@ -39,6 +40,9 @@ function Detail(props: INoticeData) {
   }, []);
   return (
     <>
+      <Head>
+        <title>GDI | 어드민 | 공지사항 | {props.title}</title>
+      </Head>
       <div>
         <BreadCrumb category={Tap[2]} tap={Tap} />
         <NoticeDetail

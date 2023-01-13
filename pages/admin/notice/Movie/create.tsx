@@ -6,6 +6,7 @@ import { useRouter } from 'next/router';
 import Loading from 'components/admin/Loading';
 import { createMovie } from 'utils/createBoardUtils';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 function Create() {
   const [loading, setLoading] = useState(false);
@@ -55,6 +56,9 @@ function Create() {
   };
   return (
     <>
+      <Head>
+        <title>GDI | 어드민 | GDI 영상관 | 작성하기</title>
+      </Head>
       <Wrapper>
         <Title>GDI영상관 게시글 작성</Title>
         <form onSubmit={onSubmitPost}>
@@ -122,7 +126,7 @@ const Title = styled.h3`
   font-size: 36px;
   font-weight: 700;
   padding-bottom: 40px;
-  border-bottom: 1px solid #5B5859;
+  border-bottom: 1px solid #5b5859;
 `;
 const InputWrapper = styled.div`
   margin: 40px 0;

@@ -9,6 +9,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 function LabDetail(props: ILabData) {
   const router = useRouter();
@@ -43,6 +44,9 @@ function LabDetail(props: ILabData) {
 
   return (
     <>
+      <Head>
+        <title>GDI | 어드민 | 연구보고서 | {props.title}</title>
+      </Head>
       <div>
         <BreadCrumb category={Tap[0]} tap={Tap} />
         <BoardDetail

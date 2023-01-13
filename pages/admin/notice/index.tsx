@@ -21,6 +21,7 @@ import NoticeItem from 'components/admin/NoticeItem';
 import { deleteNoticeData } from 'utils/deleteBoardUtils';
 import NoticeSceleton from 'components/notice/NoticeSceleton';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 interface PageProps {
   dataList: INoticeData[];
@@ -134,6 +135,9 @@ function index({ dataList }: PageProps) {
 
   return (
     <>
+      <Head>
+        <title>GDI | 어드민 | 공지사항</title>
+      </Head>
       <div>
         <BreadCrumb category={Tap[2]} tap={Tap} />
         <Wrapper>

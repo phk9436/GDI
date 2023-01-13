@@ -18,6 +18,7 @@ import { IBoardData } from 'types/dataTypes';
 import PressSceleton from 'components/notice/PressSceleton';
 import BoardItem from 'components/board/BoardItem';
 import { UploadButton } from 'components/admin/Component';
+import Head from 'next/head';
 
 interface PageProps {
   dataList: IBoardData[];
@@ -106,24 +107,29 @@ function index({ dataList }: PageProps) {
   }, [isRefetch]);
 
   return (
-    <div>
-      <BreadCrumb category={Tap[0]} tap={Tap} />
-      <Wrapper>
-        <UploadButton tap={Tap[0]} />
-        <ul>
-          {isInit
-            ? dataList.map((e) => <BoardItem data={e} key={e.id} />)
-            : postList.map((e) => <BoardItem data={e} key={e.id} />)}
-          {isPending && <PressSceleton />}
-        </ul>
-        <Pagination
-          currentPageNum={currentPageNum}
-          totalPageNum={totalPageNum}
-          getPrevPage={getPrevPage}
-          getNextPage={getNextPage}
-        />
-      </Wrapper>
-    </div>
+    <>
+      <Head>
+        <title>GDI | 연구제안</title>
+      </Head>
+      <div>
+        <BreadCrumb category={Tap[0]} tap={Tap} />
+        <Wrapper>
+          <UploadButton tap={Tap[0]} />
+          <ul>
+            {isInit
+              ? dataList.map((e) => <BoardItem data={e} key={e.id} />)
+              : postList.map((e) => <BoardItem data={e} key={e.id} />)}
+            {isPending && <PressSceleton />}
+          </ul>
+          <Pagination
+            currentPageNum={currentPageNum}
+            totalPageNum={totalPageNum}
+            getPrevPage={getPrevPage}
+            getNextPage={getNextPage}
+          />
+        </Wrapper>
+      </div>
+    </>
   );
 }
 

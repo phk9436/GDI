@@ -17,6 +17,7 @@ import { dbService } from 'api/firebase';
 import { IForumData } from 'types/dataTypes';
 import { getBoardData } from 'utils/getBoardUtils';
 import BoardSceleton from 'components/lab/BoardSceleton';
+import Head from 'next/head';
 
 interface PageProps {
   dataList: IForumData[];
@@ -106,27 +107,32 @@ function index({ dataList }: PageProps) {
   }, [isRefetch]);
 
   return (
-    <div>
-      <BreadCrumb category={Tap[1]} tap={Tap} />
-      <Wrapper>
-        <ul>
-          {isInit
-            ? dataList.map((e) => (
-                <BoardItem data={e} path={Tap[1][2]} key={e.id} category="forum" />
-              ))
-            : postList.map((e) => (
-                <BoardItem data={e} path={Tap[1][2]} key={e.id} category="forum" />
-              ))}
-          {isPending && <BoardSceleton />}
-        </ul>
-        <Pagination
-          currentPageNum={currentPageNum}
-          totalPageNum={totalPageNum}
-          getPrevPage={getPrevPage}
-          getNextPage={getNextPage}
-        />
-      </Wrapper>
-    </div>
+    <>
+      <Head>
+        <title>GDI | 학술포럼</title>
+      </Head>
+      <div>
+        <BreadCrumb category={Tap[1]} tap={Tap} />
+        <Wrapper>
+          <ul>
+            {isInit
+              ? dataList.map((e) => (
+                  <BoardItem data={e} path={Tap[1][2]} key={e.id} category="forum" />
+                ))
+              : postList.map((e) => (
+                  <BoardItem data={e} path={Tap[1][2]} key={e.id} category="forum" />
+                ))}
+            {isPending && <BoardSceleton />}
+          </ul>
+          <Pagination
+            currentPageNum={currentPageNum}
+            totalPageNum={totalPageNum}
+            getPrevPage={getPrevPage}
+            getNextPage={getNextPage}
+          />
+        </Wrapper>
+      </div>
+    </>
   );
 }
 

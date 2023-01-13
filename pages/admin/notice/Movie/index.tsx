@@ -21,6 +21,7 @@ import dayjs from 'dayjs';
 import { IMovieData } from 'types/dataTypes';
 import MovieSceleton from 'components/notice/MovieSceleton';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 interface PageProps {
   dataList: IMovieData[];
@@ -133,6 +134,9 @@ function index({ dataList }: PageProps) {
   }, [isRefetch]);
   return (
     <>
+      <Head>
+        <title>GDI | 어드민 | GDI 영상관</title>
+      </Head>
       <div>
         <BreadCrumb category={Tap[0]} tap={Tap} />
         <Wrapper>

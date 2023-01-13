@@ -12,6 +12,7 @@ import { toast } from 'react-toastify';
 import ConfirmModal from 'components/ConfirmModal';
 import { useRecoilState } from 'recoil';
 import { confirmOpen } from 'atoms/layout';
+import Head from 'next/head';
 
 function Detail(props: IBoardData) {
   const router = useRouter();
@@ -104,6 +105,9 @@ function Detail(props: IBoardData) {
 
   return (
     <>
+      <Head>
+        <title>GDI | 연구제안 | {props.title}</title>
+      </Head>
       <div>
         <BreadCrumb category={Tap[0]} tap={Tap} />
         <BoardDetail

@@ -21,6 +21,7 @@ import dayjs from 'dayjs';
 import { IForumData } from 'types/dataTypes';
 import BoardSceleton from 'components/lab/BoardSceleton';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 interface PageProps {
   dataList: IForumData[];
@@ -137,6 +138,9 @@ function index({ dataList }: PageProps) {
 
   return (
     <>
+      <Head>
+        <title>GDI | 어드민 | 학술포럼</title>
+      </Head>
       <div>
         <BreadCrumb category={Tap[1]} tap={Tap} />
         <Wrapper>

@@ -21,6 +21,7 @@ import { deletePostData } from 'utils/deleteBoardUtils';
 import dayjs from 'dayjs';
 import BoardSceleton from 'components/lab/BoardSceleton';
 import { toast } from 'react-toastify';
+import Head from 'next/head';
 
 interface PageProps {
   dataList: ILabData[];
@@ -138,6 +139,9 @@ function index({ dataList }: PageProps) {
 
   return (
     <>
+      <Head>
+        <title>GDI | 어드민 | 연구보고서</title>
+      </Head>
       <div>
         <BreadCrumb category={Tap[0]} tap={Tap} />
         <Wrapper>
