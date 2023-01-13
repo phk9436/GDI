@@ -24,7 +24,7 @@ const Wrapper = styled.div`
   position: relative;
 
   @media screen and (max-width: 820px) {
-    height: 256px;
+    height: auto;
     border: none;
   }
 `;
@@ -36,8 +36,9 @@ const BannerWrapper = styled.div`
   max-width: 1440px;
 
   @media screen and (max-width: 820px) {
-    height: 146px;
-    background: #fff url('/images/mainBannerMo.png') no-repeat top center/cover;
+    height: auto;
+    aspect-ratio: 320/182;
+    background: #fff url('/images/mainBannerMo.png') no-repeat top right/cover;
     border: none;
   }
 `;
@@ -78,34 +79,21 @@ const BannerTitle = styled.div`
 
   @media screen and (max-width: 820px) {
     width: 100%;
-    height: 110px;
     padding: 14px 20px 16px 20px;
-    background-color: rgba(0, 0, 0, 0.5);
-    bottom: 0;
-    right: 0;
-    color: #fff;
+    position: static;
+    color: #221E1F;
+    text-align: right;
 
     h2 {
-      font-size: 14px;
-      line-height: 22px;
-      font-weight: 700;
+      font-size: 16px;
+      line-height: 24px;
+      font-weight: 800;
+      margin-bottom: 6px;
     }
 
     p {
-      font-size: 16px;
+      font-size: 14px;
       line-height: 20px;
-    }
-
-    span {
-      &:first-of-type {
-        color: #fff;
-      }
-      &:nth-of-type(2) {
-        color: #fff;
-      }
-      &:last-of-type {
-        color: #fff;
-      }
     }
   }
 `;
