@@ -6,6 +6,7 @@ import { useState, useEffect } from 'react';
 import { InputText } from 'components/admin/Component';
 import { toast } from 'react-toastify';
 import Head from 'next/head';
+import { HeadMeta } from 'components/Components';
 
 function Login() {
   const [id, setId] = useState('');
@@ -35,9 +36,7 @@ function Login() {
 
   return (
     <>
-      <Head>
-        <title>GDI | 어드민 | 로그인</title>
-      </Head>
+      <HeadMeta title="GDI | 어드민 | 로그인" />
       <Wrapper>
         <LogoWrapper>
           <Image src="/images/logoHeaderPc.png" layout="fill" alt="logo" />

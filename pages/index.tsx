@@ -7,6 +7,7 @@ import MainSectionBottom from 'components/main/MainSectionBottom';
 import { ILabData, IForumData, IMovieData, IPressData } from 'types/dataTypes';
 import { getMovies, getPosts, getPress } from 'utils/mainPageUtils';
 import Head from 'next/head';
+import { HeadMeta } from 'components/Components';
 
 interface PageProps {
   labList: ILabData[];
@@ -18,9 +19,7 @@ interface PageProps {
 const Home: NextPage<PageProps> = ({ labList, forumList, movieList, pressList }) => {
   return (
     <>
-      <Head>
-        <title>GDI</title>
-      </Head>
+      <HeadMeta title="GDI" />
       <MainBanner />
       <MainSectionLab data={labList} />
       <MainSectionForum data={forumList} />

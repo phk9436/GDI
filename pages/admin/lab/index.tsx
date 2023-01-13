@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { BreadCrumb, Pagination } from 'components/Components';
+import { BreadCrumb, HeadMeta, Pagination } from 'components/Components';
 import { UploadButton } from 'components/admin/Component';
 import { BoardItem } from 'components/admin/BoardItem';
 import {
@@ -139,9 +139,7 @@ function index({ dataList }: PageProps) {
 
   return (
     <>
-      <Head>
-        <title>GDI | 어드민 | 연구보고서</title>
-      </Head>
+      <HeadMeta title="GDI | 어드민 | 연구보고서" />
       <div>
         <BreadCrumb category={Tap[0]} tap={Tap} />
         <Wrapper>

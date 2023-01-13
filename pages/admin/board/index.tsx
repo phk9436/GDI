@@ -21,6 +21,7 @@ import { deleteBoardData } from 'utils/deleteBoardUtils';
 import Loading from 'components/admin/Loading';
 import { toast } from 'react-toastify';
 import Head from 'next/head';
+import { HeadMeta } from 'components/Components';
 
 interface PageProps {
   dataList: IBoardData[];
@@ -132,9 +133,7 @@ function index({ dataList }: PageProps) {
 
   return (
     <>
-      <Head>
-        <title>GDI | 어드민 | 연구제안</title>
-      </Head>
+      <HeadMeta title="GDI | 어드민 | 연구제안" />
       <div>
         <BreadCrumb category={Tap[0]} tap={Tap} />
         <Wrapper>

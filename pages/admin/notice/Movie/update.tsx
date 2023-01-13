@@ -7,6 +7,7 @@ import Loading from 'components/admin/Loading';
 import { updateMovieData } from 'utils/updateBoardUtils';
 import { toast } from 'react-toastify';
 import Head from 'next/head';
+import { HeadMeta } from 'components/Components';
 
 function update() {
   const router = useRouter();
@@ -62,9 +63,7 @@ function update() {
   }, []);
   return (
     <>
-      <Head>
-        <title>GDI | 어드민 | GDI 영상관 | 수정하기</title>
-      </Head>
+      <HeadMeta title="GDI | 어드민 | GDI 영상관 | 수정하기" />
       <Wrapper>
         <Title>GDI영상관 게시글 수정</Title>
         <form onSubmit={updateMovieItem}>

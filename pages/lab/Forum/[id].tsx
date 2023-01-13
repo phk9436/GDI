@@ -1,4 +1,4 @@
-import { BreadCrumb } from 'components/Components';
+import { BreadCrumb, HeadMeta } from 'components/Components';
 import { useRouter } from 'next/router';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
@@ -27,9 +27,7 @@ function ForumDetail(props: IForumData) {
   }, []);
   return (
     <>
-      <Head>
-        <title>GDI | 학술포럼 | {props.title}</title>
-      </Head>
+      <HeadMeta title={`GDI | 학술포럼 | ${props.title}`} />
       <div>
         <BreadCrumb category={Tap[1]} tap={Tap} />
         <BoardDetail

@@ -1,6 +1,7 @@
 import styled, { css } from 'styled-components';
 import { useState } from 'react';
 import Link from 'next/link';
+import Head from 'next/head';
 
 interface IBreadCrumbProps {
   category: string[];
@@ -13,6 +14,10 @@ interface IPaginationProps {
   getNextPage: () => void;
   getPrevPage: () => void;
   isDeleted?: boolean;
+}
+
+interface IHeadmetaProps {
+  title: string;
 }
 
 export function BreadCrumb({ category, tap }: IBreadCrumbProps) {
@@ -249,3 +254,11 @@ const NextArrow = styled.div<{ isDeleted: boolean }>`
       cursor: default;
     `}
 `;
+
+export function HeadMeta({ title }: IHeadmetaProps) {
+  return (
+    <Head>
+      <title>{title}</title>
+    </Head>
+  );
+}

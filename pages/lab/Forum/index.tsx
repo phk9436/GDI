@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { BreadCrumb, Pagination } from 'components/Components';
+import { BreadCrumb, HeadMeta, Pagination } from 'components/Components';
 import { BoardItem } from 'components/lab/BoardItem';
 import dayjs from 'dayjs';
 import {
@@ -108,9 +108,7 @@ function index({ dataList }: PageProps) {
 
   return (
     <>
-      <Head>
-        <title>GDI | 학술포럼</title>
-      </Head>
+      <HeadMeta title="GDI | 학술포럼" />
       <div>
         <BreadCrumb category={Tap[1]} tap={Tap} />
         <Wrapper>

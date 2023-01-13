@@ -1,4 +1,4 @@
-import { BreadCrumb } from 'components/Components';
+import { BreadCrumb, HeadMeta } from 'components/Components';
 import { useRouter } from 'next/router';
 import { INoticeData } from 'types/dataTypes';
 import { deleteNoticeData } from 'utils/deleteBoardUtils';
@@ -40,9 +40,7 @@ function Detail(props: INoticeData) {
   }, []);
   return (
     <>
-      <Head>
-        <title>GDI | 어드민 | 공지사항 | {props.title}</title>
-      </Head>
+      <HeadMeta title={`GDI | 어드민 | 공지사항 | ${props.title}`} />
       <div>
         <BreadCrumb category={Tap[2]} tap={Tap} />
         <NoticeDetail

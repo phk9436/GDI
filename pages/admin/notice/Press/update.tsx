@@ -6,6 +6,7 @@ import Loading from 'components/admin/Loading';
 import { updatePressData } from 'utils/updateBoardUtils';
 import { toast } from 'react-toastify';
 import Head from 'next/head';
+import { HeadMeta } from 'components/Components';
 
 function update() {
   const router = useRouter();
@@ -48,9 +49,7 @@ function update() {
   }, []);
   return (
     <>
-      <Head>
-        <title>GDI | 어드민 | 언론보도 | 수정하기</title>
-      </Head>
+      <HeadMeta title="GDI | 어드민 | 언론보도 | 수정하기" />
       <Wrapper>
         <Title>언론보도 게시글 수정</Title>
         <form onSubmit={updatePressItem}>

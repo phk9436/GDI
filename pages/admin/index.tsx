@@ -1,3 +1,4 @@
+import { HeadMeta } from 'components/Components';
 import Head from 'next/head';
 import Link from 'next/link';
 import styled from 'styled-components';
@@ -19,9 +20,7 @@ function index() {
 
   return (
     <>
-      <Head>
-        <title>GDI | 어드민</title>
-      </Head>
+      <HeadMeta title="GDI | 어드민" />
       <div>
         <BreadCrumbWrapper>
           <BreadCrumb>

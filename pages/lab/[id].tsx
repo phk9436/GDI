@@ -1,4 +1,4 @@
-import { BreadCrumb } from 'components/Components';
+import { BreadCrumb, HeadMeta } from 'components/Components';
 import { useRouter } from 'next/router';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
@@ -30,9 +30,7 @@ function LabDetail(props: ILabData) {
 
   return (
     <>
-      <Head>
-        <title>GDI | 연구보고서 | {props.title}</title>
-      </Head>
+      <HeadMeta title={`GDI | 연구보고서 | ${props.title}`} />
       <div>
         <BreadCrumb category={Tap[0]} tap={Tap} />
         <BoardDetail

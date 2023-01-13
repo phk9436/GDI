@@ -1,12 +1,11 @@
 import styled from 'styled-components';
 import Head from 'next/head';
+import { HeadMeta } from 'components/Components';
 
 function index() {
   return (
     <>
-      <Head>
-        <title>GDI | GDI소개</title>
-      </Head>
+      <HeadMeta title="GDI | GDI소개" />
       <Wrapper>
         <Banner>
           <BannerBg />

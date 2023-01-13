@@ -7,6 +7,7 @@ import Loading from 'components/admin/Loading';
 import { createMovie } from 'utils/createBoardUtils';
 import { toast } from 'react-toastify';
 import Head from 'next/head';
+import { HeadMeta } from 'components/Components';
 
 function Create() {
   const [loading, setLoading] = useState(false);
@@ -56,9 +57,7 @@ function Create() {
   };
   return (
     <>
-      <Head>
-        <title>GDI | 어드민 | GDI 영상관 | 작성하기</title>
-      </Head>
+      <HeadMeta title="GDI | 어드민 | GDI 영상관 | 작성하기" />
       <Wrapper>
         <Title>GDI영상관 게시글 작성</Title>
         <form onSubmit={onSubmitPost}>

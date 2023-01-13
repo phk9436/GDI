@@ -12,6 +12,7 @@ import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import { toast } from 'react-toastify';
 import Head from 'next/head';
+import { HeadMeta } from 'components/Components';
 
 function update() {
   const router = useRouter();
@@ -94,9 +95,7 @@ function update() {
   }, []);
   return (
     <>
-      <Head>
-        <title>GDI | 어드민 | 연구보고서 | 수정하기</title>
-      </Head>
+      <HeadMeta title="GDI | 어드민 | 연구보고서 | 수정하기" />
       <Wrapper>
         <Title>학술포럼 게시글 수정</Title>
         <form onSubmit={(e) => updateBoardItem(e)}>

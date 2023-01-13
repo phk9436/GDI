@@ -1,4 +1,4 @@
-import { BreadCrumb } from 'components/Components';
+import { BreadCrumb, HeadMeta } from 'components/Components';
 import { useRouter } from 'next/router';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
@@ -39,9 +39,7 @@ function Detail(props: IBoardData) {
 
   return (
     <>
-      <Head>
-        <title>GDI | 어드민 | 연구제안 | {props.title}</title>
-      </Head>
+      <HeadMeta title={`GDI | 어드민 | 연구제안 | ${props.title}`}/>
       <div>
         <BreadCrumb category={Tap[0]} tap={Tap} />
         <BoardDetail

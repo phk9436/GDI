@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { BreadCrumb, Pagination } from 'components/Components';
+import { BreadCrumb, HeadMeta, Pagination } from 'components/Components';
 import {
   query,
   collection,
@@ -110,9 +110,7 @@ function Movie({ dataList }: PageProps) {
 
   return (
     <>
-      <Head>
-        <title>GDI | GDI 영상관</title>
-      </Head>
+      <HeadMeta title="GDI | GDI 영상관" />
       <div>
         <BreadCrumb category={Tap[0]} tap={Tap} />
         <Wrapper>

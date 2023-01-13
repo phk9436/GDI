@@ -15,6 +15,7 @@ import { createLab, uploadFile, uploadThumbnail } from 'utils/createBoardUtils';
 import Loading from 'components/admin/Loading';
 import { toast } from 'react-toastify';
 import Head from 'next/head';
+import { HeadMeta } from 'components/Components';
 
 function Create() {
   const [title, setTitle] = useState('');
@@ -81,9 +82,7 @@ function Create() {
 
   return (
     <>
-      <Head>
-        <title>GDI | 어드민 | 연구보고서 | 작성하기</title>
-      </Head>
+      <HeadMeta title="GDI | 어드민 | 연구보고서 | 작성하기" />
       <Wrapper>
         <Title>연구보고서 게시글 작성</Title>
         <form onSubmit={onSubmitPost}>

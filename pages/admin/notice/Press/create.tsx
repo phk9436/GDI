@@ -6,6 +6,7 @@ import Loading from 'components/admin/Loading';
 import { createPress } from 'utils/createBoardUtils';
 import { toast } from 'react-toastify';
 import Head from 'next/head';
+import { HeadMeta } from 'components/Components';
 
 function Create() {
   const [loading, setLoading] = useState(false);
@@ -48,9 +49,7 @@ function Create() {
 
   return (
     <>
-      <Head>
-        <title>GDI | 어드민 | 언론보도 | 작성하기</title>
-      </Head>
+      <HeadMeta title="GDI | 어드민 | 언론보도 | 작성하기" />
       <Wrapper>
         <Title>언론보도 게시글 작성</Title>
         <form onSubmit={onSubmitPost}>

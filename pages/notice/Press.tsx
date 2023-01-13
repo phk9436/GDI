@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { BreadCrumb, Pagination } from 'components/Components';
+import { BreadCrumb, HeadMeta, Pagination } from 'components/Components';
 import {
   query,
   collection,
@@ -110,9 +110,7 @@ function Press({ dataList }: PageProps) {
 
   return (
     <>
-      <Head>
-        <title>GDI | 언론보도</title>
-      </Head>
+      <HeadMeta title="GDI | 언론보도" />
       <div>
         <BreadCrumb category={Tap[1]} tap={Tap} />
         <Wrapper>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
-import { BreadCrumb, Pagination } from 'components/Components';
+import { BreadCrumb, HeadMeta, Pagination } from 'components/Components';
 import { UploadButton } from 'components/admin/Component';
 import { MovieItem } from 'components/admin/MovieItem';
 import {
@@ -134,9 +134,7 @@ function index({ dataList }: PageProps) {
   }, [isRefetch]);
   return (
     <>
-      <Head>
-        <title>GDI | 어드민 | GDI 영상관</title>
-      </Head>
+      <HeadMeta title="GDI | 어드민 | GDI 영상관" />
       <div>
         <BreadCrumb category={Tap[0]} tap={Tap} />
         <Wrapper>

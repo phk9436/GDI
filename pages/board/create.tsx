@@ -8,6 +8,7 @@ import PostEditor from 'components/editor/Editor';
 import { createBoard } from 'utils/createBoardUtils';
 import { toast } from 'react-toastify';
 import Head from 'next/head';
+import { HeadMeta } from 'components/Components';
 
 function create() {
   const [loading, setLoading] = useState(false);
@@ -84,9 +85,7 @@ function create() {
 
   return (
     <>
-      <Head>
-        <title>GDI | 연구제안 | 작성하기</title>
-      </Head>
+      <HeadMeta title="GDI | 연구제안 | 작성하기" />
       <Wrapper>
         <Title>연구제안 게시글 작성</Title>
         <form onSubmit={onSubmitPost}>
