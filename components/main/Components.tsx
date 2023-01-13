@@ -77,8 +77,9 @@ const CardContent = styled.div`
   transition: 0.3s;
 
   @media screen and (max-width: 820px) {
-    width: 120px;
-    height: 170px;
+    width: 140px;
+    aspect-ratio: 224/314;
+    height: auto;
     margin: auto;
   }
 `;
@@ -134,7 +135,7 @@ const CardText = styled.p`
   @media screen and (max-width: 820px) {
     font-size: 14px;
     line-height: 20px;
-    width: 152px;
+    width: 140px;
     height: 60px;
     -webkit-line-clamp: 3;
     margin-top: 12px;

@@ -155,7 +155,7 @@ const TitleWrapper = styled.div`
   }
 
   h3 {
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 700;
     line-height: 50px;
     height: 150px;

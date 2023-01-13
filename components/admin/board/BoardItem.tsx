@@ -72,7 +72,7 @@ const BoardItemContainer = styled.div`
   cursor: pointer;
 
   h3 {
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 700;
     white-space: nowrap;
     overflow: hidden;

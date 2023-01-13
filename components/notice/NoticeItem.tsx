@@ -80,7 +80,7 @@ const NoticeItemContainer = styled.div`
   width: 100%;
 
   h3 {
-    font-size: 36px;
+    font-size: 30px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

@@ -42,7 +42,7 @@ export function BreadCrumb({ category, tap }: IBreadCrumbProps) {
 }
 
 const BreadCrumbWrapper = styled.div`
-  height: 150px;
+  height: 100px;
   background-color: #1f4788;
 
   @media screen and (max-width: 820px) {

@@ -181,13 +181,13 @@ const Intro = styled.section`
   }
 
   @media screen and (max-width: 820px) {
-    padding: 20px 60px 60px;
+    padding: 20px 40px 60px;
     gap: 18px;
 
     p {
       width: 100%;
-      font-size: 12px;
-      line-height: 18px;
+      font-size: 13px;
+      line-height: 22px;
     }
   }
 `;
@@ -346,6 +346,7 @@ const RoadBox = styled.div`
     div {
       height: auto;
       aspect-ratio: 280/120;
+      max-width: calc(100vw - 40px);
 
       &:nth-child(1) {
         font-size: 22px;

@@ -58,7 +58,11 @@ const DescriptWrapper = styled.div`
   display: flex;
   flex-direction: column;
   gap: 34px;
-  width: calc(100% - 722px);
+  width: 438px;
+
+  @media screen and (max-width: 820px) {
+    display: none;
+  }
 `;
 
 const DescriptText = styled.p`
@@ -75,10 +79,6 @@ const DescriptText = styled.p`
     display: inline-block;
     font-weight: 700;
     color: #fff;
-  }
-
-  @media screen and (max-width: 820px) {
-    display: none;
   }
 `;
 

@@ -106,7 +106,7 @@ const BoardItemContainer = styled.div`
   gap: 28px;
 
   h3 {
-    font-size: 36px;
+    font-size: 30px;
     font-weight: 700;
     white-space: nowrap;
     overflow: hidden;
