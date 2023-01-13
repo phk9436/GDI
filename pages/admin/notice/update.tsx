@@ -10,7 +10,6 @@ import PostEditor from 'components/editor/Editor';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 import { HeadMeta } from 'components/Components';
 
 function update() {

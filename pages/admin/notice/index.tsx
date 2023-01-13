@@ -21,7 +21,6 @@ import NoticeItem from 'components/admin/NoticeItem';
 import { deleteNoticeData } from 'utils/deleteBoardUtils';
 import NoticeSceleton from 'components/notice/NoticeSceleton';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 
 interface PageProps {
   dataList: INoticeData[];

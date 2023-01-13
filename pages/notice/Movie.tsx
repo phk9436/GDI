@@ -17,7 +17,6 @@ import dayjs from 'dayjs';
 import { IMovieData } from 'types/dataTypes';
 import { MovieItem } from 'components/notice/MovieItem';
 import MovieSceleton from 'components/notice/MovieSceleton';
-import Head from 'next/head';
 
 interface PageProps {
   dataList: IMovieData[];

@@ -7,7 +7,6 @@ import { useEffect } from 'react';
 import BoardDetail from 'components/lab/BoardDetail';
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 
 function LabDetail(props: ILabData) {
   const router = useRouter();

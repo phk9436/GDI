@@ -7,7 +7,6 @@ import { Editor } from '@toast-ui/react-editor';
 import PostEditor from 'components/editor/Editor';
 import { createBoard } from 'utils/createBoardUtils';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 import { HeadMeta } from 'components/Components';
 
 function create() {

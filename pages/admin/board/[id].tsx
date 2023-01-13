@@ -9,7 +9,6 @@ import BoardDetail from 'components/admin/board/BoardDetail';
 import Loading from 'components/admin/Loading';
 import { deleteBoardData } from 'utils/deleteBoardUtils';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 
 function Detail(props: IBoardData) {
   const router = useRouter();

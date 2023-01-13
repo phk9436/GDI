@@ -5,7 +5,6 @@ import { useState, useEffect } from 'react';
 import Loading from 'components/admin/Loading';
 import { updatePressData } from 'utils/updateBoardUtils';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 import { HeadMeta } from 'components/Components';
 
 function update() {

@@ -20,7 +20,6 @@ import BoardItem from 'components/admin/board/BoardItem';
 import { deleteBoardData } from 'utils/deleteBoardUtils';
 import Loading from 'components/admin/Loading';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 import { HeadMeta } from 'components/Components';
 
 interface PageProps {

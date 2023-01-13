@@ -21,7 +21,6 @@ import dayjs from 'dayjs';
 import { IMovieData } from 'types/dataTypes';
 import MovieSceleton from 'components/notice/MovieSceleton';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 
 interface PageProps {
   dataList: IMovieData[];

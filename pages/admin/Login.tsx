@@ -5,7 +5,6 @@ import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
 import { InputText } from 'components/admin/Component';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 import { HeadMeta } from 'components/Components';
 
 function Login() {

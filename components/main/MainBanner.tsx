@@ -19,10 +19,9 @@ export default MainBanner;
 
 const Wrapper = styled.div`
   height: 500px;
-  max-width: 1300px;
+  max-width: 1440px;
   margin: auto;
   position: relative;
-  border-bottom: 1px solid #5b5859;
 
   @media screen and (max-width: 820px) {
     height: 256px;
@@ -31,10 +30,10 @@ const Wrapper = styled.div`
 `;
 
 const BannerWrapper = styled.div`
-  background: #fff url('/images/mainBannerPc.png') no-repeat left center/1200px 500px;
+  background: #fff url('/images/mainBannerPc.png') no-repeat right center/cover;
   height: 100%;
   margin: auto;
-  max-width: 1200px;
+  max-width: 1440px;
 
   @media screen and (max-width: 820px) {
     height: 146px;
@@ -45,8 +44,8 @@ const BannerWrapper = styled.div`
 
 const BannerTitle = styled.div`
   position: absolute;
-  right: 80px;
-  bottom: 40px;
+  right: 100px;
+  bottom: 0px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -57,7 +56,6 @@ const BannerTitle = styled.div`
     font-weight: 800;
     line-height: 60px;
     margin-bottom: 20px;
-    margin-right: 100px;
   }
 
   p {

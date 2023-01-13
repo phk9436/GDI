@@ -17,7 +17,6 @@ import dayjs from 'dayjs';
 import { INoticeData } from 'types/dataTypes';
 import NoticeItem from 'components/notice/NoticeItem';
 import NoticeSceleton from 'components/notice/NoticeSceleton';
-import Head from 'next/head';
 
 interface PageProps {
   dataList: INoticeData[];

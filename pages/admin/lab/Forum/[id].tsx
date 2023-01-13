@@ -9,7 +9,6 @@ import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 
 function ForumDetail(props: IForumData) {
   const router = useRouter();

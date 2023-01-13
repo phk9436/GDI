@@ -17,7 +17,6 @@ import { dbService } from 'api/firebase';
 import { ILabData } from 'types/dataTypes';
 import { getBoardData } from 'utils/getBoardUtils';
 import BoardSceleton from 'components/lab/BoardSceleton';
-import Head from 'next/head';
 
 interface PageProps {
   dataList: ILabData[];

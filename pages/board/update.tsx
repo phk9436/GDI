@@ -5,12 +5,10 @@ import Loading from 'components/admin/Loading';
 import { BlueButton, InputText } from 'components/admin/Component';
 import { Editor } from '@toast-ui/react-editor';
 import PostEditor from 'components/editor/Editor';
-import { createBoard } from 'utils/createBoardUtils';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import { updateBoardData } from 'utils/updateBoardUtils';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 import { HeadMeta } from 'components/Components';
 
 function update() {

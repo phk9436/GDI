@@ -18,7 +18,6 @@ import { IBoardData } from 'types/dataTypes';
 import PressSceleton from 'components/notice/PressSceleton';
 import BoardItem from 'components/board/BoardItem';
 import { UploadButton } from 'components/admin/Component';
-import Head from 'next/head';
 
 interface PageProps {
   dataList: IBoardData[];

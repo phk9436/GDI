@@ -21,7 +21,6 @@ import PressItem from 'components/admin/PressItem';
 import { deletePressData } from 'utils/deleteBoardUtils';
 import PressSceleton from 'components/notice/PressSceleton';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 
 interface PageProps {
   dataList: IPressData[];

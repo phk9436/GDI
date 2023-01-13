@@ -17,7 +17,6 @@ import dayjs from 'dayjs';
 import { IPressData } from 'types/dataTypes';
 import PressItem from 'components/notice/PressItem';
 import PressSceleton from 'components/notice/PressSceleton';
-import Head from 'next/head';
 
 interface PageProps {
   dataList: IPressData[];

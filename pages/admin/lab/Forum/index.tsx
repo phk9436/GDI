@@ -21,7 +21,6 @@ import dayjs from 'dayjs';
 import { IForumData } from 'types/dataTypes';
 import BoardSceleton from 'components/lab/BoardSceleton';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 
 interface PageProps {
   dataList: IForumData[];

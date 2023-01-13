@@ -21,7 +21,6 @@ import { deletePostData } from 'utils/deleteBoardUtils';
 import dayjs from 'dayjs';
 import BoardSceleton from 'components/lab/BoardSceleton';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 
 interface PageProps {
   dataList: ILabData[];

@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import Head from 'next/head';
 import { HeadMeta } from 'components/Components';
 
 function index() {

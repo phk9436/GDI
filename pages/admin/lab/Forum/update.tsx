@@ -11,7 +11,6 @@ import { uploadFile, uploadThumbnail } from 'utils/createBoardUtils';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 import { HeadMeta } from 'components/Components';
 
 function update() {

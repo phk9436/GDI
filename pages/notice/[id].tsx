@@ -7,7 +7,6 @@ import { dbService } from 'api/firebase';
 import dayjs from 'dayjs';
 import NoticeDetail from 'components/notice/NoticeDetail';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 
 function Detail(props: INoticeData) {
   const router = useRouter();

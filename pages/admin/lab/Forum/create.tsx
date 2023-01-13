@@ -15,7 +15,6 @@ import { useRouter } from 'next/router';
 import Loading from 'components/admin/Loading';
 import { createForum, uploadFile, uploadThumbnail } from 'utils/createBoardUtils';
 import { toast } from 'react-toastify';
-import Head from 'next/head';
 import { HeadMeta } from 'components/Components';
 
 function Create() {
