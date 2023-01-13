@@ -27,5 +27,6 @@ export default GnbTop;
 const LogoWrapper = styled.div`
   position: relative;
   width: 90px;
-  height: 36px;
+  height: auto;
+  aspect-ratio: 272/100;
 `;

@@ -212,15 +212,11 @@ const MovieTitle = styled.h4`
   text-overflow: ellipsis;
 
   @media screen and (max-width: 820px) {
-    height: 40px;
     margin: 16px 0 10px;
     white-space: normal;
-    font-size: 14px;
-    font-weight: 500;
-    line-height: 20px;
-    display: -webkit-box;
-    -webkit-line-clamp: 2;
-    -webkit-box-orient: vertical;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 24px;
   }
 `;
 
@@ -229,6 +225,7 @@ const MovieInfo = styled.ul`
 
   li {
     font-size: 18px;
+    font-weight: 300;
     display: flex;
     align-items: center;
 

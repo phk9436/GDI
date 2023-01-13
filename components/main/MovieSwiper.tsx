@@ -117,16 +117,16 @@ const MovieSwiperContainer = styled.div`
 
   @media screen and (max-width: 820px) {
     .swiper {
-      height: calc(56vw + 86px);
+      height: calc(56vw + 110px);
     }
     .swiper-slide {
       width: 100%;
-      margin-bottom: 10px;
     }
 
     .swiper-pagination {
       gap: 6px;
       height: 8px;
+      bottom: 22px;
     }
 
     .swiper-pagination-bullet {
