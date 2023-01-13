@@ -13,6 +13,10 @@ interface ICardProps extends ILabData {
   path: string;
 }
 
+interface IContent {
+  content: string;
+}
+
 export function RedirectDetail({ text = '바로가기', href, isDark = false }: IDetailProps) {
   return (
     <LinkWrapper isDark={isDark}>
@@ -246,5 +250,179 @@ const MovieInfo = styled.ul`
     @media screen and (max-width: 820px) {
       font-size: 14px;
     }
+  }
+`;
+
+export function Content({ category }: { category: string }) {
+  return (
+    <li>
+      <ContentBox content={category}>
+        <ContentCircle>
+          <ContentCircleInner />
+        </ContentCircle>
+        <ContentCircle>
+          <ContentCircleInner />
+        </ContentCircle>
+        <p>
+          {category === 'board' ? (
+            <>
+              참여를 통한 <br />
+              경기 북부 지역의 개선을 도와주세요
+            </>
+          ) : (
+            <>
+              경기북부지역발전연구원의 <br />
+              인사와 포부를 확인해보세요
+            </>
+          )}
+        </p>
+      </ContentBox>
+      <ContentTitle>
+        {category === 'board' ? (
+          <>
+            연구제안
+            <RedirectDetail href="/board" />
+          </>
+        ) : (
+          <>
+            GDI 소개
+            <RedirectDetail href="/intro" />
+          </>
+        )}
+      </ContentTitle>
+    </li>
+  );
+}
+
+const ContentCircle = styled.div`
+  width: 130px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  z-index: 0;
+  top: 36px;
+
+  @media screen and (max-width: 820px) {
+    top: 18px;
+    width: 34%;
+  }
+`;
+
+const ContentCircleInner = styled.div`
+  width: 60px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+
+  @media screen and (max-width: 820px) {
+    width: 44%;
+  }
+`;
+
+const ContentBox = styled.div<IContent>`
+  height: 216px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  border: 1px solid #d9d9d9;
+  border-bottom: none;
+  position: relative;
+  overflow: hidden;
+
+  p {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 500;
+    padding-left: 28px;
+    padding-bottom: 18px;
+    z-index: 1;
+  }
+
+  ${ContentCircle} {
+
+    &:first-child {
+      left: 0;
+      transform: translateX(-50%);
+    }
+
+    &:nth-child(2) {
+      left: 110px;
+
+      @media screen and (max-width: 820px) {
+        left: 42%;
+        transform: translateX(-50%);
+      }
+    }
+  }
+
+  @media screen and (max-width: 820px) {
+    height: auto;
+    aspect-ratio: 280/144;
+    letter-spacing: -0.01em;
+    background-size: 28%;
+    background-position: top 24px right 20px;
+
+    p {
+      font-size: 16px;
+      line-height: 26px;
+      padding-left: 18px;
+      padding-bottom: 8px;
+    }
+  }
+
+  ${({ content }) =>
+    content === 'board'
+      ? css`
+          background: #ffc20c url('/images/iconBoard.png') no-repeat top 32px right 24px/124px 124px;
+
+          p {
+            color: #5b5859;
+          }
+
+          ${ContentCircle} {
+            background-color: #ffb600;
+          }
+
+          ${ContentCircleInner} {
+            background-color: #ffc20c;
+          }
+        `
+      : css`
+          background: #57bd84 url('/images/iconIntro.png') no-repeat top 32px right 30px/124px
+            124px;
+
+          p {
+            color: #fff;
+          }
+
+          ${ContentCircle} {
+            background-color: #44B773;
+          }
+
+          ${ContentCircleInner} {
+            background-color: #57bd84;
+          }
+        `}
+`;
+
+const ContentTitle = styled.div`
+  height: 100px;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  color: #1f4788;
+  background-color: #f6f6f6;
+  padding: 0 28px;
+  font-size: 30px;
+  font-weight: 800;
+  border: 1px solid #d9d9d9;
+  border-top: none;
+
+  @media screen and (max-width: 820px) {
+    height: 62px;
+    font-size: 18px;
+    padding: 0 18px;
   }
 `;
