@@ -1,5 +1,5 @@
-import styled, { css } from 'styled-components';
-import { Content, RedirectDetail } from './Components';
+import styled from 'styled-components';
+import { Content } from './Components';
 
 function MainSectionEtc() {
   const contents = ['board', 'intro'];

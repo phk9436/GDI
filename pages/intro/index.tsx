@@ -346,11 +346,13 @@ const RoadBox = styled.div`
     gap: 20px;
     height: auto;
     width: 100%;
+    max-width: calc(100vw - 40px);
+    overflow: hidden;
 
     div {
       height: auto;
       aspect-ratio: 280/120;
-      max-width: calc(100vw - 40px);
+      width: calc(100vw - 40px);
 
       &:nth-child(1) {
         font-size: 22px;
