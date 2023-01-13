@@ -259,6 +259,13 @@ export function HeadMeta({ title }: IHeadmetaProps) {
   return (
     <Head>
       <title>{title}</title>
+      <meta
+        property="og:title"
+        content={title === 'GDI' ? 'GDI 사단법인 경기북부지역발전연구원' : title}
+      />
+      <meta property="og:description" content="The North Gyeonggi Development Institute" />
+      <meta property="og:type" content="website" />
+      <meta property="og:image" content="/images/logoSns.jpg" />
     </Head>
   );
 }
