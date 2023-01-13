@@ -33,6 +33,7 @@ class MyDocument extends Document {
           <meta property="description" content="The North Gyeonggi Development Institute" />
           <meta property="og:type" content="website" />
           <meta property="og:image" content="https://gdin.re.kr/images/logoSns.png" />
+          <meta property="og:description" content="The North Gyeonggi Development Institute" />
           <link rel="shortcut icon" type="image/png" sizes="16*16" href="/images/favi16.png" />
           <link rel="shortcut icon" type="image/png" sizes="32*32" href="/images/favi32.png" />
           <link rel="shortcut icon" type="image/png" sizes="96*96" href="/images/favi96.png" />
