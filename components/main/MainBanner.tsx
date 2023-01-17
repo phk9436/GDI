@@ -85,14 +85,14 @@ const BannerTitle = styled.div`
     text-align: right;
 
     h2 {
-      font-size: 16px;
-      line-height: 24px;
+      font-size: 22px;
+      line-height: 34px;
       font-weight: 800;
       margin-bottom: 6px;
     }
 
     p {
-      font-size: 14px;
+      font-size: 16px;
       line-height: 20px;
     }
   }

@@ -37,6 +37,12 @@ const LinkWrapper = styled.div<{ isDark: boolean }>`
   cursor: pointer;
   background-color: rgba(0, 0, 0, 0.1);
   color: #000;
+  transition: 0.5s;
+
+  &:hover {
+    background-color: rgba(0, 0, 0, 0.15);
+  }
+
   span {
     margin-left: 8px;
   }
@@ -341,7 +347,6 @@ const ContentBox = styled.div<IContent>`
   }
 
   ${ContentCircle} {
-
     &:first-child {
       left: 0;
       transform: translateX(-50%);
@@ -390,15 +395,14 @@ const ContentBox = styled.div<IContent>`
           }
         `
       : css`
-          background: #57bd84 url('/images/iconIntro.png') no-repeat top 32px right 30px/124px
-            124px;
+          background: #57bd84 url('/images/iconIntro.png') no-repeat top 32px right 30px/124px 124px;
 
           p {
             color: #fff;
           }
 
           ${ContentCircle} {
-            background-color: #44B773;
+            background-color: #44b773;
           }
 
           ${ContentCircleInner} {
