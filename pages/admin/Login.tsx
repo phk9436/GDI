@@ -39,7 +39,7 @@ function Login() {
       toast('이미 로그인되어 있습니다');
       router.push('/admin');
     }
-  }, []);
+  });
 
   return (
     <>
