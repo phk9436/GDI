@@ -10,6 +10,9 @@ import GnbAdmin from './Gnb/admin/GnbAdmin';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { toast } from 'react-toastify';
+import { firebaseApp } from 'api/firebase';
+import { adminState } from 'atoms/util';
+import { getAuth } from 'firebase/auth';
 
 interface Iprops {
   children: React.ReactNode;
@@ -17,10 +20,14 @@ interface Iprops {
 
 function Layout({ children }: Iprops) {
   const [isMobile, setIsMobile] = useRecoilState(mobileCheck);
+  const [isAdmin, setIsAdmin] = useRecoilState(adminState);
   const [isAdminPage, setIsAdminPage] = useState(false);
   const [isForbiden, setIsForbiden] = useState(false);
+  const [isInit, setIsInit] = useState(false);
   const router = useRouter();
   const routeCategory = router.route.split('/');
+  const app = firebaseApp;
+  const auth = getAuth();
 
   useEffect(() => {
     const userAgent = navigator.userAgent;
@@ -28,9 +35,25 @@ function Layout({ children }: Iprops) {
   }, []);
 
   useEffect(() => {
+    auth.onAuthStateChanged((user) => {
+      if (user) {
+        setIsAdmin(true);
+        sessionStorage.setItem('admin', 'adminSuccess');
+      } else {
+        setIsAdmin(false);
+        sessionStorage.removeItem('admin');
+      }
+    });
+    if (!sessionStorage.getItem('admin') && !isInit) {
+      auth.signOut();
+      setIsInit(true);
+    }
+  }, []);
+
+  useEffect(() => {
     if (routeCategory[1] === 'admin') {
       setIsAdminPage(true);
-      if (!sessionStorage.getItem('admin') && routeCategory[2] !== 'Login') {
+      if (!isAdmin && routeCategory[2] !== 'Login') {
         setIsForbiden(true);
         router.push('/');
         isForbiden && toast.error('어드민 로그인이 필요합니다');

@@ -5,6 +5,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect, useState } from 'react';
 import { RedirectDetail } from './main/Components';
+import { adminState } from 'atoms/util';
 
 interface IFooterProps {
   isAdminPage: boolean;
@@ -12,12 +13,7 @@ interface IFooterProps {
 
 function Footer({ isAdminPage }: IFooterProps) {
   const isMobile = useRecoilValue(mobileCheck);
-  const [isLogin, setIsLogin] = useState('');
-
-  useEffect(() => {
-    const loginCheck = sessionStorage.getItem('admin');
-    loginCheck && setIsLogin(loginCheck);
-  });
+  const isAdmin = useRecoilValue(adminState);
 
   return (
     <Wrapper>
@@ -44,7 +40,7 @@ function Footer({ isAdminPage }: IFooterProps) {
           ) : (
             <>
               <p>GDI Admin</p>
-              <RedirectDetail href={isLogin ? '/admin' : '/admin/Login'} />
+              <RedirectDetail href={isAdmin ? '/admin' : '/admin/Login'} />
             </>
           )}
         </FooterTop>

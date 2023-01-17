@@ -6,28 +6,36 @@ import { useState, useEffect } from 'react';
 import { InputText } from 'components/admin/Component';
 import { toast } from 'react-toastify';
 import { HeadMeta } from 'components/Components';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
+import { adminState } from 'atoms/util';
+import { useRecoilValue } from 'recoil';
 
 function Login() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
+  const isAdmin = useRecoilValue(adminState);
   const router = useRouter();
+  const auth = getAuth();
 
   const onChangeId = (e: React.ChangeEvent<HTMLInputElement>) => setId(e.target.value);
   const onChangePassword = (e: React.ChangeEvent<HTMLInputElement>) => setPassword(e.target.value);
 
-  const loginAdmin = (e: React.FormEvent<HTMLFormElement>) => {
+  const loginAdmin = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (id !== 'admin1234' || password !== 'adminlogin153246') {
+    try {
+      const data = await signInWithEmailAndPassword(auth, id, password);
+      if (data) {
+        toast.success('로그인에 성공했습니다');
+        router.push('/admin');
+      }
+    } catch (err) {
       toast.error('아이디와 패스워드를 확인해주세요');
-      return;
+      console.error(err);
     }
-    toast.success('로그인 성공!');
-    sessionStorage.setItem('admin', 'adminLoginSuccess');
-    router.push('/admin');
   };
 
   useEffect(() => {
-    if (sessionStorage.getItem('admin')) {
+    if (isAdmin) {
       toast('이미 로그인되어 있습니다');
       router.push('/admin');
     }
