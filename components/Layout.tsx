@@ -53,6 +53,11 @@ function Layout({ children }: Iprops) {
   useEffect(() => {
     if (routeCategory[1] === 'admin') {
       setIsAdminPage(true);
+      if (isMobile) {
+        setIsForbiden(true);
+        router.push('/');
+        isForbiden && toast.error('관리자 페이지는 pc만 지원합니다');
+      }
       if (!isAdmin && routeCategory[2] !== 'Login') {
         setIsForbiden(true);
         router.push('/');
