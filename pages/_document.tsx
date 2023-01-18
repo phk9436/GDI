@@ -42,6 +42,7 @@ class MyDocument extends Document {
           <link rel="apple-touch-icon-precomposed" sizes="32*32" href="images/icon32.ico" />
           <link rel="apple-touch-icon-precomposed" sizes="96*96" href="images/icon96.ico" />
           <link rel="apple-touch-icon-precomposed" sizes="180*180" href="images/icon180.ico" />
+          <meta name="google-site-verification" content="Qxk7HlLin_MyjWFLgUQVvBuKz-TY5dKe12rOEmZvx8g" />
         </Head>
         <body>
           <Main />
