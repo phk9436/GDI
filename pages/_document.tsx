@@ -30,7 +30,7 @@ class MyDocument extends Document {
     return (
       <Html>
         <Head>
-          <meta property="description" content="The North Gyeonggi Development Institute" />
+          <meta name="description" content="The North Gyeonggi Development Institute" />
           <meta property="og:type" content="website" />
           <meta property="og:image" content="https://gdin.re.kr/images/logoSns.png" />
           <meta property="og:description" content="The North Gyeonggi Development Institute" />

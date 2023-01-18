@@ -259,6 +259,10 @@ export function HeadMeta({ title }: IHeadmetaProps) {
   return (
     <Head>
       <title>{title === 'GDI' ? 'GDI 사단법인 경기북부지역발전연구원' : title}</title>
+      <meta
+        property="og:title"
+        content={title === 'GDI' ? 'GDI 사단법인 경기북부지역발전연구원' : title}
+      />
     </Head>
   );
 }
