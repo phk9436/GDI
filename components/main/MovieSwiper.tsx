@@ -6,7 +6,6 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { MovieCard } from './Components';
-import Link from 'next/link';
 import { IMovieData } from 'types/dataTypes';
 
 interface ISwiperProps {

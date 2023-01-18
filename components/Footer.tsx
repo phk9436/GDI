@@ -1,9 +1,7 @@
 import styled from 'styled-components';
 import { mobileCheck } from 'atoms/layout';
 import { useRecoilValue } from 'recoil';
-import Link from 'next/link';
 import Image from 'next/image';
-import { useEffect, useState } from 'react';
 import { RedirectDetail } from './main/Components';
 import { adminState } from 'atoms/util';
 

@@ -1,7 +1,7 @@
 import { BreadCrumb, HeadMeta } from 'components/Components';
 import { useRouter } from 'next/router';
 import { INoticeData } from 'types/dataTypes';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import dayjs from 'dayjs';
