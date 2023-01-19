@@ -12,6 +12,7 @@ function index() {
   let divHeight = 0;
 
   const onCickViewMore = () => {
+    if (isClicked) return;
     setIsClicked(true);
     if (introRef.current) introRef.current.style.height = `${divHeight}px`;
   };
