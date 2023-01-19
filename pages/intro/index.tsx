@@ -185,16 +185,15 @@ const BannerText = styled.div`
     gap: 30px;
 
     h2 {
-      font-size: 20px;
+      font-size: 24px;
     }
 
     p {
       font-size: 14px;
       padding-left: 24px;
-      gap: 2px;
+      gap: 6px;
 
       em {
-        font-size: 14px;
         font-weight: 700;
       }
     }
@@ -221,15 +220,15 @@ const Intro = styled.section`
 
   @media screen and (max-width: 820px) {
     background-color: #1f4788;
-    padding: 20px 40px 60px;
+    padding: 40px 40px 60px;
     gap: 18px;
     transition: 0.5s;
     overflow: hidden;
 
     p {
       width: 100%;
-      font-size: 13px;
-      line-height: 22px;
+      font-size: 14px;
+      line-height: 24px;
     }
   }
 `;
@@ -237,13 +236,13 @@ const Intro = styled.section`
 const Dim = styled.div<{ isClicked: boolean }>`
   position: absolute;
   bottom: 0;
-  height: 160px;
+  height: 170px;
   width: 100%;
-  background: linear-gradient(transparent 0%, #1f4788 60%);
+  background: linear-gradient(transparent 0%, #1f4788 50%);
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  padding-bottom: 20px;
+  padding-bottom: 30px;
   opacity: 1;
   transition: 0.5s;
 
@@ -255,7 +254,7 @@ const Dim = styled.div<{ isClicked: boolean }>`
 `;
 
 const ViewMore = styled.div`
-  padding: 4px 10px;
+  padding: 1px 10px;
   border: 1px solid #fff;
 `;
 
