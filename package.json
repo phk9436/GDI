@@ -12,6 +12,7 @@
     "netlify-deploy": "next build && next export"
   },
   "dependencies": {
+    "@next/font": "^13.1.2",
     "@react-query-firebase/firestore": "^1.0.0-dev.7",
     "@tiptap/core": "^2.0.0-beta.195",
     "@tiptap/react": "^2.0.0-beta.195",

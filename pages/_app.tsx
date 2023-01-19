@@ -5,8 +5,8 @@ import type { AppProps } from 'next/app';
 import { useEffect } from 'react';
 import Router from 'next/router';
 import NProgress from 'nprogress';
-import Layout from '../components/Layout';
 import { RecoilRoot } from 'recoil';
+import Root from 'components/Root';
 
 function MyApp({ Component, pageProps }: AppProps) {
   useEffect(() => {
@@ -30,9 +30,9 @@ function MyApp({ Component, pageProps }: AppProps) {
     <>
       <GlobalStyle />
       <RecoilRoot>
-        <Layout>
+        <Root>
           <Component {...pageProps} />
-        </Layout>
+        </Root>
       </RecoilRoot>
     </>
   );
