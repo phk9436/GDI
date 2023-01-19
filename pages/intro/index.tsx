@@ -1,7 +1,29 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { HeadMeta } from 'components/Components';
+import { mobileCheck } from 'atoms/layout';
+import { useRecoilValue } from 'recoil';
+import { useEffect, useRef, useState } from 'react';
 
 function index() {
+  const [isClicked, setIsClicked] = useState(false);
+  const isMobile = useRecoilValue(mobileCheck);
+  const introRef = useRef<HTMLDivElement>(null);
+  const paragraphRef = useRef<HTMLParagraphElement>(null);
+  let divHeight = 0;
+
+  const onCickViewMore = () => {
+    setIsClicked(true);
+    if (introRef.current) introRef.current.style.height = `${divHeight}px`;
+  };
+
+  useEffect(() => {
+    if (isMobile && introRef.current && !isClicked) {
+      divHeight = introRef.current?.clientHeight as number;
+      const pHeight = paragraphRef.current?.clientHeight as number;
+      introRef.current.style.height = `${pHeight + 100}px`;
+    }
+  });
+
   return (
     <>
       <HeadMeta title="GDI | GDI소개" />
@@ -17,8 +39,8 @@ function index() {
               </p>
             </BannerText>
           </Banner>
-          <Intro>
-            <p>
+          <Intro ref={introRef}>
+            <p ref={paragraphRef}>
               (사)경기북부지역발전연구원은 경기북부지역의 성장발전을 이끄는 원동력의 역할 수행을
               목표로 2021년 3월 설립되었습니다. 경기북부지역의 경제활성화를 위한 기본계획과 정책을
               수립하고, 지역산업의 경쟁력 제고를 위한 제분야의 연구조사활동을 종합적으로 수행하여
@@ -39,6 +61,11 @@ function index() {
               학술행사와 연구프로젝트의 전모를 여러분 모두와 공유하는 공간으로서의 홈페이지가 될 수
               있도록 최선을 다할 것을 약속드립니다. 저희 연구원을 방문해 주셔서 감사합니다.
             </p>
+            {isMobile && (
+              <Dim isClicked={isClicked}>
+                <ViewMore onClick={onCickViewMore}>본문 더보기</ViewMore>
+              </Dim>
+            )}
           </Intro>
           <Vision>
             <div>
@@ -185,6 +212,7 @@ const Intro = styled.section`
   line-height: 36px;
   gap: 72px;
   letter-spacing: -0.025em;
+  position: relative;
 
   p {
     width: 600px;
@@ -194,6 +222,8 @@ const Intro = styled.section`
     background-color: #1f4788;
     padding: 20px 40px 60px;
     gap: 18px;
+    transition: 0.5s;
+    overflow: hidden;
 
     p {
       width: 100%;
@@ -201,6 +231,31 @@ const Intro = styled.section`
       line-height: 22px;
     }
   }
+`;
+
+const Dim = styled.div<{ isClicked: boolean }>`
+  position: absolute;
+  bottom: 0;
+  height: 160px;
+  width: 100%;
+  background: linear-gradient(transparent 0%, #1f4788 60%);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 20px;
+  opacity: 1;
+  transition: 0.5s;
+
+  ${({ isClicked }) =>
+    isClicked &&
+    css`
+      opacity: 0;
+    `}
+`;
+
+const ViewMore = styled.div`
+  padding: 4px 10px;
+  border: 1px solid #fff;
 `;
 
 const Vision = styled.section`
