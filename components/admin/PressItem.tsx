@@ -1,13 +1,8 @@
 import styled from 'styled-components';
-import { IPressData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
+import { IPressDetailProps } from 'types/pagePropTypes';
 
-interface IPressItemProps {
-  data: IPressData;
-  deletePressItem: (id: string) => Promise<void>;
-}
-
-function PressItem({ data, deletePressItem }: IPressItemProps) {
+function PressItem({ data, deletePressItem }: IPressDetailProps) {
   const router = useRouter();
 
   const redirectUpdate = () => {

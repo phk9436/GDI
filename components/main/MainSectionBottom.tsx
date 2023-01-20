@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 import MainSectionEtc from './MainSectionEtc';
 import MainSectionNotice from './MainSectionNotice';
-import { IPressData } from 'types/dataTypes';
+import { ISectPressProps } from 'types/componentPropTypes';
 
-interface PageProps {
-  data: IPressData[];
-}
-
-function MainSectionBottom({ data }: PageProps) {
+function MainSectionBottom({ data }: ISectPressProps) {
   return (
     <Wrapper>
       <MainSectionNotice data={data} />

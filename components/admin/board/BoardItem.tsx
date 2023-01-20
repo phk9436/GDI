@@ -1,13 +1,8 @@
 import styled from 'styled-components';
-import { IBoardData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
+import { IBoardDetailPropsWithDelete } from 'types/pagePropTypes';
 
-interface IBoardItemProps {
-  data: IBoardData;
-  deleteBoardItem: (id: string) => Promise<void>;
-}
-
-function BoardItem({ data, deleteBoardItem }: IBoardItemProps) {
+function BoardItem({ data, deleteBoardItem }: IBoardDetailPropsWithDelete) {
   const router = useRouter();
 
   const redirectDetail = () => {

@@ -4,10 +4,7 @@ import { useRecoilValue } from 'recoil';
 import Image from 'next/image';
 import { RedirectDetail } from './main/Components';
 import { adminState } from 'atoms/util';
-
-interface IFooterProps {
-  isAdminPage: boolean;
-}
+import { IFooterProps } from 'types/pagePropTypes';
 
 function Footer({ isAdminPage }: IFooterProps) {
   const isMobile = useRecoilValue(mobileCheck);

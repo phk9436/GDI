@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 import { RedirectDetail } from './Components';
 import MovieSwiper from './MovieSwiper';
-import { IMovieData } from 'types/dataTypes';
+import { ISectMovieProps } from 'types/componentPropTypes';
 
-interface PageProps {
-  data: IMovieData[];
-}
-
-function MainSectionMovie({ data }: PageProps) {
+function MainSectionMovie({ data }: ISectMovieProps) {
   return (
     <Wrapper>
       <MovieTop>

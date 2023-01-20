@@ -7,14 +7,9 @@ import Footer from './Footer';
 import GnbAdmin from './Gnb/admin/GnbAdmin';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import { ILayoutProps } from 'types/pagePropTypes';
 
-interface Iprops {
-  children: React.ReactNode;
-  isAdminPage: boolean;
-  isForbiden: boolean;
-}
-
-function Layout({ children, isAdminPage, isForbiden }: Iprops) {
+function Layout({ children, isAdminPage, isForbiden }: ILayoutProps) {
   const isMobile = useRecoilValue(mobileCheck);
 
   return (

@@ -1,16 +1,10 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import { ILabData, IForumData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
 import { downloadFile } from 'utils/downloadUtils';
+import { IBoardDetailProps } from 'types/componentPropTypes';
 
-interface IBoardItemProps {
-  data: ILabData | IForumData;
-  path: string;
-  category: string;
-}
-
-export function BoardItem({ data, path, category }: IBoardItemProps) {
+export function BoardItem({ data, path, category }: IBoardDetailProps) {
   const router = useRouter();
 
   const onClickNavigate = () => router.push(`${path}/${data.id}`);
@@ -148,7 +142,7 @@ const TitleWrapper = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #1F4788;
+    background: #1f4788;
     border-radius: 15px;
     color: #fff;
     font-size: 18px;

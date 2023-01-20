@@ -1,14 +1,9 @@
 import styled from 'styled-components';
-import { INoticeData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
+import { INoticeDetailProps } from 'types/pagePropTypes';
 
-interface INoticeItemProps {
-  data: INoticeData;
-  deleteNoticeItem: (id: string, fileId: string | undefined) => Promise<void>;
-}
-
-function NoticeItem({ data, deleteNoticeItem }: INoticeItemProps) {
+function NoticeItem({ data, deleteNoticeItem }: INoticeDetailProps) {
   const router = useRouter();
 
   const redirectUpdate = () => {

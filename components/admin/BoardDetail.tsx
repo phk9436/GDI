@@ -1,27 +1,16 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import { ILabData, IForumData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { downloadFile } from 'utils/downloadUtils';
-
-interface IBoardDetailProps {
-  data: ILabData | IForumData;
-  path: string;
-  category: string;
-  deleteBoardItem: (
-    id: string,
-    fileId: string | undefined,
-    thumbnailId: string | undefined,
-  ) => Promise<void>;
-}
+import { IBoardDetailPropsWithDelete } from 'types/componentPropTypes';
 
 const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
   ssr: false,
 });
 
-function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProps) {
+function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailPropsWithDelete) {
   const router = useRouter();
 
   const redirectUpdate = () => {
@@ -158,7 +147,7 @@ const DetailTopContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #1F4788;
+    background: #1f4788;
     border-radius: 15px;
     color: #fff;
   }

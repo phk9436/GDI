@@ -1,11 +1,7 @@
 import { HeadMeta } from 'components/Components';
 import Link from 'next/link';
 import styled from 'styled-components';
-
-interface ContentProps {
-  cat: string;
-  bg: string;
-}
+import { ContentProps } from 'types/styleTypes';
 
 function index() {
   const contents = [

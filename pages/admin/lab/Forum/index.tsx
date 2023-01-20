@@ -21,12 +21,9 @@ import dayjs from 'dayjs';
 import { IForumData } from 'types/dataTypes';
 import BoardSceleton from 'components/lab/BoardSceleton';
 import { toast } from 'react-toastify';
+import { IForumListProps } from 'types/pagePropTypes';
 
-interface PageProps {
-  dataList: IForumData[];
-}
-
-function index({ dataList }: PageProps) {
+function index({ dataList }: IForumListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
   const [postList, setPostList] = useState<IForumData[]>([]);
   const [totalPageNum, setTotalPageNum] = useState(0);

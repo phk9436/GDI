@@ -1,13 +1,9 @@
 import styled from 'styled-components';
 import { SectionTop, Cards } from './Layout';
-import { ILabData } from 'types/dataTypes';
 import { RedirectDetail } from './Components';
+import { ISectLabProps } from 'types/componentPropTypes';
 
-interface PageProps {
-  data: ILabData[];
-}
-
-function MainSectionLab({ data }: PageProps) {
+function MainSectionLab({ data }: ISectLabProps) {
   return (
     <Wrapper>
       <SectionTop title={'연구활동'} href="/lab" />

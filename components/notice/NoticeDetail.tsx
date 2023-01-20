@@ -1,18 +1,14 @@
 import styled from 'styled-components';
-import { INoticeData } from 'types/dataTypes';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { downloadFile } from 'utils/downloadUtils';
-
-interface IBoardDetailProps {
-  data: INoticeData;
-}
+import { INoticeDetailProps } from 'types/componentPropTypes';
 
 const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
   ssr: false,
 });
 
-function NoticeDetail({ data }: IBoardDetailProps) {
+function NoticeDetail({ data }: INoticeDetailProps) {
   return (
     <Wrapper>
       <DetailTop>
@@ -93,7 +89,7 @@ const DetailTopContainer = styled.div`
     display: flex;
     justify-content: center;
     align-items: center;
-    background: #1F4788;
+    background: #1f4788;
     border-radius: 15px;
     color: #fff;
 
@@ -123,7 +119,6 @@ const DetailTopContainer = styled.div`
       -webkit-line-clamp: 2;
     }
   }
-  
 `;
 
 const InfoWrapper = styled.div`

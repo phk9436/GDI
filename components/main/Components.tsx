@@ -1,23 +1,11 @@
 import styled, { css } from 'styled-components';
 import Link from 'next/link';
 import Image from 'next/image';
-import { ILabData, IMovieData } from 'types/dataTypes';
+import { IMovieData } from 'types/dataTypes';
+import { IRedirectDetailProps, ICardProps } from 'types/componentPropTypes';
+import { IContent } from 'types/styleTypes';
 
-interface IDetailProps {
-  href: string;
-  text?: string;
-  isDark?: boolean;
-}
-
-interface ICardProps extends ILabData {
-  path: string;
-}
-
-interface IContent {
-  content: string;
-}
-
-export function RedirectDetail({ text = '바로가기', href, isDark = false }: IDetailProps) {
+export function RedirectDetail({ text = '바로가기', href, isDark = false }: IRedirectDetailProps) {
   return (
     <LinkWrapper isDark={isDark}>
       <Link href={href}>

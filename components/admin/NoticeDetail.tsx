@@ -1,20 +1,15 @@
 import styled from 'styled-components';
-import { INoticeData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { downloadFile } from 'utils/downloadUtils';
-
-interface IBoardDetailProps {
-  data: INoticeData;
-  deleteNoticeItem: (id: string, fileId: string | undefined) => Promise<void>;
-}
+import { INoticeDetailProps } from 'types/pagePropTypes';
 
 const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
   ssr: false,
 });
 
-function NoticeDetail({ data, deleteNoticeItem }: IBoardDetailProps) {
+function NoticeDetail({ data, deleteNoticeItem }: INoticeDetailProps) {
   const router = useRouter();
   const redirectUpdate = () => {
     router.push(

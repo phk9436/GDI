@@ -1,15 +1,9 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import { ILabData, IForumData } from 'types/dataTypes';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
 import { downloadFile } from 'utils/downloadUtils';
-
-interface IBoardDetailProps {
-  data: ILabData | IForumData;
-  path: string;
-  category: string;
-}
+import { IBoardDetailProps } from 'types/componentPropTypes';
 
 const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
   ssr: false,

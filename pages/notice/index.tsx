@@ -17,12 +17,9 @@ import dayjs from 'dayjs';
 import { INoticeData } from 'types/dataTypes';
 import NoticeItem from 'components/notice/NoticeItem';
 import NoticeSceleton from 'components/notice/NoticeSceleton';
+import { INoticeListProps } from 'types/pagePropTypes';
 
-interface PageProps {
-  dataList: INoticeData[];
-}
-
-function index({ dataList }: PageProps) {
+function index({ dataList }: INoticeListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
   const [postList, setPostList] = useState<INoticeData[]>([]);
   const [totalPageNum, setTotalPageNum] = useState(0);

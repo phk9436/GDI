@@ -2,13 +2,7 @@ import { confirmOpen } from 'atoms/layout';
 import React, { useEffect, useRef } from 'react';
 import { useSetRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
-
-interface IConfirmProps {
-  password: string;
-  setPassword: (value: React.SetStateAction<string>) => void;
-  checkPassword: () => void;
-  isDark?: boolean;
-}
+import { IConfirmProps } from 'types/pagePropTypes';
 
 function ConfirmModal({ password, setPassword, checkPassword, isDark = false }: IConfirmProps) {
   const setIsOpened = useSetRecoilState(confirmOpen);

@@ -6,10 +6,7 @@ import ConfirmModal from 'components/ConfirmModal';
 import { useRecoilState } from 'recoil';
 import { confirmOpen } from 'atoms/layout';
 import { useState } from 'react';
-
-interface IBoardItemProps {
-  data: IBoardData;
-}
+import { IBoardItemProps } from 'types/pagePropTypes';
 
 function BoardItem({ data }: IBoardItemProps) {
   const router = useRouter();

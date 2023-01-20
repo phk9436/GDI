@@ -18,12 +18,9 @@ import { IBoardData } from 'types/dataTypes';
 import PressSceleton from 'components/notice/PressSceleton';
 import BoardItem from 'components/board/BoardItem';
 import { UploadButton } from 'components/admin/Component';
+import { IBoardListProps } from 'types/pagePropTypes';
 
-interface PageProps {
-  dataList: IBoardData[];
-}
-
-function index({ dataList }: PageProps) {
+function index({ dataList }: IBoardListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
   const [postList, setPostList] = useState<IBoardData[]>([]);
   const [totalPageNum, setTotalPageNum] = useState(0);

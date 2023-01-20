@@ -17,12 +17,9 @@ import { dbService } from 'api/firebase';
 import { IForumData } from 'types/dataTypes';
 import { getBoardData } from 'utils/getBoardUtils';
 import BoardSceleton from 'components/lab/BoardSceleton';
+import { IForumListProps } from 'types/pagePropTypes';
 
-interface PageProps {
-  dataList: IForumData[];
-}
-
-function index({ dataList }: PageProps) {
+function index({ dataList }: IForumListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
   const [postList, setPostList] = useState<IForumData[]>([]);
   const [totalPageNum, setTotalPageNum] = useState(0);

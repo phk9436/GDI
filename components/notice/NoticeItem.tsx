@@ -1,13 +1,8 @@
 import styled from 'styled-components';
-import { INoticeData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { downloadFile } from 'utils/downloadUtils';
-
-interface INoticeItemProps {
-  data: INoticeData;
-  category: string;
-}
+import { INoticeItemProps } from 'types/componentPropTypes';
 
 function NoticeItem({ data, category }: INoticeItemProps) {
   const router = useRouter();

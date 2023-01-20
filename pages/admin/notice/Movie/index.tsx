@@ -21,12 +21,9 @@ import dayjs from 'dayjs';
 import { IMovieData } from 'types/dataTypes';
 import MovieSceleton from 'components/notice/MovieSceleton';
 import { toast } from 'react-toastify';
+import { IMovieListProps } from 'types/pagePropTypes';
 
-interface PageProps {
-  dataList: IMovieData[];
-}
-
-function index({ dataList }: PageProps) {
+function index({ dataList }: IMovieListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
   const [postList, setPostList] = useState<IMovieData[]>([]);
   const [totalPageNum, setTotalPageNum] = useState(0);

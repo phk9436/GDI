@@ -1,10 +1,6 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import { IMovieData } from 'types/dataTypes';
-
-interface IMovieItemProps {
-  data: IMovieData;
-}
+import { IMovieItemProps } from 'types/componentPropTypes';
 
 export function MovieItem({ data }: IMovieItemProps) {
   return (

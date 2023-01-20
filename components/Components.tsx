@@ -2,28 +2,14 @@ import styled, { css } from 'styled-components';
 import { useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
+import { IBreadCrumbProps, IPaginationProps, IHeadmetaProps } from 'types/componentPropTypes';
 
-interface IBreadCrumbProps {
-  category: string[];
-  tap: string[][];
-}
-
-interface IPaginationProps {
-  currentPageNum: number;
-  totalPageNum: number;
-  getNextPage: () => void;
-  getPrevPage: () => void;
-  isDeleted?: boolean;
-}
-
-interface IHeadmetaProps {
-  title: string;
-}
 
 export function BreadCrumb({ category, tap }: IBreadCrumbProps) {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
 
   const onClickMenuButton = () => setIsMenuOpened((state) => !state);
+
   return (
     <BreadCrumbWrapper>
       <BreadCrumbContents>

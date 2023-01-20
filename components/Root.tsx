@@ -7,12 +7,9 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router';
 import { getAuth } from 'firebase/auth';
 import { toast } from 'react-toastify';
+import { IRootProps } from 'types/pagePropTypes';
 
-interface Iprops {
-  children: React.ReactNode;
-}
-
-function Root({ children }: Iprops) {
+function Root({ children }: IRootProps) {
   const app = firebaseApp;
   const [isMobile, setIsMobile] = useRecoilState(mobileCheck);
   const [isAdmin, setIsAdmin] = useRecoilState(adminState);

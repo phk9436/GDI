@@ -21,12 +21,9 @@ import { deleteBoardData } from 'utils/deleteBoardUtils';
 import Loading from 'components/admin/Loading';
 import { toast } from 'react-toastify';
 import { HeadMeta } from 'components/Components';
+import { IBoardListProps } from 'types/pagePropTypes';
 
-interface PageProps {
-  dataList: IBoardData[];
-}
-
-function index({ dataList }: PageProps) {
+function index({ dataList }: IBoardListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
   const [postList, setPostList] = useState<IBoardData[]>([]);
   const [totalPageNum, setTotalPageNum] = useState(0);

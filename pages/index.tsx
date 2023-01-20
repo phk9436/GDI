@@ -4,18 +4,11 @@ import MainSectionLab from 'components/main/MainSectionLab';
 import MainSectionForum from 'components/main/MainSectionForum';
 import MainSectionMovie from 'components/main/MainSectionMovie';
 import MainSectionBottom from 'components/main/MainSectionBottom';
-import { ILabData, IForumData, IMovieData, IPressData } from 'types/dataTypes';
 import { getMovies, getPosts, getPress } from 'utils/mainPageUtils';
 import { HeadMeta } from 'components/Components';
+import { IMainpageProps } from 'types/pagePropTypes';
 
-interface PageProps {
-  labList: ILabData[];
-  forumList: IForumData[];
-  movieList: IMovieData[];
-  pressList: IPressData[];
-}
-
-const Home: NextPage<PageProps> = ({ labList, forumList, movieList, pressList }) => {
+const Home: NextPage<IMainpageProps> = ({ labList, forumList, movieList, pressList }) => {
   return (
     <>
       <HeadMeta title="GDI" />

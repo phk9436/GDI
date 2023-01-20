@@ -2,15 +2,12 @@ import styled from 'styled-components';
 import { useState } from 'react';
 import Link from 'next/link';
 import { RedirectDetail } from './Components';
-import { INoticeData, IPressData } from 'types/dataTypes';
+import { INoticeData } from 'types/dataTypes';
 import { getNotice } from 'utils/mainPageUtils';
 import SceletonNotice from './SceletonNotice';
+import { ISectPressProps } from 'types/componentPropTypes';
 
-interface PageProps {
-  data: IPressData[];
-}
-
-function MainSectionNotice({ data }: PageProps) {
+function MainSectionNotice({ data }: ISectPressProps) {
   const [tapIndex, setTapIndex] = useState(0);
   const [isInit, setIsInit] = useState(true);
   const [noticeList, setNoticeList] = useState<INoticeData[]>([]);

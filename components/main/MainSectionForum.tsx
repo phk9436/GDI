@@ -1,13 +1,9 @@
 import styled from 'styled-components';
-import { IForumData } from 'types/dataTypes';
 import { SectionTop, Cards } from './Layout';
 import { RedirectDetail } from './Components';
+import { ISectForumProps } from 'types/componentPropTypes';
 
-interface PageProps {
-  data: IForumData[];
-}
-
-function MainSectionForum({ data }: PageProps) {
+function MainSectionForum({ data }: ISectForumProps) {
   return (
     <Wrapper>
       <SectionTop title={'학술포럼 & 이벤트'} href="/lab/Forum" />

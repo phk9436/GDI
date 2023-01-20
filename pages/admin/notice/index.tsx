@@ -21,12 +21,9 @@ import NoticeItem from 'components/admin/NoticeItem';
 import { deleteNoticeData } from 'utils/deleteBoardUtils';
 import NoticeSceleton from 'components/notice/NoticeSceleton';
 import { toast } from 'react-toastify';
+import { INoticeListProps } from 'types/pagePropTypes';
 
-interface PageProps {
-  dataList: INoticeData[];
-}
-
-function index({ dataList }: PageProps) {
+function index({ dataList }: INoticeListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
   const [postList, setPostList] = useState<INoticeData[]>([]);
   const [totalPageNum, setTotalPageNum] = useState(0);

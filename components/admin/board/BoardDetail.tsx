@@ -1,18 +1,13 @@
 import styled from 'styled-components';
-import { IBoardData } from 'types/dataTypes';
 import dynamic from 'next/dynamic';
 import Link from 'next/link';
-
-interface IBoardDetailProps {
-  data: IBoardData;
-  deleteBoardItem: (id: string) => Promise<void>;
-}
+import { IBoardDetailPropsWithDelete } from 'types/pagePropTypes';
 
 const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
   ssr: false,
 });
 
-function BoardDetail({ data, deleteBoardItem }: IBoardDetailProps) {
+function BoardDetail({ data, deleteBoardItem }: IBoardDetailPropsWithDelete) {
 
   return (
     <Wrapper>

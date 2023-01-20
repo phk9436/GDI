@@ -1,8 +1,5 @@
 import styled from 'styled-components';
-import { IPressData } from 'types/dataTypes';
-interface IPressItemProps {
-  data: IPressData;
-}
+import { IPressItemProps } from 'types/componentPropTypes';
 
 function PressItem({ data }: IPressItemProps) {
   return (

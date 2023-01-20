@@ -2,52 +2,14 @@ import styled from 'styled-components';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
-
-interface IUploadProps {
-  htmlFor: string;
-}
-
-interface ILabelFileProps {
-  text: string;
-  htmlFor: string;
-}
-
-interface IInputHideProps {
-  id: string;
-  type: string;
-  value?: string;
-  accept: string;
-  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-interface IInputTextProps {
-  type: string;
-  placeholder: string;
-  value: string;
-  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-  inputMode?:
-    | 'text'
-    | 'search'
-    | 'email'
-    | 'tel'
-    | 'url'
-    | 'none'
-    | 'numeric'
-    | 'decimal'
-    | undefined;
-  pattern?: string;
-}
-
-interface IBlueButtonProps {
-  type: 'button' | 'submit' | 'reset' | undefined;
-  text: string;
-  disabled: boolean;
-}
-
-interface IUploadButtonProps {
-  tap: string[];
-}
+import {
+  IUploadProps,
+  ILabelFileProps,
+  IInputHideProps,
+  IInputTextProps,
+  IBlueButtonProps,
+  IUploadButtonProps,
+} from 'types/componentPropTypes';
 
 export function LabelUpload({ htmlFor }: IUploadProps) {
   return (

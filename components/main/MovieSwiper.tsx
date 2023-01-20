@@ -6,11 +6,7 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import { MovieCard } from './Components';
-import { IMovieData } from 'types/dataTypes';
-
-interface ISwiperProps {
-  data: IMovieData[];
-}
+import { ISwiperProps } from 'types/componentPropTypes';
 
 function MovieSwiper({ data }: ISwiperProps) {
   const [init, setInit] = useState(false);

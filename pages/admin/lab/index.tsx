@@ -21,12 +21,9 @@ import { deletePostData } from 'utils/deleteBoardUtils';
 import dayjs from 'dayjs';
 import BoardSceleton from 'components/lab/BoardSceleton';
 import { toast } from 'react-toastify';
+import { ILabListProps } from 'types/pagePropTypes';
 
-interface PageProps {
-  dataList: ILabData[];
-}
-
-function index({ dataList }: PageProps) {
+function index({ dataList }: ILabListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
   const [postList, setPostList] = useState<ILabData[]>([]);
   const [totalPageNum, setTotalPageNum] = useState(0);

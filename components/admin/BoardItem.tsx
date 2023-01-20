@@ -1,19 +1,8 @@
 import styled from 'styled-components';
 import Image from 'next/image';
-import { ILabData, IForumData } from 'types/dataTypes';
 import { useRouter } from 'next/router';
 import { downloadFile } from 'utils/downloadUtils';
-
-interface IBoardItemProps {
-  data: ILabData | IForumData;
-  path: string;
-  category: string;
-  deleteBoardItem: (
-    id: string,
-    fileId: string | undefined,
-    thumbnailId: string | undefined,
-  ) => Promise<void>;
-}
+import { IBoardItemProps } from 'types/componentPropTypes';
 
 export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemProps) {
   const router = useRouter();

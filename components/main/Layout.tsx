@@ -1,16 +1,6 @@
 import styled from 'styled-components';
 import { RedirectDetail, Card } from './Components';
-import { ILabData } from 'types/dataTypes';
-
-interface ISectionTopProps {
-  title: string;
-  href: string;
-}
-
-interface ICardsProps {
-  data: ILabData[];
-  path: string;
-}
+import { ISectionTopProps, ICardsProps } from 'types/componentPropTypes';
 
 export function SectionTop({ title, href }: ISectionTopProps) {
   return (

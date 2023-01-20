@@ -21,12 +21,9 @@ import PressItem from 'components/admin/PressItem';
 import { deletePressData } from 'utils/deleteBoardUtils';
 import PressSceleton from 'components/notice/PressSceleton';
 import { toast } from 'react-toastify';
+import { IPressListProps } from 'types/pagePropTypes';
 
-interface PageProps {
-  dataList: IPressData[];
-}
-
-function index({ dataList }: PageProps) {
+function index({ dataList }: IPressListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
   const [postList, setPostList] = useState<IPressData[]>([]);
   const [totalPageNum, setTotalPageNum] = useState(0);

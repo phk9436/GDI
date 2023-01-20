@@ -17,12 +17,9 @@ import dayjs from 'dayjs';
 import { IPressData } from 'types/dataTypes';
 import PressItem from 'components/notice/PressItem';
 import PressSceleton from 'components/notice/PressSceleton';
+import { IPressListProps } from 'types/pagePropTypes';
 
-interface PageProps {
-  dataList: IPressData[];
-}
-
-function Press({ dataList }: PageProps) {
+function Press({ dataList }: IPressListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
   const [postList, setPostList] = useState<IPressData[]>([]);
   const [totalPageNum, setTotalPageNum] = useState(0);

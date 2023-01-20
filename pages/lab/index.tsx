@@ -17,12 +17,9 @@ import { dbService } from 'api/firebase';
 import { ILabData } from 'types/dataTypes';
 import { getBoardData } from 'utils/getBoardUtils';
 import BoardSceleton from 'components/lab/BoardSceleton';
+import { ILabListProps } from 'types/pagePropTypes';
 
-interface PageProps {
-  dataList: ILabData[];
-}
-
-function index({ dataList }: PageProps) {
+function index({ dataList }: ILabListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
   const [postList, setPostList] = useState<ILabData[]>([]);
   const [totalPageNum, setTotalPageNum] = useState(0);

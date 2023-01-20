@@ -17,12 +17,9 @@ import dayjs from 'dayjs';
 import { IMovieData } from 'types/dataTypes';
 import { MovieItem } from 'components/notice/MovieItem';
 import MovieSceleton from 'components/notice/MovieSceleton';
+import { IMovieListProps } from 'types/pagePropTypes';
 
-interface PageProps {
-  dataList: IMovieData[];
-}
-
-function Movie({ dataList }: PageProps) {
+function Movie({ dataList }: IMovieListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
   const [postList, setPostList] = useState<IMovieData[]>([]);
   const [totalPageNum, setTotalPageNum] = useState(0);
