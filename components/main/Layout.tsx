@@ -96,6 +96,6 @@ const CardsContainer = styled.div`
 
   @media screen and (max-width: 820px) {
     gap: 20px;
-    width: auto;
+    width: fit-content;
   }
 `;
