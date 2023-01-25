@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { IMovieData } from 'types/dataTypes';
 import { IRedirectDetailProps, ICardProps } from 'types/componentPropTypes';
 import { IContent } from 'types/styleTypes';
+import { IDarkCheck } from 'types/styleTypes';
 
 export function RedirectDetail({ text = '바로가기', href, isDark = false }: IRedirectDetailProps) {
   return (
@@ -15,7 +16,7 @@ export function RedirectDetail({ text = '바로가기', href, isDark = false }: 
   );
 }
 
-const LinkWrapper = styled.div<{ isDark: boolean }>`
+const LinkWrapper = styled.div<IDarkCheck>`
   padding: 10px 20px;
   width: fit-content;
   border-radius: 29px;

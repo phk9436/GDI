@@ -3,7 +3,7 @@ import { useState } from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
 import { IBreadCrumbProps, IPaginationProps, IHeadmetaProps } from 'types/componentPropTypes';
-
+import { IBreadCrumbButton, IBreadCrumbMenu, IArrow } from 'types/styleTypes';
 
 export function BreadCrumb({ category, tap }: IBreadCrumbProps) {
   const [isMenuOpened, setIsMenuOpened] = useState(false);
@@ -99,7 +99,7 @@ const BreadCrumbTitle = styled.div`
   }
 `;
 
-const BreadCrumbButton = styled.div<{ tapLength: number }>`
+const BreadCrumbButton = styled.div<IBreadCrumbButton>`
   width: 26px;
   height: 26px;
   background: url('/images/arrowBottom.png') no-repeat center/contain;
@@ -117,7 +117,7 @@ const BreadCrumbButton = styled.div<{ tapLength: number }>`
   }
 `;
 
-const Menu = styled.ul<{ tap: string[][]; isOpened: boolean }>`
+const Menu = styled.ul<IBreadCrumbMenu>`
   width: 300px;
   position: absolute;
   top: 100%;
@@ -207,7 +207,7 @@ const PaginationComponents = styled.div`
   font-size: 24px;
 `;
 
-const PrevArrow = styled.div<{ isDeleted: boolean }>`
+const PrevArrow = styled.div<IArrow>`
   width: 30px;
   height: 30px;
   cursor: pointer;
@@ -224,7 +224,7 @@ const PrevArrow = styled.div<{ isDeleted: boolean }>`
     `}
 `;
 
-const NextArrow = styled.div<{ isDeleted: boolean }>`
+const NextArrow = styled.div<IArrow>`
   width: 30px;
   height: 30px;
   cursor: pointer;

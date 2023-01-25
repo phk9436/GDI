@@ -3,6 +3,7 @@ import React, { useEffect, useRef } from 'react';
 import { useSetRecoilState } from 'recoil';
 import styled, { css } from 'styled-components';
 import { IConfirmProps } from 'types/pagePropTypes';
+import { IDarkCheck } from 'types/styleTypes';
 
 function ConfirmModal({ password, setPassword, checkPassword, isDark = false }: IConfirmProps) {
   const setIsOpened = useSetRecoilState(confirmOpen);
@@ -39,7 +40,7 @@ function ConfirmModal({ password, setPassword, checkPassword, isDark = false }: 
 
 export default ConfirmModal;
 
-const Wrapper = styled.div<{ isDark: boolean }>`
+const Wrapper = styled.div<IDarkCheck>`
   position: fixed;
   top: 0;
   left: 0;

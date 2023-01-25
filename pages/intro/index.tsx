@@ -3,6 +3,7 @@ import { HeadMeta } from 'components/Components';
 import { mobileCheck } from 'atoms/layout';
 import { useRecoilValue } from 'recoil';
 import { useEffect, useRef, useState } from 'react';
+import { IClickCheck } from 'types/styleTypes';
 
 function index() {
   const [isClicked, setIsClicked] = useState(false);
@@ -233,7 +234,7 @@ const Intro = styled.section`
   }
 `;
 
-const Dim = styled.div<{ isClicked: boolean }>`
+const Dim = styled.div<IClickCheck>`
   position: absolute;
   bottom: 0;
   height: 170px;
