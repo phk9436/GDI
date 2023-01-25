@@ -16,6 +16,7 @@ function Root({ children }: IRootProps) {
   const [isAdminPage, setIsAdminPage] = useState(false);
   const [isForbiden, setIsForbiden] = useState(false);
   const [isInit, setIsInit] = useState(false);
+  const [isChecked, setIsChecked] = useState(false);
   const router = useRouter();
   const routeCategory = router.route.split('/');
   const auth = getAuth();
@@ -30,9 +31,11 @@ function Root({ children }: IRootProps) {
       if (user) {
         setIsAdmin(true);
         sessionStorage.setItem('admin', 'adminSuccess');
+        isChecked || setIsChecked(true);
       } else {
         setIsAdmin(false);
         sessionStorage.removeItem('admin');
+        isChecked || setIsChecked(true);
       }
     });
     if (!sessionStorage.getItem('admin') && !isInit) {
@@ -48,7 +51,7 @@ function Root({ children }: IRootProps) {
         setIsForbiden(true);
         router.push('/');
         isForbiden && toast.error('관리자 페이지는 pc만 지원합니다');
-      } else if (!isAdmin && routeCategory[2] !== 'Login') {
+      } else if (!isAdmin && routeCategory[2] !== 'Login' && isChecked) {
         setIsForbiden(true);
         router.push('/');
         isForbiden && toast.error('어드민 로그인이 필요합니다');

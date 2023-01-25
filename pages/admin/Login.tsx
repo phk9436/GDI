@@ -35,7 +35,7 @@ function Login() {
   };
 
   useEffect(() => {
-    if (isAdmin) {
+    if (sessionStorage.getItem('admin')) {
       toast('이미 로그인되어 있습니다');
       router.push('/admin');
     }
