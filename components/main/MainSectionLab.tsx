@@ -10,7 +10,7 @@ function MainSectionLab({ data }: ISectLabProps) {
       <SectionContents>
         <DescriptWrapper>
           <DescriptText>
-            지역경제활성화를 위한 <em>GDI만의 실질적 연구</em>를 <br />
+            지역경제 활성화를 위한 <em>GDI만의 실질적 연구</em>를 <br />
             확인해보세요.
             <DescriptMarker />
           </DescriptText>
