@@ -22,7 +22,7 @@ function Footer({ isAdminPage }: IFooterProps) {
             />
           </LogoWrapper>
           <ContentAddress>
-            사단법인 경기북부지역 발전연구원 <BrMo/> (11008) 경기도 연천군 군남면 청정로 2291-4 <br />
+            사단법인 경기북부지역발전연구원 <BrMo/> (11008) 경기도 연천군 군남면 청정로 2291-4 <br />
             TEL: 031-832-3888
           </ContentAddress>
           {!isMobile && (
