@@ -18,7 +18,7 @@ function MainSectionForum({ data }: ISectForumProps) {
 
           <DescriptLink>
             학술포럼 리스트
-            <RedirectDetail href="/lab" />
+            <RedirectDetail href="/lab/Forum" />
           </DescriptLink>
         </DescriptWrapper>
       </SectionContents>

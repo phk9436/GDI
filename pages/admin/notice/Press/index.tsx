@@ -41,7 +41,7 @@ function index({ dataList }: IPressListProps) {
   const Tap = [
     [
       'GDI 영상관',
-      '정책의 방향설정과 실현에 도움을 주고자 작성된 분야별 정책제안이나 아이디어 자료입니다.',
+      '',
       '/admin/notice/Movie',
     ],
     ['언론보도', '', '/admin/notice/Press'],
