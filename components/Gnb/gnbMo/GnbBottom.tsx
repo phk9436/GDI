@@ -10,7 +10,7 @@ function GnbBottom() {
     [
       ['연구실', 'lab'],
       ['연구보고서', 'lab'],
-      ['학술 포럼', 'lab/Forum'],
+      ['학술포럼', 'lab/Forum'],
     ],
     [
       ['소식', 'notice'],

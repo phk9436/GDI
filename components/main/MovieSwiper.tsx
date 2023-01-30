@@ -93,6 +93,7 @@ const MovieSwiperContainer = styled.div`
     align-items: center;
     gap: 20px;
     height: 16px;
+    bottom: 20px;
   }
 
   .swiper-pagination-bullet {
@@ -112,7 +113,7 @@ const MovieSwiperContainer = styled.div`
 
   @media screen and (max-width: 820px) {
     .swiper {
-      height: calc(56vw + 110px);
+      height: calc(56vw + 100px);
     }
     .swiper-slide {
       width: 100%;
@@ -121,7 +122,7 @@ const MovieSwiperContainer = styled.div`
     .swiper-pagination {
       gap: 6px;
       height: 8px;
-      bottom: 22px;
+      bottom: 24px;
     }
 
     .swiper-pagination-bullet {

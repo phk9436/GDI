@@ -5,7 +5,7 @@ function GnbBottom() {
   const Menu: { [key: string]: string[][] } = {
     lab: [
       ['연구보고서', ''],
-      ['학술 포럼', 'Forum'],
+      ['학술포럼', 'Forum'],
     ],
     notice: [
       ['GDI 영상관', 'Movie'],

@@ -119,6 +119,7 @@ const CardDate = styled.div`
 
 const CardText = styled.p`
   width: 100%;
+  max-width: 222px;
   height: 64px;
   margin-top: 20px;
   font-size: 18px;
@@ -205,14 +206,13 @@ const IconPlay = styled.div`
 const MovieTitle = styled.h4`
   font-size: 20px;
   line-height: 24px;
-  margin: 22px 0 18px;
+  margin: 22px 0 10px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 
   @media screen and (max-width: 820px) {
-    margin: 16px 0 10px;
-    white-space: normal;
+    margin: 16px 0 6px;
     font-size: 16px;
     font-weight: 700;
     line-height: 24px;
@@ -261,13 +261,13 @@ export function Content({ category }: { category: string }) {
         <p>
           {category === 'board' ? (
             <>
-              참여를 통한 <br />
-              경기 북부 지역의 개선을 도와주세요
+              참여를 통해 <br />
+              경기 북부 지역의 발전을 도와주세요
             </>
           ) : (
             <>
               경기북부지역발전연구원의 <br />
-              인사와 포부를 확인해보세요
+              인사와 포부를 확인해 보세요
             </>
           )}
         </p>

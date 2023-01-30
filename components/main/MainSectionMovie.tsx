@@ -20,7 +20,7 @@ function MainSectionMovie({ data }: ISectMovieProps) {
 export default MainSectionMovie;
 
 const Wrapper = styled.section`
-  height: 646px;
+  height: 630px;
   margin-top: 30px;
   position: relative;
   background-color: #1f4788;
