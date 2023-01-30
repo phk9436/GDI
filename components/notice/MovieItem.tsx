@@ -54,15 +54,12 @@ const MovieItemWrapper = styled.div`
   }
 
   @media screen and (max-width: 820px) {
-    gap: 16px;
+    gap: 0;
 
     h3 {
       font-size: 14px;
       line-height: 20px;
-      height: 40px;
-      display: -webkit-box;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
+      margin: 16px 0 8px;
     }
   }
 `;
