@@ -65,6 +65,7 @@ function update() {
     }
     if (year.length !== 4) {
       toast.error('연도를 4글자로 입력해주세요.');
+      setLoading(false);
       return;
     }
     const isUpdated = await updateLabData(

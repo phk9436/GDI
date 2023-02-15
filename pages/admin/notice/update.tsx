@@ -44,6 +44,7 @@ function update() {
     };
     if (!title || !content) {
       toast.error('항목이 모두 채워지지 않았습니다');
+      setLoading(false);
       return;
     }
     const isUpdated = await updateNoticeData(context, isFileChanged);

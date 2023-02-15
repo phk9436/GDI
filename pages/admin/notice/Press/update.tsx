@@ -34,11 +34,13 @@ function update() {
     };
     if (!title || !pressUrl || !pressFrom || !pressDate) {
       toast.error('항목이 모두 채워지지 않았습니다');
+      setLoading(false);
       return;
     }
     const checkUrl = /^(http(s)?:\/\/)([^\/]*)(\.)(com|net|kr|my|shop)(\/)/gi;
     if (!checkUrl.test(pressUrl)) {
       toast.error('유효한 url이 아닙니다.');
+      setLoading(false);
       return;
     }
     const isUpdated = await updatePressData(context);

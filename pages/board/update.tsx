@@ -56,6 +56,7 @@ function update() {
     const content = contentRef.current?.getInstance().getMarkdown();
     if (!title || !author || !email || !content) {
       toast.error('항목이 모두 채워지지 않았습니다');
+      setLoading(false);
       return;
     }
     const isUpdated = await updateBoardData({

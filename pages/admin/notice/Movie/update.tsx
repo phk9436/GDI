@@ -48,6 +48,7 @@ function update() {
     };
     if (!title || !ytbDate || !ytbUrl || !ytbThumbnail || !ytbFrom) {
       toast.error('항목이 모두 채워지지 않았습니다');
+      setLoading(false);
       return false;
     }
     const isUpdated = await updateMovieData(context);
