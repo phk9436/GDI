@@ -72,13 +72,20 @@ function create() {
       password,
       content,
     };
-    if (title && email && author && password) {
-      await createBoard(context);
-      toast.success('게시글이 작성되었습니다');
-      router.push('/board');
-    } else {
+    if (!(title && email && author && password)) {
       toast.error('항목이 모두 작성되지 않았습니다');
+      setLoading(false);
+      return;
     }
+    const isCreated = await createBoard(context);
+    if (!isCreated) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/board');
+      setLoading(false);
+      return;
+    }
+    toast.success('게시글이 작성되었습니다');
+    router.push('/board');
     setLoading(false);
   };
 

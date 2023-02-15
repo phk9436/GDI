@@ -34,13 +34,19 @@ function Create() {
       fileName,
     };
 
-    if (title && content) {
-      await createNotice(context);
-      toast.success('게시글이 작성되었습니다');
-      router.push('/admin/notice');
-    } else {
+    if (!(title && content)) {
       toast.error('항목이 모두 작성되지 않았습니다');
+      setLoading(false);
+      return;
     }
+    const isCreated = await createNotice(context);
+    if (!isCreated) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin/notice');
+      setLoading(false);
+    }
+    toast.success('게시글이 작성되었습니다');
+    router.push('/admin/notice');
     setLoading(false);
   };
 

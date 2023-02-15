@@ -45,13 +45,20 @@ function Create() {
       ytbDate,
       ytbThumbnail,
     };
-    if (title && ytbUrl && ytbFrom && ytbDate && ytbThumbnail) {
-      await createMovie(context);
-      toast.success('게시글이 작성되었습니다');
-      router.push('/admin/notice/Movie');
-    } else {
+    if (!(title && ytbUrl && ytbFrom && ytbDate && ytbThumbnail)) {
       toast.error('항목이 모두 작성되지 않았습니다');
+      setLoading(false);
+      return;
     }
+    const isCreated = await createMovie(context);
+    if (!isCreated) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin/notice/Movie');
+      setLoading(false);
+      return;
+    }
+    toast.success('게시글이 작성되었습니다');
+    router.push('/admin/notice/Movie');
     setLoading(false);
   };
   return (

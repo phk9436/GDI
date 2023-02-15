@@ -65,17 +65,25 @@ function Create() {
       thumbnailUrl,
     };
 
-    if (title && author && year && content && thumbnailUrl && fileUrl) {
-      if (year.length !== 4) {
-        toast.error('연도를 4글자로 입력해주세요.');
-      } else {
-        await createLab(context);
-        toast.success('게시글이 작성되었습니다');
-        router.push('/admin/lab');
-      }
-    } else {
+    if (!(title && author && year && content && thumbnailUrl && fileUrl)) {
       toast.error('항목이 모두 작성되지 않았습니다');
+      setLoading(false);
+      return;
     }
+    if (year.length !== 4) {
+      toast.error('연도를 4글자로 입력해주세요.');
+      setLoading(false);
+      return;
+    }
+    const isCreated = await createLab(context);
+    if (!isCreated) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin/lab');
+      setLoading(false);
+      return;
+    }
+    toast.success('게시글이 작성되었습니다');
+    router.push('/admin/lab');
     setLoading(false);
   };
 

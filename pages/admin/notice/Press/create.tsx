@@ -31,18 +31,26 @@ function Create() {
       pressFrom,
       pressDate,
     };
-    if (title && pressUrl && pressFrom && pressDate) {
-      const checkUrl = /^(http(s)?:\/\/)([^\/]*)(\.)(com|net|kr|my|shop|io|org)(\/)/gi;
-      if (!checkUrl.test(pressUrl)) {
-        toast.error('유효한 url이 아닙니다.');
-      } else {
-        await createPress(context);
-        toast.success('게시글이 작성되었습니다');
-        router.push('/admin/notice/Press');
-      }
-    } else {
+    if (!(title && pressUrl && pressFrom && pressDate)) {
       toast.error('항목이 모두 작성되지 않았습니다');
+      setLoading(false);
+      return;
     }
+    const checkUrl = /^(http(s)?:\/\/)([^\/]*)(\.)(com|net|kr|my|shop|io|org)(\/)/gi;
+    if (!checkUrl.test(pressUrl)) {
+      toast.error('유효한 url이 아닙니다.');
+      setLoading(false);
+      return;
+    }
+    const isCreated = await createPress(context);
+    if (!isCreated) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin/notice/Press');
+      setLoading(false);
+      return;
+    }
+    toast.success('게시글이 작성되었습니다');
+    router.push('/admin/notice/Press');
     setLoading(false);
   };
 

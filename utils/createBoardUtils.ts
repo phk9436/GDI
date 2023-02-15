@@ -86,150 +86,179 @@ export const uploadFile: (
 };
 
 export const createLab = async (context: IcreateLabProps) => {
-  const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
-  const fileV4Id = v4();
-  const fileRef = ref(storageService, `lab/${fileV4Id}`);
-  await uploadString(fileRef, context.fileUrl, 'data_url');
-  const fileId = fileV4Id;
+  try {
+    const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
+    const fileV4Id = v4();
+    const fileRef = ref(storageService, `lab/${fileV4Id}`);
+    await uploadString(fileRef, context.fileUrl, 'data_url');
+    const fileId = fileV4Id;
 
-  const thumbnailV4Id = v4();
-  const thumbnailRef = ref(storageService, `lab/${thumbnailV4Id}`);
-  const thumbnailDataString = await uploadString(thumbnailRef, context.thumbnailUrl, 'data_url');
-  const thumbnailData = await getDownloadURL(thumbnailDataString.ref);
-  const thumbnailId = thumbnailV4Id;
+    const thumbnailV4Id = v4();
+    const thumbnailRef = ref(storageService, `lab/${thumbnailV4Id}`);
+    const thumbnailDataString = await uploadString(thumbnailRef, context.thumbnailUrl, 'data_url');
+    const thumbnailData = await getDownloadURL(thumbnailDataString.ref);
+    const thumbnailId = thumbnailV4Id;
 
-  const boardId = v4();
+    const boardId = v4();
 
-  const postContext = {
-    title: context.title,
-    author: context.author,
-    year: context.year,
-    createdAt,
-    thumbnailData,
-    thumbnailId,
-    fileName: context.fileName,
-    fileId,
-    boardId,
-  };
+    const postContext = {
+      title: context.title,
+      author: context.author,
+      year: context.year,
+      createdAt,
+      thumbnailData,
+      thumbnailId,
+      fileName: context.fileName,
+      fileId,
+      boardId,
+    };
 
-  await setDoc(doc(dbService, 'lab', boardId), postContext);
-  await setDoc(doc(dbService, 'labContent', boardId), {
-    content: context.content,
-  });
-  await updateDoc(doc(dbService, 'meta', 'labCount'), {
-    //전체 게시물 개수
-    total: increment(1),
-  });
+    await setDoc(doc(dbService, 'lab', boardId), postContext);
+    await setDoc(doc(dbService, 'labContent', boardId), {
+      content: context.content,
+    });
+    await updateDoc(doc(dbService, 'meta', 'labCount'), {
+      //전체 게시물 개수
+      total: increment(1),
+    });
+    return true;
+  } catch (err) {
+    return false;
+  }
 };
 
 export const createForum = async (context: IcreateForumProps) => {
-  const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
+  try {
+    const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
 
-  let fileId = '';
-  if (context.fileUrl) {
-    const fileV4Id = v4();
-    const fileRef = ref(storageService, `forum/${fileV4Id}`);
-    await uploadString(fileRef, context.fileUrl, 'data_url');
-    fileId = fileV4Id;
+    let fileId = '';
+    if (context.fileUrl) {
+      const fileV4Id = v4();
+      const fileRef = ref(storageService, `forum/${fileV4Id}`);
+      await uploadString(fileRef, context.fileUrl, 'data_url');
+      fileId = fileV4Id;
+    }
+
+    const thumbnailV4Id = v4();
+    const thumbnailRef = ref(storageService, `forum/${thumbnailV4Id}`);
+    const thumbnailDataString = await uploadString(thumbnailRef, context.thumbnailUrl, 'data_url');
+    const thumbnailData = await getDownloadURL(thumbnailDataString.ref);
+    const thumbnailId = thumbnailV4Id;
+
+    const boardId = v4();
+
+    const postContext = {
+      title: context.title,
+      place: context.place,
+      forumDate: context.forumDate,
+      createdAt,
+      thumbnailData,
+      thumbnailId,
+      fileName: context.fileName,
+      fileId,
+    };
+
+    await setDoc(doc(dbService, 'forum', boardId), postContext);
+    await setDoc(doc(dbService, 'forumContent', boardId), {
+      content: context.content,
+    });
+    await updateDoc(doc(dbService, 'meta', 'forumCount'), {
+      //전체 게시물 개수
+      total: increment(1),
+    });
+    return true;
+  } catch (err) {
+    return false;
   }
-
-  const thumbnailV4Id = v4();
-  const thumbnailRef = ref(storageService, `forum/${thumbnailV4Id}`);
-  const thumbnailDataString = await uploadString(thumbnailRef, context.thumbnailUrl, 'data_url');
-  const thumbnailData = await getDownloadURL(thumbnailDataString.ref);
-  const thumbnailId = thumbnailV4Id;
-
-  const boardId = v4();
-
-  const postContext = {
-    title: context.title,
-    place: context.place,
-    forumDate: context.forumDate,
-    createdAt,
-    thumbnailData,
-    thumbnailId,
-    fileName: context.fileName,
-    fileId,
-  };
-
-  await setDoc(doc(dbService, 'forum', boardId), postContext);
-  await setDoc(doc(dbService, 'forumContent', boardId), {
-    content: context.content,
-  });
-  await updateDoc(doc(dbService, 'meta', 'forumCount'), {
-    //전체 게시물 개수
-    total: increment(1),
-  });
 };
 
 export const createMovie = async (context: ICreateMovieProps) => {
-  const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
-  const boardId = v4();
-  await setDoc(doc(dbService, 'movie', boardId), { ...context, createdAt });
-  await updateDoc(doc(dbService, 'meta', 'movieCount'), {
-    //전체 게시물 개수
-    total: increment(1),
-  });
+  try {
+    const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
+    const boardId = v4();
+    await setDoc(doc(dbService, 'movie', boardId), { ...context, createdAt });
+    await updateDoc(doc(dbService, 'meta', 'movieCount'), {
+      //전체 게시물 개수
+      total: increment(1),
+    });
+    return true;
+  } catch (err) {
+    return false;
+  }
 };
 
 export const createPress = async (context: ICreatePressProps) => {
-  const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
-  const boardId = v4();
-  await setDoc(doc(dbService, 'press', boardId), { ...context, createdAt });
-  await updateDoc(doc(dbService, 'meta', 'pressCount'), {
-    //전체 게시물 개수
-    total: increment(1),
-  });
+  try {
+    const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
+    const boardId = v4();
+    await setDoc(doc(dbService, 'press', boardId), { ...context, createdAt });
+    await updateDoc(doc(dbService, 'meta', 'pressCount'), {
+      //전체 게시물 개수
+      total: increment(1),
+    });
+    return true;
+  } catch (err) {
+    return false;
+  }
 };
 
 export const createNotice = async (context: ICreateNoticeProps) => {
-  const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
+  try {
+    const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
 
-  let fileId = '';
-  if (context.fileUrl) {
-    const fileV4Id = v4();
-    const fileRef = ref(storageService, `notice/${fileV4Id}`);
-    await uploadString(fileRef, context.fileUrl, 'data_url');
-    fileId = fileV4Id;
+    let fileId = '';
+    if (context.fileUrl) {
+      const fileV4Id = v4();
+      const fileRef = ref(storageService, `notice/${fileV4Id}`);
+      await uploadString(fileRef, context.fileUrl, 'data_url');
+      fileId = fileV4Id;
+    }
+
+    const boardId = v4();
+
+    const postContext = {
+      title: context.title,
+      createdAt,
+      fileName: context.fileName,
+      fileId,
+      boardId,
+    };
+
+    await setDoc(doc(dbService, 'notice', boardId), postContext);
+    await setDoc(doc(dbService, 'noticeContent', boardId), {
+      content: context.content,
+    });
+    await updateDoc(doc(dbService, 'meta', 'noticeCount'), {
+      //전체 게시물 개수
+      total: increment(1),
+    });
+    return true;
+  } catch (err) {
+    return false;
   }
-
-  const boardId = v4();
-
-  const postContext = {
-    title: context.title,
-    createdAt,
-    fileName: context.fileName,
-    fileId,
-    boardId,
-  };
-
-  await setDoc(doc(dbService, 'notice', boardId), postContext);
-  await setDoc(doc(dbService, 'noticeContent', boardId), {
-    content: context.content,
-  });
-  await updateDoc(doc(dbService, 'meta', 'noticeCount'), {
-    //전체 게시물 개수
-    total: increment(1),
-  });
 };
 
 export const createBoard = async (context: ICreateBoardProps) => {
-  const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
-  const boardId = v4();
-  const postContext = {
-    title: context.title,
-    createdAt,
-    author: context.author,
-    password: context.password,
-  };
+  try {
+    const createdAt = dayjs(new Date()).format('YYYYMMDDHHmmss');
+    const boardId = v4();
+    const postContext = {
+      title: context.title,
+      createdAt,
+      author: context.author,
+      password: context.password,
+    };
 
-  await setDoc(doc(dbService, 'board', boardId), postContext);
-  await setDoc(doc(dbService, 'boardContent', boardId), {
-    content: context.content,
-    email: context.email,
-  });
-  await updateDoc(doc(dbService, 'meta', 'boardCount'), {
-    //전체 게시물 개수
-    total: increment(1),
-  });
+    await setDoc(doc(dbService, 'board', boardId), postContext);
+    await setDoc(doc(dbService, 'boardContent', boardId), {
+      content: context.content,
+      email: context.email,
+    });
+    await updateDoc(doc(dbService, 'meta', 'boardCount'), {
+      //전체 게시물 개수
+      total: increment(1),
+    });
+  } catch (err) {
+    return false;
+  }
 };
