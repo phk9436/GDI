@@ -22,6 +22,7 @@ import { deleteNoticeData } from 'utils/deleteBoardUtils';
 import NoticeSceleton from 'components/notice/NoticeSceleton';
 import { toast } from 'react-toastify';
 import { INoticeListProps } from 'types/pagePropTypes';
+import { useRouter } from 'next/router';
 
 function index({ dataList }: INoticeListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
@@ -37,13 +38,10 @@ function index({ dataList }: INoticeListProps) {
   const [isInit, setIsInit] = useState(true);
   const [isPending, setIsPending] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
+  const router = useRouter();
 
   const Tap = [
-    [
-      'GDI 영상관',
-      '',
-      '/admin/notice/Movie',
-    ],
+    ['GDI 영상관', '', '/admin/notice/Movie'],
     ['언론보도', '', '/admin/notice/Press'],
     ['공지사항', '', '/admin/notice'],
   ];
@@ -116,12 +114,19 @@ function index({ dataList }: INoticeListProps) {
 
   const deleteNoticeItem = async (id: string, fileId: string | undefined) => {
     setIsLoading(true);
-    await deleteNoticeData(id, fileId);
+    const isDeleteSuccessed = await deleteNoticeData(id, fileId);
+    if (!isDeleteSuccessed) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin');
+      setIsLoading(false);
+      return;
+    }
     toast.success('삭제되었습니다. 모든 삭제작업 후 데이터 최신화를 위해 새로고침을 해주세요.', {
       theme: 'light',
     });
     setIsLoading(false);
     setPostList(postList.filter((e) => e.id !== id));
+    isDeleted || setIsDeleted(true);
     isInit && setIsInit(false);
   };
 

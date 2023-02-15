@@ -68,7 +68,12 @@ function Detail(props: IBoardData) {
     }
     setPassword('');
     setIsLoading(true);
-    await deleteBoardData(router.query.id as string);
+    const isDeleted = await deleteBoardData(router.query.id as string);
+    if (!isDeleted) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/board');
+      return;
+    }
     toast.success('삭제되었습니다', { theme: 'light' });
     router.push('/board');
   };

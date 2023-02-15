@@ -15,18 +15,19 @@ function Detail(props: INoticeData) {
   const [isLoading, setIsLoading] = useState(false);
 
   const Tap = [
-    [
-      'GDI 영상관',
-      '',
-      '/admin/notice/Movie',
-    ],
+    ['GDI 영상관', '', '/admin/notice/Movie'],
     ['언론보도', '', '/admin/notice/Press'],
     ['공지사항', '', '/admin/notice'],
   ];
 
   const deleteNoticeItem = async (id: string, fileId: string | undefined) => {
     setIsLoading(true);
-    await deleteNoticeData(id, fileId);
+    const isDeleted = await deleteNoticeData(id, fileId);
+    if (!isDeleted) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push(Tap[2][2]);
+      return;
+    }
     toast.success('삭제되었습니다.', { theme: 'light' });
     router.push(Tap[2][2]);
   };

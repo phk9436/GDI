@@ -22,6 +22,7 @@ import dayjs from 'dayjs';
 import BoardSceleton from 'components/lab/BoardSceleton';
 import { toast } from 'react-toastify';
 import { ILabListProps } from 'types/pagePropTypes';
+import { useRouter } from 'next/router';
 
 function index({ dataList }: ILabListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
@@ -37,6 +38,7 @@ function index({ dataList }: ILabListProps) {
   const [isInit, setIsInit] = useState(true);
   const [isPending, setIsPending] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
+  const router = useRouter();
 
   const Tap = [
     [
@@ -119,7 +121,13 @@ function index({ dataList }: ILabListProps) {
     thumbnailId: string | undefined,
   ) => {
     setIsLoading(true);
-    await deletePostData('lab', 'labCount', id, fileId, thumbnailId);
+    const isDeleteSuccessed = await deletePostData('lab', 'labCount', id, fileId, thumbnailId);
+    if (!isDeleteSuccessed) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin');
+      setIsLoading(false);
+      return;
+    }
     toast.success('삭제되었습니다. 모든 삭제작업 후 데이터 최신화를 위해 새로고침을 해주세요.', {
       theme: 'light',
     });

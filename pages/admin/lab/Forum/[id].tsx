@@ -29,7 +29,12 @@ function ForumDetail(props: IForumData) {
     thumbnailId: string | undefined,
   ) => {
     setIsLoading(true);
-    await deletePostData('forum', 'forumCount', id, fileId, thumbnailId);
+    const isDeleted = await deletePostData('forum', 'forumCount', id, fileId, thumbnailId);
+    if (!isDeleted) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push(Tap[1][2]);
+      return;
+    }
     toast.success('삭제되었습니다.', { theme: 'light' });
     router.push(Tap[1][2]);
   };

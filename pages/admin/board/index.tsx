@@ -22,6 +22,7 @@ import Loading from 'components/admin/Loading';
 import { toast } from 'react-toastify';
 import { HeadMeta } from 'components/Components';
 import { IBoardListProps } from 'types/pagePropTypes';
+import { useRouter } from 'next/router';
 
 function index({ dataList }: IBoardListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
@@ -37,6 +38,7 @@ function index({ dataList }: IBoardListProps) {
   const [isPending, setIsPending] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleted, setIsDeleted] = useState(false);
+  const router = useRouter();
 
   const Tap = [
     [
@@ -114,12 +116,19 @@ function index({ dataList }: IBoardListProps) {
 
   const deleteBoardItem = async (id: string) => {
     setIsLoading(true);
-    await deleteBoardData(id);
+    const isDeleteSuccessed = await deleteBoardData(id);
+    if (!isDeleteSuccessed) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin');
+      setIsLoading(false);
+      return;
+    }
     toast.success('삭제되었습니다. 모든 삭제작업 후 데이터 최신화를 위해 새로고침을 해주세요.', {
       theme: 'light',
     });
     setPostList(postList.filter((e) => e.id !== id));
     setIsLoading(false);
+    isDeleted || setIsDeleted(true);
     isInit && setIsInit(false);
   };
 

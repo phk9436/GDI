@@ -24,7 +24,12 @@ function Detail(props: IBoardData) {
 
   const deleteBoardItem = async (id: string) => {
     setIsLoading(true);
-    await deleteBoardData(id);
+    const isDeleted = await deleteBoardData(id);
+    if (!isDeleted) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin/board');
+      return;
+    }
     toast.success('삭제되었습니다.', { theme: 'light' });
     router.push('/admin/board');
   };
@@ -38,7 +43,7 @@ function Detail(props: IBoardData) {
 
   return (
     <>
-      <HeadMeta title={`GDI | 어드민 | 연구제안 | ${props.title}`}/>
+      <HeadMeta title={`GDI | 어드민 | 연구제안 | ${props.title}`} />
       <div>
         <BreadCrumb category={Tap[0]} tap={Tap} />
         <BoardDetail
