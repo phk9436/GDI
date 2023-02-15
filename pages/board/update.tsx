@@ -54,17 +54,25 @@ function update() {
     e.preventDefault();
     setLoading(true);
     const content = contentRef.current?.getInstance().getMarkdown();
-    const update = await updateBoardData({
+    if (!title || !author || !email || !content) {
+      toast.error('항목이 모두 채워지지 않았습니다');
+      return;
+    }
+    const isUpdated = await updateBoardData({
       id: router.query.id as string,
       title,
       author,
       email,
       content: content as string,
     });
-    if (update) {
-      toast.success('수정 완료됐습니다');
+    if (!isUpdated) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
       router.push('/board');
+      setLoading(false);
+      return;
     }
+    toast.success('수정 완료됐습니다');
+    router.push('/board');
     setLoading(false);
   };
 

@@ -32,11 +32,24 @@ function update() {
       pressFrom,
       pressDate,
     };
-    const update = await updatePressData(context);
-    if (update) {
-      toast.success('수정 완료됐습니다');
-      router.push('/admin/notice/Press');
+    if (!title || !pressUrl || !pressFrom || !pressDate) {
+      toast.error('항목이 모두 채워지지 않았습니다');
+      return;
     }
+    const checkUrl = /^(http(s)?:\/\/)([^\/]*)(\.)(com|net|kr|my|shop)(\/)/gi;
+    if (!checkUrl.test(pressUrl)) {
+      toast.error('유효한 url이 아닙니다.');
+      return;
+    }
+    const isUpdated = await updatePressData(context);
+    if (!isUpdated) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin/notice/Press');
+      setLoading(false);
+      return;
+    }
+    toast.success('수정 완료됐습니다');
+    router.push('/admin/notice/Press');
     setLoading(false);
   };
 

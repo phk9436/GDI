@@ -48,7 +48,12 @@ function update() {
     e.preventDefault();
     setLoading(true);
     const content = contentRef.current?.getInstance().getMarkdown();
-    const update = await updateForumData(
+    if (!content || !title || !place || !forumDate) {
+      toast.error('항목이 모두 채워지지 않았습니다');
+      setLoading(false);
+      return;
+    }
+    const isUpdated = await updateForumData(
       id as string,
       category as string,
       title,
@@ -63,10 +68,14 @@ function update() {
       thumbnailId as string,
       thumbnailUrl,
     );
-    if (update) {
-      toast.success('수정 완료됐습니다');
+    if (!isUpdated) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
       router.push('/admin/lab/Forum');
+      setLoading(false);
+      return;
     }
+    toast.success('수정 완료됐습니다');
+    router.push('/admin/lab/Forum');
     setLoading(false);
   };
 

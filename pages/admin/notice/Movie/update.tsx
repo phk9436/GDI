@@ -46,11 +46,19 @@ function update() {
       ytbDate,
       ytbThumbnail,
     };
-    const update = await updateMovieData(context);
-    if (update) {
-      toast.success('수정 완료됐습니다');
-      router.push('/admin/notice/Movie');
+    if (!title || !ytbDate || !ytbUrl || !ytbThumbnail || !ytbFrom) {
+      toast.error('항목이 모두 채워지지 않았습니다');
+      return false;
     }
+    const isUpdated = await updateMovieData(context);
+    if (!isUpdated) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin/notice/Movie');
+      setLoading(false);
+      return;
+    }
+    toast.success('수정 완료됐습니다');
+    router.push('/admin/notice/Movie');
     setLoading(false);
   };
 

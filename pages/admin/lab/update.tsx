@@ -58,7 +58,16 @@ function update() {
     e.preventDefault();
     setLoading(true);
     const content = contentRef.current?.getInstance().getMarkdown();
-    const update = await updateLabData(
+    if (!content || !title || !author || !year) {
+      toast.error('항목이 모두 채워지지 않았습니다');
+      setLoading(false);
+      return;
+    }
+    if (year.length !== 4) {
+      toast.error('연도를 4글자로 입력해주세요.');
+      return;
+    }
+    const isUpdated = await updateLabData(
       id as string,
       category as string,
       title,
@@ -73,10 +82,14 @@ function update() {
       thumbnailId as string,
       thumbnailUrl,
     );
-    if (update) {
-      toast.success('수정 완료됐습니다');
+    if (!isUpdated) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
       router.push('/admin/lab');
+      setLoading(false);
+      return;
     }
+    toast.success('수정 완료됐습니다');
+    router.push('/admin/lab');
     setLoading(false);
   };
 

@@ -42,11 +42,19 @@ function update() {
       fileUrl,
       content: content as string,
     };
-    const update = await updateNoticeData(context, isFileChanged);
-    if (update) {
-      toast.success('수정 완료됐습니다');
-      router.push('/admin/notice');
+    if (!title || !content) {
+      toast.error('항목이 모두 채워지지 않았습니다');
+      return;
     }
+    const isUpdated = await updateNoticeData(context, isFileChanged);
+    if (!isUpdated) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin/notice');
+      setLoading(false);
+      return;
+    }
+    toast.success('수정 완료됐습니다');
+    router.push('/admin/notice');
     setLoading(false);
   };
 
