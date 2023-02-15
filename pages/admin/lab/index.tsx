@@ -53,14 +53,14 @@ function index({ dataList }: ILabListProps) {
     setIsPending(true);
     setPostList([]);
     isInit && setIsInit(false);
-    const [dataList, docs, total] = await getBoardData(
-      'lab',
-      'labCount',
-      6,
-      isNext,
-      lastData,
-      prevData,
-    );
+    const getResult = await getBoardData('lab', 'labCount', 6, isNext, lastData, prevData);
+    if (!getResult) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin');
+      setIsPending(false);
+      return;
+    }
+    const [dataList, docs, total] = getResult;
     setPostList(dataList);
     dataList.length && setPrevData(docs[0]);
     dataList.length && setLastData(docs[docs.length - 1]);

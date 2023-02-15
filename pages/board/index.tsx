@@ -19,6 +19,8 @@ import PressSceleton from 'components/notice/PressSceleton';
 import BoardItem from 'components/board/BoardItem';
 import { UploadButton } from 'components/admin/Component';
 import { IBoardListProps } from 'types/pagePropTypes';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 function index({ dataList }: IBoardListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
@@ -32,6 +34,7 @@ function index({ dataList }: IBoardListProps) {
   const [isNext, setIsNext] = useState(false);
   const [isInit, setIsInit] = useState(true);
   const [isPending, setIsPending] = useState(false);
+  const router = useRouter();
 
   const Tap = [
     [
@@ -45,14 +48,14 @@ function index({ dataList }: IBoardListProps) {
     setIsPending(true);
     setPostList([]);
     isInit && setIsInit(false);
-    const [dataList, docs, total] = await getBoardData(
-      'board',
-      'boardCount',
-      6,
-      isNext,
-      lastData,
-      prevData,
-    );
+    const getResult = await getBoardData('board', 'boardCount', 6, isNext, lastData, prevData);
+    if (!getResult) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/');
+      setIsPending(false);
+      return;
+    }
+    const [dataList, docs, total] = getResult;
     setPostList(dataList);
     dataList.length && setPrevData(docs[0]);
     dataList.length && setLastData(docs[docs.length - 1]);

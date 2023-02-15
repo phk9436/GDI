@@ -18,6 +18,8 @@ import { IPressData } from 'types/dataTypes';
 import PressItem from 'components/notice/PressItem';
 import PressSceleton from 'components/notice/PressSceleton';
 import { IPressListProps } from 'types/pagePropTypes';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 function Press({ dataList }: IPressListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
@@ -31,13 +33,10 @@ function Press({ dataList }: IPressListProps) {
   const [isNext, setIsNext] = useState(false);
   const [isInit, setIsInit] = useState(true);
   const [isPending, setIsPending] = useState(false);
+  const router = useRouter();
 
   const Tap = [
-    [
-      'GDI 영상관',
-      '',
-      '/notice/Movie',
-    ],
+    ['GDI 영상관', '', '/notice/Movie'],
     ['언론보도', '', '/notice/Press'],
     ['공지사항', '', '/notice'],
   ];
@@ -46,14 +45,14 @@ function Press({ dataList }: IPressListProps) {
     setIsPending(true);
     setPostList([]);
     isInit && setIsInit(false);
-    const [dataList, docs, total] = await getBoardData(
-      'press',
-      'pressCount',
-      6,
-      isNext,
-      lastData,
-      prevData,
-    );
+    const getResult = await getBoardData('press', 'pressCount', 6, isNext, lastData, prevData);
+    if (!getResult) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/');
+      setIsPending(false);
+      return;
+    }
+    const [dataList, docs, total] = getResult;
     setPostList(dataList);
     dataList.length && setPrevData(docs[0]);
     dataList.length && setLastData(docs[docs.length - 1]);

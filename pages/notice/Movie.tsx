@@ -18,6 +18,8 @@ import { IMovieData } from 'types/dataTypes';
 import { MovieItem } from 'components/notice/MovieItem';
 import MovieSceleton from 'components/notice/MovieSceleton';
 import { IMovieListProps } from 'types/pagePropTypes';
+import { toast } from 'react-toastify';
+import { useRouter } from 'next/router';
 
 function Movie({ dataList }: IMovieListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
@@ -31,13 +33,10 @@ function Movie({ dataList }: IMovieListProps) {
   const [isNext, setIsNext] = useState(false);
   const [isInit, setIsInit] = useState(true);
   const [isPending, setIsPending] = useState(false);
+  const router = useRouter();
 
   const Tap = [
-    [
-      'GDI 영상관',
-      '',
-      '/notice/Movie',
-    ],
+    ['GDI 영상관', '', '/notice/Movie'],
     ['언론보도', '', '/notice/Press'],
     ['공지사항', '', '/notice'],
   ];
@@ -46,14 +45,14 @@ function Movie({ dataList }: IMovieListProps) {
     setIsPending(true);
     setPostList([]);
     isInit && setIsInit(false);
-    const [dataList, docs, total] = await getBoardData(
-      'movie',
-      'movieCount',
-      6,
-      isNext,
-      lastData,
-      prevData,
-    );
+    const getResult = await getBoardData('movie', 'movieCount', 6, isNext, lastData, prevData);
+    if (!getResult) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/');
+      setIsPending(false);
+      return;
+    }
+    const [dataList, docs, total] = getResult;
     setPostList(dataList);
     dataList.length && setPrevData(docs[0]);
     dataList.length && setLastData(docs[docs.length - 1]);

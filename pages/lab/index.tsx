@@ -18,6 +18,8 @@ import { ILabData } from 'types/dataTypes';
 import { getBoardData } from 'utils/getBoardUtils';
 import BoardSceleton from 'components/lab/BoardSceleton';
 import { ILabListProps } from 'types/pagePropTypes';
+import { useRouter } from 'next/router';
+import { toast } from 'react-toastify';
 
 function index({ dataList }: ILabListProps) {
   const [isRefetch, setIsRefetch] = useState(false);
@@ -31,6 +33,7 @@ function index({ dataList }: ILabListProps) {
   const [isNext, setIsNext] = useState(false);
   const [isInit, setIsInit] = useState(true);
   const [isPending, setIsPending] = useState(false);
+  const router = useRouter();
 
   const Tap = [
     [
@@ -45,14 +48,14 @@ function index({ dataList }: ILabListProps) {
     setIsPending(true);
     setPostList([]);
     isInit && setIsInit(false);
-    const [dataList, docs, total] = await getBoardData(
-      'lab',
-      'labCount',
-      6,
-      isNext,
-      lastData,
-      prevData,
-    );
+    const getResult = await getBoardData('lab', 'labCount', 6, isNext, lastData, prevData);
+    if (!getResult) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/');
+      setIsPending(false);
+      return;
+    }
+    const [dataList, docs, total] = getResult;
     setPostList(dataList);
     dataList.length && setPrevData(docs[0]);
     dataList.length && setLastData(docs[docs.length - 1]);
