@@ -50,7 +50,7 @@ function index({ dataList }: INoticeListProps) {
     setIsPending(true);
     setPostList([]);
     isInit && setIsInit(false);
-    const [dataList, docs, total] = await getBoardData(
+    const getResult = await getBoardData(
       'notice',
       'noticeCount',
       6,
@@ -58,6 +58,13 @@ function index({ dataList }: INoticeListProps) {
       lastData,
       prevData,
     );
+    if (!getResult) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin');
+      setIsPending(false);
+      return;
+    }
+    const [dataList, docs, total] = getResult;
     setPostList(dataList);
     dataList.length && setPrevData(docs[0]);
     dataList.length && setLastData(docs[docs.length - 1]);
