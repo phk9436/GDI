@@ -181,12 +181,12 @@ export const updateNoticeData = async (
       await uploadString(fileRef, fileUrl, 'data_url');
       const getFileId = fileV4Id;
       noticeContext = {
-        ...context,
+        ...noticeContext,
         fileId: getFileId,
         fileName,
       };
     }
-    await updateDoc(doc(dbService, 'notice', id), context);
+    await updateDoc(doc(dbService, 'notice', id), noticeContext);
     await updateDoc(doc(dbService, 'noticeContent', id), { content });
     return true;
   } catch (err) {
