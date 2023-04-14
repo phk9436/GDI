@@ -220,14 +220,21 @@ const InfoWrapper = styled.div`
     ul {
       li {
         font-size: 12px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
 
         p {
           width: fit-content;
         }
 
-        &:first-child::after {
-          height: 12px;
-          margin: 0 6px;
+        &:first-child {
+          min-width: 36px;
+
+          &::after {
+            height: 12px;
+            margin: 0 6px;
+          }
         }
       }
     }
