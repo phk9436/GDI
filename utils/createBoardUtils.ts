@@ -258,6 +258,7 @@ export const createBoard = async (context: ICreateBoardProps) => {
       //전체 게시물 개수
       total: increment(1),
     });
+    return true;
   } catch (err) {
     return false;
   }
