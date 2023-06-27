@@ -81,11 +81,13 @@ const CardsWrapper = styled.div`
   max-width: calc(100% - 423px);
   overflow-x: auto;
   padding-bottom: 40px;
+  min-height: 438px;
 
   @media screen and (max-width: 820px) {
     max-width: 100%;
     padding: 0 20px;
     padding-bottom: 20px;
+    min-height: 288px;
   }
 `;
 
