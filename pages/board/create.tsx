@@ -77,8 +77,8 @@ function create() {
       setLoading(false);
       return;
     }
-    const isCreated = await createBoard(context);
-    if (!isCreated) {
+    const isPostCreated = await createBoard(context);
+    if (!isPostCreated) {
       toast.error('알 수 없는 에러가 발생했습니다.');
       router.push('/board');
       setLoading(false);

@@ -42,8 +42,8 @@ function Create() {
       setLoading(false);
       return;
     }
-    const isCreated = await createPress(context);
-    if (!isCreated) {
+    const isPostCreated = await createPress(context);
+    if (!isPostCreated) {
       toast.error('알 수 없는 에러가 발생했습니다.');
       router.push('/admin/notice/Press');
       setLoading(false);

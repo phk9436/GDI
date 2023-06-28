@@ -61,8 +61,8 @@ function Create() {
       setLoading(false);
       return;
     }
-    const isCreated = await createForum(context);
-    if (!isCreated) {
+    const isPostCreated = await createForum(context);
+    if (!isPostCreated) {
       toast.error('알 수 없는 에러가 발생했습니다.');
       router.push('/admin/lab/Forum');
       setLoading(false);
