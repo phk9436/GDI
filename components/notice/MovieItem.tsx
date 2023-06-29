@@ -60,6 +60,7 @@ const MovieItemWrapper = styled.div`
       font-size: 14px;
       line-height: 20px;
       margin: 16px 0 8px;
+      white-space: wrap;
     }
   }
 `;
