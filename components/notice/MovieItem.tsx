@@ -61,6 +61,9 @@ const MovieItemWrapper = styled.div`
       line-height: 20px;
       margin: 16px 0 8px;
       white-space: wrap;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
     }
   }
 `;
