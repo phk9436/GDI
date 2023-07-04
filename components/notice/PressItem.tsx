@@ -73,6 +73,9 @@ const PressItemContainer = styled.div`
     h3 {
       font-size: 14px;
       white-space: wrap;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
     }
   }
 `;
