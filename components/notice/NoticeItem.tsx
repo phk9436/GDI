@@ -90,6 +90,9 @@ const NoticeItemContainer = styled.div`
       font-size: 14px;
       margin-bottom: 0;
       white-space: wrap;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
     }
   }
 `;
