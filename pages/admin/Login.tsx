@@ -7,13 +7,10 @@ import { InputText } from 'components/admin/Component';
 import { toast } from 'react-toastify';
 import { HeadMeta } from 'components/Components';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
-import { adminState } from 'atoms/util';
-import { useRecoilValue } from 'recoil';
 
 function Login() {
   const [id, setId] = useState('');
   const [password, setPassword] = useState('');
-  const isAdmin = useRecoilValue(adminState);
   const router = useRouter();
   const auth = getAuth();
 

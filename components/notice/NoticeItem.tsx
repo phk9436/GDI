@@ -1,12 +1,9 @@
 import styled from 'styled-components';
-import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { downloadFile } from 'utils/downloadUtils';
 import { INoticeItemProps } from 'types/componentPropTypes';
 
 function NoticeItem({ data, category }: INoticeItemProps) {
-  const router = useRouter();
-
   return (
     <li>
       <NoticeItemWrapper>
