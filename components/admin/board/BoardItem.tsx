@@ -69,7 +69,6 @@ const BoardItemContainer = styled.div`
   h3 {
     font-size: 30px;
     font-weight: 700;
-    white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
   }
