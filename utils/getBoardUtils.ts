@@ -17,16 +17,20 @@ import { dbService } from 'api/firebase';
 import { ILabData } from 'types/dataTypes';
 import dayjs from 'dayjs';
 
-export const getBoardData: (
-  category: string,
-  countCategory: string,
-  limitNum: number,
-  isNext: boolean,
-  lastData: QueryDocumentSnapshot | undefined,
-  prevData: QueryDocumentSnapshot | undefined,
-) => Promise<
-  [ILabData[], QueryDocumentSnapshot<DocumentData>[], DocumentSnapshot<DocumentData>] | false
-> = async (category, countCategory, limitNum, isNext, lastData, prevData) => {
+interface IGetBoardData {
+  (
+    category: string,
+    countCategory: string,
+    limitNum: number,
+    isNext: boolean,
+    lastData: QueryDocumentSnapshot | undefined,
+    prevData: QueryDocumentSnapshot | undefined,
+  ): Promise<
+    [ILabData[], QueryDocumentSnapshot<DocumentData>[], DocumentSnapshot<DocumentData>] | false
+  >
+}
+
+export const getBoardData: IGetBoardData = async (category, countCategory, limitNum, isNext, lastData, prevData) => {
   try {
     let queryList;
     if (isNext) {

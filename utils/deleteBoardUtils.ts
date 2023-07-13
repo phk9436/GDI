@@ -2,13 +2,17 @@ import { doc, deleteDoc, updateDoc, increment } from 'firebase/firestore';
 import { dbService, storageService } from 'api/firebase';
 import { deleteObject, ref } from 'firebase/storage';
 
-export const deletePostData: (
-  category: string,
-  countCategory: string,
-  id: string,
-  fileId: string | undefined,
-  thumbnailId: string | undefined,
-) => Promise<boolean> = async (category, countCategory, id, fileId, thumbnailId) => {
+interface IDeletePostData {
+  (
+    category: string,
+    countCategory: string,
+    id: string,
+    fileId: string | undefined,
+    thumbnailId: string | undefined,
+  ): Promise<boolean>;
+}
+
+export const deletePostData: IDeletePostData = async (category, countCategory, id, fileId, thumbnailId) => {
   try {
     if (fileId) {
       const fileRef = ref(storageService, `${category}/${fileId}`);

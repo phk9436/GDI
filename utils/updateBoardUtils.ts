@@ -1,24 +1,45 @@
-import { toast } from 'react-toastify';
 import { v4 } from 'uuid';
 import { deleteObject, getDownloadURL, ref, uploadString } from 'firebase/storage';
 import { dbService, storageService } from 'api/firebase';
 import { doc, updateDoc } from 'firebase/firestore';
 
-export const updateLabData: (
-  id: string,
-  category: string,
-  title: string,
-  content: string,
-  author: string,
-  year: string,
-  isFileChanged: boolean,
-  isThumnailChanged: boolean,
-  fileId: string,
-  fileUrl: string,
-  fileName: string,
-  thumbnailId: string,
-  thumbnailUrl: string,
-) => Promise<boolean> = async (
+interface IUpdateLabData {
+  (
+    id: string,
+    category: string,
+    title: string,
+    content: string,
+    author: string,
+    year: string,
+    isFileChanged: boolean,
+    isThumnailChanged: boolean,
+    fileId: string,
+    fileUrl: string,
+    fileName: string,
+    thumbnailId: string,
+    thumbnailUrl: string,
+  ): Promise<boolean>
+}
+
+interface IUpdateForumData {
+  (
+    id: string,
+    category: string,
+    title: string,
+    place: string,
+    forumDate: string,
+    content: string,
+    isFileChanged: boolean,
+    isThumnailChanged: boolean,
+    fileId: string,
+    fileUrl: string,
+    fileName: string,
+    thumbnailId: string,
+    thumbnailUrl: string,
+  ): Promise<boolean>
+}
+
+export const updateLabData: IUpdateLabData = async (
   id,
   category,
   title,
@@ -74,21 +95,7 @@ export const updateLabData: (
   }
 };
 
-export const updateForumData: (
-  id: string,
-  category: string,
-  title: string,
-  place: string,
-  forumDate: string,
-  content: string,
-  isFileChanged: boolean,
-  isThumnailChanged: boolean,
-  fileId: string,
-  fileUrl: string,
-  fileName: string,
-  thumbnailId: string,
-  thumbnailUrl: string,
-) => Promise<boolean> = async (
+export const updateForumData: IUpdateForumData = async (
   id,
   category,
   title,

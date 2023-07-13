@@ -14,10 +14,7 @@ export interface IBoardDetailPropsWithDelete extends IBoardDetailProps {
   ) => Promise<void>;
 }
 
-export interface IBoardItemProps {
-  data: ILabData | IForumData;
-  path: string;
-  category: string;
+export interface IBoardItemProps extends IBoardDetailProps {
   deleteBoardItem: (
     id: string,
     fileId: string | undefined,

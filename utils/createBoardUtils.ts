@@ -55,10 +55,15 @@ interface ICreateBoardProps {
   content: string | undefined;
 }
 
-export const uploadThumbnail: (
-  e: React.ChangeEvent<HTMLInputElement>,
-  setThumbnailUrl: (value: React.SetStateAction<string>) => void,
-) => void = (e: React.ChangeEvent<HTMLInputElement>, setThumbnailUrl) => {
+interface ISetThumbnailUrl {
+  (value: React.SetStateAction<string>):void;
+}
+
+interface IUploadThumbnail {
+  (e: React.ChangeEvent<HTMLInputElement>, setThumbnailUrl: ISetThumbnailUrl): void;
+}
+
+export const uploadThumbnail: IUploadThumbnail = (e, setThumbnailUrl) => {
   const { files } = e.target;
   if (!files?.length) {
     toast('파일을 등록해주세요');

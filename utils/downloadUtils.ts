@@ -2,11 +2,15 @@ import { storageService } from 'api/firebase';
 import { getBlob, ref } from 'firebase/storage';
 import { toast } from 'react-toastify';
 
-export const downloadFile: (
-  id: string | undefined,
-  category: string,
-  name: string | undefined,
-) => Promise<void> = async (id, category, name) => {
+interface IDownloadFile {
+  (
+    id: string | undefined,
+    category: string,
+    name: string | undefined,
+  ): Promise<void>;
+}
+
+export const downloadFile: IDownloadFile = async (id, category, name) => {
   if (id === undefined || name === undefined) return;
   try {
     const fileRef = ref(storageService, `${category}/${id}`);
