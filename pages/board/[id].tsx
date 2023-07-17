@@ -81,13 +81,16 @@ function Detail(props: IBoardData) {
   const checkPasswordForLanding = () => {
     if (password !== props.password) {
       toast.error('비밀번호가 맞지 않습니다.');
-      setPassword('');
       router.push('/board');
       return;
     }
     setPassword('');
     setIsOpened(false);
   };
+
+  const cancelConfirm = () => {
+    router.push('/board');
+  }
 
   const validPage = () => {
     if (!props.title) {
@@ -143,6 +146,7 @@ function Detail(props: IBoardData) {
           setPassword={setPassword}
           checkPassword={checkPasswordForLanding}
           isDark={true}
+          cancelConfirm = {cancelConfirm}
         />
       )}
     </>

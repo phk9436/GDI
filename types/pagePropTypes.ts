@@ -12,6 +12,7 @@ export interface IConfirmProps {
   setPassword: (value: React.SetStateAction<string>) => void;
   checkPassword: () => void;
   isDark?: boolean;
+  cancelConfirm?: () =>  void;
 }
 
 export interface IFooterProps {
