@@ -5,11 +5,15 @@ import styled, { css } from 'styled-components';
 import { IConfirmProps } from 'types/pagePropTypes';
 import { IDarkCheck } from 'types/styleTypes';
 
-function ConfirmModal({ password, setPassword, checkPassword, isDark = false }: IConfirmProps) {
+function ConfirmModal({ password, setPassword, checkPassword, isDark = false, cancelConfirm }: IConfirmProps) {
   const setIsOpened = useSetRecoilState(confirmOpen);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const onClickCancel = () => {
+    if(typeof cancelConfirm !== 'undefined') {
+      cancelConfirm();
+      return;
+    }
     setPassword('');
     setIsOpened(false);
   };
