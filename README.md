@@ -1,25 +1,28 @@
 # GDI 사단법인 경기북부지역발전소
 
+<a href="https://gdin.re.kr">
 <img src="https://user-images.githubusercontent.com/47577714/215023115-00cc3fc3-55de-4744-9b87-5d1ae5e521b9.png"  width="400">
+</a>
 
 이 프로젝트는 **GDI 사단법인 경기북부지역발전소 웹사이트 제작 프로젝트** 입니다. 2022년 12월 1일부터 2023년 2월 17일까지, 약 2.5개월 동안 기획, 디자인, 개발, 서비스 런칭까지 진행되었습니다.
 
 > **GDI 사단법인 경기북부지역발전소**를 소개하기 위한 웹사이트이며, 연구소의 여러가지 연구활동, 학술포럼, 영상, 언론보도, 공지사항, 소개글을 안내하기 위한 컨텐츠들로 구성되어 있습니다.
->
-
 
 ## **🌏 링크**
+
 ### **[https://gdin.re.kr](https://gdin.re.kr)**
 
 ## **🧑‍🤝‍🧑 Contributors**
-| Contributor                              | Role |
-| ---------------------------------------- | -------- |
-| [유재영](http://nicole-yoo.com/) | Designer |
-| [박한결](https://github.com/phk9436/)      | Frontend |
+
+| Contributor                           | Role     |
+| ------------------------------------- | -------- |
+| [유재영](http://nicole-yoo.com/)      | Designer |
+| [박한결](https://github.com/phk9436/) | Frontend |
 
 ## **🔨 Stacks**
 
 ### Front
+
 ![NextJs](https://img.shields.io/badge/nextjs-%2320232a.svg?style=for-the-badge&logo=Next.js&logoColor=#000000)
 ![TypeScript](https://img.shields.io/badge/typescript-%2320232a.svg?style=for-the-badge&logo=TypeScript&logoColor=#000000)
 ![Vercel](https://img.shields.io/badge/vercel-%2320232a.svg?style=for-the-badge&logo=Vercel&logoColor=#000000)
@@ -28,6 +31,7 @@
 ![Firebase](https://img.shields.io/badge/firebase-%2320232a.svg?style=for-the-badge&logo=Firebase&logoColor=#000000)
 
 ### Design
+
 ![Figma](https://img.shields.io/badge/figma-%2320232a.svg?style=for-the-badge&logo=Figma&logoColor=#000000)
 
 ## 🧩 Project Structure
@@ -53,20 +57,25 @@
 ## ⚡ Preview
 
 ### **Main**
+
 <img src="https://user-images.githubusercontent.com/47577714/215032194-76cf5614-af07-4c7b-bd9a-d59d1897929e.png"  width="100%">
 <img src="https://user-images.githubusercontent.com/47577714/215032525-1cc7d40b-a695-4014-b1b9-aff05c808dea.png"  width="100%">
 <img src="https://user-images.githubusercontent.com/47577714/215032617-0b3c6f52-1468-4901-a9e8-f8416ca545af.png"  width="100%">
 
 ### **Admin**
+
 <img src="https://user-images.githubusercontent.com/47577714/215032732-4228de35-aad6-4091-869d-a10d25106d3e.png"  width="100%">
 <img src="https://user-images.githubusercontent.com/47577714/215032804-684b8d3b-953d-42df-a089-24a02f80669f.png"  width="100%">
 <img src="https://user-images.githubusercontent.com/47577714/215032888-9ea16179-c114-4809-bf0b-dbf31f3878ef.png"  width="100%">
 
 ### **BoardList**
+
 <img src="https://user-images.githubusercontent.com/47577714/215033061-96dc5044-597c-4e73-b18d-965e756b685e.png"  width="100%">
 
 ### **BoardDetail**
+
 <img src="https://user-images.githubusercontent.com/47577714/215033128-9e159bdd-45fb-430b-83a0-404e9a8124ea.png"  width="100%">
 
 ### **Intro**
+
 <img src="https://user-images.githubusercontent.com/47577714/215033316-4400bcf5-d615-49ed-8142-0e5d906a561c.png"  width="100%">
