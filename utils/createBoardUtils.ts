@@ -56,11 +56,19 @@ interface ICreateBoardProps {
 }
 
 interface ISetThumbnailUrl {
-  (value: React.SetStateAction<string>):void;
+  (value: React.SetStateAction<string>): void;
 }
 
 interface IUploadThumbnail {
   (e: React.ChangeEvent<HTMLInputElement>, setThumbnailUrl: ISetThumbnailUrl): void;
+}
+
+interface IUploadFile {
+  (
+    e: React.ChangeEvent<HTMLInputElement>,
+    setFileName: (value: React.SetStateAction<string>) => void,
+    setFileUrl: (value: React.SetStateAction<string>) => void,
+  ): void
 }
 
 export const uploadThumbnail: IUploadThumbnail = (e, setThumbnailUrl) => {
@@ -74,11 +82,7 @@ export const uploadThumbnail: IUploadThumbnail = (e, setThumbnailUrl) => {
   reader.onloadend = () => setThumbnailUrl(reader.result as string);
 };
 
-export const uploadFile: (
-  e: React.ChangeEvent<HTMLInputElement>,
-  setFileName: (value: React.SetStateAction<string>) => void,
-  setFileUrl: (value: React.SetStateAction<string>) => void,
-) => void = (e: React.ChangeEvent<HTMLInputElement>, setFileName, setFileUrl) => {
+export const uploadFile: IUploadFile = (e: React.ChangeEvent<HTMLInputElement>, setFileName, setFileUrl) => {
   const { files } = e.target;
   if (!files?.length) {
     toast('파일을 등록해주세요');
