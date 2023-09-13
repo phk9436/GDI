@@ -34,6 +34,20 @@
 
 ![Figma](https://img.shields.io/badge/figma-%2320232a.svg?style=for-the-badge&logo=Figma&logoColor=#000000)
 
+## Build
+```
+NEXT_PUBLIC_API_KEY=AIzaSyCiXOMpmfa1py7tURcwVgEawVi81_hV_Oc
+NEXT_PUBLIC_AUTH_DOMAIN=gdidev-28237.firebaseapp.com
+NEXT_PUBLIC_PROJECT_ID=gdidev-28237
+NEXT_PUBLIC_STORAGE_BUCKET=gdidev-28237
+NEXT_PUBLIC_MESSAGING_SENDER_ID=833369223945
+NEXT_PUBLIC_APP_ID=1:833369223945:web:41bf2cc945b8a99eee99d8
+```
+
+위의 코드를 .env파일에 넣은 후 npm run dev를 실행해주세요.<br/>
+실제 서비스의 env설정값이 아니기 때문에 마음껏 사용하셔도 됩니다.
+
+
 ## 🧩 Project Structure
 
 ```
