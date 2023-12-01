@@ -1,11 +1,11 @@
 import styled from 'styled-components';
-import { BlueButton, LabelFile, InputText, InputHide } from 'components/admin/Component';
+import { BlueButton, LabelFile, InputText, InputHide } from 'components/board/Components';
 import { useState, useRef } from 'react';
 import PostEditor from 'components/editor/Editor';
 import { Editor } from '@toast-ui/react-editor';
 import { useRouter } from 'next/router';
 import { createNotice, uploadFile } from 'utils/createBoardUtils';
-import Loading from 'components/admin/Loading';
+import Loading from 'components/Loading';
 import { toast } from 'react-toastify';
 import { HeadMeta } from 'components/Components';
 

@@ -3,7 +3,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useState, useEffect } from 'react';
-import { InputText } from 'components/admin/Component';
+import { InputText } from 'components/board/Components';
 import { toast } from 'react-toastify';
 import { HeadMeta } from 'components/Components';
 import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';

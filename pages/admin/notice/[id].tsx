@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { INoticeData } from 'types/dataTypes';
 import { deleteNoticeData } from 'utils/deleteBoardUtils';
 import { useEffect, useState } from 'react';
-import Loading from 'components/admin/Loading';
+import Loading from 'components/Loading';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import dayjs from 'dayjs';

@@ -18,7 +18,7 @@ import { IBoardData } from 'types/dataTypes';
 import PressSceleton from 'components/notice/PressSceleton';
 import BoardItem from 'components/admin/board/BoardItem';
 import { deleteBoardData } from 'utils/deleteBoardUtils';
-import Loading from 'components/admin/Loading';
+import Loading from 'components/Loading';
 import { toast } from 'react-toastify';
 import { HeadMeta } from 'components/Components';
 import { IBoardListProps } from 'types/pagePropTypes';

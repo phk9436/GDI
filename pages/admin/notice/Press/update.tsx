@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { BlueButton, InputText, InputDate } from 'components/admin/Component';
+import { BlueButton, InputText, InputDate } from 'components/board/Components';
 import { useState, useEffect } from 'react';
-import Loading from 'components/admin/Loading';
+import Loading from 'components/Loading';
 import { updatePressData } from 'utils/updateBoardUtils';
 import { toast } from 'react-toastify';
 import { HeadMeta } from 'components/Components';

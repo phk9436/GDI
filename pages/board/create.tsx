@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 import React, { useState, useRef } from 'react';
 import { useRouter } from 'next/router';
-import Loading from 'components/admin/Loading';
-import { BlueButton, InputText } from 'components/admin/Component';
+import Loading from 'components/Loading';
+import { BlueButton, InputText } from 'components/board/Components';
 import { Editor } from '@toast-ui/react-editor';
 import PostEditor from 'components/editor/Editor';
 import { createBoard } from 'utils/createBoardUtils';

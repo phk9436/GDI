@@ -6,13 +6,13 @@ import {
   InputText,
   LabelUpload,
   InputHide,
-} from 'components/admin/Component';
+} from 'components/board/Components';
 import { useState, useRef } from 'react';
 import PostEditor from 'components/editor/Editor';
 import { Editor } from '@toast-ui/react-editor';
 import { useRouter } from 'next/router';
 import { createLab, uploadFile, uploadThumbnail } from 'utils/createBoardUtils';
-import Loading from 'components/admin/Loading';
+import Loading from 'components/Loading';
 import { toast } from 'react-toastify';
 import { HeadMeta } from 'components/Components';
 

@@ -4,7 +4,7 @@ import BoardDetail from 'components/admin/BoardDetail';
 import { IForumData } from 'types/dataTypes';
 import { deletePostData } from 'utils/deleteBoardUtils';
 import { useEffect, useState } from 'react';
-import Loading from 'components/admin/Loading';
+import Loading from 'components/Loading';
 import { doc, getDoc } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import dayjs from 'dayjs';

@@ -1,8 +1,8 @@
 import { useRouter } from 'next/router';
 import styled from 'styled-components';
-import { BlueButton, LabelFile, InputText, InputHide } from 'components/admin/Component';
+import { BlueButton, LabelFile, InputText, InputHide } from 'components/board/Components';
 import { useState, useEffect, useRef } from 'react';
-import Loading from 'components/admin/Loading';
+import Loading from 'components/Loading';
 import { Editor } from '@toast-ui/react-editor';
 import { updateNoticeData } from 'utils/updateBoardUtils';
 import { uploadFile } from 'utils/createBoardUtils';

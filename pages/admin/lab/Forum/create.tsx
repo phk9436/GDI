@@ -7,12 +7,12 @@ import {
   LabelUpload,
   InputHide,
   InputDate,
-} from 'components/admin/Component';
+} from 'components/board/Components';
 import React, { useState, useRef } from 'react';
 import PostEditor from 'components/editor/Editor';
 import { Editor } from '@toast-ui/react-editor';
 import { useRouter } from 'next/router';
-import Loading from 'components/admin/Loading';
+import Loading from 'components/Loading';
 import { createForum, uploadFile, uploadThumbnail } from 'utils/createBoardUtils';
 import { toast } from 'react-toastify';
 import { HeadMeta } from 'components/Components';

@@ -17,7 +17,7 @@ import dayjs from 'dayjs';
 import { IBoardData } from 'types/dataTypes';
 import PressSceleton from 'components/notice/PressSceleton';
 import BoardItem from 'components/board/BoardItem';
-import { UploadButton } from 'components/admin/Component';
+import { UploadButton } from 'components/board/Components';
 import { IBoardListProps } from 'types/pagePropTypes';
 import { useRouter } from 'next/router';
 import { toast } from 'react-toastify';

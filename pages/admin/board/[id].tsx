@@ -6,7 +6,7 @@ import { IBoardData } from 'types/dataTypes';
 import { useEffect, useState } from 'react';
 import dayjs from 'dayjs';
 import BoardDetail from 'components/admin/board/BoardDetail';
-import Loading from 'components/admin/Loading';
+import Loading from 'components/Loading';
 import { deleteBoardData } from 'utils/deleteBoardUtils';
 import { toast } from 'react-toastify';
 

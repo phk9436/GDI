@@ -1,8 +1,8 @@
 import styled from 'styled-components';
-import { BlueButton, InputText, InputDate } from 'components/admin/Component';
+import { BlueButton, InputText, InputDate } from 'components/board/Components';
 import React, { useState } from 'react';
 import { useRouter } from 'next/router';
-import Loading from 'components/admin/Loading';
+import Loading from 'components/Loading';
 import { createPress } from 'utils/createBoardUtils';
 import { toast } from 'react-toastify';
 import { HeadMeta } from 'components/Components';

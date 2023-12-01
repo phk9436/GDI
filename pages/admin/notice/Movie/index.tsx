@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { useEffect, useState } from 'react';
 import { BreadCrumb, HeadMeta, Pagination } from 'components/Components';
-import { UploadButton } from 'components/admin/Component';
+import { UploadButton } from 'components/board/Components';
 import { MovieItem } from 'components/admin/MovieItem';
 import {
   query,
@@ -15,7 +15,7 @@ import {
 } from 'firebase/firestore';
 import { dbService } from 'api/firebase';
 import { getBoardData } from 'utils/getBoardUtils';
-import Loading from 'components/admin/Loading';
+import Loading from 'components/Loading';
 import { deleteMovieData } from 'utils/deleteBoardUtils';
 import dayjs from 'dayjs';
 import { IMovieData } from 'types/dataTypes';
