@@ -31,7 +31,7 @@ function Create() {
       toast.error('유튜브 링크가 아닙니다.');
       return;
     }
-    const ytbId = ytbUrl.split('/').at(-1);
+    const ytbId = ytbUrl.split('/').at(-1)?.split('?')[0];
     setYtbThumbnail(`https://img.youtube.com/vi/${ytbId}/0.jpg`);
   };
 
