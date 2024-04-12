@@ -5,6 +5,8 @@ import { IPressDetailProps } from 'types/pagePropTypes';
 function PressItem({ data, deletePressItem }: IPressDetailProps) {
   const router = useRouter();
 
+  const { pressUrl, title, pressDate, pressFrom, id } = data;
+
   const redirectUpdate = () => {
     router.push(
       {
@@ -18,17 +20,17 @@ function PressItem({ data, deletePressItem }: IPressDetailProps) {
   return (
     <li>
       <PressItemWrapper>
-        <a href={data.pressUrl} target="_blank">
+        <a href={pressUrl} target="_blank">
           <PressItemContainer>
-            <h3>{data.title}</h3>
+            <h3>{title}</h3>
             <InfoWrapper>
               <Info>
                 <Title>언론사</Title>
-                <Detail>{data.pressFrom}</Detail>
+                <Detail>{pressFrom}</Detail>
               </Info>
               <Info>
                 <Title>작성일자</Title>
-                <Detail>{data.pressDate}</Detail>
+                <Detail>{pressDate}</Detail>
               </Info>
             </InfoWrapper>
           </PressItemContainer>
@@ -36,9 +38,9 @@ function PressItem({ data, deletePressItem }: IPressDetailProps) {
         <PressButtons>
           <AdminButtons>
             <AdminButton onClick={redirectUpdate}>수정</AdminButton>
-            <AdminButton onClick={() => deletePressItem(data.id as string)}>삭제</AdminButton>
+            <AdminButton onClick={() => deletePressItem(id as string)}>삭제</AdminButton>
           </AdminButtons>
-          <a href={data.pressUrl} target="_blank">
+          <a href={pressUrl} target="_blank">
             <ButtonLink>상세내용확인</ButtonLink>
           </a>
         </PressButtons>

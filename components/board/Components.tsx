@@ -90,13 +90,10 @@ const Input = styled.input`
   }
 `;
 
-export function InputDate({ type, placeholder, value, onChange }: IInputTextProps) {
+export function InputDate({ ...props }: IInputTextProps) {
   return (
     <InputDateComponent
-      type={type}
-      placeholder={placeholder}
-      value={value}
-      onChange={onChange}
+      {...props}
       required
     />
   );

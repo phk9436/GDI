@@ -4,8 +4,8 @@ interface Props {
   content: string;
 }
 
-const PostViewer = (props: Props) => {
-  return <Viewer initialValue={props.content} />;
+const PostViewer = ({ content }: Props) => {
+  return <Viewer initialValue={content} />;
 };
 
 export default PostViewer;

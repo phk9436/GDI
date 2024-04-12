@@ -10,21 +10,24 @@ const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
 });
 
 function BoardDetail({ data, path, category }: IBoardDetailProps) {
+
+  const { thumbnailData, thumbnailId, date, title, fileId, fileName, content } = data;
+
   return (
     <Wrapper>
       <DetailTop>
         <ThumbnailWrapper>
           <TumbnailBackground />
           <Image
-            src={data.thumbnailData as string}
+            src={thumbnailData as string}
             layout="fill"
             alt="thumbnail"
             objectFit="cover"
           />
         </ThumbnailWrapper>
         <DetailTopContainer>
-          <p>{data.date}</p>
-          <h3>{data.title}</h3>
+          <p>{date}</p>
+          <h3>{title}</h3>
           <InfoWrapper>
             <ul>
               {'author' in data && (
@@ -65,9 +68,9 @@ function BoardDetail({ data, path, category }: IBoardDetailProps) {
           </InfoWrapper>
         </DetailTopContainer>
         <DetailButtonWrapper>
-          {data.fileId && (
+          {fileId && (
             <ButtonDownLoad>
-              <a onClick={() => downloadFile(data.fileId, category, data.fileName)}>
+              <a onClick={() => downloadFile(fileId, category, fileName)}>
                 자료 다운로드
                 <img src="/images/iconDownloadMo.png" alt="Download" />
               </a>
@@ -77,7 +80,7 @@ function BoardDetail({ data, path, category }: IBoardDetailProps) {
       </DetailTop>
       <DetailBody>
         <ContentWrapper>
-          <PostViewer content={data.content as string} />
+          <PostViewer content={content as string} />
         </ContentWrapper>
         <Link href={path}>
           <a>

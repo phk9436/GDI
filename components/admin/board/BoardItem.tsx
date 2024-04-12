@@ -5,29 +5,31 @@ import { IBoardDetailPropsWithDelete } from 'types/pagePropTypes';
 function BoardItem({ data, deleteBoardItem }: IBoardDetailPropsWithDelete) {
   const router = useRouter();
 
+  const { title, author, date, id } = data;
+
   const redirectDetail = () => {
-    router.push(`/admin/board/${data.id}`);
+    router.push(`/admin/board/${id}`);
   };
 
   return (
     <li>
       <BoardItemWrapper>
         <BoardItemContainer onClick={redirectDetail}>
-          <h3>{data.title}</h3>
+          <h3>{title}</h3>
           <InfoWrapper>
             <Info>
               <Title>작성자</Title>
-              <Detail>{data.author}</Detail>
+              <Detail>{author}</Detail>
             </Info>
             <Info>
               <Title>작성일자</Title>
-              <Detail>{data.date}</Detail>
+              <Detail>{date}</Detail>
             </Info>
           </InfoWrapper>
         </BoardItemContainer>
 
         <BoardButtons>
-          <ButtonDel onClick={() => deleteBoardItem(data.id as string)}>삭제</ButtonDel>
+          <ButtonDel onClick={() => deleteBoardItem(id as string)}>삭제</ButtonDel>
           <ButtonLink onClick={redirectDetail}>상세내용확인</ButtonLink>
         </BoardButtons>
       </BoardItemWrapper>

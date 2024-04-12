@@ -7,7 +7,9 @@ import { IBoardDetailProps } from 'types/componentPropTypes';
 export function BoardItem({ data, path, category }: IBoardDetailProps) {
   const router = useRouter();
 
-  const onClickNavigate = () => router.push(`${path}/${data.id}`);
+  const { thumbnailData, title, date, fileId, fileName, id } = data;
+
+  const onClickNavigate = () => router.push(`${path}/${id}`);
 
   return (
     <li>
@@ -15,16 +17,16 @@ export function BoardItem({ data, path, category }: IBoardDetailProps) {
         <BoardItemContainer onClick={onClickNavigate}>
           <BoardItemImage>
             <Image
-              src={data.thumbnailData as string}
+              src={thumbnailData as string}
               layout="fill"
-              alt={data.title}
+              alt={title}
               objectFit="cover"
             />
           </BoardItemImage>
           <BoardItemContents>
             <TitleWrapper>
-              <p>{data.date}</p>
-              <h3>{data.title}</h3>
+              <p>{date}</p>
+              <h3>{title}</h3>
             </TitleWrapper>
             <InfoWrapper>
               <ul>
@@ -69,9 +71,9 @@ export function BoardItem({ data, path, category }: IBoardDetailProps) {
 
         <BoardButtons>
           <ButtonLink onClick={onClickNavigate}>내용확인</ButtonLink>
-          {data.fileId && (
+          {fileId && (
             <ButtonDownLoad>
-              <a onClick={() => downloadFile(data.fileId, category, data.fileName)}>
+              <a onClick={() => downloadFile(fileId, category, fileName)}>
                 자료 다운로드
               </a>
             </ButtonDownLoad>

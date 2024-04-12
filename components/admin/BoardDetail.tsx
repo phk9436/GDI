@@ -13,6 +13,8 @@ const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
 function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailPropsWithDelete) {
   const router = useRouter();
 
+  const { thumbnailData, date, title, id, fileId, thumbnailId, fileName, content } = data;
+
   const redirectUpdate = () => {
     router.push(
       {
@@ -31,15 +33,15 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
       <DetailTop>
         <ThumbnailWrapper>
           <Image
-            src={data.thumbnailData as string}
+            src={thumbnailData as string}
             layout="fill"
             alt="thumbnail"
             objectFit="cover"
           />
         </ThumbnailWrapper>
         <DetailTopContainer>
-          <p>{data.date}</p>
-          <h3>{data.title}</h3>
+          <p>{date}</p>
+          <h3>{title}</h3>
           <InfoWrapper>
             <ul>
               {'author' in data && (
@@ -83,14 +85,14 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
           <AdminButtons>
             <AdminButton onClick={redirectUpdate}>수정</AdminButton>
             <AdminButton
-              onClick={() => deleteBoardItem(data.id as string, data.fileId, data.thumbnailId)}
+              onClick={() => deleteBoardItem(id as string, fileId, thumbnailId)}
             >
               삭제
             </AdminButton>
           </AdminButtons>
-          {data.fileId && (
+          {fileId && (
             <ButtonDownLoad>
-              <a onClick={() => downloadFile(data.fileId, category, data.fileName)}>
+              <a onClick={() => downloadFile(fileId, category, fileName)}>
                 자료 다운로드
               </a>
             </ButtonDownLoad>
@@ -99,7 +101,7 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
       </DetailTop>
       <DetailBody>
         <ContentWrapper>
-          <PostViewer content={data.content as string} />
+          <PostViewer content={content as string} />
         </ContentWrapper>
         <Link href={path}>
           <a>

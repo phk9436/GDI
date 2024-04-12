@@ -6,6 +6,8 @@ import { INoticeDetailProps } from 'types/pagePropTypes';
 function NoticeItem({ data, deleteNoticeItem }: INoticeDetailProps) {
   const router = useRouter();
 
+  const { id, title, date, fileId} = data;
+
   const redirectUpdate = () => {
     router.push(
       {
@@ -19,14 +21,14 @@ function NoticeItem({ data, deleteNoticeItem }: INoticeDetailProps) {
   return (
     <li>
       <NoticeItemWrapper>
-        <Link href={`/admin/notice/${data.id}`}>
+        <Link href={`/admin/notice/${id}`}>
           <a>
             <NoticeItemContainer>
-              <h3>{data.title}</h3>
+              <h3>{title}</h3>
               <InfoWrapper>
                 <Info>
                   <Title>작성일자</Title>
-                  <Detail>{data.date}</Detail>
+                  <Detail>{date}</Detail>
                 </Info>
               </InfoWrapper>
             </NoticeItemContainer>
@@ -36,11 +38,11 @@ function NoticeItem({ data, deleteNoticeItem }: INoticeDetailProps) {
         <NoticeButtons>
           <AdminButtons>
             <AdminButton onClick={redirectUpdate}>수정</AdminButton>
-            <AdminButton onClick={() => deleteNoticeItem(data.id as string, data.fileId)}>
+            <AdminButton onClick={() => deleteNoticeItem(id as string, fileId)}>
               삭제
             </AdminButton>
           </AdminButtons>
-          <Link href={`/admin/notice/${data.id}`}>
+          <Link href={`/admin/notice/${id}`}>
             <a>
               <ButtonLink>상세내용확인</ButtonLink>
             </a>

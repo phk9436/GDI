@@ -4,17 +4,18 @@ import { downloadFile } from 'utils/downloadUtils';
 import { INoticeItemProps } from 'types/componentPropTypes';
 
 function NoticeItem({ data, category }: INoticeItemProps) {
+  const { id, title, date, fileId, fileName } = data;
   return (
     <li>
       <NoticeItemWrapper>
-        <Link href={`/notice/${data.id}`}>
+        <Link href={`/notice/${id}`}>
           <a>
             <NoticeItemContainer>
-              <h3>{data.title}</h3>
+              <h3>{title}</h3>
               <InfoWrapper>
                 <Info>
                   <Title>작성일자</Title>
-                  <Detail>{data.date}</Detail>
+                  <Detail>{date}</Detail>
                 </Info>
               </InfoWrapper>
             </NoticeItemContainer>
@@ -22,14 +23,14 @@ function NoticeItem({ data, category }: INoticeItemProps) {
         </Link>
 
         <NoticeButtons>
-          {data.fileId && (
+          {fileId && (
             <ButtonDownLoad>
-              <a onClick={() => downloadFile(data.fileId, category, data.fileName)}>
+              <a onClick={() => downloadFile(fileId, category, fileName)}>
                 자료 다운로드
               </a>
             </ButtonDownLoad>
           )}
-          <Link href={`/notice/${data.id}`}>
+          <Link href={`/notice/${id}`}>
             <a>
               <ButtonLink>상세내용확인</ButtonLink>
             </a>

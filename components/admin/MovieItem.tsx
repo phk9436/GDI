@@ -6,6 +6,8 @@ import { IMovieItemProps } from 'types/pagePropTypes';
 export function MovieItem({ data, deleteMovieItem }: IMovieItemProps) {
   const router = useRouter();
 
+  const { ytbUrl, ytbThumbnail, title, id, ytbFrom, ytbDate } = data;
+
   const redirectUpdate = () => {
     router.push(
       {
@@ -20,12 +22,12 @@ export function MovieItem({ data, deleteMovieItem }: IMovieItemProps) {
     <li>
       <MovieItemWrapper>
         <ThumbnailWrapper>
-          <a href={data.ytbUrl} target="_blank">
+          <a href={ytbUrl} target="_blank">
             <ImageWrapper>
               <Image
-                src={data.ytbThumbnail as string}
+                src={ytbThumbnail as string}
                 layout="fill"
-                alt={data.title}
+                alt={title}
                 objectFit="cover"
               />
             </ImageWrapper>
@@ -35,14 +37,14 @@ export function MovieItem({ data, deleteMovieItem }: IMovieItemProps) {
           </a>
           <AdminButtonWrapper>
             <AdminButton onClick={redirectUpdate}>수정</AdminButton>
-            <AdminButton onClick={() => deleteMovieItem(data.id as string)}>삭제</AdminButton>
+            <AdminButton onClick={() => deleteMovieItem(id as string)}>삭제</AdminButton>
           </AdminButtonWrapper>
         </ThumbnailWrapper>
 
-        <h3>{data.title}</h3>
+        <h3>{title}</h3>
         <InfoWrapper>
-          <li>{data.ytbFrom}</li>
-          <li>{data.ytbDate}</li>
+          <li>{ytbFrom}</li>
+          <li>{ytbDate}</li>
         </InfoWrapper>
       </MovieItemWrapper>
     </li>

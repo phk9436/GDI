@@ -11,6 +11,9 @@ const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
 
 function NoticeDetail({ data, deleteNoticeItem }: INoticeDetailProps) {
   const router = useRouter();
+
+  const { date, title, id, fileId, fileName, content } = data;
+
   const redirectUpdate = () => {
     router.push(
       {
@@ -27,27 +30,27 @@ function NoticeDetail({ data, deleteNoticeItem }: INoticeDetailProps) {
     <Wrapper>
       <DetailTop>
         <DetailTopContainer>
-          <p>{data.date}</p>
-          <h3>{data.title}</h3>
+          <p>{date}</p>
+          <h3>{title}</h3>
           <InfoWrapper>
             <ul>
               <li>
                 <p>작성일자</p>
               </li>
-              <li>{data.date}</li>
+              <li>{date}</li>
             </ul>
           </InfoWrapper>
         </DetailTopContainer>
         <DetailButtonWrapper>
           <AdminButtons>
             <AdminButton onClick={redirectUpdate}>수정</AdminButton>
-            <AdminButton onClick={() => deleteNoticeItem(data.id as string, data.fileId)}>
+            <AdminButton onClick={() => deleteNoticeItem(id as string, fileId)}>
               삭제
             </AdminButton>
           </AdminButtons>
-          {data.fileId && (
+          {fileId && (
             <ButtonDownLoad>
-              <a onClick={() => downloadFile(data.fileId, 'notice', data.fileName)}>
+              <a onClick={() => downloadFile(fileId, 'notice', fileName)}>
                 자료 다운로드
               </a>
             </ButtonDownLoad>
@@ -56,7 +59,7 @@ function NoticeDetail({ data, deleteNoticeItem }: INoticeDetailProps) {
       </DetailTop>
       <DetailBody>
         <ContentWrapper>
-          <PostViewer content={data.content as string} />
+          <PostViewer content={content as string} />
         </ContentWrapper>
         <Link href="/admin/notice">
           <a>

@@ -7,7 +7,9 @@ import { IBoardItemProps } from 'types/componentPropTypes';
 export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemProps) {
   const router = useRouter();
 
-  const onClickNavigate = () => router.push(`${path}/${data.id}`);
+  const { id, thumbnailData, title, fileId, thumbnailId, fileName } = data;
+
+  const onClickNavigate = () => router.push(`${path}/${id}`);
 
   const redirectUpdate = () => {
     router.push(
@@ -28,9 +30,9 @@ export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemP
         <BoardItemContainer onClick={onClickNavigate}>
           <BoardItemImage>
             <Image
-              src={data.thumbnailData as string}
+              src={thumbnailData as string}
               layout="fill"
-              alt={data.title}
+              alt={title}
               objectFit="cover"
             />
           </BoardItemImage>
@@ -84,15 +86,15 @@ export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemP
           <AdminButtons>
             <AdminButton onClick={redirectUpdate}>수정</AdminButton>
             <AdminButton
-              onClick={() => deleteBoardItem(data.id as string, data.fileId, data.thumbnailId)}
+              onClick={() => deleteBoardItem(id as string, fileId, thumbnailId)}
             >
               삭제
             </AdminButton>
           </AdminButtons>
           <ButtonLink onClick={onClickNavigate}>내용확인</ButtonLink>
-          {data.fileId && (
+          {fileId && (
             <ButtonDownLoad>
-              <a onClick={() => downloadFile(data.fileId, category, data.fileName)}>
+              <a onClick={() => downloadFile(fileId, category, fileName)}>
                 자료 다운로드
               </a>
             </ButtonDownLoad>

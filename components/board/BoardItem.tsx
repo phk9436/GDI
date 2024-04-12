@@ -14,6 +14,8 @@ function BoardItem({ data }: IBoardItemProps) {
   const [isOpened, setIsOpened] = useRecoilState(confirmOpen);
   const [modalId, setModalId] = useState('');
 
+  const { title, author, date, id } = data;
+
   const checkPassword = (id: string) => {
     if (password !== data.password) {
       toast.error('비밀번호가 맞지 않습니다.');
@@ -34,7 +36,7 @@ function BoardItem({ data }: IBoardItemProps) {
   };
 
   const onClickLink = () => {
-    setModalId(data.id as string);
+    setModalId(id as string);
     setIsOpened(true);
   };
 
@@ -43,15 +45,15 @@ function BoardItem({ data }: IBoardItemProps) {
       <li>
         <BoardItemWrapper onClick={onClickLink}>
           <BoardItemContainer>
-            <h3>{data.title}</h3>
+            <h3>{title}</h3>
             <InfoWrapper>
               <Info>
                 <Title>작성자</Title>
-                <Detail>{data.author}</Detail>
+                <Detail>{author}</Detail>
               </Info>
               <Info>
                 <Title>작성일자</Title>
-                <Detail>{data.date}</Detail>
+                <Detail>{date}</Detail>
               </Info>
             </InfoWrapper>
           </BoardItemContainer>
@@ -61,11 +63,11 @@ function BoardItem({ data }: IBoardItemProps) {
           </BoardButtons>
         </BoardItemWrapper>
       </li>
-      {isOpened && modalId === data.id && (
+      {isOpened && modalId === id && (
         <ConfirmModal
           password={password}
           setPassword={setPassword}
-          checkPassword={() => checkPassword(data.id as string)}
+          checkPassword={() => checkPassword(id as string)}
         />
       )}
     </>

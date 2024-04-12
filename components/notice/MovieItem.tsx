@@ -3,16 +3,17 @@ import Image from 'next/image';
 import { IMovieItemProps } from 'types/componentPropTypes';
 
 export function MovieItem({ data }: IMovieItemProps) {
+  const { ytbUrl, ytbThumbnail, title, ytbFrom, ytbDate } = data;
   return (
     <li>
       <MovieItemWrapper>
         <ThumbnailWrapper>
-          <a href={data.ytbUrl} target="_blank">
+          <a href={ytbUrl} target="_blank">
             <ImageWrapper>
               <Image
-                src={data.ytbThumbnail as string}
+                src={ytbThumbnail as string}
                 layout="fill"
-                alt={data.title}
+                alt={title}
                 objectFit="cover"
               />
             </ImageWrapper>
@@ -22,10 +23,10 @@ export function MovieItem({ data }: IMovieItemProps) {
           </a>
         </ThumbnailWrapper>
 
-        <h3>{data.title}</h3>
+        <h3>{title}</h3>
         <InfoWrapper>
-          <li>{data.ytbFrom}</li>
-          <li>{data.ytbDate}</li>
+          <li>{ytbFrom}</li>
+          <li>{ytbDate}</li>
         </InfoWrapper>
       </MovieItemWrapper>
     </li>

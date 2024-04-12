@@ -12,25 +12,27 @@ function BoardDetail({
   deleteBoardItem,
   updateBoardItem,
 }: IBoardDetailPropsWithDeleteAndUpdate) {
+  const { date, title, author, email, content } = data;
+
   return (
     <Wrapper>
       <DetailTop>
         <DetailTopContainer>
-          <p>{data.date}</p>
-          <h3>{data.title}</h3>
+          <p>{date}</p>
+          <h3>{title}</h3>
           <DetailFlex>
             <InfoWrapper>
               <ul>
                 <li>
                   <p>작성자</p>
                 </li>
-                <li>{data.author}</li>
+                <li>{author}</li>
               </ul>
               <ul>
                 <li>
                   <p>이메일</p>
                 </li>
-                <li>{data.email}</li>
+                <li>{email}</li>
               </ul>
             </InfoWrapper>
             <Buttons>
@@ -42,7 +44,7 @@ function BoardDetail({
       </DetailTop>
       <DetailBody>
         <ContentWrapper>
-          <PostViewer content={data.content as string} />
+          <PostViewer content={content as string} />
         </ContentWrapper>
         <Link href="/board">
           <a>

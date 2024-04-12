@@ -9,25 +9,26 @@ const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
 });
 
 function NoticeDetail({ data }: INoticeDetailProps) {
+  const { date, title, fileId, fileName, content } = data;
   return (
     <Wrapper>
       <DetailTop>
         <DetailTopContainer>
-          <p>{data.date}</p>
-          <h3>{data.title}</h3>
+          <p>{date}</p>
+          <h3>{title}</h3>
           <InfoWrapper>
             <ul>
               <li>
                 <p>작성일자</p>
               </li>
-              <li>{data.date}</li>
+              <li>{date}</li>
             </ul>
           </InfoWrapper>
         </DetailTopContainer>
         <DetailButtonWrapper>
-          {data.fileId && (
+          {fileId && (
             <ButtonDownLoad>
-              <a onClick={() => downloadFile(data.fileId, 'notice', data.fileName)}>
+              <a onClick={() => downloadFile(fileId, 'notice', fileName)}>
                 자료 다운로드
                 <img src="/images/iconDownloadMo.png" alt="Download" />
               </a>
@@ -37,7 +38,7 @@ function NoticeDetail({ data }: INoticeDetailProps) {
       </DetailTop>
       <DetailBody>
         <ContentWrapper>
-          <PostViewer content={data.content as string} />
+          <PostViewer content={content as string} />
         </ContentWrapper>
         <Link href="/notice">
           <a>

@@ -9,36 +9,38 @@ const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
 
 function BoardDetail({ data, deleteBoardItem }: IBoardDetailPropsWithDelete) {
 
+  const { date, title, author, email, id, content } = data;
+
   return (
     <Wrapper>
       <DetailTop>
         <DetailTopContainer>
-          <p>{data.date}</p>
-          <h3>{data.title}</h3>
+          <p>{date}</p>
+          <h3>{title}</h3>
           <DetailFlex>
             <InfoWrapper>
               <ul>
                 <li>
                   <p>작성자</p>
                 </li>
-                <li>{data.author}</li>
+                <li>{author}</li>
               </ul>
               <ul>
                 <li>
                   <p>이메일</p>
                 </li>
-                <li>{data.email}</li>
+                <li>{email}</li>
               </ul>
             </InfoWrapper>
             <Buttons>
-              <Button onClick={() => deleteBoardItem(data.id as string)}>삭제</Button>
+              <Button onClick={() => deleteBoardItem(id as string)}>삭제</Button>
             </Buttons>
           </DetailFlex>
         </DetailTopContainer>
       </DetailTop>
       <DetailBody>
         <ContentWrapper>
-          <PostViewer content={data.content as string} />
+          <PostViewer content={content as string} />
         </ContentWrapper>
         <Link href="/admin/board">
           <a>
