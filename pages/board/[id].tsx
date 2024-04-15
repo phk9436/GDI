@@ -20,6 +20,8 @@ function Detail(props: IBoardData) {
   const [modalType, setModalType] = useState('');
   const [isOpened, setIsOpened] = useRecoilState(confirmOpen);
 
+  const { id, isvalid } = router.query;
+
   const Tap = [
     [
       '연구제안',
@@ -39,6 +41,9 @@ function Detail(props: IBoardData) {
   };
 
   const checkPasswordForUpdate = () => {
+    if (typeof id !== 'string') {
+      return;
+    }
     if (password !== props.password) {
       toast.error('비밀번호가 맞지 않습니다.');
       setPassword('');
@@ -51,7 +56,7 @@ function Detail(props: IBoardData) {
         pathname: '/board/update',
         query: {
           ...props,
-          id: router.query.id as string,
+          id,
           date: dayjs(props.createdAt).format('YY-MM-DD'),
         },
       },
@@ -60,6 +65,9 @@ function Detail(props: IBoardData) {
   };
 
   const checkPasswordForDelete = async () => {
+    if (typeof id !== 'string') {
+      return;
+    }
     if (password !== props.password) {
       toast.error('비밀번호가 맞지 않습니다.');
       setPassword('');
@@ -68,7 +76,7 @@ function Detail(props: IBoardData) {
     }
     setPassword('');
     setIsLoading(true);
-    const isDeleted = await deleteBoardData(router.query.id as string);
+    const isDeleted = await deleteBoardData(id);
     if (!isDeleted) {
       toast.error('알 수 없는 에러가 발생했습니다.');
       router.push('/board');
@@ -99,7 +107,7 @@ function Detail(props: IBoardData) {
       return;
     }
 
-    if (!router.query.isvalid) {
+    if (!isvalid) {
       setModalType('landing');
       setIsOpened(true);
       return;
@@ -118,7 +126,7 @@ function Detail(props: IBoardData) {
         <BoardDetail
           data={{
             ...props,
-            id: router.query.id as string,
+            id: id as string,
             date: dayjs(props.createdAt).format('YY-MM-DD'),
           }}
           deleteBoardItem={deleteBoardItem}
@@ -146,7 +154,7 @@ function Detail(props: IBoardData) {
           setPassword={setPassword}
           checkPassword={checkPasswordForLanding}
           isDark={true}
-          cancelConfirm = {cancelConfirm}
+          cancelConfirm={cancelConfirm}
         />
       )}
     </>

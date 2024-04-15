@@ -15,6 +15,8 @@ function update() {
   const [pressFrom, setPressFrom] = useState(router.query.pressFrom as string);
   const [pressDate, setPressDate] = useState(router.query.pressDate as string);
 
+  const { id } = router.query;
+
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
   const onChangePressUrl = (e: React.ChangeEvent<HTMLInputElement>) => setPressUrl(e.target.value);
   const onChangePressFrom = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -23,10 +25,13 @@ function update() {
     setPressDate(e.target.value);
 
   const updatePressItem = async (e: React.FormEvent<HTMLFormElement>) => {
+    if (typeof id !== 'string') {
+      return;
+    }
     e.preventDefault();
     setLoading(true);
     const context = {
-      id: router.query.id as string,
+      id,
       title,
       pressUrl,
       pressFrom,
@@ -56,7 +61,7 @@ function update() {
   };
 
   useEffect(() => {
-    if (!router.query.id) {
+    if (!id) {
       toast.error('잘못된 접근입니다.');
       router.back();
     }

@@ -20,6 +20,8 @@ function update() {
   const [initContent, setInitContent] = useState('');
   const contentRef = useRef<Editor>();
 
+  const { id } = router.query;
+
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
 
@@ -60,11 +62,11 @@ function update() {
       return;
     }
     const isUpdated = await updateBoardData({
-      id: router.query.id as string,
+      id: id as string,
       title,
       author,
       email,
-      content: content as string,
+      content,
     });
     if (!isUpdated) {
       toast.error('알 수 없는 에러가 발생했습니다.');
@@ -78,12 +80,12 @@ function update() {
   };
 
   const getContent = async () => {
-    const data = await getDoc(doc(dbService, `boardContent`, `${router.query.id}`));
+    const data = await getDoc(doc(dbService, `boardContent`, `${id}`));
     setInitContent(data.data()?.content);
   };
 
   useEffect(() => {
-    if (!router.query.id) {
+    if (!id) {
       toast.error('잘못된 접근입니다.');
       router.back();
     }
@@ -127,7 +129,7 @@ function update() {
               {initContent ? (
                 <PostEditor
                   ref={contentRef as React.MutableRefObject<Editor>}
-                  initialValue={initContent as string}
+                  initialValue={initContent}
                 />
               ) : (
                 <div>게시글을 불러오고 있습니다...</div>

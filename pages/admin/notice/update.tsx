@@ -31,16 +31,19 @@ function update() {
   };
 
   const updateBoardItem = async (e: React.FormEvent<HTMLFormElement>) => {
+    if (typeof fileId !== 'string' || typeof id !== 'string' || !contentRef.current) {
+      return;
+    }
     e.preventDefault();
     setLoading(true);
-    const content = contentRef.current?.getInstance().getMarkdown();
+    const content = contentRef.current.getInstance().getMarkdown();
     const context = {
-      id: router.query.id as string,
+      id,
       title,
-      fileId: router.query.fileId as string,
+      fileId,
       fileName,
       fileUrl,
-      content: content as string,
+      content,
     };
     if (!title || !content) {
       toast.error('항목이 모두 채워지지 않았습니다');
@@ -65,7 +68,7 @@ function update() {
   };
 
   useEffect(() => {
-    if (!router.query.id) {
+    if (!id) {
       toast.error('잘못된 접근입니다.');
       router.back();
     }
@@ -108,7 +111,7 @@ function update() {
             {initContent ? (
               <PostEditor
                 ref={contentRef as React.MutableRefObject<Editor>}
-                initialValue={initContent as string}
+                initialValue={initContent}
               />
             ) : (
               <div>게시글을 불러오고 있습니다...</div>

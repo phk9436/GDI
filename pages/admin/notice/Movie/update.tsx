@@ -17,6 +17,8 @@ function update() {
   const [ytbDate, setYtbDate] = useState(router.query.ytbDate as string);
   const [ytbThumbnail, setYtbThumbnail] = useState(router.query.ytbThumbnail as string);
 
+  const { id } = router.query;
+
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
   const onChangeYtbUrl = (e: React.ChangeEvent<HTMLInputElement>) => setYtbUrl(e.target.value);
   const onChangeYtbFrom = (e: React.ChangeEvent<HTMLInputElement>) => setYtbFrom(e.target.value);
@@ -36,10 +38,13 @@ function update() {
   };
 
   const updateMovieItem = async (e: React.FormEvent<HTMLFormElement>) => {
+    if (typeof id !== 'string') {
+      return;
+    }
     e.preventDefault();
     setLoading(true);
     const context = {
-      id: router.query.id as string,
+      id,
       title,
       ytbUrl,
       ytbFrom,
@@ -64,7 +69,7 @@ function update() {
   };
 
   useEffect(() => {
-    if (!router.query.id) {
+    if (!id) {
       toast.error('잘못된 접근입니다.');
       router.back();
     }

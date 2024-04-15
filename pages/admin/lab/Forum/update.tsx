@@ -27,7 +27,7 @@ function update() {
   const [initContent, setInitContent] = useState('');
   const contentRef = useRef<Editor>();
 
-  const { id, category, fileId, thumbnailId } = router.query;
+  const { id, category, fileId, thumbnailId, thumbnailData } = router.query;
 
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
   const onChangePlace = (e: React.ChangeEvent<HTMLInputElement>) => setPlace(e.target.value);
@@ -85,7 +85,7 @@ function update() {
   };
 
   useEffect(() => {
-    if (!router.query.id) {
+    if (!id) {
       toast.error('잘못된 접근입니다.');
       router.back();
     }
@@ -108,7 +108,7 @@ function update() {
               ) : (
                 <PreviewWrapper>
                   <Image
-                    src={router.query.thumbnailData as string}
+                    src={thumbnailData as string}
                     layout="fill"
                     alt="thumbnail"
                     objectFit="cover"
@@ -164,7 +164,7 @@ function update() {
             {initContent ? (
               <PostEditor
                 ref={contentRef as React.MutableRefObject<Editor>}
-                initialValue={initContent as string}
+                initialValue={initContent}
               />
             ) : (
               <div>게시글을 불러오고 있습니다...</div>
