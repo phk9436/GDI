@@ -15,6 +15,10 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
 
   const { thumbnailData, date, title, id, fileId, thumbnailId, fileName, content } = data;
 
+  if (typeof thumbnailData !== 'string' || typeof id !== 'string' || typeof content !== 'string') {
+    return <></>;
+  }
+
   const redirectUpdate = () => {
     router.push(
       {
@@ -33,7 +37,7 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
       <DetailTop>
         <ThumbnailWrapper>
           <Image
-            src={thumbnailData as string}
+            src={thumbnailData}
             layout="fill"
             alt="thumbnail"
             objectFit="cover"
@@ -85,7 +89,7 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
           <AdminButtons>
             <AdminButton onClick={redirectUpdate}>수정</AdminButton>
             <AdminButton
-              onClick={() => deleteBoardItem(id as string, fileId, thumbnailId)}
+              onClick={() => deleteBoardItem(id, fileId, thumbnailId)}
             >
               삭제
             </AdminButton>
@@ -101,7 +105,7 @@ function BoardDetail({ data, path, category, deleteBoardItem }: IBoardDetailProp
       </DetailTop>
       <DetailBody>
         <ContentWrapper>
-          <PostViewer content={content as string} />
+          <PostViewer content={content} />
         </ContentWrapper>
         <Link href={path}>
           <a>

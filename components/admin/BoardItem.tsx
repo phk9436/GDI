@@ -7,7 +7,11 @@ import { IBoardItemProps } from 'types/componentPropTypes';
 export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemProps) {
   const router = useRouter();
 
-  const { id, thumbnailData, title, fileId, thumbnailId, fileName } = data;
+  const { id, thumbnailData, title, fileId, thumbnailId, fileName, date } = data;
+
+  if (typeof thumbnailData !== 'string' || typeof id !== 'string') {
+    return <></>;
+  }
 
   const onClickNavigate = () => router.push(`${path}/${id}`);
 
@@ -30,7 +34,7 @@ export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemP
         <BoardItemContainer onClick={onClickNavigate}>
           <BoardItemImage>
             <Image
-              src={thumbnailData as string}
+              src={thumbnailData}
               layout="fill"
               alt={title}
               objectFit="cover"
@@ -38,8 +42,8 @@ export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemP
           </BoardItemImage>
           <BoardItemContents>
             <TitleWrapper>
-              <p>{data.date}</p>
-              <h3>{data.title}</h3>
+              <p>{date}</p>
+              <h3>{title}</h3>
             </TitleWrapper>
             <InfoWrapper>
               <ul>
@@ -86,7 +90,7 @@ export function BoardItem({ data, path, category, deleteBoardItem }: IBoardItemP
           <AdminButtons>
             <AdminButton onClick={redirectUpdate}>수정</AdminButton>
             <AdminButton
-              onClick={() => deleteBoardItem(id as string, fileId, thumbnailId)}
+              onClick={() => deleteBoardItem(id, fileId, thumbnailId)}
             >
               삭제
             </AdminButton>
