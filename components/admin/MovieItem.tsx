@@ -8,6 +8,10 @@ export function MovieItem({ data, deleteMovieItem }: IMovieItemProps) {
 
   const { ytbUrl, ytbThumbnail, title, id, ytbFrom, ytbDate } = data;
 
+  if (typeof ytbThumbnail !== 'string' || typeof id !== 'string') {
+    return <></>;
+  }
+
   const redirectUpdate = () => {
     router.push(
       {
@@ -25,7 +29,7 @@ export function MovieItem({ data, deleteMovieItem }: IMovieItemProps) {
           <a href={ytbUrl} target="_blank">
             <ImageWrapper>
               <Image
-                src={ytbThumbnail as string}
+                src={ytbThumbnail}
                 layout="fill"
                 alt={title}
                 objectFit="cover"
@@ -37,7 +41,7 @@ export function MovieItem({ data, deleteMovieItem }: IMovieItemProps) {
           </a>
           <AdminButtonWrapper>
             <AdminButton onClick={redirectUpdate}>수정</AdminButton>
-            <AdminButton onClick={() => deleteMovieItem(id as string)}>삭제</AdminButton>
+            <AdminButton onClick={() => deleteMovieItem(id)}>삭제</AdminButton>
           </AdminButtonWrapper>
         </ThumbnailWrapper>
 

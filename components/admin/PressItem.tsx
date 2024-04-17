@@ -7,6 +7,10 @@ function PressItem({ data, deletePressItem }: IPressDetailProps) {
 
   const { pressUrl, title, pressDate, pressFrom, id } = data;
 
+  if (typeof id !== 'string') {
+    return <></>;
+  }
+
   const redirectUpdate = () => {
     router.push(
       {
@@ -38,7 +42,7 @@ function PressItem({ data, deletePressItem }: IPressDetailProps) {
         <PressButtons>
           <AdminButtons>
             <AdminButton onClick={redirectUpdate}>수정</AdminButton>
-            <AdminButton onClick={() => deletePressItem(id as string)}>삭제</AdminButton>
+            <AdminButton onClick={() => deletePressItem(id)}>삭제</AdminButton>
           </AdminButtons>
           <a href={pressUrl} target="_blank">
             <ButtonLink>상세내용확인</ButtonLink>

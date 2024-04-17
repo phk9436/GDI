@@ -6,7 +6,11 @@ import { INoticeDetailProps } from 'types/pagePropTypes';
 function NoticeItem({ data, deleteNoticeItem }: INoticeDetailProps) {
   const router = useRouter();
 
-  const { id, title, date, fileId} = data;
+  const { id, title, date, fileId } = data;
+
+  if (typeof id !== 'string') {
+    return <></>;
+  }
 
   const redirectUpdate = () => {
     router.push(
@@ -38,7 +42,7 @@ function NoticeItem({ data, deleteNoticeItem }: INoticeDetailProps) {
         <NoticeButtons>
           <AdminButtons>
             <AdminButton onClick={redirectUpdate}>수정</AdminButton>
-            <AdminButton onClick={() => deleteNoticeItem(id as string, fileId)}>
+            <AdminButton onClick={() => deleteNoticeItem(id, fileId)}>
               삭제
             </AdminButton>
           </AdminButtons>

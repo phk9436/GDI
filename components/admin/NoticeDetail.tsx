@@ -14,6 +14,10 @@ function NoticeDetail({ data, deleteNoticeItem }: INoticeDetailProps) {
 
   const { date, title, id, fileId, fileName, content } = data;
 
+  if (typeof id !== 'string' || typeof content !== 'string') {
+    return <></>;
+  }
+
   const redirectUpdate = () => {
     router.push(
       {
@@ -44,7 +48,7 @@ function NoticeDetail({ data, deleteNoticeItem }: INoticeDetailProps) {
         <DetailButtonWrapper>
           <AdminButtons>
             <AdminButton onClick={redirectUpdate}>수정</AdminButton>
-            <AdminButton onClick={() => deleteNoticeItem(id as string, fileId)}>
+            <AdminButton onClick={() => deleteNoticeItem(id, fileId)}>
               삭제
             </AdminButton>
           </AdminButtons>
@@ -59,7 +63,7 @@ function NoticeDetail({ data, deleteNoticeItem }: INoticeDetailProps) {
       </DetailTop>
       <DetailBody>
         <ContentWrapper>
-          <PostViewer content={content as string} />
+          <PostViewer content={content} />
         </ContentWrapper>
         <Link href="/admin/notice">
           <a>
