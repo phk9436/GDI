@@ -7,6 +7,10 @@ function BoardItem({ data, deleteBoardItem }: IBoardDetailPropsWithDelete) {
 
   const { title, author, date, id } = data;
 
+  if (typeof id !== 'string') {
+    return <></>;
+  }
+
   const redirectDetail = () => {
     router.push(`/admin/board/${id}`);
   };
@@ -29,7 +33,7 @@ function BoardItem({ data, deleteBoardItem }: IBoardDetailPropsWithDelete) {
         </BoardItemContainer>
 
         <BoardButtons>
-          <ButtonDel onClick={() => deleteBoardItem(id as string)}>삭제</ButtonDel>
+          <ButtonDel onClick={() => deleteBoardItem(id)}>삭제</ButtonDel>
           <ButtonLink onClick={redirectDetail}>상세내용확인</ButtonLink>
         </BoardButtons>
       </BoardItemWrapper>

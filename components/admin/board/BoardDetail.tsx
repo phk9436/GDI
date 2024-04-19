@@ -11,6 +11,10 @@ function BoardDetail({ data, deleteBoardItem }: IBoardDetailPropsWithDelete) {
 
   const { date, title, author, email, id, content } = data;
 
+  if (typeof id !== 'string' || typeof content !== 'string') {
+    return <></>;
+  }
+
   return (
     <Wrapper>
       <DetailTop>
@@ -33,14 +37,14 @@ function BoardDetail({ data, deleteBoardItem }: IBoardDetailPropsWithDelete) {
               </ul>
             </InfoWrapper>
             <Buttons>
-              <Button onClick={() => deleteBoardItem(id as string)}>삭제</Button>
+              <Button onClick={() => deleteBoardItem(id)}>삭제</Button>
             </Buttons>
           </DetailFlex>
         </DetailTopContainer>
       </DetailTop>
       <DetailBody>
         <ContentWrapper>
-          <PostViewer content={content as string} />
+          <PostViewer content={content} />
         </ContentWrapper>
         <Link href="/admin/board">
           <a>
