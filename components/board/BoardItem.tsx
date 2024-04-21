@@ -16,6 +16,10 @@ function BoardItem({ data }: IBoardItemProps) {
 
   const { title, author, date, id } = data;
 
+  if (typeof id !== 'string') {
+    return <></>;
+  }
+
   const checkPassword = (id: string) => {
     if (password !== data.password) {
       toast.error('비밀번호가 맞지 않습니다.');
@@ -36,7 +40,7 @@ function BoardItem({ data }: IBoardItemProps) {
   };
 
   const onClickLink = () => {
-    setModalId(id as string);
+    setModalId(id);
     setIsOpened(true);
   };
 
@@ -67,7 +71,7 @@ function BoardItem({ data }: IBoardItemProps) {
         <ConfirmModal
           password={password}
           setPassword={setPassword}
-          checkPassword={() => checkPassword(id as string)}
+          checkPassword={() => checkPassword(id)}
         />
       )}
     </>

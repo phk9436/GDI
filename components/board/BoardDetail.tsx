@@ -14,6 +14,10 @@ function BoardDetail({
 }: IBoardDetailPropsWithDeleteAndUpdate) {
   const { date, title, author, email, content } = data;
 
+  if (typeof content !== 'string') {
+    return <></>;
+  }
+
   return (
     <Wrapper>
       <DetailTop>
@@ -44,7 +48,7 @@ function BoardDetail({
       </DetailTop>
       <DetailBody>
         <ContentWrapper>
-          <PostViewer content={content as string} />
+          <PostViewer content={content} />
         </ContentWrapper>
         <Link href="/board">
           <a>
