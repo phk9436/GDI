@@ -9,6 +9,10 @@ export function BoardItem({ data, path, category }: IBoardDetailProps) {
 
   const { thumbnailData, title, date, fileId, fileName, id } = data;
 
+  if (typeof thumbnailData !== 'string') {
+    return <></>;
+  }
+
   const onClickNavigate = () => router.push(`${path}/${id}`);
 
   return (
@@ -17,7 +21,7 @@ export function BoardItem({ data, path, category }: IBoardDetailProps) {
         <BoardItemContainer onClick={onClickNavigate}>
           <BoardItemImage>
             <Image
-              src={thumbnailData as string}
+              src={thumbnailData}
               layout="fill"
               alt={title}
               objectFit="cover"

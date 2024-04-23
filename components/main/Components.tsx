@@ -53,12 +53,17 @@ const LinkWrapper = styled.div<IDarkCheck>`
 `;
 
 export function Card({ thumbnailData, title, id, path, date }: ICardProps) {
+
+  if (typeof thumbnailData !== 'string') {
+    return <></>;
+  }
+
   return (
     <CardWrapper>
       <Link href={`${path}/${id}`}>
         <a>
           <CardContent>
-            <Image src={thumbnailData as string} layout="fill" alt={title} objectFit="cover" />
+            <Image src={thumbnailData} layout="fill" alt={title} objectFit="cover" />
             <CardDate>{date}</CardDate>
           </CardContent>
           <CardText>{title}</CardText>
@@ -143,10 +148,14 @@ const CardText = styled.p`
 `;
 
 export function MovieCard({ ytbDate, title, ytbFrom, ytbThumbnail }: IMovieData) {
+  if (typeof ytbThumbnail !== 'string') {
+    return <></>;
+  }
+
   return (
     <MovieCardWrapper>
       <MovieImageWrapper>
-        <Image src={ytbThumbnail as string} layout="fill" alt={title} objectFit="cover" />
+        <Image src={ytbThumbnail} layout="fill" alt={title} objectFit="cover" />
         <MovieBg>
           <IconPlay />
         </MovieBg>

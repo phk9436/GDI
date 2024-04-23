@@ -11,7 +11,11 @@ const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
 
 function BoardDetail({ data, path, category }: IBoardDetailProps) {
 
-  const { thumbnailData, thumbnailId, date, title, fileId, fileName, content } = data;
+  const { thumbnailData, date, title, fileId, fileName, content } = data;
+
+  if (typeof thumbnailData !== 'string' || typeof content !== 'string') {
+    return <></>;
+  }
 
   return (
     <Wrapper>
@@ -19,7 +23,7 @@ function BoardDetail({ data, path, category }: IBoardDetailProps) {
         <ThumbnailWrapper>
           <TumbnailBackground />
           <Image
-            src={thumbnailData as string}
+            src={thumbnailData}
             layout="fill"
             alt="thumbnail"
             objectFit="cover"
@@ -80,7 +84,7 @@ function BoardDetail({ data, path, category }: IBoardDetailProps) {
       </DetailTop>
       <DetailBody>
         <ContentWrapper>
-          <PostViewer content={content as string} />
+          <PostViewer content={content} />
         </ContentWrapper>
         <Link href={path}>
           <a>
