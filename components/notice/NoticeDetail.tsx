@@ -10,6 +10,11 @@ const PostViewer = dynamic(() => import('components/viewer/Viewer'), {
 
 function NoticeDetail({ data }: INoticeDetailProps) {
   const { date, title, fileId, fileName, content } = data;
+
+  if (typeof content !== 'string') {
+    return <></>;
+  }
+
   return (
     <Wrapper>
       <DetailTop>
@@ -38,7 +43,7 @@ function NoticeDetail({ data }: INoticeDetailProps) {
       </DetailTop>
       <DetailBody>
         <ContentWrapper>
-          <PostViewer content={content as string} />
+          <PostViewer content={content} />
         </ContentWrapper>
         <Link href="/notice">
           <a>

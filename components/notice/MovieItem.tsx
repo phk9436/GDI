@@ -4,6 +4,11 @@ import { IMovieItemProps } from 'types/componentPropTypes';
 
 export function MovieItem({ data }: IMovieItemProps) {
   const { ytbUrl, ytbThumbnail, title, ytbFrom, ytbDate } = data;
+
+  if (typeof ytbThumbnail !== 'string') {
+    return <></>;
+  }
+
   return (
     <li>
       <MovieItemWrapper>
@@ -11,7 +16,7 @@ export function MovieItem({ data }: IMovieItemProps) {
           <a href={ytbUrl} target="_blank">
             <ImageWrapper>
               <Image
-                src={ytbThumbnail as string}
+                src={ytbThumbnail}
                 layout="fill"
                 alt={title}
                 objectFit="cover"
