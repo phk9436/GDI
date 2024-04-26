@@ -35,7 +35,7 @@ function Create() {
     };
 
     if (!(title && content)) {
-      toast.error('항목이 모두 작성되지 않았습니다');
+      toast.error('항목이 모두 작성되지 않았습니다.');
       setLoading(false);
       return;
     }
@@ -45,7 +45,7 @@ function Create() {
       router.push('/admin/notice');
       setLoading(false);
     }
-    toast.success('게시글이 작성되었습니다');
+    toast.success('게시글이 작성되었습니다.');
     router.push('/admin/notice');
     setLoading(false);
   };

@@ -57,7 +57,7 @@ function Create() {
     };
 
     if (!(title && place && forumDate && content && thumbnailUrl)) {
-      toast.error('항목이 모두 작성되지 않았습니다');
+      toast.error('항목이 모두 작성되지 않았습니다.');
       setLoading(false);
       return;
     }
@@ -68,7 +68,7 @@ function Create() {
       setLoading(false);
       return;
     }
-    toast.success('게시글이 작성되었습니다');
+    toast.success('게시글이 작성되었습니다.');
     router.push('/admin/lab/Forum');
     setLoading(false);
   };

@@ -38,7 +38,7 @@ function update() {
       pressDate,
     };
     if (!title || !pressUrl || !pressFrom || !pressDate) {
-      toast.error('항목이 모두 채워지지 않았습니다');
+      toast.error('항목이 모두 채워지지 않았습니다.');
       setLoading(false);
       return;
     }
@@ -55,7 +55,7 @@ function update() {
       setLoading(false);
       return;
     }
-    toast.success('수정 완료됐습니다');
+    toast.success('수정 완료됐습니다.');
     router.push('/admin/notice/Press');
     setLoading(false);
   };

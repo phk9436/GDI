@@ -42,7 +42,7 @@ function Detail(props: IBoardData) {
 
   useEffect(() => {
     if (!props.title) {
-      toast.error('잘못된 접근입니다');
+      toast.error('잘못된 접근입니다.');
       router.push('/admin/board');
     }
   }, []);

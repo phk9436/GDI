@@ -50,11 +50,11 @@ function Root({ children }: IRootProps) {
       if (isMobile) {
         setIsForbiden(true);
         router.push('/');
-        isForbiden && toast.error('관리자 페이지는 pc만 지원합니다');
+        isForbiden && toast.error('관리자 페이지는 pc만 지원합니다.');
       } else if (!isAdmin && routeCategory[2] !== 'Login' && isChecked) {
         setIsForbiden(true);
         router.push('/');
-        isForbiden && toast.error('어드민 로그인이 필요합니다');
+        isForbiden && toast.error('어드민 로그인이 필요합니다.');
       }
     } else {
       setIsAdminPage(false);

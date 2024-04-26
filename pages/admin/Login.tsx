@@ -22,18 +22,18 @@ function Login() {
     try {
       const data = await signInWithEmailAndPassword(auth, id, password);
       if (data) {
-        toast.success('로그인에 성공했습니다');
+        toast.success('로그인에 성공했습니다.');
         router.push('/admin');
       }
     } catch (err) {
-      toast.error('아이디와 패스워드를 확인해주세요');
+      toast.error('아이디와 패스워드를 확인해주세요.');
       console.error(err);
     }
   };
 
   useEffect(() => {
     if (sessionStorage.getItem('admin')) {
-      toast('이미 로그인되어 있습니다');
+      toast('이미 로그인되어 있습니다.');
       router.push('/admin');
     }
   });
