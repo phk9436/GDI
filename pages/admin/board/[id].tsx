@@ -14,6 +14,12 @@ function Detail(props: IBoardData) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
+  const { id } = router.query;
+
+  if (typeof id !== 'string') {
+    return <></>;
+  }
+
   const Tap = [
     [
       '연구제안',
@@ -49,7 +55,7 @@ function Detail(props: IBoardData) {
         <BoardDetail
           data={{
             ...props,
-            id: router.query.id as string,
+            id,
             date: dayjs(props.createdAt).format('YY-MM-DD'),
           }}
           deleteBoardItem={deleteBoardItem}

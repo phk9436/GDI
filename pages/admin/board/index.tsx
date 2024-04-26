@@ -173,11 +173,11 @@ export const getServerSideProps = async () => {
   const data = await getDocs(queryList);
   const dataList: IBoardData[] = [];
   data.forEach((docs) => {
-    const postData = {
+    const postData:IBoardData = {
       ...docs.data(),
       id: docs.id,
       date: dayjs(docs.data().createdAt).format('YY-MM-DD'),
-    } as IBoardData;
+    };
     dataList.push(postData);
   });
   return { props: { dataList } };
