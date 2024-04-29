@@ -14,6 +14,12 @@ function LabDetail(props: ILabData) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
+  const { id } = router.query;
+
+  if (typeof id !== 'string') {
+    return <></>;
+  }
+
   const Tap = [
     [
       '연구보고서',
@@ -41,7 +47,7 @@ function LabDetail(props: ILabData) {
 
   useEffect(() => {
     if (!props.title) {
-      toast.error('잘못된 접근입니다');
+      toast.error('잘못된 접근입니다.');
       router.push('/admin/lab');
     }
   }, []);
@@ -54,7 +60,7 @@ function LabDetail(props: ILabData) {
         <BoardDetail
           data={{
             ...props,
-            id: router.query.id as string,
+            id,
             date: dayjs(props.createdAt).format('YY-MM-DD'),
           }}
           path={Tap[0][2]}

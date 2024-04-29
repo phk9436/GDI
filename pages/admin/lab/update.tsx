@@ -29,6 +29,10 @@ function update() {
 
   const { id, category, fileId, thumbnailId, thumbnailData } = router.query;
 
+  if (typeof id !== 'string' || typeof category !== 'string' || typeof fileId !== 'string' || typeof thumbnailId !== 'string' || typeof thumbnailData !== 'string') {
+    return <></>;
+  }
+
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
   const onChangeAuthor = (e: React.ChangeEvent<HTMLInputElement>) => setAuthor(e.target.value);
   const onChangeYear = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,10 +60,13 @@ function update() {
 
   const updateBoardItem = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
     const content = contentRef.current?.getInstance().getMarkdown();
+    if (typeof content !== 'string') {
+      return;
+    }
+    setLoading(true);
     if (!content || !title || !author || !year) {
-      toast.error('항목이 모두 채워지지 않았습니다');
+      toast.error('항목이 모두 채워지지 않았습니다.');
       setLoading(false);
       return;
     }
@@ -69,18 +76,18 @@ function update() {
       return;
     }
     const isUpdated = await updateLabData(
-      id as string,
-      category as string,
+      id,
+      category,
       title,
-      content as string,
+      content,
       author,
       year,
       isFileChanged,
       isThumbnailChanged,
-      fileId as string,
+      fileId,
       fileUrl,
       fileName,
-      thumbnailId as string,
+      thumbnailId,
       thumbnailUrl,
     );
     if (!isUpdated) {
@@ -89,7 +96,7 @@ function update() {
       setLoading(false);
       return;
     }
-    toast.success('수정 완료됐습니다');
+    toast.success('수정 완료됐습니다.');
     router.push('/admin/lab');
     setLoading(false);
   };
@@ -122,7 +129,7 @@ function update() {
               ) : (
                 <PreviewWrapper>
                   <Image
-                    src={thumbnailData as string}
+                    src={thumbnailData}
                     layout="fill"
                     alt="thumbnail"
                     objectFit="cover"
