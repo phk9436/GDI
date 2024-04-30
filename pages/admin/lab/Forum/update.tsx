@@ -29,6 +29,10 @@ function update() {
 
   const { id, category, fileId, thumbnailId, thumbnailData } = router.query;
 
+  if (typeof id !== 'string' || typeof category !== 'string' || typeof fileId !== 'string' || typeof thumbnailId !== 'string' || typeof thumbnailData !== 'string') {
+    return <></>;
+  }
+
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
   const onChangePlace = (e: React.ChangeEvent<HTMLInputElement>) => setPlace(e.target.value);
   const onChangeForumDate = (e: React.ChangeEvent<HTMLInputElement>) =>
@@ -46,26 +50,29 @@ function update() {
 
   const updateBoardItem = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setLoading(true);
     const content = contentRef.current?.getInstance().getMarkdown();
+    if (typeof content !== 'string') {
+      return;
+    }
+    setLoading(true);
     if (!content || !title || !place || !forumDate) {
-      toast.error('항목이 모두 채워지지 않았습니다');
+      toast.error('항목이 모두 채워지지 않았습니다.');
       setLoading(false);
       return;
     }
     const isUpdated = await updateForumData(
-      id as string,
-      category as string,
+      id,
+      category,
       title,
       place,
       forumDate,
-      content as string,
+      content,
       isFileChanged,
       isThumbnailChanged,
-      fileId as string,
+      fileId,
       fileUrl,
       fileName,
-      thumbnailId as string,
+      thumbnailId,
       thumbnailUrl,
     );
     if (!isUpdated) {
@@ -74,7 +81,7 @@ function update() {
       setLoading(false);
       return;
     }
-    toast.success('수정 완료됐습니다');
+    toast.success('수정 완료됐습니다.');
     router.push('/admin/lab/Forum');
     setLoading(false);
   };
@@ -108,7 +115,7 @@ function update() {
               ) : (
                 <PreviewWrapper>
                   <Image
-                    src={thumbnailData as string}
+                    src={thumbnailData}
                     layout="fill"
                     alt="thumbnail"
                     objectFit="cover"
