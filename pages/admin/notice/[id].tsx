@@ -14,6 +14,12 @@ function Detail(props: INoticeData) {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
 
+  const { id } = router.query;
+
+  if (typeof id !== 'string') {
+    return <></>;
+  }
+
   const Tap = [
     ['GDI 영상관', '', '/admin/notice/Movie'],
     ['언론보도', '', '/admin/notice/Press'],
@@ -34,7 +40,7 @@ function Detail(props: INoticeData) {
 
   useEffect(() => {
     if (!props.title) {
-      toast.error('잘못된 접근입니다');
+      toast.error('잘못된 접근입니다.');
       router.push(Tap[2][2]);
     }
   }, []);
@@ -46,7 +52,7 @@ function Detail(props: INoticeData) {
         <NoticeDetail
           data={{
             ...props,
-            id: router.query.id as string,
+            id,
             date: dayjs(props.createdAt).format('YY-MM-DD'),
           }}
           deleteNoticeItem={deleteNoticeItem}
