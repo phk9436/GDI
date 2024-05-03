@@ -22,6 +22,10 @@ function update() {
 
   const { id } = router.query;
 
+  if (typeof id !== 'string') {
+    return <></>
+  }
+
   const onChangeTitle = (e: React.ChangeEvent<HTMLInputElement>) => setTitle(e.target.value);
   const onChangeEmail = (e: React.ChangeEvent<HTMLInputElement>) => setEmail(e.target.value);
 
@@ -57,12 +61,12 @@ function update() {
     setLoading(true);
     const content = contentRef.current?.getInstance().getMarkdown();
     if (!title || !author || !email || !content) {
-      toast.error('항목이 모두 채워지지 않았습니다');
+      toast.error('항목이 모두 채워지지 않았습니다.');
       setLoading(false);
       return;
     }
     const isUpdated = await updateBoardData({
-      id: id as string,
+      id,
       title,
       author,
       email,
@@ -74,7 +78,7 @@ function update() {
       setLoading(false);
       return;
     }
-    toast.success('수정 완료됐습니다');
+    toast.success('수정 완료됐습니다.');
     router.push('/board');
     setLoading(false);
   };

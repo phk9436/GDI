@@ -22,6 +22,10 @@ function Detail(props: IBoardData) {
 
   const { id, isvalid } = router.query;
 
+  if (typeof id !== 'string') {
+    return <></>
+  }
+
   const Tap = [
     [
       '연구제안',
@@ -82,7 +86,7 @@ function Detail(props: IBoardData) {
       router.push('/board');
       return;
     }
-    toast.success('삭제되었습니다', { theme: 'light' });
+    toast.success('삭제되었습니다.', { theme: 'light' });
     router.push('/board');
   };
 
@@ -102,7 +106,7 @@ function Detail(props: IBoardData) {
 
   const validPage = () => {
     if (!props.title) {
-      toast.error('잘못된 접근입니다');
+      toast.error('잘못된 접근입니다.');
       router.push('/board');
       return;
     }
@@ -126,7 +130,7 @@ function Detail(props: IBoardData) {
         <BoardDetail
           data={{
             ...props,
-            id: id as string,
+            id,
             date: dayjs(props.createdAt).format('YY-MM-DD'),
           }}
           deleteBoardItem={deleteBoardItem}
