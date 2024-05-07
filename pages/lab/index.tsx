@@ -140,11 +140,11 @@ export const getServerSideProps = async () => {
   const data = await getDocs(queryList);
   const dataList: ILabData[] = [];
   data.forEach((docs) => {
-    const postData = {
+    const postData:ILabData = {
       ...docs.data(),
       id: docs.id,
       date: dayjs(docs.data().createdAt).format('YY-MM-DD'),
-    } as ILabData;
+    };
     dataList.push(postData);
   });
   return { props: { dataList } };

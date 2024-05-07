@@ -19,9 +19,12 @@ function index() {
   };
 
   useEffect(() => {
-    if (isMobile && introRef.current && !isClicked) {
-      divHeight = introRef.current?.clientHeight as number;
-      const pHeight = paragraphRef.current?.clientHeight as number;
+    if (isMobile && introRef.current && !isClicked && paragraphRef.current) {
+      if(!introRef.current.clientHeight || !paragraphRef.current.clientHeight) {
+        return;
+      }
+      divHeight = introRef.current.clientHeight;
+      const pHeight = paragraphRef.current.clientHeight;
       introRef.current.style.height = `${pHeight + 100}px`;
     }
   });
