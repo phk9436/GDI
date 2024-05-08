@@ -10,6 +10,13 @@ import { toast } from 'react-toastify';
 
 function ForumDetail(props: IForumData) {
   const router = useRouter();
+
+  const { id } = router.query;
+
+  if (typeof id !== 'string') {
+    return <></>
+  }
+
   const Tap = [
     [
       '연구보고서',
@@ -20,7 +27,7 @@ function ForumDetail(props: IForumData) {
   ];
   useEffect(() => {
     if (!props.title) {
-      toast.error('잘못된 접근입니다');
+      toast.error('잘못된 접근입니다.');
       router.push('/lab/Forum');
     }
   }, []);
@@ -32,7 +39,7 @@ function ForumDetail(props: IForumData) {
         <BoardDetail
           data={{
             ...props,
-            id: router.query.id as string,
+            id,
             date: dayjs(props.createdAt).format('YY-MM-DD'),
           }}
           path={Tap[1][2]}
