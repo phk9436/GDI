@@ -74,24 +74,24 @@ interface IUploadFile {
 export const uploadThumbnail: IUploadThumbnail = (e, setThumbnailUrl) => {
   const { files } = e.target;
   if (!files?.length) {
-    toast('파일을 등록해주세요');
+    toast('파일을 등록해주세요.');
     return;
   }
   const reader = new FileReader();
   reader.readAsDataURL(files[0]);
-  reader.onloadend = () => setThumbnailUrl(reader.result as string);
+  reader.onloadend = () => typeof reader.result === 'string' && setThumbnailUrl(reader.result);
 };
 
 export const uploadFile: IUploadFile = (e: React.ChangeEvent<HTMLInputElement>, setFileName, setFileUrl) => {
   const { files } = e.target;
   if (!files?.length) {
-    toast('파일을 등록해주세요');
+    toast('파일을 등록해주세요.');
     return;
   }
   setFileName(files[0].name);
   const reader = new FileReader();
   reader.readAsDataURL(files[0]);
-  reader.onloadend = () => setFileUrl(reader.result as string);
+  reader.onloadend = () => typeof reader.result === 'string' && setFileUrl(reader.result);
 };
 
 export const createLab = async (context: IcreateLabProps) => {

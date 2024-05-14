@@ -51,11 +51,11 @@ export const getBoardData: IGetBoardData = async (category, countCategory, limit
     const data = await getDocs(queryList);
     const dataList: ILabData[] = [];
     data.forEach((docs) => {
-      const postData = {
+      const postData:ILabData = {
         ...docs.data(),
         date: dayjs(docs.data().createdAt).format('YY-MM-DD'),
         id: docs.id,
-      } as ILabData;
+      };
       dataList.push(postData);
     });
 

@@ -155,7 +155,7 @@ export const updateForumData: IUpdateForumData = async (
 
 export const updateMovieData = async (context: { [x: string]: string }) => {
   try {
-    await updateDoc(doc(dbService, 'movie', context.id as string), context);
+    await updateDoc(doc(dbService, 'movie', context.id), context);
     return true;
   } catch (err) {
     return false;
@@ -164,7 +164,7 @@ export const updateMovieData = async (context: { [x: string]: string }) => {
 
 export const updatePressData = async (context: { [x: string]: string }) => {
   try {
-    await updateDoc(doc(dbService, 'press', context.id as string), context);
+    await updateDoc(doc(dbService, 'press', context.id), context);
     return true;
   } catch (err) {
     return false;
