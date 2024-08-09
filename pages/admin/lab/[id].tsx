@@ -35,14 +35,21 @@ function LabDetail(props: ILabData) {
     thumbnailId: string | undefined,
   ) => {
     setIsLoading(true);
-    const isDeleted = await deletePostData('lab', 'labCount', id, fileId, thumbnailId);
-    if (!isDeleted) {
+    try {
+      const isDeleted = await deletePostData('lab', 'labCount', id, fileId, thumbnailId);
+      if (!isDeleted) {
+        toast.error('알 수 없는 에러가 발생했습니다.');
+        router.push(Tap[0][2]);
+        return;
+      }
+      toast.success('삭제되었습니다.', { theme: 'light' });
+      router.push(Tap[0][2]);
+    } catch (err) {
+      console.error(err);
       toast.error('알 수 없는 에러가 발생했습니다.');
       router.push(Tap[0][2]);
-      return;
     }
-    toast.success('삭제되었습니다.', { theme: 'light' });
-    router.push(Tap[0][2]);
+
   };
 
   useEffect(() => {
