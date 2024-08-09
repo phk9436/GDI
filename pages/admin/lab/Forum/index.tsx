@@ -121,20 +121,30 @@ function index({ dataList }: IForumListProps) {
     thumbnailId: string | undefined,
   ) => {
     setIsLoading(true);
-    const isDeleteSuccessed = await deletePostData('forum', 'forumCount', id, fileId, thumbnailId);
-    if (!isDeleteSuccessed) {
+    try {
+      const isDeleteSuccessed = await deletePostData('forum', 'forumCount', id, fileId, thumbnailId);
+      if (!isDeleteSuccessed) {
+        toast.error('알 수 없는 에러가 발생했습니다.');
+        router.push('/admin');
+        setIsLoading(false);
+        return;
+      }
+      toast.success('삭제되었습니다. 모든 삭제작업 후 데이터 최신화를 위해 새로고침을 해주세요.', {
+        theme: 'light',
+      });
+
+      setPostList(postList.filter((e) => e.id !== id));
+      isDeleted || setIsDeleted(true);
+      isInit && setIsInit(false);
+      setIsLoading(false);
+    } catch (err) {
+      console.error(err);
       toast.error('알 수 없는 에러가 발생했습니다.');
       router.push('/admin');
       setIsLoading(false);
-      return;
     }
-    toast.success('삭제되었습니다. 모든 삭제작업 후 데이터 최신화를 위해 새로고침을 해주세요.', {
-      theme: 'light',
-    });
-    setIsLoading(false);
-    setPostList(postList.filter((e) => e.id !== id));
-    isDeleted || setIsDeleted(true);
-    isInit && setIsInit(false);
+
+
   };
 
   useEffect(() => {
@@ -151,23 +161,23 @@ function index({ dataList }: IForumListProps) {
           <ul>
             {isInit
               ? dataList.map((e) => (
-                  <BoardItem
-                    data={e}
-                    path={Tap[1][2]}
-                    deleteBoardItem={deleteBoardItem}
-                    category="forum"
-                    key={e.id}
-                  />
-                ))
+                <BoardItem
+                  data={e}
+                  path={Tap[1][2]}
+                  deleteBoardItem={deleteBoardItem}
+                  category="forum"
+                  key={e.id}
+                />
+              ))
               : postList.map((e) => (
-                  <BoardItem
-                    data={e}
-                    path={Tap[1][2]}
-                    deleteBoardItem={deleteBoardItem}
-                    category="forum"
-                    key={e.id}
-                  />
-                ))}
+                <BoardItem
+                  data={e}
+                  path={Tap[1][2]}
+                  deleteBoardItem={deleteBoardItem}
+                  category="forum"
+                  key={e.id}
+                />
+              ))}
             {isPending && <BoardSceleton />}
           </ul>
           <Pagination
@@ -191,7 +201,7 @@ export const getServerSideProps = async () => {
   const data = await getDocs(queryList);
   const dataList: IForumData[] = [];
   data.forEach((docs) => {
-    const postData:IForumData = {
+    const postData: IForumData = {
       ...docs.data(),
       id: docs.id,
       date: dayjs(docs.data().createdAt).format('YY-MM-DD'),

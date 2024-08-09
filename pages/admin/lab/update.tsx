@@ -75,30 +75,37 @@ function update() {
       setLoading(false);
       return;
     }
-    const isUpdated = await updateLabData(
-      id,
-      category,
-      title,
-      content,
-      author,
-      year,
-      isFileChanged,
-      isThumbnailChanged,
-      fileId,
-      fileUrl,
-      fileName,
-      thumbnailId,
-      thumbnailUrl,
-    );
-    if (!isUpdated) {
+    try {
+      const isUpdated = await updateLabData(
+        id,
+        category,
+        title,
+        content,
+        author,
+        year,
+        isFileChanged,
+        isThumbnailChanged,
+        fileId,
+        fileUrl,
+        fileName,
+        thumbnailId,
+        thumbnailUrl,
+      );
+      if (!isUpdated) {
+        toast.error('알 수 없는 에러가 발생했습니다.');
+        router.push('/admin/lab');
+        setLoading(false);
+        return;
+      }
+      toast.success('수정 완료됐습니다.');
+      router.push('/admin/lab');
+      setLoading(false);
+    } catch(err) {
+      console.error(err);
       toast.error('알 수 없는 에러가 발생했습니다.');
       router.push('/admin/lab');
       setLoading(false);
-      return;
     }
-    toast.success('수정 완료됐습니다.');
-    router.push('/admin/lab');
-    setLoading(false);
   };
 
   const getContent = async () => {
