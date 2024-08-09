@@ -60,37 +60,30 @@ function update() {
       setLoading(false);
       return;
     }
-    try {
-      const isUpdated = await updateForumData(
-        id,
-        category,
-        title,
-        place,
-        forumDate,
-        content,
-        isFileChanged,
-        isThumbnailChanged,
-        fileId,
-        fileUrl,
-        fileName,
-        thumbnailId,
-        thumbnailUrl,
-      );
-      if (!isUpdated) {
-        toast.error('알 수 없는 에러가 발생했습니다.');
-        router.push('/admin/lab/Forum');
-        setLoading(false);
-        return;
-      }
-      toast.success('수정 완료됐습니다.');
-      router.push('/admin/lab/Forum');
-      setLoading(false);
-    } catch (err) {
-      console.error(err);
+    const isUpdated = await updateForumData(
+      id,
+      category,
+      title,
+      place,
+      forumDate,
+      content,
+      isFileChanged,
+      isThumbnailChanged,
+      fileId,
+      fileUrl,
+      fileName,
+      thumbnailId,
+      thumbnailUrl,
+    );
+    if (!isUpdated) {
       toast.error('알 수 없는 에러가 발생했습니다.');
       router.push('/admin/lab/Forum');
       setLoading(false);
+      return;
     }
+    toast.success('수정 완료됐습니다.');
+    router.push('/admin/lab/Forum');
+    setLoading(false);
   };
 
   const getContent = async () => {

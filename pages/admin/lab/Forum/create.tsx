@@ -44,39 +44,33 @@ function Create() {
   const onSubmitPost = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      const content = contentRef.current?.getInstance().getMarkdown();
-      const context = {
-        title,
-        place,
-        forumDate,
-        content,
-        fileUrl,
-        fileName,
-        thumbnailUrl,
-      };
-  
-      if (!(title && place && forumDate && content && thumbnailUrl)) {
-        toast.error('항목이 모두 작성되지 않았습니다.');
-        setLoading(false);
-        return;
-      }
-      const isPostCreated = await createForum(context);
-      if (!isPostCreated) {
-        toast.error('알 수 없는 에러가 발생했습니다.');
-        router.push('/admin/lab/Forum');
-        setLoading(false);
-        return;
-      }
-      toast.success('게시글이 작성되었습니다.');
-      router.push('/admin/lab/Forum');
+
+    const content = contentRef.current?.getInstance().getMarkdown();
+    const context = {
+      title,
+      place,
+      forumDate,
+      content,
+      fileUrl,
+      fileName,
+      thumbnailUrl,
+    };
+
+    if (!(title && place && forumDate && content && thumbnailUrl)) {
+      toast.error('항목이 모두 작성되지 않았습니다.');
       setLoading(false);
-    } catch(err) {
-      console.error(err);
+      return;
+    }
+    const isPostCreated = await createForum(context);
+    if (!isPostCreated) {
       toast.error('알 수 없는 에러가 발생했습니다.');
       router.push('/admin/lab/Forum');
       setLoading(false);
+      return;
     }
+    toast.success('게시글이 작성되었습니다.');
+    router.push('/admin/lab/Forum');
+    setLoading(false);
   };
 
   return (
