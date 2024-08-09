@@ -87,8 +87,14 @@ function update() {
   };
 
   const getContent = async () => {
-    const data = await getDoc(doc(dbService, `${category}Content`, `${id}`));
-    setInitContent(data.data()?.content);
+    try {
+      const data = await getDoc(doc(dbService, `${category}Content`, `${id}`));
+      setInitContent(data.data()?.content);
+    } catch (err) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin/lab/Forum');
+    }
+
   };
 
   useEffect(() => {

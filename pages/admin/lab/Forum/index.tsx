@@ -72,10 +72,15 @@ function index({ dataList }: IForumListProps) {
   };
 
   const setPropsData = async () => {
-    setPostList(dataList);
-    const total = await getDoc(doc(dbService, 'meta', 'forumCount'));
-    setTotalNum(total.data()?.total);
-    setTotalPageNum(Math.ceil(total.data()?.total / 6));
+    try {
+      setPostList(dataList);
+      const total = await getDoc(doc(dbService, 'meta', 'forumCount'));
+      setTotalNum(total.data()?.total);
+      setTotalPageNum(Math.ceil(total.data()?.total / 6));
+    } catch (err) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/admin');
+    }
   };
 
   const getNextPage = async () => {

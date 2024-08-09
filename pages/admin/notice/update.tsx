@@ -63,8 +63,14 @@ function update() {
   };
 
   const getContent = async () => {
-    const data = await getDoc(doc(dbService, 'noticeContent', `${id}`));
-    setInitContent(data.data()?.content);
+    try {
+      const data = await getDoc(doc(dbService, 'noticeContent', `${id}`));
+      setInitContent(data.data()?.content);
+    } catch (err) {
+      toast.success('수정 완료됐습니다.');
+      router.push('/admin/notice');
+    }
+
   };
 
   useEffect(() => {
