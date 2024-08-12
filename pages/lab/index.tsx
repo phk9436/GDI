@@ -67,10 +67,16 @@ function index({ dataList }: ILabListProps) {
   };
 
   const setPropsData = async () => {
-    setPostList(dataList);
-    const total = await getDoc(doc(dbService, 'meta', 'labCount'));
-    setTotalNum(total.data()?.total);
-    setTotalPageNum(Math.ceil(total.data()?.total / 6));
+    try {
+      setPostList(dataList);
+      const total = await getDoc(doc(dbService, 'meta', 'labCount'));
+      setTotalNum(total.data()?.total);
+      setTotalPageNum(Math.ceil(total.data()?.total / 6));
+    } catch (err) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/');
+    }
+
   };
 
   const getNextPage = async () => {
@@ -114,11 +120,11 @@ function index({ dataList }: ILabListProps) {
           <ul>
             {isInit
               ? dataList.map((e) => (
-                  <BoardItem data={e} path={Tap[0][2]} key={e.id} category="lab" />
-                ))
+                <BoardItem data={e} path={Tap[0][2]} key={e.id} category="lab" />
+              ))
               : postList.map((e) => (
-                  <BoardItem data={e} path={Tap[0][2]} key={e.id} category="lab" />
-                ))}
+                <BoardItem data={e} path={Tap[0][2]} key={e.id} category="lab" />
+              ))}
             {isPending && <BoardSceleton />}
           </ul>
           <Pagination
@@ -140,7 +146,7 @@ export const getServerSideProps = async () => {
   const data = await getDocs(queryList);
   const dataList: ILabData[] = [];
   data.forEach((docs) => {
-    const postData:ILabData = {
+    const postData: ILabData = {
       ...docs.data(),
       id: docs.id,
       date: dayjs(docs.data().createdAt).format('YY-MM-DD'),

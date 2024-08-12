@@ -64,10 +64,16 @@ function Press({ dataList }: IPressListProps) {
   };
 
   const setPropsData = async () => {
-    setPostList(dataList);
-    const total = await getDoc(doc(dbService, 'meta', 'pressCount'));
-    setTotalNum(total.data()?.total);
-    setTotalPageNum(Math.ceil(total.data()?.total / 6));
+    try {
+      setPostList(dataList);
+      const total = await getDoc(doc(dbService, 'meta', 'pressCount'));
+      setTotalNum(total.data()?.total);
+      setTotalPageNum(Math.ceil(total.data()?.total / 6));
+    } catch (err) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/');
+    }
+
   };
 
   const getNextPage = async () => {
@@ -134,7 +140,7 @@ export const getServerSideProps = async () => {
   const data = await getDocs(queryList);
   const dataList: IPressData[] = [];
   data.forEach((docs) => {
-    const postData:IPressData = {
+    const postData: IPressData = {
       ...docs.data(),
       id: docs.id,
       date: dayjs(docs.data().createdAt).format('YY-MM-DD'),

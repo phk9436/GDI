@@ -64,10 +64,16 @@ function index({ dataList }: INoticeListProps) {
   };
 
   const setPropsData = async () => {
-    setPostList(dataList);
-    const total = await getDoc(doc(dbService, 'meta', 'noticeCount'));
-    setTotalNum(total.data()?.total);
-    setTotalPageNum(Math.ceil(total.data()?.total / 6));
+    try {
+      setPostList(dataList);
+      const total = await getDoc(doc(dbService, 'meta', 'noticeCount'));
+      setTotalNum(total.data()?.total);
+      setTotalPageNum(Math.ceil(total.data()?.total / 6));
+    } catch (err) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/');
+    }
+
   };
 
   const getNextPage = async () => {
@@ -134,7 +140,7 @@ export const getServerSideProps = async () => {
   const data = await getDocs(queryList);
   const dataList: INoticeData[] = [];
   data.forEach((docs) => {
-    const postData:INoticeData = {
+    const postData: INoticeData = {
       ...docs.data(),
       id: docs.id,
       date: dayjs(docs.data().createdAt).format('YY-MM-DD'),
