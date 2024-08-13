@@ -93,14 +93,20 @@ function index({ dataList }: IMovieListProps) {
       if (!lastData) {
         //최초 ssr시엔 lastData를 세팅할 수 없음(JSON만 받아옴)
         //최초 다음페이지 호출 시 lastData세팅
-        const queryList = query(
-          collection(dbService, 'movie'),
-          limit(6),
-          orderBy('createdAt', 'desc'),
-        );
-        const data = await getDocs(queryList);
-        setLastData(data.docs.at(-1));
-        setIsRefetch((state) => !state);
+        try {
+          const queryList = query(
+            collection(dbService, 'movie'),
+            limit(6),
+            orderBy('createdAt', 'desc'),
+          );
+          const data = await getDocs(queryList);
+          setLastData(data.docs.at(-1));
+          setIsRefetch((state) => !state);
+        } catch (err) {
+          toast.error('알 수 없는 에러가 발생했습니다.');
+          router.push('/admin');
+        }
+
       }
     }
   };
@@ -148,11 +154,11 @@ function index({ dataList }: IMovieListProps) {
           <MovieItemWrapper>
             {isInit
               ? dataList.map((e) => (
-                  <MovieItem data={e} deleteMovieItem={deleteMovieItem} key={e.id} />
-                ))
+                <MovieItem data={e} deleteMovieItem={deleteMovieItem} key={e.id} />
+              ))
               : postList.map((e) => (
-                  <MovieItem data={e} deleteMovieItem={deleteMovieItem} key={e.id} />
-                ))}
+                <MovieItem data={e} deleteMovieItem={deleteMovieItem} key={e.id} />
+              ))}
             {isPending && <MovieSceleton />}
           </MovieItemWrapper>
           <Pagination
@@ -176,7 +182,7 @@ export const getServerSideProps = async () => {
   const data = await getDocs(queryList);
   const dataList: IMovieData[] = [];
   data.forEach((docs) => {
-    const postData:IMovieData = {
+    const postData: IMovieData = {
       ...docs.data(),
       id: docs.id,
       date: dayjs(docs.data().createdAt).format('YY-MM-DD'),
