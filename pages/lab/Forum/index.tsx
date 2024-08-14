@@ -67,10 +67,15 @@ function index({ dataList }: IForumListProps) {
   };
 
   const setPropsData = async () => {
-    setPostList(dataList);
-    const total = await getDoc(doc(dbService, 'meta', 'forumCount'));
-    setTotalNum(total.data()?.total);
-    setTotalPageNum(Math.ceil(total.data()?.total / 6));
+    try {
+      setPostList(dataList);
+      const total = await getDoc(doc(dbService, 'meta', 'forumCount'));
+      setTotalNum(total.data()?.total);
+      setTotalPageNum(Math.ceil(total.data()?.total / 6));
+    } catch (err) {
+      toast.error('알 수 없는 에러가 발생했습니다.');
+      router.push('/');
+    }
   };
 
   const getNextPage = async () => {
@@ -81,14 +86,19 @@ function index({ dataList }: IForumListProps) {
 
       if (!lastData) {
         //최초 다음페이지 호출 시 lastData세팅
-        const queryList = query(
-          collection(dbService, 'forum'),
-          limit(6),
-          orderBy('createdAt', 'desc'),
-        );
-        const data = await getDocs(queryList);
-        setLastData(data.docs.at(-1));
-        setIsRefetch((state) => !state);
+        try {
+          const queryList = query(
+            collection(dbService, 'forum'),
+            limit(6),
+            orderBy('createdAt', 'desc'),
+          );
+          const data = await getDocs(queryList);
+          setLastData(data.docs.at(-1));
+          setIsRefetch((state) => !state);
+        } catch (err) {
+          toast.error('알 수 없는 에러가 발생했습니다.');
+          router.push('/');
+        }
       }
     }
   };
@@ -114,11 +124,11 @@ function index({ dataList }: IForumListProps) {
           <ul>
             {isInit
               ? dataList.map((e) => (
-                  <BoardItem data={e} path={Tap[1][2]} key={e.id} category="forum" />
-                ))
+                <BoardItem data={e} path={Tap[1][2]} key={e.id} category="forum" />
+              ))
               : postList.map((e) => (
-                  <BoardItem data={e} path={Tap[1][2]} key={e.id} category="forum" />
-                ))}
+                <BoardItem data={e} path={Tap[1][2]} key={e.id} category="forum" />
+              ))}
             {isPending && <BoardSceleton />}
           </ul>
           <Pagination
@@ -140,7 +150,7 @@ export const getServerSideProps = async () => {
   const data = await getDocs(queryList);
   const dataList: IForumData[] = [];
   data.forEach((docs) => {
-    const postData:IForumData = {
+    const postData: IForumData = {
       ...docs.data(),
       id: docs.id,
       date: dayjs(docs.data().createdAt).format('YY-MM-DD'),

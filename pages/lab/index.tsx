@@ -87,14 +87,19 @@ function index({ dataList }: ILabListProps) {
 
       if (!lastData) {
         //최초 다음페이지 호출 시 lastData세팅
-        const queryList = query(
-          collection(dbService, 'lab'),
-          limit(6),
-          orderBy('createdAt', 'desc'),
-        );
-        const data = await getDocs(queryList);
-        setLastData(data.docs.at(-1));
-        setIsRefetch((state) => !state);
+        try {
+          const queryList = query(
+            collection(dbService, 'lab'),
+            limit(6),
+            orderBy('createdAt', 'desc'),
+          );
+          const data = await getDocs(queryList);
+          setLastData(data.docs.at(-1));
+          setIsRefetch((state) => !state);
+        } catch (err) {
+          toast.error('알 수 없는 에러가 발생했습니다.');
+          router.push('/');
+        }
       }
     }
   };
