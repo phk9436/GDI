@@ -13,18 +13,16 @@ import {
 
 export function LabelUpload({ htmlFor }: IUploadProps) {
   return (
-    <>
-      <UploadLabel htmlFor={htmlFor}>
-        <ImageWrapper>
-          <Image src="/images/iconDownload.png" layout="fill" alt="download" />
-        </ImageWrapper>
-        <p>
-          썸네일 업로드
-          <br />
-          확장자 jpg, png
-        </p>
-      </UploadLabel>
-    </>
+    <UploadLabel htmlFor={htmlFor}>
+      <ImageWrapper>
+        <Image src="/images/iconDownload.png" layout="fill" alt="download" />
+      </ImageWrapper>
+      <p>
+        썸네일 업로드
+        <br />
+        확장자 jpg, png
+      </p>
+    </UploadLabel>
   );
 }
 
@@ -144,9 +142,7 @@ const InputDateComponent = styled.input`
 
 export function LabelFile({ htmlFor, text }: ILabelFileProps) {
   return (
-    <>
-      <LabelFileComponent htmlFor={htmlFor}>{text}</LabelFileComponent>
-    </>
+    <LabelFileComponent htmlFor={htmlFor}>{text}</LabelFileComponent>
   );
 }
 
