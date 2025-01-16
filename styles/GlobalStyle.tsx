@@ -15,7 +15,7 @@ const GlobalStyle = createGlobalStyle`
     html, body {
       margin: 0;
       padding: 0;
-      font-family: 'Noto', 'sans-serif';
+      font-family: "Noto Sans KR", 'sans-serif';
     }
 
     ul {
